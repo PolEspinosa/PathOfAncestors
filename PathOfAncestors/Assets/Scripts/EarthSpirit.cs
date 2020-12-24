@@ -18,7 +18,7 @@ public class EarthSpirit : BaseSpirit
         FollowOrder();
     }
 
-   protected override void InitialiseValues()
+    protected override void InitialiseValues()
     {
         target = GameObject.Find("EarthInvokation");
     }

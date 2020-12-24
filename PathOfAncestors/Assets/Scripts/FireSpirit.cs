@@ -9,16 +9,19 @@ public class FireSpirit : BaseSpirit
     void Start()
     {
         spiritType = Type.FIRE;
+        InitialiseValues();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        FollowOrder();
     }
 
     protected override void InitialiseValues()
     {
-      
+        target = GameObject.Find("FireWindInvokation");
     }
+
+    
 }

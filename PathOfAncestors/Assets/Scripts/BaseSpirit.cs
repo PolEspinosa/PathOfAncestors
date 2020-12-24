@@ -25,7 +25,15 @@ public class BaseSpirit : MonoBehaviour
     private bool waiting; //bool that will allow the spirit to leave the waiting state
     Vector3 goToPosition;
 
+    //fire/wind spirit variables
+    public float followSpeed;
+    public float slowdownDistance;
 
+    protected Vector3 velocity;
+    protected Vector3 targetDistance;
+    protected Vector3 desiredVelocity;
+    protected Vector3 steering;
+    protected float slowdownFactor;
 
     // Start is called before the first frame update
     void Start()
@@ -44,23 +52,39 @@ public class BaseSpirit : MonoBehaviour
         switch (state)
         {
             case States.FOLLOWING:
-                navAgent.speed = walkSpeed;
-                navAgent.SetDestination(target.transform.position);
+                if(spiritType == Type.EARTH)
+                {
+                    navAgent.speed = walkSpeed;
+                    navAgent.SetDestination(target.transform.position);
+                }
+                else
+                {
+                    SteeringBehavior(target.transform.position);
+                }
                 break;
 
             case States.GOING:
-                navAgent.speed = runSpeed;
-                navAgent.SetDestination(goToPosition);
+                if (spiritType == Type.EARTH)
+                {
+                    navAgent.speed = runSpeed;
+                    navAgent.SetDestination(goToPosition);
+                }
+                else
+                {
+                    SteeringBehavior(goToPosition);
+                }
                 break;
         }
     }
 
     protected virtual void InitialiseValues()
     {
-        navAgent = gameObject.GetComponent<NavMeshAgent>();
+        if (spiritType == Type.EARTH)
+        {
+            navAgent = gameObject.GetComponent<NavMeshAgent>();
+            navAgent.speed = walkSpeed;
+        }
         state = States.FOLLOWING;
-        navAgent.speed = walkSpeed;
-    
     }
 
     public void MoveTo( Vector3 targetPos)
@@ -74,4 +98,26 @@ public class BaseSpirit : MonoBehaviour
         return spiritType;
     }
 
+    public void ReturnToPlayer()
+    {
+        state = States.FOLLOWING;
+    }
+
+    //movement for the fire and wind spirit
+    protected void SteeringBehavior(Vector3 _targetPosition)
+    {
+        //direction in which the character has to move
+        targetDistance = (_targetPosition - gameObject.transform.position);
+        //the desired velocity the character needs in order to go to he target
+        desiredVelocity = targetDistance.normalized * followSpeed;
+        //the force needed in order to move to the target
+        steering = desiredVelocity - velocity;
+        //update current velocity
+        velocity += steering;
+        //Calculate slowdown factor
+        slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
+        velocity *= slowdownFactor;
+        //update current position
+        gameObject.transform.position += velocity * Time.deltaTime;
+    }
 }
