@@ -147,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxIntensity: 10
   minIntensity: 3
+  maxGlow: 0
+  minGlow: 0
 --- !u!1 &8975544140865204466
 GameObject:
   m_ObjectHideFlags: 0
