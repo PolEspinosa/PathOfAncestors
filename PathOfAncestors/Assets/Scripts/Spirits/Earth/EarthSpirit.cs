@@ -22,4 +22,24 @@ public class EarthSpirit : BaseSpirit
     {
         target = GameObject.Find("EarthInvokation");
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (other.tag)
+        {
+            case "PressurePlate":
+                other.gameObject.GetComponent<PressurePlate>().active = true;
+                break;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        switch (other.tag)
+        {
+            case "PressurePlate":
+                other.gameObject.GetComponent<PressurePlate>().active = false;
+                break;
+        }
+    }
 }
