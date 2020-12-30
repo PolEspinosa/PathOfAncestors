@@ -15,6 +15,11 @@ public class PressurePlate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        switch (activableObject.tag)
+        {
+            case "Platform":
+                activableObject.GetComponent<ActivatePlatform>().active = active;
+                break;
+        }
     }
 }

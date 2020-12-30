@@ -1954,9 +1954,11 @@ GameObject:
   - component: {fileID: 1015499384}
   - component: {fileID: 1015499383}
   - component: {fileID: 1015499382}
+  - component: {fileID: 1015499386}
+  - component: {fileID: 1015499387}
   m_Layer: 8
-  m_Name: Cube (17)
-  m_TagString: Untagged
+  m_Name: Platform
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2028,13 +2030,41 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015499381}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.57, y: -0.96, z: -3.96}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015499386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015499381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1190a2862efc65d42abd8ce408c19780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  yOffset: 1
+  movementSpeed: 0.5
+--- !u!65 &1015499387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015499381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.280447, z: 1}
+  m_Center: {x: 0, y: 0.1402235, z: 0}
 --- !u!1 &1134734317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,7 +2627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440795867}
-  m_LocalRotation: {x: 0.16018224, y: 4.1894842e-15, z: -1.4043524e-15, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018221, y: -0.00000004160263, z: 0.0000000067511756, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2625,7 +2655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1545731536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,7 +3134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1756421157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3204,7 +3234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0a6a56f1d665a478e9f3ca38afbf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activableObject: {fileID: 0}
+  activableObject: {fileID: 1015499381}
   active: 0
 --- !u!1 &1836640837
 GameObject:

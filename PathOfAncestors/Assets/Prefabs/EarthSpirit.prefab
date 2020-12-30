@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6026997708658887558}
   - component: {fileID: 4714893789418931503}
   - component: {fileID: 842660838196405411}
-  - component: {fileID: 5775657883806302724}
+  - component: {fileID: -8661762901848272158}
   m_Layer: 0
   m_Name: EarthSpirit
   m_TagString: EARTH
@@ -139,7 +139,7 @@ NavMeshAgent:
   m_BaseOffset: 0.88
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &5775657883806302724
+--- !u!54 &-8661762901848272158
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -9,6 +9,7 @@ TagManager:
   - WIND
   - Box
   - PressurePlate
+  - Platform
   layers:
   - Default
   - TransparentFX
