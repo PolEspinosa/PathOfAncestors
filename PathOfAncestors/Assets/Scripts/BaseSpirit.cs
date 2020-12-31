@@ -20,6 +20,7 @@ public class BaseSpirit : MonoBehaviour
     public NavMeshAgent navAgent;
     protected GameObject player;
     public GameObject target;
+    Vector3 destination;
     public float walkSpeed, runSpeed;
     public float stopDistance = 2f;
     private bool waiting; //bool that will allow the spirit to leave the waiting state
@@ -45,7 +46,12 @@ public class BaseSpirit : MonoBehaviour
         {
             case States.FOLLOWING:
                 navAgent.speed = walkSpeed;
-                navAgent.SetDestination(target.transform.position);
+                if (Vector3.Distance(destination, target.transform.position) > 1.0f)
+                {
+                    destination = target.transform.position;
+                    navAgent.destination = destination;
+                }
+                   
                 break;
 
             case States.GOING:
@@ -58,6 +64,7 @@ public class BaseSpirit : MonoBehaviour
     protected virtual void InitialiseValues()
     {
         navAgent = gameObject.GetComponent<NavMeshAgent>();
+        destination = navAgent.destination;
         state = States.FOLLOWING;
         navAgent.speed = walkSpeed;
     

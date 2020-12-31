@@ -5,11 +5,11 @@ using UnityEngine;
 public class CursorPosition : MonoBehaviour
 {
     public GameObject positionReference;
-    private GameObject mainCamera;
+    public  GameObject mainCamera;
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        
         gameObject.SetActive(false);
     }
 
