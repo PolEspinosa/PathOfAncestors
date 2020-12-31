@@ -23,6 +23,7 @@ public class PlayerMovementProto : MonoBehaviour
     private GameObject movingObject; //object the player is currently moving
     private bool facedBox; //set the rotation of the player to always face the box if he is pushing it
     private bool inRange; //determines whether the player is in range
+    public SpiritManager spiritManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,14 +38,15 @@ public class PlayerMovementProto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentSpirit != null)
+        //Debug.Log(spiritManager.currentSpirit);
+        if (spiritManager.currentSpirit != null)
         {
-            if (currentSpirit.CompareTag("EarthSpirit"))
+            if (spiritManager.currentSpirit.CompareTag("EARTH"))
             {
                 earthActive = true;
                 windActive = false;
             }
-            else if (currentSpirit.CompareTag("WindSpirit"))
+            else if (spiritManager.currentSpirit.CompareTag("WIND"))
             {
                 windActive = true;
                 earthActive = false;
@@ -159,6 +161,7 @@ public class PlayerMovementProto : MonoBehaviour
         //move the player
         controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
+        //the player is close enough to move the box
         if (inRange)
         {
             if (earthActive && Input.GetKey(KeyCode.E))

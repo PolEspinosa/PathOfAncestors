@@ -7,6 +7,9 @@ TagManager:
   - FIRE
   - EARTH
   - WIND
+  - Box
+  - PressurePlate
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -17,6 +20,7 @@ TagManager:
   - 
   - 
   - Stairs
+  - Environment
   - 
   - 
   - 

@@ -63,5 +63,10 @@ public class OrderSystem : MonoBehaviour
             //    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
             //}
         }
+        //if not aiming, make the spirit follow the player again
+        else if(!aiming && Input.GetMouseButtonDown(0))
+        {
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().ReturnToPlayer();
+        }
     }
 }
