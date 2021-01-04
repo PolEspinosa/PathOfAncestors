@@ -26,6 +26,9 @@ public class MovableWallActivable : Activable
     private Tween _closeTween = null;
     private Tween _shakeTween = null;
 
+    public bool deactivatedNeeded=true;
+    public Activator activatorDeactivate;
+
 
     private Vector3 _startPosition = Vector3.zero;
 
@@ -97,20 +100,32 @@ public class MovableWallActivable : Activable
 
     public override void Deactivate()
     {
-        if (!canActivate) return;
-        if (!_isActivated) return;
-        float _timeElapsed = _closeDoorDuration;
-        if (_shakeTween.IsPlaying()) _shakeTween.Pause();
-        if (_openTween.IsPlaying())
+
+        if(!deactivatedNeeded && activatorDeactivate._activated)
         {
-            _timeElapsed = _openTween.ElapsedPercentage() * _closeDoorDuration;
-            _openTween.Pause();
+            Debug.Log("g");
         }
 
-        _isActivated = !_isActivated;
+        else
+        {
+            if (!canActivate) return;
+            if (!_isActivated) return;
+            float _timeElapsed = _closeDoorDuration;
+            if (_shakeTween.IsPlaying()) _shakeTween.Pause();
+            if (_openTween.IsPlaying())
+            {
+                _timeElapsed = _openTween.ElapsedPercentage() * _closeDoorDuration;
+                _openTween.Pause();
+            }
 
-        UpdateCloseTween(_timeElapsed);
-        _closeTween.Restart();
+            _isActivated = !_isActivated;
+
+            UpdateCloseTween(_timeElapsed);
+            _closeTween.Restart();
+        }
+
+        
+
     }
     private TweenCallback DoShake()
     {
