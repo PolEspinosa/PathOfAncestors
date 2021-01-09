@@ -10,6 +10,10 @@ TagManager:
   - Box
   - PressurePlate
   - Platform
+  - Torch
+  - Oven
+  - PickableObject
+  - PlacingObject
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,6 @@ TagManager:
   - 
   - Stairs
   - Environment
-  - 
   - 
   - 
   - 

@@ -51,10 +51,7 @@ public class OrderSystem : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                
-                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
-
-              
+                ManageOrders(hit);
             }
             //ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -68,5 +65,32 @@ public class OrderSystem : MonoBehaviour
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().ReturnToPlayer();
         }
+    }
+
+    public void ManageOrders(RaycastHit hit)
+    {
+        if(hit.transform.tag== "Untagged")
+        {
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            if (spiritManager.activatorObject!=null)
+            {
+                if (spiritManager.activatorObject.gameObject.tag == "Oven")
+                {
+                    spiritManager.activatorObject.GetComponent<OvenActivator>().DeactivateOven();
+                }
+                
+            }
+
+        }
+        else if( hit.transform.tag=="Torch")
+        {
+            Transform pos = hit.transform.GetChild(0).transform;
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+        }
+        //else if (hit.transform.tag == "Oven")
+        //{
+        //    Transform pos = hit.transform.GetChild(0).transform;
+        //    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+        //}
     }
 }
