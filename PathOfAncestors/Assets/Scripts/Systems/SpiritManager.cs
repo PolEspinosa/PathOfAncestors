@@ -12,7 +12,7 @@ public class SpiritManager : MonoBehaviour
     public GameObject fireWindPosition;
     public GameObject earthPosition;
 
-
+    public Activator activatorObject;
 
     public GameObject currentSpirit = null;
 
@@ -77,6 +77,13 @@ public class SpiritManager : MonoBehaviour
     {
         Destroy(_currentSpirit);
         currentSpirit = null;
+        if(activatorObject != null)
+        {
+            activatorObject._activated = false;
+            activatorObject.OnDeactivate();
+            activatorObject = null;
+
+        }
     }
     
 
