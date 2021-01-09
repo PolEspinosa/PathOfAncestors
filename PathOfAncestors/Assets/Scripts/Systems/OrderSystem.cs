@@ -92,5 +92,9 @@ public class OrderSystem : MonoBehaviour
         //    Transform pos = hit.transform.GetChild(0).transform;
         //    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
         //}
+        else if (hit.transform.CompareTag("Burnable"))
+        {
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.transform.position);
+        }
     }
 }

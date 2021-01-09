@@ -12,6 +12,7 @@ TagManager:
   - Platform
   - Torch
   - Oven
+  - Burnable
   layers:
   - Default
   - TransparentFX
