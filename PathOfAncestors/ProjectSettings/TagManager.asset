@@ -12,6 +12,8 @@ TagManager:
   - Platform
   - Torch
   - Oven
+  - PickableObject
+  - PlacingObject
   layers:
   - Default
   - TransparentFX
