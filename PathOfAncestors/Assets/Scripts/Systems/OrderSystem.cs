@@ -15,6 +15,9 @@ public class OrderSystem : MonoBehaviour
     public Vector3 goToPosition;
     public SpiritManager spiritManager;
     public Camera camera;
+
+    public bool isGoingToEarth = false;
+    public GameObject activator;
    
 
 
@@ -69,28 +72,71 @@ public class OrderSystem : MonoBehaviour
 
     public void ManageOrders(RaycastHit hit)
     {
-        if(hit.transform.tag== "Untagged")
+        Debug.Log(hit.transform.tag);
+        isGoingToEarth = false;
+        activator = null;
+        if (hit.transform.tag== "Untagged")
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
-            if (spiritManager.activatorObject!=null)
-            {
-                if (spiritManager.activatorObject.gameObject.tag == "Oven")
-                {
-                    spiritManager.activatorObject.GetComponent<OvenActivator>().DeactivateOven();
-                }
-                
-            }
+            ManageActivators();
 
         }
         else if( hit.transform.tag=="Torch")
         {
-            Transform pos = hit.transform.GetChild(0).transform;
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+            if(spiritManager.activatorObject == null)
+            {
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+            }
+            else
+            {
+                ManageActivators();
+            }
+            
         }
+
+        else if(hit.transform.tag=="EarthPlatform")
+        {
+            isGoingToEarth = true;
+            activator = hit.transform.gameObject.transform.GetChild(0).gameObject;
+            if (spiritManager.activatorObject==null)
+            {
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position); 
+            }
+            else 
+            {
+                ManageActivators();
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+
+            }
+          
+
+
+        }
+
+       
         //else if (hit.transform.tag == "Oven")
         //{
         //    Transform pos = hit.transform.GetChild(0).transform;
         //    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
         //}
+    }
+
+    void ManageActivators()
+    {
+        if (spiritManager.activatorObject != null)
+        {
+            if (spiritManager.activatorObject.gameObject.name == "Entry")
+            {
+                spiritManager.activatorObject.GetComponent<OvenActivator>().DeactivateOven();
+            }
+            if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
+            {
+                spiritManager.activatorObject.GetComponent<EarthPlatformActivator>().DeactivateEarthPlatform();
+            }
+
+        }
     }
 }
