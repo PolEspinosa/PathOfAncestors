@@ -67,6 +67,10 @@ public class OrderSystem : MonoBehaviour
         else if(!aiming && Input.GetMouseButtonDown(0))
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().ReturnToPlayer();
+            
+            isGoingToEarth = false;
+            activator = null;
+            ManageActivators();
         }
     }
 
@@ -94,6 +98,22 @@ public class OrderSystem : MonoBehaviour
             }
             
         }
+        else if (hit.transform.tag == "OvenActivator")
+        {
+            activator = hit.transform.gameObject.transform.GetChild(0).gameObject;
+            if (spiritManager.activatorObject == null)
+            {
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+            }
+            else
+            {
+                ManageActivators();
+            }
+
+        }
+
+
 
         else if(hit.transform.tag=="EarthPlatform")
         {

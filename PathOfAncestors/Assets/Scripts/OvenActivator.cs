@@ -22,7 +22,7 @@ public class OvenActivator : Activator
     {
         if (!_activated)
         {
-            if (other.tag == "FIRE")
+            if (other.tag == "FIRE" && order.activator == this.gameObject)
             {
                fireSpirit = other.gameObject;
                StartCoroutine( activeOven(2f , fireSpirit));
