@@ -610,6 +610,7 @@ MonoBehaviour:
   earthPosition: {fileID: 1510597507730084940}
   activatorObject: {fileID: 0}
   currentSpirit: {fileID: 0}
+  order: {fileID: 3148489325421888680}
 --- !u!114 &3148489325421888680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +631,8 @@ MonoBehaviour:
   goToPosition: {x: 0, y: 0, z: 0}
   spiritManager: {fileID: 5860865591048021676}
   camera: {fileID: 20417040579404330}
+  isGoingToEarth: 0
+  activator: {fileID: 0}
 --- !u!1 &1510597507730084940
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +717,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3472912409252764304}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2, z: 0.5}
@@ -731,6 +734,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7930fef2932599341983eaca39ab877c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasObject: 0
+  objectInPossesion: {fileID: 0}
+  objectToPickUp: 0
+  inActivator: 0
+  activator: {fileID: 0}
+  player: {fileID: 1798185399542480}
 --- !u!1 &5759723567108913072
 GameObject:
   m_ObjectHideFlags: 0
