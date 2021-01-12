@@ -22,6 +22,4 @@ public class FireSpirit : BaseSpirit
     {
         target = GameObject.Find("FireWindInvokation");
     }
-
-    
 }
