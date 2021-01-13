@@ -87,6 +87,10 @@ public class SpiritManager : MonoBehaviour
             activatorObject = null;
 
         }
+        if(order.activator!=null)
+        {
+            order.activator = null;
+        }
     }
     
 
