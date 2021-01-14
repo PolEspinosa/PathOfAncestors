@@ -12,7 +12,11 @@ public class PressurePlateActivator : Activator
             {
                 _activated = true;
                 OnActivate();
-                manager.activatorObject = this;
+                if(other.tag=="EARTH")
+                {
+                    manager.activatorObject = this;
+                }
+                
             }
        
         }

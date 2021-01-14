@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000014070600378}
   - component: {fileID: 33000011756808260}
   - component: {fileID: 23000011790627010}
+  - component: {fileID: 4177366620052001270}
   m_Layer: 0
   m_Name: Corner Blocks 3
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4177366620052001270
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012357120344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.020635, y: 4.6587915, z: 8.020652}
+  m_Center: {x: -3.0103168, y: 0.5261668, z: 2.9896803}

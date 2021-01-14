@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000012034875212}
   - component: {fileID: 33000013085135730}
   - component: {fileID: 23000011864846806}
+  - component: {fileID: 9198386722608324654}
   m_Layer: 0
   m_Name: Block Ruin Wall 4
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &9198386722608324654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011285287924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.485542, y: 8.77856, z: 3.588457}
+  m_Center: {x: -0.7572284, y: 2.6107244, z: 0.7942062}

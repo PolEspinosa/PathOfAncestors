@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000011183272054}
   - component: {fileID: 33000013662023386}
   - component: {fileID: 23000011289157416}
+  - component: {fileID: 7310391736570878013}
   m_Layer: 0
   m_Name: Floor Blocks 15
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7310391736570878013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010568496920}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.977573, y: 2.1348498, z: 10.518503}
+  m_Center: {x: 0.31259227, y: -0.82278633, z: -1.2592461}

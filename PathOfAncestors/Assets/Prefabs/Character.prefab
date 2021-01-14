@@ -236,6 +236,7 @@ Transform:
   - {fileID: 4500425843531068}
   - {fileID: 8695732657886962744}
   - {fileID: 5284640854527087497}
+  - {fileID: 4520240688099813714}
   m_Father: {fileID: 4684556357517320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -351,9 +352,10 @@ GameObject:
   - component: {fileID: 33074213433593884}
   - component: {fileID: 23697081619688218}
   - component: {fileID: 114546907415797520}
+  - component: {fileID: 1075543378}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,6 +437,20 @@ MonoBehaviour:
   smoothSpeed: 20
   extrapolateRotation: 0
   updateType: 1
+--- !u!136 &1075543378
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663812751430954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1798185399542480
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +608,9 @@ MonoBehaviour:
     type: 3}
   fireWindPosition: {fileID: 5759723567108913072}
   earthPosition: {fileID: 1510597507730084940}
+  activatorObject: {fileID: 0}
   currentSpirit: {fileID: 0}
+  order: {fileID: 3148489325421888680}
 --- !u!114 &3148489325421888680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +631,8 @@ MonoBehaviour:
   goToPosition: {x: 0, y: 0, z: 0}
   spiritManager: {fileID: 5860865591048021676}
   camera: {fileID: 20417040579404330}
+  isGoingToEarth: 0
+  activator: {fileID: 0}
 --- !u!1 &1510597507730084940
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8695732657886962744}
   - component: {fileID: 7388508672500354068}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EarthInvokation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,6 +677,69 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3472912409252764304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4520240688099813714}
+  - component: {fileID: 4863860282353041357}
+  - component: {fileID: 5215810889396655737}
+  m_Layer: 2
+  m_Name: Pick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4520240688099813714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472912409252764304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.087, z: 0.987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4989957397450900}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4863860282353041357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472912409252764304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5215810889396655737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472912409252764304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7930fef2932599341983eaca39ab877c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasObject: 0
+  objectInPossesion: {fileID: 0}
+  objectToPickUp: 0
+  inActivator: 0
+  activator: {fileID: 0}
+  player: {fileID: 1798185399542480}
 --- !u!1 &5759723567108913072
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5284640854527087497}
   - component: {fileID: 1837037387005908525}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireWindInvokation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

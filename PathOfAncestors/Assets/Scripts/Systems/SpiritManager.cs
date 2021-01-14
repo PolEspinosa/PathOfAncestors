@@ -20,6 +20,8 @@ public class SpiritManager : MonoBehaviour
     bool earthpiritActivated = false;
     bool windSpiritActivated = false;
 
+    public OrderSystem order;
+
 
     // Start is called before the first frame update
     void Start()
@@ -77,12 +79,17 @@ public class SpiritManager : MonoBehaviour
     {
         Destroy(_currentSpirit);
         currentSpirit = null;
+        order.isGoingToEarth = false;
         if(activatorObject != null)
         {
             activatorObject._activated = false;
             activatorObject.OnDeactivate();
             activatorObject = null;
 
+        }
+        if(order.activator!=null)
+        {
+            order.activator = null;
         }
     }
     

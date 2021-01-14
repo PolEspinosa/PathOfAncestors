@@ -12,6 +12,11 @@ TagManager:
   - Platform
   - Torch
   - Oven
+  - PickableObject
+  - PlacingObject
+  - EarthPlatform
+  - EarthActivator
+  - OvenActivator
   - Burnable
   layers:
   - Default
