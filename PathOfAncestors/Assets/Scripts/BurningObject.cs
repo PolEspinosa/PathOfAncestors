@@ -67,9 +67,6 @@ public class BurningObject : MonoBehaviour
             fireParticles.SetFloat("rate", 0);
             gameObject.GetComponent<Collider>().enabled = false;
         }
-        //Debug.Log(Mathf.Abs(startHeight - height));
-        Debug.Log("start: " + startHeight);
-        Debug.Log("height: " + height);
     }
 
     private void SetHeight(float _height)
