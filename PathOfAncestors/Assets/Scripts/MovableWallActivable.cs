@@ -32,6 +32,8 @@ public class MovableWallActivable : Activable
 
     private Vector3 _startPosition = Vector3.zero;
 
+    public GameObject particles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,11 @@ public class MovableWallActivable : Activable
 
         SetupTweens();
         AssociateActions();
+
+        if(particles != null)
+        {
+            particles.SetActive(false);
+        }
     }
 
     private void SetupTweens()
@@ -57,6 +64,10 @@ public class MovableWallActivable : Activable
         _openTween = transform.DOMove(_endPosition, duration).Pause().SetEase(_openEase).SetAutoKill(false);
         _openTween.OnComplete(() => {
             DoShake();
+            if (particles != null)
+            {
+                particles.SetActive(false);
+            }
         });
     }
 
@@ -65,7 +76,13 @@ public class MovableWallActivable : Activable
         if (_closeTween != null) _closeTween.Kill();
         _closeTween = transform.DOMove(_startPosition, duration);
         _closeTween.SetEase(_closeEase);
-        _closeTween.OnComplete(() => DoShake());
+        _closeTween.OnComplete(() => {
+            DoShake();
+            if (particles != null)
+            {
+                particles.SetActive(false);
+            }
+        });
         _closeTween.SetAutoKill(false);
         _closeTween.Pause();
     }
@@ -80,6 +97,10 @@ public class MovableWallActivable : Activable
 
     public override void Activate()
     {
+        if (particles != null)
+        {
+            particles.SetActive(true);
+        }
         if (!canActivate) return;
         if (_isActivated) return;
         float _timeElapsed = _openDoorDuration;
@@ -100,7 +121,10 @@ public class MovableWallActivable : Activable
 
     public override void Deactivate()
     {
-
+        if (particles != null)
+        {
+            particles.SetActive(true);
+        }
         if(!deactivatedNeeded && activatorDeactivate._activated)
         {
             Debug.Log("g");
