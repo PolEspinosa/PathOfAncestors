@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class CharacterAnimationManager : MonoBehaviour
 {
-    private CMF.CharacterInput inputManager;
+    private CMF.AdvancedWalkerController inputManager;
     private GameObject player;
     private Animator playerAnimator;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        inputManager = player.GetComponent<CMF.CharacterInput>();
+        inputManager = player.GetComponent<CMF.AdvancedWalkerController>();
         playerAnimator = player.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerAnimator.GetBool("moving"));
-        if(inputManager.GetHorizontalMovementInput()!=0 || inputManager.GetVerticalMovementInput() != 0)
-        {
-            playerAnimator.SetBool("moving", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("moving", false);
-        }
+        playerAnimator.SetFloat("Speed", Mathf.Clamp01(inputManager.savedVelocity.magnitude));
+    }
+
+    void FixedUpdate()
+    {
+        
     }
 }
