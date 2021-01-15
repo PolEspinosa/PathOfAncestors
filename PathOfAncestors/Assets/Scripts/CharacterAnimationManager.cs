@@ -12,7 +12,7 @@ public class CharacterAnimationManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         inputManager = player.GetComponent<CMF.CharacterInput>();
-        playerAnimator = player.GetComponent<Animator>();
+        playerAnimator = player.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
