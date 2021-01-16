@@ -43,7 +43,7 @@ namespace CMF
 		protected Vector3 momentum = Vector3.zero;
 
 		//Saved velocity from last frame;
-		Vector3 savedVelocity = Vector3.zero;
+		public Vector3 savedVelocity = Vector3.zero;
 
 		//Saved horizontal movement velocity from last frame;
 		Vector3 savedMovementVelocity = Vector3.zero;
