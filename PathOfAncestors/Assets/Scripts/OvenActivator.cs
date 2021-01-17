@@ -7,6 +7,7 @@ public class OvenActivator : Activator
     public Material activeMaterial;
     public Material defaultMaterial;
     public Transform endPos;
+    public GameObject ovenParticles;
 
     GameObject fireSpirit;
 
@@ -26,6 +27,7 @@ public class OvenActivator : Activator
             {
                fireSpirit = other.gameObject;
                StartCoroutine( activeOven(2f , fireSpirit));
+                ovenParticles.SetActive(true);
             }
 
         }
@@ -34,6 +36,7 @@ public class OvenActivator : Activator
    
     public void DeactivateOven()
     {
+        ovenParticles.SetActive(false);
         fireSpirit.GetComponent<BaseSpirit>().MoveTo(endPos.position);
         StartCoroutine(shutDownOven(2f));
     }
