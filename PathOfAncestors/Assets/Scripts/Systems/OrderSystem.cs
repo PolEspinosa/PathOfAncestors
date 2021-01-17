@@ -50,7 +50,7 @@ public class OrderSystem : MonoBehaviour
         {
 
             RaycastHit hit;
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = camera.ScreenPointToRay(aimCursor.transform.position);
 
             if (Physics.Raycast(ray, out hit))
             {
