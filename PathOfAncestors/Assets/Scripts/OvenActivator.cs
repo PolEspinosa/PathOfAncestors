@@ -13,10 +13,10 @@ public class OvenActivator : Activator
 
     private void Update()
     {
-        if(!_activated)
-        {
-            this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = defaultMaterial;
-        }
+        //if(!_activated)
+        //{
+        //    this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = defaultMaterial;
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -45,7 +45,7 @@ public class OvenActivator : Activator
         _activated = true;
         OnActivate();
         manager.activatorObject = this;
-        this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = activeMaterial;
+        //this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = activeMaterial;
     }
 
     IEnumerator shutDownOven(float waitTime)
