@@ -556,5 +556,15 @@ namespace CMF
 			if(useLocalMomentum)
 				momentum = tr.worldToLocalMatrix * momentum;
 		}
+
+        public bool GetJumpState()
+        {
+            return currentControllerState == ControllerState.Jumping;
+        }
+
+        public bool GetGroundedState()
+        {
+            return currentControllerState == ControllerState.Grounded;
+        }
 	}
 }
