@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4714893789418931503}
   - component: {fileID: 842660838196405411}
   - component: {fileID: -8661762901848272158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthSpirit
   m_TagString: EARTH
   m_Icon: {fileID: 0}
