@@ -18,7 +18,9 @@ public class CharacterAnimationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Input.GetKeyDown(KeyCode.Space));
         playerAnimator.SetFloat("Speed", Mathf.Clamp01(inputManager.savedVelocity.magnitude));
+        playerAnimator.SetBool("isJumping", Input.GetKeyDown(KeyCode.Space));
     }
 
     void FixedUpdate()
