@@ -22,7 +22,7 @@ public abstract class Activator : MonoBehaviour
     private void Start()
     {
         manager = GameObject.Find("Character").GetComponent<SpiritManager>();
-        order= GameObject.Find("Character").GetComponent<OrderSystem>();
+        order = GameObject.Find("Character").GetComponent<OrderSystem>();
     }
     public virtual void GroupActivated()
     {
