@@ -16,7 +16,7 @@ public class FaceCamera : MonoBehaviour
     void Update()
     {
         faceDirection = new Vector3(camera.transform.position.x, gameObject.transform.position.y, camera.transform.position.z) - gameObject.transform.position;
-        gameObject.transform.rotation = Quaternion.LookRotation(faceDirection, Vector3.up);
+        gameObject.transform.rotation = Quaternion.LookRotation(-faceDirection, Vector3.up);
         //if(gameObject.transform.eulerAngles.y <= 270 && gameObject.transform.eulerAngles.y >= 90)
         //{
             //gameObject.transform.localScale = new Vector3(1,1,-1);
