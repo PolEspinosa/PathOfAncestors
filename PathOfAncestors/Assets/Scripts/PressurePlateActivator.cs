@@ -8,12 +8,13 @@ public class PressurePlateActivator : Activator
     public float pressedPos;
     public Vector3 startPos;
     public GameObject pressPlateChild;
-
+    public List<GameObject> colliders;
 
     protected override void Start()
     {
         base.Start();
         startPos = pressPlateChild.transform.localPosition;
+        colliders = new List<GameObject>();
     }
 
     private void Update()
@@ -34,10 +35,12 @@ public class PressurePlateActivator : Activator
     }
     private void OnTriggerEnter(Collider other)
     {
+        colliders.Add(other.transform.gameObject);
         if (!_activated)
         {
             if (other.tag=="Player" || other.tag == "EARTH")
             {
+                
                 _activated = true;
                 OnActivate();
                 if(other.tag=="EARTH")
@@ -52,7 +55,8 @@ public class PressurePlateActivator : Activator
 
     private void OnTriggerExit(Collider other)
     {
-        if (_activated)
+        colliders.Remove(other.transform.gameObject);
+        if (_activated && colliders.Count<=0)
         {
             _activated = false;
             OnDeactivate();
