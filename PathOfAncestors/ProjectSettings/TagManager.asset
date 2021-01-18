@@ -18,6 +18,7 @@ TagManager:
   - EarthActivator
   - OvenActivator
   - Burnable
+  - Void
   layers:
   - Default
   - TransparentFX
