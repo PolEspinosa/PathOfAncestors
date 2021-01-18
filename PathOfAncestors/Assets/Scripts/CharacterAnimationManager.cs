@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class CharacterAnimationManager : MonoBehaviour
 {
-    private CMF.AdvancedWalkerController inputManager;
-    private CMF.CharacterInput charInput;
-    private GameObject player;
-    private Animator playerAnimator;
+    public CMF.AdvancedWalkerController inputManager;
+    public CMF.CharacterInput charInput;
+    public GameObject player;
+    public Animator playerAnimator;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        inputManager = player.GetComponent<CMF.AdvancedWalkerController>();
+       
         playerAnimator = player.GetComponentInChildren<Animator>();
-        charInput = player.GetComponent<CMF.CharacterInput>();
+       
     }
 
     // Update is called once per frame
