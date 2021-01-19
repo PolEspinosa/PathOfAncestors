@@ -32,6 +32,14 @@ public class PressurePlateActivator : Activator
                 pressPlateChild.transform.localPosition += Vector3.up * 0.01f;
 
         }
+
+        if(colliders.Count<=0 && _activated)
+        {
+            _activated = false;
+            OnDeactivate();
+        }
+
+       
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -60,7 +68,12 @@ public class PressurePlateActivator : Activator
         {
             _activated = false;
             OnDeactivate();
+            
+        }
+        if (other.tag == "EARTH")
+        {
             manager.activatorObject = null;
         }
+
     }
 }
