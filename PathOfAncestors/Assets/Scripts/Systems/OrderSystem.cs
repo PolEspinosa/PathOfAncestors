@@ -32,6 +32,7 @@ public class OrderSystem : MonoBehaviour
     {
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (Input.GetMouseButtonDown(1))
         {
             aiming = true;
