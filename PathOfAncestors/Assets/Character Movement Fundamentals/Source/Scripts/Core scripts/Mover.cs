@@ -278,7 +278,8 @@ namespace CMF
 			//If sensor has not detected anything, set flags and return;
 			if(!sensor.HasDetectedHit())
 			{
-				isGrounded = false;
+                StartCoroutine(StartFalling(0.2f));
+				
 				return;
 			}
 
@@ -363,5 +364,10 @@ namespace CMF
 			return sensor.GetCollider();
 		}
 		
+        IEnumerator StartFalling(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            isGrounded = false;
+        }
 	}
 }
