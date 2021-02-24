@@ -34,6 +34,8 @@ public class BaseSpirit : MonoBehaviour
     protected Vector3 desiredVelocity;
     protected Vector3 steering;
     protected float slowdownFactor;
+    //bool to determine when to change from nav mesh agent to steering behavior and viceversa
+    protected bool switchToSteering;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,7 @@ public class BaseSpirit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
 
     protected void FollowOrder()
@@ -83,6 +85,7 @@ public class BaseSpirit : MonoBehaviour
         {
             navAgent = gameObject.GetComponent<NavMeshAgent>();
             navAgent.speed = walkSpeed;
+            switchToSteering = false;
         }
         state = States.FOLLOWING;
     }

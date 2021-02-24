@@ -9,13 +9,14 @@ public class EarthSpirit : BaseSpirit
     void Start()
     {
         InitialiseValues();
-        spiritType = Type.EARTH; 
+        spiritType = Type.EARTH;
     }
 
     // Update is called once per frame
     void Update()
     {
         FollowOrder();
+        Debug.Log(switchToSteering);
     }
 
     protected override void InitialiseValues()
@@ -30,6 +31,9 @@ public class EarthSpirit : BaseSpirit
             case "PressurePlate":
                 other.gameObject.GetComponent<PressurePlate>().active = true;
                 break;
+            case "SwitchPath":
+                switchToSteering = true;
+                break;
         }
     }
 
@@ -39,6 +43,9 @@ public class EarthSpirit : BaseSpirit
         {
             case "PressurePlate":
                 other.gameObject.GetComponent<PressurePlate>().active = false;
+                break;
+            case "SwitchPath":
+                switchToSteering = false;
                 break;
         }
     }
