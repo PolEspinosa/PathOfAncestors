@@ -38,7 +38,7 @@ public class BaseSpirit : MonoBehaviour
     protected bool switchToSteering;
     protected bool edgeOfFloor;
 
-
+    public GameObject[] platformWaypoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,9 +68,8 @@ public class BaseSpirit : MonoBehaviour
                         else
                         {
                             followSpeed = runSpeed;
-                            SteeringBehaviorEarth(target.transform.position);
                         }
-                        
+                        SteeringBehaviorEarth(target.transform.position);
                     }
                     else
                     {
@@ -98,8 +97,8 @@ public class BaseSpirit : MonoBehaviour
                         else
                         {
                             followSpeed = runSpeed;
-                            SteeringBehaviorEarth(goToPosition);
                         }
+                        SteeringBehaviorEarth(goToPosition);
                     }
                     else
                     {
@@ -179,4 +178,14 @@ public class BaseSpirit : MonoBehaviour
         gameObject.transform.position += velocity * Time.deltaTime;
         gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
+
+    //protected GameObject FindClosestWaypoint()
+    //{
+    //    GameObject auxWaypoint;
+    //    float auxDistance;
+    //    for (int i = 0; i < platformWaypoints.Length - 1; i++)
+    //    {
+    //        if(new Vector3(platformWaypoints[i].transform.position)-gameObject.transform.position)
+    //    }
+    //}
 }

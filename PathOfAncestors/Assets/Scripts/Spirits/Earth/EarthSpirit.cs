@@ -11,13 +11,13 @@ public class EarthSpirit : BaseSpirit
         InitialiseValues();
         spiritType = Type.EARTH;
         edgeOfFloor = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up, Color.green);
-        Debug.Log(edgeOfFloor);
         FollowOrder();
         //cast the ray
         if (switchToSteering)
@@ -50,6 +50,9 @@ public class EarthSpirit : BaseSpirit
             case "SwitchPath":
                 switchToSteering = true;
                 break;
+            case "MovingPlatform":
+                gameObject.transform.parent = other.gameObject.transform;
+                break;
         }
     }
 
@@ -62,6 +65,9 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "SwitchPath":
                 switchToSteering = false;
+                break;
+            case "MovingPlatform":
+                gameObject.transform.parent = null;
                 break;
         }
     }

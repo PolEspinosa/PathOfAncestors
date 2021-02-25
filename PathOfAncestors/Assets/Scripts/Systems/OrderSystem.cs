@@ -80,7 +80,7 @@ public class OrderSystem : MonoBehaviour
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;
-        if (hit.transform.tag== "Untagged")
+        if (hit.transform.tag== "Untagged" || hit.transform.CompareTag("MovingPlatform"))
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
             ManageActivators();
