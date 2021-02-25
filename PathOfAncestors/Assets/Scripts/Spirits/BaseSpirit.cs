@@ -36,6 +36,8 @@ public class BaseSpirit : MonoBehaviour
     protected float slowdownFactor;
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
+    protected bool edgeOfFloor;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +58,26 @@ public class BaseSpirit : MonoBehaviour
             case States.FOLLOWING:
                 if(spiritType == Type.EARTH)
                 {
-                    navAgent.speed = walkSpeed;
-                    navAgent.SetDestination(target.transform.position);
+                    if (switchToSteering)
+                    {
+                        navAgent.enabled = false;
+                        if (edgeOfFloor)
+                        {
+                            followSpeed = 0;
+                        }
+                        else
+                        {
+                            followSpeed = runSpeed;
+                            SteeringBehaviorEarth(target.transform.position);
+                        }
+                        
+                    }
+                    else
+                    {
+                        navAgent.enabled = true;
+                        navAgent.speed = walkSpeed;
+                        navAgent.SetDestination(target.transform.position);
+                    }
                 }
                 else
                 {
@@ -68,8 +88,25 @@ public class BaseSpirit : MonoBehaviour
             case States.GOING:
                 if (spiritType == Type.EARTH)
                 {
-                    navAgent.speed = runSpeed;
-                    navAgent.SetDestination(goToPosition);
+                    if (switchToSteering)
+                    {
+                        navAgent.enabled = false;
+                        if (edgeOfFloor)
+                        {
+                            followSpeed = 0;
+                        }
+                        else
+                        {
+                            followSpeed = runSpeed;
+                            SteeringBehaviorEarth(goToPosition);
+                        }
+                    }
+                    else
+                    {
+                        navAgent.enabled = true;
+                        navAgent.speed = runSpeed;
+                        navAgent.SetDestination(goToPosition);
+                    }
                 }
                 else
                 {
@@ -122,5 +159,24 @@ public class BaseSpirit : MonoBehaviour
         velocity *= slowdownFactor;
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
+    }
+
+    //movement for the earth spirit on moving platforms
+    protected void SteeringBehaviorEarth(Vector3 _targetPosition)
+    {
+        //direction in which the character has to move
+        targetDistance = (new Vector3(_targetPosition.x, gameObject.transform.position.y, _targetPosition.z) - gameObject.transform.position);
+        //the desired velocity the character needs in order to go to the target
+        desiredVelocity = targetDistance.normalized * followSpeed;
+        //the force needed in order to move to the target
+        steering = desiredVelocity - velocity;
+        //update current velocity
+        velocity += steering;
+        //Calculate slowdown factor
+        slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
+        velocity *= slowdownFactor;
+        //update current position
+        gameObject.transform.position += velocity * Time.deltaTime;
+        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
 }

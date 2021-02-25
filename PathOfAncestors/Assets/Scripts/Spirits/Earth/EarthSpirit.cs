@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class EarthSpirit : BaseSpirit
 {
- 
+    public GameObject rayStart;
     // Start is called before the first frame update
     void Start()
     {
         InitialiseValues();
         spiritType = Type.EARTH;
+        edgeOfFloor = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up, Color.green);
+        Debug.Log(edgeOfFloor);
         FollowOrder();
-        Debug.Log(switchToSteering);
+        //cast the ray
+        if (switchToSteering)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(rayStart.transform.position, -rayStart.transform.up * 4, out hit, 4))
+            {
+                edgeOfFloor = false;
+            }
+            else
+            {
+                edgeOfFloor = true;
+            }
+        }
     }
 
     protected override void InitialiseValues()
