@@ -46,7 +46,7 @@ public class PressurePlateActivator : Activator
         colliders.Add(other.transform.gameObject);
         if (!_activated)
         {
-            if (other.tag=="Player" || other.tag == "EARTH")
+            if (other.tag=="Player" || other.tag == "EARTH" || other.tag=="EarthPlatform")
             {
                 
                 _activated = true;
