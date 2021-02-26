@@ -49,6 +49,7 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "SwitchPath":
                 switchToSteering = true;
+                platformWaypoints = GameObject.FindGameObjectsWithTag("PlatformWaypoint");
                 break;
             case "MovingPlatform":
                 gameObject.transform.parent = other.gameObject.transform;
@@ -71,4 +72,9 @@ public class EarthSpirit : BaseSpirit
                 break;
         }
     }
+
+    //private void OnColliderEnter(Collider other)
+    //{
+    //    Debug.Log("col");
+    //}
 }

@@ -158,6 +158,7 @@ public class BaseSpirit : MonoBehaviour
         velocity *= slowdownFactor;
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
+        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
 
     //movement for the earth spirit on moving platforms
@@ -185,7 +186,8 @@ public class BaseSpirit : MonoBehaviour
     //    float auxDistance;
     //    for (int i = 0; i < platformWaypoints.Length - 1; i++)
     //    {
-    //        if(new Vector3(platformWaypoints[i].transform.position)-gameObject.transform.position)
+    //        if(Vector3.Distance(new Vector3(platformWaypoints[i].transform.position.x))
     //    }
+    //    return auxWaypoint;
     //}
 }
