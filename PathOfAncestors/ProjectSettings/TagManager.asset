@@ -19,6 +19,9 @@ TagManager:
   - OvenActivator
   - Burnable
   - Void
+  - SwitchPath
+  - MovingPlatform
+  - PlatformWaypoint
   layers:
   - Default
   - TransparentFX
