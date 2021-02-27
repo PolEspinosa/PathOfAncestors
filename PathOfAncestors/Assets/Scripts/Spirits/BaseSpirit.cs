@@ -37,8 +37,7 @@ public class BaseSpirit : MonoBehaviour
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;
-
-    public GameObject[] platformWaypoints;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -179,15 +178,4 @@ public class BaseSpirit : MonoBehaviour
         gameObject.transform.position += velocity * Time.deltaTime;
         gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
-
-    //protected GameObject FindClosestWaypoint()
-    //{
-    //    GameObject auxWaypoint;
-    //    float auxDistance;
-    //    for (int i = 0; i < platformWaypoints.Length - 1; i++)
-    //    {
-    //        if(Vector3.Distance(new Vector3(platformWaypoints[i].transform.position.x))
-    //    }
-    //    return auxWaypoint;
-    //}
 }

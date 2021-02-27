@@ -17,14 +17,15 @@ public class EarthSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up, Color.green);
+        Debug.Log(edgeOfFloor);
+        Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up , Color.green);
         FollowOrder();
         //cast the ray
         if (switchToSteering)
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(rayStart.transform.position, -rayStart.transform.up * 4, out hit, 4))
+            if (Physics.Raycast(rayStart.transform.position, -rayStart.transform.up, out hit, 1))
             {
                 edgeOfFloor = false;
             }
@@ -49,7 +50,6 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "SwitchPath":
                 switchToSteering = true;
-                platformWaypoints = GameObject.FindGameObjectsWithTag("PlatformWaypoint");
                 break;
             case "MovingPlatform":
                 gameObject.transform.parent = other.gameObject.transform;
@@ -72,9 +72,4 @@ public class EarthSpirit : BaseSpirit
                 break;
         }
     }
-
-    //private void OnColliderEnter(Collider other)
-    //{
-    //    Debug.Log("col");
-    //}
 }
