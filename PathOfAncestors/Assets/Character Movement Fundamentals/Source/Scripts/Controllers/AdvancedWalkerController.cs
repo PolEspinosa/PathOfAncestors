@@ -43,7 +43,7 @@ namespace CMF
 		protected Vector3 momentum = Vector3.zero;
 
 		//Saved velocity from last frame;
-		Vector3 savedVelocity = Vector3.zero;
+		public Vector3 savedVelocity = Vector3.zero;
 
 		//Saved horizontal movement velocity from last frame;
 		Vector3 savedMovementVelocity = Vector3.zero;
@@ -556,5 +556,15 @@ namespace CMF
 			if(useLocalMomentum)
 				momentum = tr.worldToLocalMatrix * momentum;
 		}
+
+        public bool GetJumpState()
+        {
+            return currentControllerState == ControllerState.Jumping;
+        }
+
+        public bool GetGroundedState()
+        {
+            return currentControllerState == ControllerState.Grounded;
+        }
 	}
 }

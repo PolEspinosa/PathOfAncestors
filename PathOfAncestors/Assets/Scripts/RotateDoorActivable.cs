@@ -17,8 +17,8 @@ public class RotateDoorActivable : Activable
     
     public override void Activate()
     {
-        rightDoor.transform.DORotateQuaternion(Quaternion.Euler(0, -45, 0), 3f);
-        leftDoor.transform.DORotateQuaternion(Quaternion.Euler(0, 45, 0), 3f);
+        rightDoor.transform.DORotateQuaternion(Quaternion.Euler(0, 100, 0), 3f);
+        leftDoor.transform.DORotateQuaternion(Quaternion.Euler(0, -100,0), 3f);
        
     }
 

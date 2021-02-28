@@ -23,5 +23,8 @@ public class FireSpirit : BaseSpirit
         target = GameObject.Find("FireWindInvokation");
     }
 
-    
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("col");
+    }
 }

@@ -20,6 +20,8 @@ public class SpiritManager : MonoBehaviour
     bool earthpiritActivated = false;
     bool windSpiritActivated = false;
 
+    public OrderSystem order;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,15 +77,31 @@ public class SpiritManager : MonoBehaviour
 
     void Desinvoke(GameObject _currentSpirit)
     {
-        Destroy(_currentSpirit);
-        currentSpirit = null;
+       
         if(activatorObject != null)
         {
-            activatorObject._activated = false;
-            activatorObject.OnDeactivate();
+           if(activatorObject.GetComponent<PressurePlateActivator>())
+            {
+                activatorObject.GetComponent<PressurePlateActivator>().colliders.Remove(currentSpirit.transform.gameObject);
+            }
+            else
+            {
+                activatorObject._activated = false;
+                activatorObject.OnDeactivate();
+                
+            }
             activatorObject = null;
 
+
         }
+        if(order.activator!=null)
+        {
+            order.activator = null;
+        }
+
+        Destroy(_currentSpirit);
+        currentSpirit = null;
+        order.isGoingToEarth = false;
     }
     
 
