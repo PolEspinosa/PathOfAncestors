@@ -73,7 +73,10 @@ namespace CMF
 
 		[Tooltip("Optional camera transform used for calculating movement direction. If assigned, character movement will take camera view into account.")]
 		public Transform cameraTransform;
-		
+        public SpiritsPassiveAbilities passiveScript;
+        public GameObject playerModel;
+
+
 		//Get references to all necessary components;
 		void Awake () {
 			mover = GetComponent<Mover>();
@@ -176,10 +179,22 @@ namespace CMF
 			}
 			else
 			{
-				//If a camera transform has been assigned, use the assigned transform's axes for movement direction;
-				//Project movement direction so movement stays parallel to the ground;
-				_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
-				_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                //If a camera transform has been assigned, use the assigned transform's axes for movement direction;
+                //Project movement direction so movement stays parallel to the ground;
+                if (passiveScript.pushing) //if the player is pushing a box
+                {
+                    //move depending on the orientation of the player
+                    _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
+                    _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                    //move depending on the camera direction
+                    //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
+                    //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                }
+                else
+                {
+                    _velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
+                    _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                }
 			}
 
 			//If necessary, clamp movement vector to magnitude of 1f;

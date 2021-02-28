@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class SpiritsPassiveAbilities : MonoBehaviour
 {
-    private bool pushing;
-    private GameObject movingObject; //object the player is currently moving
+    public bool pushing;
+    public GameObject movingObject; //object the player is currently moving
     private bool facedBox; //set the rotation of the player to always face the box if he is pushing it
     private bool inRange; //determines whether the player is in range
-    private float windSpeed;
-    private bool windActive; //wind spirit invoked
     private bool earthActive; //earth spirit invoked
-    public float windSpeedMult;
     private float pushSpeed;
     public SpiritManager spiritManager;
+    public Vector3 facedDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,18 +31,10 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             if (spiritManager.currentSpirit.CompareTag("EARTH"))
             {
                 earthActive = true;
-                windActive = false;
             }
-            else if (spiritManager.currentSpirit.CompareTag("WIND"))
-            {
-                windActive = true;
-                earthActive = false;
-            }
-            //if neither the earth spirit nor the wind spirits are invoked
             else
             {
                 earthActive = false;
-                windActive = false;
             }
             //the player is close enough to move the box
             if (inRange)
@@ -79,34 +69,35 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         if (!facedBox)
         {
             facedBox = true;
-            Vector3 facedDirection;
             facedDirection = movingObject.transform.position - gameObject.transform.position;
             gameObject.transform.parent = movingObject.transform;
             //the player faces the front face of the box
             if (facedDirection.z < -0.9)
             {
-                gameObject.transform.localPosition = new Vector3(0, 0, 1);
+                gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, 1);
             }
             //the player faces the back face of the box
             else if (facedDirection.z > 0.9)
             {
-                gameObject.transform.localPosition = new Vector3(0, 0, -1);
+                gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, -1);
             }
             //the player faces the left face of the box
             else if (facedDirection.x < -0.9)
             {
-                gameObject.transform.localPosition = new Vector3(1, 0, 0);
+                gameObject.transform.localPosition = new Vector3(1, gameObject.transform.localPosition.y, 0);
             }
             //the player faces the left face of the box
             else if (facedDirection.x > 0.9)
             {
-                gameObject.transform.localPosition = new Vector3(-1, 0, 0);
+                gameObject.transform.localPosition = new Vector3(-1, gameObject.transform.localPosition.y, 0);
             }
-            gameObject.transform.LookAt(new Vector3(movingObject.transform.position.x, gameObject.transform.position.y, movingObject.transform.position.z));
+            //gameObject.transform.LookAt(new Vector3(movingObject.transform.position.x, gameObject.transform.position.y, movingObject.transform.position.z));
             gameObject.transform.parent = null;
         }
         //currentSpeed = pushSpeed;
+        //correct pivot position difference
         movingObject.transform.parent = gameObject.transform;
+        //movingObject.transform.localPosition = new Vector3(movingObject.transform.localPosition.x, 0, movingObject.transform.localPosition.z);
     }
 
     private void OnTriggerStay(Collider other)

@@ -26,6 +26,7 @@ namespace CMF
 		//Whether the current controller momentum should be ignored when calculating the new direction;
 		public bool ignoreControllerMomentum = false;
 
+        private SpiritsPassiveAbilities passiveScript;
 		//Setup;
 		void Start () {
 			tr = transform;
@@ -37,59 +38,66 @@ namespace CMF
 				Debug.LogWarning("No controller script has been assigned to this 'TurnTowardControllerVelocity' component!", this);
 				this.enabled = false;
 			}	
+            passiveScript=gameObject.GetComponentInParent<SpiritsPassiveAbilities>();
 		}
 
 		void LateUpdate () {
+            if (!passiveScript.pushing)
+            {
+                //Get controller velocity;
+                Vector3 _velocity;
+                if (ignoreControllerMomentum)
+                    _velocity = controller.GetMovementVelocity();
+                else
+                    _velocity = controller.GetVelocity();
 
-			//Get controller velocity;
-			Vector3 _velocity;
-			if(ignoreControllerMomentum)
-				_velocity = controller.GetMovementVelocity();
-			else
-				_velocity = controller.GetVelocity();
+                //Project velocity onto a plane defined by the 'up' direction of the parent transform;
+                _velocity = Vector3.ProjectOnPlane(_velocity, parentTransform.up);
 
-			//Project velocity onto a plane defined by the 'up' direction of the parent transform;
-			_velocity = Vector3.ProjectOnPlane(_velocity, parentTransform.up);
+                float _magnitudeThreshold = 0.001f;
 
-			float _magnitudeThreshold = 0.001f;
+                //If the velocity's magnitude is smaller than the threshold, return;
+                if (_velocity.magnitude < _magnitudeThreshold)
+                    return;
 
-			//If the velocity's magnitude is smaller than the threshold, return;
-			if(_velocity.magnitude < _magnitudeThreshold)
-				return;
+                //Normalize velocity direction;
+                _velocity.Normalize();
 
-			//Normalize velocity direction;
-			_velocity.Normalize();
+                //Get current 'forward' vector;
+                Vector3 _currentForward = tr.forward;
 
-			//Get current 'forward' vector;
-			Vector3 _currentForward = tr.forward;
+                //Calculate (signed) angle between velocity and forward direction;
+                float _angleDifference = VectorMath.GetAngle(_currentForward, _velocity, parentTransform.up);
 
-			//Calculate (signed) angle between velocity and forward direction;
-			float _angleDifference = VectorMath.GetAngle(_currentForward, _velocity, parentTransform.up);
+                //Calculate angle factor;
+                float _factor = Mathf.InverseLerp(0f, fallOffAngle, Mathf.Abs(_angleDifference));
 
-			//Calculate angle factor;
-			float _factor = Mathf.InverseLerp(0f, fallOffAngle, Mathf.Abs(_angleDifference));
+                //Calculate this frame's step;
+                float _step = Mathf.Sign(_angleDifference) * _factor * Time.deltaTime * turnSpeed;
 
-			//Calculate this frame's step;
-			float _step = Mathf.Sign(_angleDifference) * _factor * Time.deltaTime * turnSpeed;
+                //Clamp step;
+                if (_angleDifference < 0f && _step < _angleDifference)
+                    _step = _angleDifference;
+                else if (_angleDifference > 0f && _step > _angleDifference)
+                    _step = _angleDifference;
 
-			//Clamp step;
-			if(_angleDifference < 0f && _step < _angleDifference)
-				_step = _angleDifference;
-			else if(_angleDifference > 0f && _step > _angleDifference)
-				_step = _angleDifference;
+                //Add step to current y angle;
+                currentYRotation += _step;
 
-			//Add step to current y angle;
-			currentYRotation += _step;
+                //Clamp y angle;
+                if (currentYRotation > 360f)
+                    currentYRotation -= 360f;
+                if (currentYRotation < -360f)
+                    currentYRotation += 360f;
 
-			//Clamp y angle;
-			if(currentYRotation > 360f)
-				currentYRotation -= 360f;
-			if(currentYRotation < -360f)
-				currentYRotation += 360f;
-
-			//Set transform rotation using Quaternion.Euler;
-			tr.localRotation = Quaternion.Euler(0f, currentYRotation, 0f);
-
+                //Set transform rotation using Quaternion.Euler;
+                tr.localRotation = Quaternion.Euler(0f, currentYRotation, 0f);
+            }
+            //rotation when pushing a box
+            else
+            {
+                gameObject.transform.LookAt(new Vector3(passiveScript.movingObject.transform.position.x, gameObject.transform.position.y, passiveScript.movingObject.transform.position.z));
+            }
 		}
 
 		void OnDisable()

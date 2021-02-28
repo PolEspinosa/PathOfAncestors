@@ -17,7 +17,6 @@ public class EarthSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(edgeOfFloor);
         Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up , Color.green);
         FollowOrder();
         //cast the ray
