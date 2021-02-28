@@ -195,7 +195,7 @@ namespace CMF
                     _velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
                     _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
                 }
-			}
+            }
 
 			//If necessary, clamp movement vector to magnitude of 1f;
 			if(_velocity.magnitude > 1f)
