@@ -137,7 +137,23 @@ public class OrderSystem : MonoBehaviour
 
         }
 
-       
+
+        else if (hit.transform.tag == "BreakableWall")
+        {
+            isGoingToEarth = true;
+            if (spiritManager.activatorObject == null)
+            {
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+            }
+            else
+            {
+                ManageActivators();
+            }
+
+        }
+
+
         //else if (hit.transform.tag == "Oven")
         //{
         //    Transform pos = hit.transform.GetChild(0).transform;
