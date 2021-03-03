@@ -34,6 +34,18 @@ public class BaseSpirit : MonoBehaviour
     protected Vector3 desiredVelocity;
     protected Vector3 steering;
     protected float slowdownFactor;
+
+    //obstacle avoidance variables
+    public int numberOfRays = 17;
+    public float angle = 90;
+    public float rayRange = 2;
+    private RaycastHit avoidanceHit;
+    private Ray avoidanceRay;
+    public float castRayTime = 0.5f;
+    private float castTime = 0;
+    public float avoidanceMult = 2f;
+    public LayerMask ignoreMask;
+
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;
@@ -146,6 +158,33 @@ public class BaseSpirit : MonoBehaviour
     {
         //direction in which the character has to move
         targetDistance = (_targetPosition - gameObject.transform.position);
+
+        //change the desired direction to avoid the obstacle
+        if (castTime < castRayTime)
+        {
+            castTime += Time.deltaTime;
+        }
+        else
+        {
+            castTime = 0;
+            //create the rays for obstacle avoidance
+            for (int i = 0; i < numberOfRays; i++)
+            {
+                //get current rotation
+                Quaternion rotation = gameObject.transform.rotation;
+                //rotate the ray around an axis
+                Quaternion rotationMod = Quaternion.AngleAxis((i / ((float)numberOfRays - 1)) * angle * 2 - angle, gameObject.transform.up);
+                //calculate the direction each ray is pointing
+                Vector3 direction = rotation * rotationMod * Vector3.forward;
+
+                avoidanceRay = new Ray(gameObject.transform.position, direction);
+                if (Physics.Raycast(avoidanceRay, out avoidanceHit, rayRange, ~ignoreMask))
+                {
+                    targetDistance -= (1.0f / numberOfRays) * direction * avoidanceMult;
+                }
+            }
+        }
+
         //the desired velocity the character needs in order to go to he target
         desiredVelocity = targetDistance.normalized * followSpeed;
         //the force needed in order to move to the target
@@ -177,5 +216,22 @@ public class BaseSpirit : MonoBehaviour
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
         gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (castTime >= castRayTime)
+        {
+            for (int i = 0; i < numberOfRays; i++)
+            {
+                //get current rotation
+                Quaternion rotation = gameObject.transform.rotation;
+                //rotate the ray around an axis
+                Quaternion rotationMod = Quaternion.AngleAxis((i / ((float)numberOfRays - 1)) * angle * 2 - angle, gameObject.transform.up);
+                //calculate the direction each ray is pointing
+                Vector3 direction = rotation * rotationMod * Vector3.forward;
+                Gizmos.DrawRay(gameObject.transform.position, direction * rayRange);
+            }
+        }
     }
 }
