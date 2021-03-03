@@ -34,20 +34,60 @@ public class MovableWallActivable : Activable
 
     public GameObject particles;
 
+    //movable objects that movement is needed
+    public bool isDinamic = false;
+    public Transform startPos;
+    public Transform endPos;
+
+
     // Start is called before the first frame update
     void Start()
     {
-
-        if (_objectToShake == null) _objectToShake = transform;
-        _startPosition = transform.position;
-        _endPosition += transform.position;
-
-        SetupTweens();
-        AssociateActions();
-
-        if(particles != null)
+        if(!isDinamic)
         {
-            particles.SetActive(false);
+            if (_objectToShake == null) _objectToShake = transform;
+            _startPosition = transform.position;
+            _endPosition += transform.position;
+
+            SetupTweens();
+            AssociateActions();
+
+            if (particles != null)
+            {
+                particles.SetActive(false);
+            }
+        }
+        else
+        {
+            AssociateActions();
+        }
+       
+    }
+
+    private void Update()
+    {
+        if (isDinamic)
+        {
+            if (_isActivated)
+            {
+                float step = 3 * Time.deltaTime; // calculate distance to move
+                transform.position = Vector3.MoveTowards(transform.position, endPos.position, step);
+            }
+            else
+            {
+                float step = 3 * Time.deltaTime; // calculate distance to move
+                transform.position = Vector3.MoveTowards(transform.position, startPos.position, step);
+            }
+
+            if (transform.position == endPos.position || transform.position == startPos.position)
+            {
+                if (particles != null)
+                {
+                    particles.SetActive(false);
+
+                }
+
+            }
         }
     }
 
@@ -97,58 +137,83 @@ public class MovableWallActivable : Activable
 
     public override void Activate()
     {
-        if (particles != null)
+        if(!isDinamic)
         {
-            particles.SetActive(true);
-        }
-        if (!canActivate) return;
-        if (_isActivated) return;
-        float _timeElapsed = _openDoorDuration;
-
-        if (_shakeTween.IsPlaying()) _shakeTween.Pause();
-
-        if (_closeTween.IsPlaying())
-        {
-            _timeElapsed = _closeTween.ElapsedPercentage() * _openDoorDuration;
-            _closeTween.Pause();
-        }
-
-        _isActivated = !_isActivated;
-
-        UpdateOpenTween(_timeElapsed);
-        _openTween.Restart();
-    }
-
-    public override void Deactivate()
-    {
-        if (particles != null)
-        {
-            particles.SetActive(true);
-        }
-        if(!deactivatedNeeded && activatorDeactivate._activated)
-        {
-            Debug.Log("g");
-        }
-
-        else
-        {
-            if (!canActivate) return;
-            if (!_isActivated) return;
-            float _timeElapsed = _closeDoorDuration;
-            if (_shakeTween.IsPlaying()) _shakeTween.Pause();
-            if (_openTween.IsPlaying())
+            if (particles != null)
             {
-                _timeElapsed = _openTween.ElapsedPercentage() * _closeDoorDuration;
-                _openTween.Pause();
+                particles.SetActive(true);
+            }
+            if (!canActivate) return;
+            if (_isActivated) return;
+            float _timeElapsed = _openDoorDuration;
+
+            if (_shakeTween.IsPlaying()) _shakeTween.Pause();
+
+            if (_closeTween.IsPlaying())
+            {
+                _timeElapsed = _closeTween.ElapsedPercentage() * _openDoorDuration;
+                _closeTween.Pause();
             }
 
             _isActivated = !_isActivated;
 
-            UpdateCloseTween(_timeElapsed);
-            _closeTween.Restart();
+            UpdateOpenTween(_timeElapsed);
+            _openTween.Restart();
+        }
+        else
+        {
+            if (particles != null)
+            {
+                particles.SetActive(true);
+            }
+            _isActivated = !_isActivated;
+        }
+       
+    }
+
+    public override void Deactivate()
+    {
+        if(!isDinamic)
+        {
+            if (particles != null)
+            {
+                particles.SetActive(true);
+            }
+            if (!deactivatedNeeded && activatorDeactivate._activated)
+            {
+                Debug.Log("g");
+            }
+
+            else
+            {
+                if (!canActivate) return;
+                if (!_isActivated) return;
+                float _timeElapsed = _closeDoorDuration;
+                if (_shakeTween.IsPlaying()) _shakeTween.Pause();
+                if (_openTween.IsPlaying())
+                {
+                    _timeElapsed = _openTween.ElapsedPercentage() * _closeDoorDuration;
+                    _openTween.Pause();
+                }
+
+                _isActivated = !_isActivated;
+
+                UpdateCloseTween(_timeElapsed);
+                _closeTween.Restart();
+            }
         }
 
-        
+        else
+        {
+            if (particles != null)
+            {
+                particles.SetActive(true);
+            }
+            _isActivated = !_isActivated;
+        }
+
+
+
 
     }
     private TweenCallback DoShake()
