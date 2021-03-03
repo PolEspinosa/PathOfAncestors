@@ -77,9 +77,19 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.SetDestination(target.transform.position);
                     }
                 }
-                else
+                else if(spiritType == Type.FIRE)
                 {
-                    SteeringBehavior(target.transform.position);
+                    if (switchToSteering)
+                    {
+                        SteeringBehavior(target.transform.position);
+                        navAgent.enabled = false;
+                    }
+                    else
+                    {
+                        navAgent.enabled = true;
+                        navAgent.speed = walkSpeed;
+                        navAgent.SetDestination(target.transform.position);
+                    }
                 }
                 break;
 
@@ -106,9 +116,19 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.SetDestination(goToPosition);
                     }
                 }
-                else
+                else if(spiritType == Type.FIRE)
                 {
-                    SteeringBehavior(goToPosition);
+                    if (switchToSteering)
+                    {
+                        navAgent.enabled = false;
+                        SteeringBehavior(goToPosition);
+                    }
+                    else
+                    {
+                        navAgent.enabled = true;
+                        navAgent.speed = runSpeed;
+                        navAgent.SetDestination(goToPosition);
+                    }
                 }
                 break;
         }
@@ -121,6 +141,10 @@ public class BaseSpirit : MonoBehaviour
             navAgent = gameObject.GetComponent<NavMeshAgent>();
             navAgent.speed = walkSpeed;
             switchToSteering = false;
+        }
+        else if (spiritType == Type.FIRE)
+        {
+            //navAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
         }
         state = States.FOLLOWING;
     }
