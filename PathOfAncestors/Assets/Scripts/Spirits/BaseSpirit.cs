@@ -34,6 +34,9 @@ public class BaseSpirit : MonoBehaviour
     protected Vector3 desiredVelocity;
     protected Vector3 steering;
     protected float slowdownFactor;
+    //only for fire spirit
+    public RaycastHit fireSpiritHit;
+    public GameObject fireSpirit;
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;
@@ -144,7 +147,7 @@ public class BaseSpirit : MonoBehaviour
         }
         else if (spiritType == Type.FIRE)
         {
-            //navAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
+            switchToSteering = true;
         }
         state = States.FOLLOWING;
     }
@@ -169,7 +172,7 @@ public class BaseSpirit : MonoBehaviour
     protected void SteeringBehavior(Vector3 _targetPosition)
     {
         //direction in which the character has to move
-        targetDistance = (_targetPosition - gameObject.transform.position);
+        targetDistance = (_targetPosition - fireSpirit.transform.position);
         //the desired velocity the character needs in order to go to he target
         desiredVelocity = targetDistance.normalized * followSpeed;
         //the force needed in order to move to the target
@@ -180,8 +183,8 @@ public class BaseSpirit : MonoBehaviour
         slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
         velocity *= slowdownFactor;
         //update current position
-        gameObject.transform.position += velocity * Time.deltaTime;
-        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        fireSpirit.transform.position += velocity * Time.deltaTime;
+        fireSpirit.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
 
     //movement for the earth spirit on moving platforms

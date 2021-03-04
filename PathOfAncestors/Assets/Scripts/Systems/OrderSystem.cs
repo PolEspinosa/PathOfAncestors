@@ -83,6 +83,7 @@ public class OrderSystem : MonoBehaviour
         if (hit.transform.tag== "Untagged" || hit.transform.CompareTag("MovingPlatform"))
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().fireSpiritHit = hit;
             ManageActivators();
 
         }
