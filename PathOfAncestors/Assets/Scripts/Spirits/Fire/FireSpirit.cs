@@ -18,64 +18,23 @@ public class FireSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(switchToSteering);
         FollowOrder();
         //make the path follower stay at floor y posiiton
         if(Physics.Raycast(fireSpirit.transform.position, Vector3.down, out hit))
         {
             pathFollower.transform.position = new Vector3(pathFollower.transform.position.x, hit.point.y, pathFollower.transform.position.z);
         }
+        switchToSteering = DetectObstacleRay();
         
-        //see if there are any obstacles in front of the fire spirit
-        if (Physics.Raycast(fireSpirit.transform.position, fireSpirit.transform.forward, out hit2, 5))
+        if(state == States.FOLLOWING)
         {
-            Debug.Log(hit2.collider.gameObject.tag);
-            if (state == States.FOLLOWING)
-            {
-                if (hit2.collider.gameObject.tag == "Player")
-                {
-                    switchToSteering = true;
-                }
-                else
-                {
-                    switchToSteering = false;
-                }
-            }
+            Debug.DrawRay(fireSpirit.transform.position, target.transform.position - fireSpirit.transform.position);
         }
-        else
+        else if (state == States.GOING)
         {
-            switchToSteering = true;
+            Debug.DrawRay(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position);
         }
-        ////see if there are any obstacles at the right of the fire spirit
-        //else if (Physics.Raycast(fireSpirit.transform.position, fireSpirit.transform.forward + fireSpirit.transform.right / 2, out hit2, 5))
-        //{
-        //    if ((hit2.collider.gameObject.tag == fireSpiritHit.collider.gameObject.tag) || hit2.collider.gameObject == null || fireSpiritHit.collider.gameObject == null)
-        //    {
-        //        switchToSteering = true;
-        //    }
-        //    else
-        //    {
-        //        switchToSteering = false;
-        //    }
-        //}
-        ////see if there are any obstacles at the left of the fire spirit
-        //else if (Physics.Raycast(fireSpirit.transform.position, fireSpirit.transform.forward - fireSpirit.transform.right / 2, out hit2, 5))
-        //{
-        //    if ((hit2.collider.gameObject.tag == fireSpiritHit.collider.gameObject.tag) || hit2.collider.gameObject == null || fireSpiritHit.collider.gameObject == null)
-        //    {
-        //        switchToSteering = true;
-        //    }
-        //    else
-        //    {
-        //        switchToSteering = false;
-        //    }
-        //}
-        //right ray
-        Debug.DrawRay(fireSpirit.transform.position, (fireSpirit.transform.forward + fireSpirit.transform.right / 2) * 5);
-        //front ray
-        Debug.DrawRay(fireSpirit.transform.position, (fireSpirit.transform.forward) * 5);
-        //left ray
-        Debug.DrawRay(fireSpirit.transform.position, (fireSpirit.transform.forward - fireSpirit.transform.right / 2) * 5);
+
         if (!switchToSteering)
         {
             if(state == States.GOING)
@@ -85,7 +44,7 @@ public class FireSpirit : BaseSpirit
             }
             else
             {
-                fireSpirit.transform.position = new Vector3(pathFollower.transform.position.x, target.transform.position.y + 0.5f, pathFollower.transform.position.z);
+                fireSpirit.transform.position = new Vector3(pathFollower.transform.position.x, target.transform.position.y, pathFollower.transform.position.z);
                 fireSpirit.transform.rotation = pathFollower.transform.rotation;
             }
         }
@@ -102,5 +61,43 @@ public class FireSpirit : BaseSpirit
         switchToSteering = true;
     }
 
-    
+    private bool DetectObstacleRay()
+    {
+        if(state == States.FOLLOWING)
+        {
+            if (Physics.Raycast(fireSpirit.transform.position, target.transform.position - fireSpirit.transform.position, out hit2))
+            {
+                if (hit2.collider.gameObject.CompareTag("Player"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (Physics.Raycast(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position, out hit2))
+            {
+                if (hit2.collider.gameObject.name == fireSpiritHit.collider.gameObject.name)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
 }
