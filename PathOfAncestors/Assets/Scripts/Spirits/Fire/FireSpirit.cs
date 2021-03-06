@@ -18,6 +18,7 @@ public class FireSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(switchToSteering);
         FollowOrder();
         //make the path follower stay at floor y posiiton
         if(Physics.Raycast(fireSpirit.transform.position, Vector3.down, out hit))
@@ -85,6 +86,8 @@ public class FireSpirit : BaseSpirit
         {
             if (Physics.Raycast(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position, out hit2))
             {
+                Debug.Log("hit: " + hit2.collider.gameObject.name);
+                Debug.Log("target: " + fireSpiritHit.collider.gameObject.name);
                 if (hit2.collider.gameObject.name == fireSpiritHit.collider.gameObject.name)
                 {
                     return true;
