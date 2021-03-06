@@ -13,12 +13,13 @@ public class FireSpirit : BaseSpirit
     {
         spiritType = Type.FIRE;
         InitialiseValues();
+        castRay = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(switchToSteering);
+        Debug.Log(castRay);
         FollowOrder();
         //make the path follower stay at floor y posiiton
         if(Physics.Raycast(fireSpirit.transform.position, Vector3.down, out hit))
@@ -26,15 +27,19 @@ public class FireSpirit : BaseSpirit
             pathFollower.transform.position = new Vector3(pathFollower.transform.position.x, hit.point.y, pathFollower.transform.position.z);
         }
         switchToSteering = DetectObstacleRay();
+
+        if (castRay)
+        {
+            if (state == States.FOLLOWING)
+            {
+                Debug.DrawRay(fireSpirit.transform.position, target.transform.position - fireSpirit.transform.position);
+            }
+            else if (state == States.GOING)
+            {
+                Debug.DrawRay(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position);
+            }
+        }
         
-        if(state == States.FOLLOWING)
-        {
-            Debug.DrawRay(fireSpirit.transform.position, target.transform.position - fireSpirit.transform.position);
-        }
-        else if (state == States.GOING)
-        {
-            Debug.DrawRay(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position);
-        }
 
         if (!switchToSteering)
         {
@@ -64,43 +69,65 @@ public class FireSpirit : BaseSpirit
 
     private bool DetectObstacleRay()
     {
-        if(state == States.FOLLOWING)
+        if (castRay)
         {
-            if (Physics.Raycast(fireSpirit.transform.position, target.transform.position - fireSpirit.transform.position, out hit2))
+            if (state == States.FOLLOWING)
             {
-                if (hit2.collider.gameObject.CompareTag("Player"))
+                if (Physics.Raycast(fireSpirit.transform.position, target.transform.position - fireSpirit.transform.position, out hit2))
                 {
-                    return true;
+                    if (hit2.collider.gameObject.CompareTag("Player"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
             else
             {
-                return true;
+                if (Physics.Raycast(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position, out hit2))
+                {
+                    if (hit2.collider.gameObject.name == fireSpiritHit.collider.gameObject.name)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
         else
         {
-            if (Physics.Raycast(fireSpirit.transform.position, fireSpiritHit.point - fireSpirit.transform.position, out hit2))
-            {
-                Debug.Log("hit: " + hit2.collider.gameObject.name);
-                Debug.Log("target: " + fireSpiritHit.collider.gameObject.name);
-                if (hit2.collider.gameObject.name == fireSpiritHit.collider.gameObject.name)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return true;
-            }
+            return true;
+        }
+    }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("OvenActivator"))
+        {
+            Debug.Log("hello");
+            castRay = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("OvenActivator"))
+        {
+            castRay = true;
         }
     }
 }

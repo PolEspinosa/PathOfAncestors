@@ -37,6 +37,7 @@ public class BaseSpirit : MonoBehaviour
     //only for fire spirit
     public RaycastHit fireSpiritHit;
     public GameObject fireSpirit;
+    protected bool castRay;
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;
