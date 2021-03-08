@@ -8,6 +8,7 @@ public class FireSpirit : BaseSpirit
     private RaycastHit hit;
     private RaycastHit hit2;
     public GameObject pathFollower;
+    private bool castRay;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,6 @@ public class FireSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(castRay);
         FollowOrder();
         //make the path follower stay at floor y posiiton
         if(Physics.Raycast(fireSpirit.transform.position, Vector3.down, out hit))
@@ -57,6 +57,14 @@ public class FireSpirit : BaseSpirit
         else
         {
             pathFollower.transform.position = new Vector3(fireSpirit.transform.position.x, hit.point.y, fireSpirit.transform.position.z);
+        }
+        if(Vector3.Distance(fireSpirit.transform.position,fireSpiritHit.point) < 5)
+        {
+            castRay = false;
+        }
+        else
+        {
+            castRay = true;
         }
     }
 
@@ -111,23 +119,6 @@ public class FireSpirit : BaseSpirit
         else
         {
             return true;
-        }
-    }
-    
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("OvenActivator"))
-        {
-            Debug.Log("hello");
-            castRay = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.CompareTag("OvenActivator"))
-        {
-            castRay = true;
         }
     }
 }

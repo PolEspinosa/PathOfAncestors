@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af12fab8b14b2dc4384b6d68d0ad00b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireSpiritRef: {fileID: 7703465193059072629, guid: c173a67fffc929f45b03f561d5952efb,
+  fireSpiritRef: {fileID: 7111527949163455674, guid: 61805e33d88b41d4c86467ef8afdd2a7,
     type: 3}
   earthSpiritRef: {fileID: 5271552183273091417, guid: 785e8f2497c97064bbae80da0b30b91f,
     type: 3}
