@@ -13,6 +13,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     public SpiritManager spiritManager;
     public Vector3 facedDirection;
     private float time = 0;
+    private BoxCollisionDetection boxCollisionDetection;
+    public bool boxColliding;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +24,14 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //pushSpeed = walkSpeed * 0.5f;
         facedBox = false;
         inRange = false;
+        pushing = false;
+        boxColliding = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(pushing);
         if (spiritManager.currentSpirit != null)
         {
             if (spiritManager.currentSpirit.CompareTag("EARTH"))
@@ -40,26 +45,27 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             //the player is close enough to move the box
             if (inRange)
             {
-                if (earthActive && Input.GetKey(KeyCode.E))
+                if (earthActive && Input.GetKeyDown(KeyCode.E))
                 {
-                    pushing = true;
-                }
-                else
-                {
-                    if (movingObject != null)
-                    {
-                        pushing = false;
-                        movingObject.transform.parent = null;
-                        movingObject = null;
-                        gameObject.transform.LookAt(null);
-                        facedBox = false;
-                    }
+                    pushing = !pushing;
                 }
             }
-
+            //if pushing, do MoveBox function
             if (pushing)
             {
                 MoveBox();
+            }
+            //if not pushing, erase all realtion between box and character
+            else
+            {
+                if (movingObject != null)
+                {
+                    boxCollisionDetection = null;
+                    movingObject.transform.parent = null;
+                    movingObject = null;
+                    gameObject.transform.LookAt(null);
+                    facedBox = false;
+                }
             }
         }
     }
@@ -71,6 +77,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         {
             inRange = true;
             movingObject = other.gameObject;
+            boxCollisionDetection = movingObject.GetComponent<BoxCollisionDetection>();
         }
     }
 
@@ -85,6 +92,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
 
     private void MoveBox()
     {
+        boxColliding = boxCollisionDetection.colliding;
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {

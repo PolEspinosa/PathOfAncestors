@@ -183,12 +183,48 @@ namespace CMF
                 //Project movement direction so movement stays parallel to the ground;
                 if (passiveScript.pushing) //if the player is pushing a box
                 {
-                    //move depending on the orientation of the player
-                    _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
-                    _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
-                    //move depending on the camera direction
-                    //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
-                    //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                    //if the player is pushing a box and the box collides with something, stop movement
+                    if (passiveScript.boxColliding)
+                    {
+                        Debug.Log("1");
+                        //if moving forward when colliding, stop forward movement
+                        if(characterInput.GetVerticalMovementInput() > 0)
+                        {
+                            _velocity += playerModel.transform.forward.normalized * Mathf.Clamp(characterInput.GetVerticalMovementInput(),-1,0);
+                            _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                            Debug.Log("hello1");
+                        }
+                        //if moving right when colliding, stop back movement
+                        if (characterInput.GetHorizontalMovementInput() > 0)
+                        {
+                            _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
+                            _velocity += playerModel.transform.right.normalized * Mathf.Clamp(characterInput.GetHorizontalMovementInput(),-1,0);
+                            Debug.Log("hello2");
+                        }
+                        //if moving left when colliding, stop right movement
+                        else if (characterInput.GetHorizontalMovementInput() < 0)
+                        {
+                            _velocity += playerModel.transform.forward.normalized * Mathf.Clamp(characterInput.GetVerticalMovementInput(), 0, 1);
+                            _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                            Debug.Log("hello3");
+                        }
+                        else
+                        {
+                            _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
+                            _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                            Debug.Log("hello4");
+                        }
+                    }
+                    //if the player is pushing a box but not colliding with anything, push normally
+                    else
+                    {
+                        //move depending on the orientation of the player
+                        _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
+                        _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                        //move depending on the camera direction
+                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
+                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                    }
                 }
                 else
                 {
