@@ -8,7 +8,7 @@ public class BreakableWall : MonoBehaviour
     public bool isBroken = false;
     [SerializeField] private List<GameObject> _parts = new List<GameObject>();
     [SerializeField] private GameObject _model = null;
-    float _collisionForce = 0.01f;
+    float _collisionForce = 200f;
 
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class BreakableWall : MonoBehaviour
                     for (int i = 0; i < _parts.Count; i++)
                     {
                         _parts[i].SetActive(true);
-                        _parts[i].GetComponent<Rigidbody>().AddForce((transform.parent.gameObject.transform.forward)*_collisionForce);
+                        _parts[i].GetComponent<Rigidbody>().AddForce((transform.parent.gameObject.transform.right*-1)*Random.Range(200,500));
                     }
                     _model.SetActive(false);
                     transform.parent.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -39,5 +39,7 @@ public class BreakableWall : MonoBehaviour
             }
         }
     }
+
+   
 
 }
