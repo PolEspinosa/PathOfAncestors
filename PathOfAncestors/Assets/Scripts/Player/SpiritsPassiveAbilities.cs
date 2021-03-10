@@ -13,8 +13,9 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     public SpiritManager spiritManager;
     public Vector3 facedDirection;
     private float time = 0;
-    private BoxCollisionDetection boxCollisionDetection;
     public bool boxColliding;
+
+    private RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +61,6 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             {
                 if (movingObject != null)
                 {
-                    boxCollisionDetection = null;
                     movingObject.transform.parent = null;
                     movingObject = null;
                     gameObject.transform.LookAt(null);
@@ -77,7 +77,6 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         {
             inRange = true;
             movingObject = other.gameObject;
-            boxCollisionDetection = movingObject.GetComponent<BoxCollisionDetection>();
         }
     }
 
@@ -92,7 +91,6 @@ public class SpiritsPassiveAbilities : MonoBehaviour
 
     private void MoveBox()
     {
-        boxColliding = boxCollisionDetection.colliding;
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
