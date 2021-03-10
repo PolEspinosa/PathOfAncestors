@@ -45,21 +45,21 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                 {
                     pushing = !pushing;
                 }
-                else
-                {
-                    if (movingObject != null)
-                    {
-                        movingObject.transform.parent = null;
-                        movingObject = null;
-                        gameObject.transform.LookAt(null);
-                        facedBox = false;
-                    }
-                }
             }
 
             if (pushing)
             {
                 MoveBox();
+            }
+            else
+            {
+                if (movingObject != null)
+                {
+                    movingObject.transform.parent = null;
+                    movingObject = null;
+                    gameObject.transform.LookAt(null);
+                    facedBox = false;
+                }
             }
         }
     }
