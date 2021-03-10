@@ -22,6 +22,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //pushSpeed = walkSpeed * 0.5f;
         facedBox = false;
         inRange = false;
+        pushing = false;
     }
 
     // Update is called once per frame
@@ -40,15 +41,14 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             //the player is close enough to move the box
             if (inRange)
             {
-                if (earthActive && Input.GetKey(KeyCode.E))
+                if (earthActive && Input.GetKeyDown(KeyCode.E))
                 {
-                    pushing = true;
+                    pushing = !pushing;
                 }
                 else
                 {
                     if (movingObject != null)
                     {
-                        pushing = false;
                         movingObject.transform.parent = null;
                         movingObject = null;
                         gameObject.transform.LookAt(null);
@@ -115,14 +115,14 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             }
             gameObject.transform.parent = null;
         }
-        //delay to change parenting between moving object and player to avoid position problems
-        if (time < 0.05f)
-        {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            movingObject.transform.parent = gameObject.transform;
-        }
+        ////delay to change parenting between moving object and player to avoid position problems
+        //if (time < 0.05f)
+        //{
+        //    time += Time.deltaTime;
+        //}
+        //else
+        //{
+        //    movingObject.transform.parent = gameObject.transform;
+        //}
     }
 }

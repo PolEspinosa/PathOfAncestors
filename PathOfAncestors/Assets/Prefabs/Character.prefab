@@ -569,6 +569,7 @@ MonoBehaviour:
   - {x: -0.80901706, y: 0, z: 0.5877852}
   - {x: -0.80901706, y: 0, z: -0.5877851}
   - {x: 0.30901712, y: 0, z: -0.9510565}
+  spiritsPassiveAbilities: {fileID: 803705165331633467}
 --- !u!54 &54994513886352890
 Rigidbody:
   m_ObjectHideFlags: 0
