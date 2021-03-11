@@ -13,6 +13,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     public SpiritManager spiritManager;
     public Vector3 facedDirection;
     private float time = 0;
+
+    public Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             {
                 if (movingObject != null)
                 {
+                    movingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     movingObject.transform.parent = null;
                     movingObject = null;
                     gameObject.transform.LookAt(null);
@@ -97,23 +100,28 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             if (facedDirection.z < -0.9)
             {
                 gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, 1);
+                offset = new Vector3(0, gameObject.transform.localPosition.y, 1);
             }
             //the player faces the back face of the box
             else if (facedDirection.z > 0.9)
             {
                 gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, - 1);
+                offset = new Vector3(0, gameObject.transform.localPosition.y, -1);
             }
-            //the player faces the left face of the box
+            //the player faces the right face of the box
             else if (facedDirection.x < -0.9)
             {
                 gameObject.transform.localPosition = new Vector3(1, gameObject.transform.localPosition.y, 0);
+                offset = new Vector3(1, gameObject.transform.localPosition.y, 0);
             }
             //the player faces the left face of the box
             else if (facedDirection.x > 0.9)
             {
                 gameObject.transform.localPosition = new Vector3( - 1, gameObject.transform.localPosition.y, 0);
+                offset = new Vector3(-1, gameObject.transform.localPosition.y, 0);
             }
             gameObject.transform.parent = null;
+            movingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
         ////delay to change parenting between moving object and player to avoid position problems
         //if (time < 0.05f)
