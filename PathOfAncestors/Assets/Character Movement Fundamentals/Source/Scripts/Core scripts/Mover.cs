@@ -132,20 +132,20 @@ namespace CMF
 			}
 
 			//Set collider dimensions based on collider variables;
-			if(boxCollider)
-			{
-				Vector3 _size = Vector3.zero;
-				_size.x = colliderThickness;
-				_size.z = colliderThickness;
+			//if(boxCollider)
+			//{
+			//	Vector3 _size = Vector3.zero;
+			//	_size.x = colliderThickness;
+			//	_size.z = colliderThickness;
 
-				boxCollider.center = colliderOffset * colliderHeight;
+			//	boxCollider.center = colliderOffset * colliderHeight;
 
-				_size.y = colliderHeight * (1f - stepHeightRatio);
-				boxCollider.size = _size;
+			//	_size.y = colliderHeight * (1f - stepHeightRatio);
+			//	boxCollider.size = _size;
 
-				boxCollider.center = boxCollider.center + new Vector3(0f, stepHeightRatio * colliderHeight/2f, 0f);
-			}
-			else if(sphereCollider)
+			//	boxCollider.center = boxCollider.center + new Vector3(0f, stepHeightRatio * colliderHeight/2f, 0f);
+			//}
+			if(sphereCollider)
 			{
 				sphereCollider.radius = colliderHeight/2f;
 				sphereCollider.center = colliderOffset * colliderHeight;

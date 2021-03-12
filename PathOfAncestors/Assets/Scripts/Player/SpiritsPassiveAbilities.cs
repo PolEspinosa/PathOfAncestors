@@ -16,6 +16,12 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     public bool boxColliding;
 
     private RaycastHit hit;
+    //
+    [SerializeField]
+    private BoxCollider boxCollider;
+    //
+    [SerializeField]
+    private float boxZOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +33,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         inRange = false;
         pushing = false;
         boxColliding = false;
+        boxCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -62,9 +69,15 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                 if (movingObject != null)
                 {
                     movingObject.transform.parent = null;
+                    BoxCollider[] auxBox = movingObject.GetComponents<BoxCollider>();
+                    foreach (BoxCollider b in auxBox)
+                    {
+                        b.enabled = true;
+                    }
                     movingObject = null;
                     gameObject.transform.LookAt(null);
                     facedBox = false;
+                    boxCollider.enabled = false;
                 }
             }
         }
@@ -109,7 +122,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             {
                 gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, - 1);
             }
-            //the player faces the left face of the box
+            //the player faces the right face of the box
             else if (facedDirection.x < -0.9)
             {
                 gameObject.transform.localPosition = new Vector3(1, gameObject.transform.localPosition.y, 0);
@@ -120,6 +133,18 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                 gameObject.transform.localPosition = new Vector3( - 1, gameObject.transform.localPosition.y, 0);
             }
             gameObject.transform.parent = null;
+            //get the colliders of the moving object
+            BoxCollider []auxBox = movingObject.GetComponents<BoxCollider>();
+            foreach(BoxCollider b in auxBox)
+            {
+                if (!b.isTrigger)
+                {
+                    boxCollider.size = new Vector3(b.size.x * b.gameObject.transform.localScale.x, b.size.y * b.gameObject.transform.localScale.y, b.size.z * b.gameObject.transform.localScale.z);
+                    boxCollider.center = new Vector3(0, Mathf.Abs(1 - boxCollider.size.y / 2f), boxCollider.size.z / 2f + boxZOffset);
+                    boxCollider.enabled = true;
+                    b.enabled = false;  
+                }
+            }
         }
         //delay to change parenting between moving object and player to avoid position problems
         if (time < 0.05f)
