@@ -92,6 +92,8 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.enabled = true;
                         navAgent.speed = walkSpeed;
                         navAgent.SetDestination(target.transform.position);
+                        //vertical movement for the fire spirit when using nav mesh
+                        SteeringBehaviorFireY(target.transform.position);
                     }
                 }
                 break;
@@ -131,6 +133,8 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.enabled = true;
                         navAgent.speed = runSpeed;
                         navAgent.SetDestination(goToPosition);
+                        //vertical movement for the fire spirit when using nav mesh
+                        SteeringBehaviorFireY(goToPosition);
                     }
                 }
                 break;
@@ -168,7 +172,7 @@ public class BaseSpirit : MonoBehaviour
         state = States.FOLLOWING;
     }
 
-    //movement for the fire and wind spirit
+    //movement for the fire spirit
     protected void SteeringBehavior(Vector3 _targetPosition)
     {
         //direction in which the character has to move
@@ -185,6 +189,25 @@ public class BaseSpirit : MonoBehaviour
         //update current position
         fireSpirit.transform.position += velocity * Time.deltaTime;
         fireSpirit.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+    }
+
+    //steering behavior for the fire spirit in the Y axiswhen it is using the navmesh
+    protected void SteeringBehaviorFireY(Vector3 _targetPosition)
+    {
+        //direction in which the character has to move
+        targetDistance = _targetPosition - fireSpirit.transform.position;
+        //the desired velocity the character needs in order to go to he target
+        desiredVelocity = targetDistance.normalized * followSpeed;
+        //the force needed in order to move to the target
+        steering = desiredVelocity - velocity;
+        //update current velocity
+        velocity += steering;
+        //Calculate slowdown factor
+        slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
+        velocity *= slowdownFactor;
+        //update current position
+        fireSpirit.transform.position += new Vector3(0, velocity.y, 0) * Time.deltaTime;
+        //fireSpirit.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
 
     //movement for the earth spirit on moving platforms

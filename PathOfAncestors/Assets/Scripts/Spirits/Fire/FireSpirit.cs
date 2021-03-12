@@ -48,12 +48,12 @@ public class FireSpirit : BaseSpirit
         {
             if(state == States.GOING)
             {
-                fireSpirit.transform.position = new Vector3(pathFollower.transform.position.x, hit.collider.gameObject.transform.position.y + 0.5f, pathFollower.transform.position.z);
+                fireSpirit.transform.position = new Vector3(pathFollower.transform.position.x, fireSpirit.transform.position.y + 0.5f, pathFollower.transform.position.z);
                 fireSpirit.transform.rotation = pathFollower.transform.rotation;
             }
             else
             {
-                fireSpirit.transform.position = new Vector3(pathFollower.transform.position.x, target.transform.position.y, pathFollower.transform.position.z);
+                fireSpirit.transform.position = new Vector3(pathFollower.transform.position.x, fireSpirit.transform.position.y, pathFollower.transform.position.z);
                 fireSpirit.transform.rotation = pathFollower.transform.rotation;
             }
         }
@@ -86,7 +86,7 @@ public class FireSpirit : BaseSpirit
             {
                 if (Physics.Raycast(fireSpirit.transform.position, new Vector3(player.transform.position.x,player.transform.position.y + 1, player.transform.position.z) - fireSpirit.transform.position, out hit2))
                 {
-                    Debug.Log(hit2.collider.gameObject.name);
+                    //Debug.Log(hit2.collider.gameObject.name);
                     if (hit2.collider.gameObject.name == "FireWindInvokation" || hit2.collider.gameObject.CompareTag("Player"))
                     {
                         return true;
