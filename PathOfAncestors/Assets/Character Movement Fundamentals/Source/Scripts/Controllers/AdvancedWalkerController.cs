@@ -100,7 +100,11 @@ namespace CMF
 
 		void Update()
 		{
-			HandleJumpKeyInput();
+            //if the player is not pushing a box, can jump
+            if (!passiveScript.pushing)
+            {
+                HandleJumpKeyInput();
+            }
 		}
 
 		//Handle jump booleans for later use in FixedUpdate;
@@ -185,16 +189,9 @@ namespace CMF
                 //Project movement direction so movement stays parallel to the ground;
                 if (passiveScript.pushing) //if the player is pushing a box
                 {
-                    //move according to box collision
-                    if(Physics.Raycast(passiveScript.movingObject.transform.position, _velocity, out hit, 3f))
+                    if((passiveScript.time < passiveScript.parentTimeDelay))
                     {
-                        Debug.Log(hit.collider.gameObject.name);
-                        Debug.Log(hit.point.z - passiveScript.movingObject.transform.position.z);
-                        if (hit.point.z - passiveScript.movingObject.transform.position.z > 0)
-                        {
-                            _velocity += playerModel.transform.forward.normalized * Mathf.Clamp(characterInput.GetVerticalMovementInput(),-1,0);
-                            _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
-                        }
+                        _velocity = Vector3.zero;
                     }
                     else
                     {
@@ -203,9 +200,8 @@ namespace CMF
                         _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
                         //move depending on the camera direction
                         //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
-                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();;
+                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
                     }
-                    Debug.DrawRay(passiveScript.movingObject.transform.position, _velocity * 3f);
                 }
                 else
                 {

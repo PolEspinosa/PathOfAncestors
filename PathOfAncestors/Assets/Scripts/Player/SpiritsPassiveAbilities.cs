@@ -12,7 +12,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     private float pushSpeed;
     public SpiritManager spiritManager;
     public Vector3 facedDirection;
-    private float time = 0;
+    public float time = 0;
     public bool boxColliding;
 
     private RaycastHit hit;
@@ -22,6 +22,9 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     //
     [SerializeField]
     private float boxZOffset;
+
+    private Rigidbody boxRigidbody;
+    public float parentTimeDelay;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,12 +71,17 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             {
                 if (movingObject != null)
                 {
+                    boxRigidbody = movingObject.GetComponent<Rigidbody>();
+                    boxRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
                     movingObject.transform.parent = null;
                     BoxCollider[] auxBox = movingObject.GetComponents<BoxCollider>();
                     foreach (BoxCollider b in auxBox)
                     {
                         b.enabled = true;
                     }
+                    
+
+                    boxRigidbody = null;
                     movingObject = null;
                     gameObject.transform.LookAt(null);
                     facedBox = false;
@@ -107,6 +115,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
+            boxRigidbody = movingObject.GetComponent<Rigidbody>();
             time = 0;
 
             facedBox = true;
@@ -145,9 +154,10 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                     b.enabled = false;  
                 }
             }
+            boxRigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
         //delay to change parenting between moving object and player to avoid position problems
-        if (time < 0.05f)
+        if (time < parentTimeDelay)
         {
             time += Time.deltaTime;
         }
