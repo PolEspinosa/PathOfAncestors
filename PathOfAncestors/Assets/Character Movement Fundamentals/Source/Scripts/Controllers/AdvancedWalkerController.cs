@@ -76,6 +76,8 @@ namespace CMF
         public SpiritsPassiveAbilities passiveScript;
         public GameObject playerModel;
 
+        //hit for movement when box detects a collision
+        private RaycastHit hit;
 
 		//Get references to all necessary components;
 		void Awake () {
@@ -98,7 +100,11 @@ namespace CMF
 
 		void Update()
 		{
-			HandleJumpKeyInput();
+            //if the player is not pushing a box, can jump
+            if (!passiveScript.pushing)
+            {
+                HandleJumpKeyInput();
+            }
 		}
 
 		//Handle jump booleans for later use in FixedUpdate;
@@ -183,12 +189,19 @@ namespace CMF
                 //Project movement direction so movement stays parallel to the ground;
                 if (passiveScript.pushing) //if the player is pushing a box
                 {
-                    //move depending on the orientation of the player
-                    _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
-                    _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
-                    //move depending on the camera direction
-                    //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
-                    //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                    if((passiveScript.time < passiveScript.parentTimeDelay))
+                    {
+                        _velocity = Vector3.zero;
+                    }
+                    else
+                    {
+                        //move depending on the orientation of the player
+                        _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
+                        _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                        //move depending on the camera direction
+                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
+                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                    }
                 }
                 else
                 {

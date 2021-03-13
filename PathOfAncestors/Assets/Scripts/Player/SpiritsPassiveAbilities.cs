@@ -12,7 +12,19 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     private float pushSpeed;
     public SpiritManager spiritManager;
     public Vector3 facedDirection;
-    private float time = 0;
+    public float time = 0;
+    public bool boxColliding;
+
+    private RaycastHit hit;
+    //
+    [SerializeField]
+    private BoxCollider boxCollider;
+    //
+    [SerializeField]
+    private float boxZOffset;
+
+    private Rigidbody boxRigidbody;
+    public float parentTimeDelay;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +34,15 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //pushSpeed = walkSpeed * 0.5f;
         facedBox = false;
         inRange = false;
+        pushing = false;
+        boxColliding = false;
+        boxCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(pushing);
         if (spiritManager.currentSpirit != null)
         {
             if (spiritManager.currentSpirit.CompareTag("EARTH"))
@@ -40,26 +56,37 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             //the player is close enough to move the box
             if (inRange)
             {
-                if (earthActive && Input.GetKey(KeyCode.E))
+                if (earthActive && Input.GetKeyDown(KeyCode.E))
                 {
-                    pushing = true;
-                }
-                else
-                {
-                    if (movingObject != null)
-                    {
-                        pushing = false;
-                        movingObject.transform.parent = null;
-                        movingObject = null;
-                        gameObject.transform.LookAt(null);
-                        facedBox = false;
-                    }
+                    pushing = !pushing;
                 }
             }
-
+            //if pushing, do MoveBox function
             if (pushing)
             {
                 MoveBox();
+            }
+            //if not pushing, erase all realtion between box and character
+            else
+            {
+                if (movingObject != null)
+                {
+                    boxRigidbody = movingObject.GetComponent<Rigidbody>();
+                    boxRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                    movingObject.transform.parent = null;
+                    BoxCollider[] auxBox = movingObject.GetComponents<BoxCollider>();
+                    foreach (BoxCollider b in auxBox)
+                    {
+                        b.enabled = true;
+                    }
+                    
+
+                    boxRigidbody = null;
+                    movingObject = null;
+                    gameObject.transform.LookAt(null);
+                    facedBox = false;
+                    boxCollider.enabled = false;
+                }
             }
         }
     }
@@ -88,6 +115,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
+            boxRigidbody = movingObject.GetComponent<Rigidbody>();
             time = 0;
 
             facedBox = true;
@@ -103,7 +131,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             {
                 gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, - 1);
             }
-            //the player faces the left face of the box
+            //the player faces the right face of the box
             else if (facedDirection.x < -0.9)
             {
                 gameObject.transform.localPosition = new Vector3(1, gameObject.transform.localPosition.y, 0);
@@ -114,9 +142,22 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                 gameObject.transform.localPosition = new Vector3( - 1, gameObject.transform.localPosition.y, 0);
             }
             gameObject.transform.parent = null;
+            //get the colliders of the moving object
+            BoxCollider []auxBox = movingObject.GetComponents<BoxCollider>();
+            foreach(BoxCollider b in auxBox)
+            {
+                if (!b.isTrigger)
+                {
+                    boxCollider.size = new Vector3(b.size.x * b.gameObject.transform.localScale.x, b.size.y * b.gameObject.transform.localScale.y, b.size.z * b.gameObject.transform.localScale.z);
+                    boxCollider.center = new Vector3(0, Mathf.Abs(1 - boxCollider.size.y / 2f), boxCollider.size.z / 2f + boxZOffset);
+                    boxCollider.enabled = true;
+                    b.enabled = false;  
+                }
+            }
+            boxRigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
         //delay to change parenting between moving object and player to avoid position problems
-        if (time < 0.05f)
+        if (time < parentTimeDelay)
         {
             time += Time.deltaTime;
         }

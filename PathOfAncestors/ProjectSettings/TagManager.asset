@@ -23,6 +23,7 @@ TagManager:
   - MovingPlatform
   - PlatformWaypoint
   - BreakableWall
+  - Wall
   layers:
   - Default
   - TransparentFX
