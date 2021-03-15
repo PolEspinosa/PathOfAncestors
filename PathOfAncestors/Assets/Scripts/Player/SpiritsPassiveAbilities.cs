@@ -64,12 +64,14 @@ public class SpiritsPassiveAbilities : MonoBehaviour
             //if pushing, do MoveBox function
             if (pushing)
             {
+                movingObject.GetComponent<PlatformParent>().isParent = false;
+                movingObject.GetComponent<PlatformParent>().canParent = false;
                 MoveBox();
             }
             //if not pushing, erase all realtion between box and character
             else
             {
-                if (movingObject != null)
+                if (movingObject != null && !movingObject.GetComponent<PlatformParent>().isParent)
                 {
                     boxRigidbody = movingObject.GetComponent<Rigidbody>();
                     boxRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -79,8 +81,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                     {
                         b.enabled = true;
                     }
-                    
 
+                    movingObject.GetComponent<PlatformParent>().canParent = true;
                     boxRigidbody = null;
                     movingObject = null;
                     gameObject.transform.LookAt(null);
@@ -89,6 +91,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                 }
             }
         }
+
+        
     }
 
     private void OnTriggerStay(Collider other)
