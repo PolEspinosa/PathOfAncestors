@@ -19,7 +19,7 @@ public abstract class Activator : MonoBehaviour
     public Action OnActivate = delegate { };
     public Action OnDeactivate = delegate { };
 
-    private void Start()
+    protected virtual void Start()
     {
         manager = GameObject.Find("Character").GetComponent<SpiritManager>();
         order = GameObject.Find("Character").GetComponent<OrderSystem>();

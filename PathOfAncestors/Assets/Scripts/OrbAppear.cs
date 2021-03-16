@@ -34,8 +34,8 @@ public class OrbAppear : MonoBehaviour
 
     void Update()
     {
-        //y += velocity;
-        //transform.rotation = Quaternion.Euler(0, y, 0);
+        y += velocity;
+        transform.rotation = Quaternion.Euler(0, y, 0);
     }
 
    

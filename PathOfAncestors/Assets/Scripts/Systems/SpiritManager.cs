@@ -77,20 +77,31 @@ public class SpiritManager : MonoBehaviour
 
     void Desinvoke(GameObject _currentSpirit)
     {
-        Destroy(_currentSpirit);
-        currentSpirit = null;
-        order.isGoingToEarth = false;
+       
         if(activatorObject != null)
         {
-            activatorObject._activated = false;
-            activatorObject.OnDeactivate();
+           if(activatorObject.GetComponent<PressurePlateActivator>())
+            {
+                activatorObject.GetComponent<PressurePlateActivator>().colliders.Remove(currentSpirit.transform.gameObject);
+            }
+            else
+            {
+                activatorObject._activated = false;
+                activatorObject.OnDeactivate();
+                
+            }
             activatorObject = null;
+
 
         }
         if(order.activator!=null)
         {
             order.activator = null;
         }
+
+        Destroy(_currentSpirit);
+        currentSpirit = null;
+        order.isGoingToEarth = false;
     }
     
 

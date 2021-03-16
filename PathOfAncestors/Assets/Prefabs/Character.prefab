@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 4989957397450900}
   - component: {fileID: 114929185997504700}
   - component: {fileID: 114453944679736854}
+  - component: {fileID: 1146677946}
   m_Layer: 0
   m_Name: ModelRoot
   m_TagString: Untagged
@@ -305,6 +306,19 @@ MonoBehaviour:
   controller: {fileID: 114662181522014216}
   turnSpeed: 1500
   ignoreControllerMomentum: 0
+--- !u!65 &1146677946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504609043805358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 1.5}
 --- !u!1 &1632169758622334
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +515,8 @@ GameObject:
   - component: {fileID: 5860865591048021676}
   - component: {fileID: 3148489325421888680}
   - component: {fileID: 2667638521754284388}
+  - component: {fileID: 2458778999562869235}
+  - component: {fileID: 803705165331633467}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -607,6 +623,8 @@ MonoBehaviour:
   slopeLimit: 80
   useLocalMomentum: 1
   cameraTransform: {fileID: 4475978932858068}
+  passiveScript: {fileID: 803705165331633467}
+  playerModel: {fileID: 1504609043805358}
 --- !u!114 &114686664363620640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,6 +698,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b2543abcfad047aaf100b238d32f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 114662181522014216}
+  charInput: {fileID: 114686664363620640}
+  player: {fileID: 1798185399542480}
+  playerAnimator: {fileID: 0}
+--- !u!208 &2458778999562869235
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798185399542480}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &803705165331633467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798185399542480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c081a051081754b478ab090591e3baac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushing: 0
+  movingObject: {fileID: 0}
+  spiritManager: {fileID: 5860865591048021676}
+  facedDirection: {x: 0, y: 0, z: 0}
+  boxColliding: 0
+  boxCollider: {fileID: 1146677946}
+  boxZOffset: 1
 --- !u!1 &1510597507730084940
 GameObject:
   m_ObjectHideFlags: 0

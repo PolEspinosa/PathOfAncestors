@@ -38,7 +38,6 @@ public class PlayerMovementProto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(spiritManager.currentSpirit);
         if (spiritManager.currentSpirit != null)
         {
             if (spiritManager.currentSpirit.CompareTag("EARTH"))

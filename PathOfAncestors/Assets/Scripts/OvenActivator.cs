@@ -14,10 +14,10 @@ public class OvenActivator : Activator
 
     private void Update()
     {
-        //if(!_activated)
-        //{
-        //    this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = defaultMaterial;
-        //}
+        if (!_activated)
+        {
+            ovenParticles.SetActive(false);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -27,7 +27,7 @@ public class OvenActivator : Activator
             {
                fireSpirit = other.gameObject;
                StartCoroutine( activeOven(2f , fireSpirit));
-                ovenParticles.SetActive(true);
+                
             }
 
         }
@@ -36,7 +36,7 @@ public class OvenActivator : Activator
    
     public void DeactivateOven()
     {
-        ovenParticles.SetActive(false);
+        
         fireSpirit.GetComponent<BaseSpirit>().MoveTo(endPos.position);
         StartCoroutine(shutDownOven(2f));
     }
@@ -44,7 +44,7 @@ public class OvenActivator : Activator
     IEnumerator activeOven(float waitTime, GameObject fireSpirit)
     {
         yield return new WaitForSeconds(waitTime);
-
+        ovenParticles.SetActive(true);
         _activated = true;
         OnActivate();
         manager.activatorObject = this;
@@ -54,6 +54,7 @@ public class OvenActivator : Activator
     IEnumerator shutDownOven(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        ovenParticles.SetActive(false);
         _activated = false;
         OnDeactivate();
         manager.activatorObject = null;

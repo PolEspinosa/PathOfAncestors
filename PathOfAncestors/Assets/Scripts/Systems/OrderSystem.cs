@@ -32,6 +32,7 @@ public class OrderSystem : MonoBehaviour
     {
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (Input.GetMouseButtonDown(1))
         {
             aiming = true;
@@ -79,7 +80,7 @@ public class OrderSystem : MonoBehaviour
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;
-        if (hit.transform.tag== "Untagged")
+        if (hit.transform.tag== "Untagged" || hit.transform.CompareTag("MovingPlatform"))
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
             ManageActivators();
@@ -136,7 +137,23 @@ public class OrderSystem : MonoBehaviour
 
         }
 
-       
+
+        else if (hit.transform.tag == "BreakableWall")
+        {
+            isGoingToEarth = true;
+            if (spiritManager.activatorObject == null)
+            {
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+            }
+            else
+            {
+                ManageActivators();
+            }
+
+        }
+
+
         //else if (hit.transform.tag == "Oven")
         //{
         //    Transform pos = hit.transform.GetChild(0).transform;

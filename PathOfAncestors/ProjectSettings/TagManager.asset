@@ -18,6 +18,12 @@ TagManager:
   - EarthActivator
   - OvenActivator
   - Burnable
+  - Void
+  - SwitchPath
+  - MovingPlatform
+  - PlatformWaypoint
+  - BreakableWall
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -29,9 +35,9 @@ TagManager:
   - 
   - Stairs
   - Environment
-  - 
-  - 
-  - 
+  - Earth
+  - PressurePlate
+  - EarthPlatform
   - 
   - 
   - 
