@@ -30,11 +30,24 @@ public class PlatformParent : MonoBehaviour
             platform = other.gameObject.transform.GetChild(1).gameObject ;
             
         }
+
+        if(other.transform.tag=="MovingPlatform")
+        {
+            onPlatform = true;
+            platform = other.gameObject; ;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "EarthPlatform")
+        if (other.transform.tag == "EarthPlatform" )
+        {
+            onPlatform = false;
+            platform = null;
+
+        }
+
+        if (other.transform.tag == "MovingPlatform")
         {
             onPlatform = false;
             platform = null;
