@@ -161,7 +161,7 @@ public class OrderSystem : MonoBehaviour
         //}
         else if (hit.transform.CompareTag("Burnable"))
         {
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.transform.position);
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
         }
     }
 

@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2530106199341567066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.01, y: 0.07, z: -15.07}
-  m_LocalScale: {x: 2, y: 0.2, z: 1}
+  m_LocalScale: {x: 4, y: 0.2, z: 3}
   m_Children:
   - {fileID: 2530106199718527079}
   m_Father: {fileID: 0}
@@ -121,6 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918a6e678ddce1c488123d4d481f1ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burning: 0
+  fireParticles: {fileID: 2530106199718527076}
+  burntThreshold: 0.6
+  burningSpeed: 0.5
+  col: {fileID: 2530106199341567069}
 --- !u!1 &2530106199718527074
 GameObject:
   m_ObjectHideFlags: 0
