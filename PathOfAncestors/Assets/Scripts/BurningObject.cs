@@ -12,11 +12,12 @@ public class BurningObject : MonoBehaviour
     public VisualEffect fireParticles;
 
     public float noiseStrength;
-    public float objectHeight;
+    [SerializeField]
+    private float objectHeight;
     private float time, height, startHeight, startTime;
 
     //at which difference of heigths the object should destroy and remove colliders
-    public float destructionLimit, noCollisionLimit;
+    private float destructionLimit, noCollisionLimit;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,44 @@ public class BurningObject : MonoBehaviour
         //the sine mas value is 1, so the in order for the gameobject to start without any amount of dissolve
         //it is necessary for the time to start at 1
         time = 1;
+        switch (gameObject.transform.localScale.x)
+        {
+            case 1:
+                objectHeight = 1.25f;
+                destructionLimit = 0.8f;
+                noCollisionLimit = 1f;
+                break;
+            case 2:
+                objectHeight =2.5f;
+                destructionLimit = 1.3f;
+                noCollisionLimit = 2.5f;
+                break;
+            case 3:
+                objectHeight = 3.5f;
+                destructionLimit = 1.25f;
+                noCollisionLimit = 2.5f;
+                break;
+            case 4:
+                objectHeight = 4.5f;
+                destructionLimit = 1.5f;
+                noCollisionLimit = 2.5f;
+                break;
+            case 5:
+                objectHeight = 5.5f;
+                destructionLimit = 1.5f;
+                noCollisionLimit = 2.5f;
+                break;
+            case 6:
+                objectHeight = 6.5f;
+                destructionLimit = 1.6f;
+                noCollisionLimit = 3.5f;
+                break;
+            case 7:
+                objectHeight = 7.5f;
+                destructionLimit = 1.6f;
+                noCollisionLimit = 3.5f;
+                break;
+        }
     }
 
     // Update is called once per frame
