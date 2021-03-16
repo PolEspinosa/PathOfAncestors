@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BurnableMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: e4d5e98888f47a14792118cfc8ff3362,
+  m_Shader: {fileID: -6465566751694194690, guid: d8ac18a0b9895074bab4aa3c6cf894ba,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -34,6 +34,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_6B2F803C:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E9C022E7:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -66,9 +70,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_2AEBD7B0: 0
+    - Vector1_10589EAF: 0.02
     - Vector1_2544001D: 0.5
     - Vector1_4784995A: 0.5
     - Vector1_4D027A4B: 1
+    - Vector1_54467BBE: 0
+    - Vector1_B372DA95: 30
     - Vector1_B67F3739: 0.05
     - Vector1_CF698F65: 0
     - Vector1_FB0134EE: 30
@@ -95,6 +103,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_EBD68D6C: {r: 3.962264, g: 0.2579966, b: 0, a: 0}
+    - Color_FE1935FF: {r: 4, g: 0.3859334, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
