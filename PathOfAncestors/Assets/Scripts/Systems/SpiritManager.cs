@@ -9,6 +9,9 @@ public class SpiritManager : MonoBehaviour
     public GameObject earthSpiritRef;
     public GameObject windSpiritRef;
 
+    private GameObject pathFollower;
+    public GameObject pathFollowerRef;
+
     public GameObject fireWindPosition;
     public GameObject earthPosition;
 
@@ -34,6 +37,7 @@ public class SpiritManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            pathFollower = Instantiate(pathFollowerRef, fireWindPosition.transform.position, Quaternion.identity);
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -99,6 +103,10 @@ public class SpiritManager : MonoBehaviour
             order.activator = null;
         }
 
+        if (pathFollower != null)
+        {
+            Destroy(pathFollower);
+        }
         Destroy(_currentSpirit);
         currentSpirit = null;
         order.isGoingToEarth = false;

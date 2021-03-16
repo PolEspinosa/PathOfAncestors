@@ -176,7 +176,7 @@ public class BaseSpirit : MonoBehaviour
     protected void SteeringBehavior(Vector3 _targetPosition)
     {
         //direction in which the character has to move
-        targetDistance = (_targetPosition - fireSpirit.transform.position);
+        targetDistance = (_targetPosition - gameObject.transform.position);
         //the desired velocity the character needs in order to go to he target
         desiredVelocity = targetDistance.normalized * followSpeed;
         //the force needed in order to move to the target
@@ -187,15 +187,15 @@ public class BaseSpirit : MonoBehaviour
         slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
         velocity *= slowdownFactor;
         //update current position
-        fireSpirit.transform.position += velocity * Time.deltaTime;
-        fireSpirit.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        gameObject.transform.position += velocity * Time.deltaTime;
+        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
 
     //steering behavior for the fire spirit in the Y axiswhen it is using the navmesh
     protected void SteeringBehaviorFireY(Vector3 _targetPosition)
     {
         //direction in which the character has to move
-        targetDistance = _targetPosition - fireSpirit.transform.position;
+        targetDistance = _targetPosition - gameObject.transform.position;
         //the desired velocity the character needs in order to go to he target
         desiredVelocity = targetDistance.normalized * followSpeed;
         //the force needed in order to move to the target
@@ -206,7 +206,7 @@ public class BaseSpirit : MonoBehaviour
         slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
         velocity *= slowdownFactor;
         //update current position
-        fireSpirit.transform.position += new Vector3(0, velocity.y, 0) * Time.deltaTime;
+        gameObject.transform.position += new Vector3(0, velocity.y, 0) * Time.deltaTime;
         //fireSpirit.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
     }
 

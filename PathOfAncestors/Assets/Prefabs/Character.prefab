@@ -639,11 +639,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af12fab8b14b2dc4384b6d68d0ad00b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireSpiritRef: {fileID: 7111527949163455674, guid: 61805e33d88b41d4c86467ef8afdd2a7,
+  fireSpiritRef: {fileID: 7703465193059072629, guid: c173a67fffc929f45b03f561d5952efb,
     type: 3}
   earthSpiritRef: {fileID: 5271552183273091417, guid: 785e8f2497c97064bbae80da0b30b91f,
     type: 3}
   windSpiritRef: {fileID: 4597169551849926536, guid: c0c6cec7001f1574a928baa808108291,
+    type: 3}
+  pathFollowerRef: {fileID: 5211388111603602413, guid: 4dc95e576d1316a40b393b263fcde52f,
     type: 3}
   fireWindPosition: {fileID: 5759723567108913072}
   earthPosition: {fileID: 1510597507730084940}
@@ -684,9 +686,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b2543abcfad047aaf100b238d32f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  charInput: {fileID: 0}
-  player: {fileID: 0}
+  inputManager: {fileID: 114662181522014216}
+  charInput: {fileID: 114686664363620640}
+  player: {fileID: 1798185399542480}
   playerAnimator: {fileID: 0}
 --- !u!208 &2458778999562869235
 NavMeshObstacle:
