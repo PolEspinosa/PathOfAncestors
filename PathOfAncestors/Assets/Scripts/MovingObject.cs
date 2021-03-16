@@ -186,6 +186,7 @@ public class MovingObject : Activable
         }
         if (hasToReturn)
         {
+            StopAllCoroutines();
             float _timeElapsed = _openDoorDuration;
             if (_closeTween.IsPlaying())
             {
@@ -195,7 +196,7 @@ public class MovingObject : Activable
 
             _isActivated = !_isActivated;
 
-            UpdateOpenTween(_timeElapsed);
+            UpdateOpenTween(_closeDoorDuration);
             _openTween.Restart();
             //StopAllCoroutines();
             //_coroutine = PlayAnimations();
