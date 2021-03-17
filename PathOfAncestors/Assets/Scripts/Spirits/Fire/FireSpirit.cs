@@ -54,7 +54,7 @@ public class FireSpirit : BaseSpirit
             if(state == States.GOING)
             {
                 //the gameobject follows the path follower (nav mesh agent)
-                gameObject.transform.position = new Vector3(pathFollower.transform.position.x, gameObject.transform.position.y + 0.5f, pathFollower.transform.position.z);
+                gameObject.transform.position = new Vector3(pathFollower.transform.position.x, gameObject.transform.position.y, pathFollower.transform.position.z);
                 gameObject.transform.rotation = pathFollower.transform.rotation;
             }
             //if following the player
@@ -71,7 +71,7 @@ public class FireSpirit : BaseSpirit
             pathFollower.transform.position = new Vector3(gameObject.transform.position.x, hit.point.y, gameObject.transform.position.z);
         }
         //when close enough to the told position, diable ray so it uses steering behavior to avoid problems
-        if(Vector3.Distance(gameObject.transform.position,fireSpiritHit.point) < 5)
+        if(Vector3.Distance(gameObject.transform.position,fireSpiritHit.point) < 5 && state != States.FOLLOWING)
         {
             if((fireSpiritHit.collider.gameObject.CompareTag("OvenActivator") || fireSpiritHit.collider.gameObject.CompareTag("Torch")))
             {

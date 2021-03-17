@@ -37,7 +37,6 @@ public class SpiritManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            pathFollower = Instantiate(pathFollowerRef, fireWindPosition.transform.position, Quaternion.identity);
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -52,7 +51,7 @@ public class SpiritManager : MonoBehaviour
         {
             Debug.Log(currentSpirit.GetComponent<BaseSpirit>().GetSpiritType());
         }
-       
+        if (Input.GetKeyDown(KeyCode.Alpha0)) Destroy(pathFollower);
     }
 
 
@@ -60,7 +59,13 @@ public class SpiritManager : MonoBehaviour
     {
         if( currentSpirit==null)
         {
-            currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);    
+            //don't instantiate the pathfollower gameobject if the spirit is not the fire spirit
+            if (_spirit.CompareTag("FIRE"))
+            {
+                pathFollower = Instantiate(pathFollowerRef, fireWindPosition.transform.position, Quaternion.identity);
+            }
+            
+            currentSpirit =Instantiate(_spirit, _position.position, Quaternion.identity);    
         }
 
         else
@@ -69,7 +74,12 @@ public class SpiritManager : MonoBehaviour
             if (_spirit.tag != currentSpirit.tag)
             {
                 Desinvoke(currentSpirit);
-                currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
+                //don't instantiate the pathfollower gameobject if the spirit is not the fire spirit
+                if (_spirit.CompareTag("FIRE"))
+                {
+                    pathFollower = Instantiate(pathFollowerRef, fireWindPosition.transform.position, Quaternion.identity);
+                }
+                currentSpirit =Instantiate(_spirit, _position.position, Quaternion.identity);
             }
             else
             {
@@ -107,6 +117,7 @@ public class SpiritManager : MonoBehaviour
         {
             Destroy(pathFollower);
         }
+
         Destroy(_currentSpirit);
         currentSpirit = null;
         order.isGoingToEarth = false;
