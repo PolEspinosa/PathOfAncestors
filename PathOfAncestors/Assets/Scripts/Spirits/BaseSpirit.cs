@@ -36,7 +36,8 @@ public class BaseSpirit : MonoBehaviour
     protected float slowdownFactor;
     //only for fire spirit
     public RaycastHit fireSpiritHit;
-    public GameObject fireSpirit;
+    //raycast used to know which target was the previous one, only for fire spirit
+    public RaycastHit newFireSpiritTarget;
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;

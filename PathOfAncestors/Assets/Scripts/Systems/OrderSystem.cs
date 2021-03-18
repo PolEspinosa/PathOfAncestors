@@ -167,6 +167,9 @@ public class OrderSystem : MonoBehaviour
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.transform.position);
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().fireSpiritHit = hit;
         }
+
+        //used to store which was the previous target of the fire spirit
+        spiritManager.currentSpirit.GetComponent<BaseSpirit>().newFireSpiritTarget = hit;
     }
 
     void ManageActivators()

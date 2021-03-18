@@ -10,6 +10,10 @@ public class FireSpirit : BaseSpirit
     private GameObject pathFollower;
     private bool castRay;
     private Rigidbody rb;
+    //delay time to keep using nav mesh while seeing the player to avoid spirit getting stuck in corners
+    private float changeDelayTime = 0.1f;
+    private float delayTime; //used as counter
+    private bool previousSteeringState;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,8 @@ public class FireSpirit : BaseSpirit
         castRay = true;
         player = GameObject.FindGameObjectWithTag("Player");
         rb = gameObject.GetComponent<Rigidbody>();
+        previousSteeringState = switchToSteering;
+        delayTime = changeDelayTime;
     }
 
     // Update is called once per frame
@@ -33,6 +39,28 @@ public class FireSpirit : BaseSpirit
         }
         //variable that determines whether to use steering behavior or nav mesh agent
         switchToSteering = DetectObstacleRay();
+        //if the states have changed, delay the change a bit
+        //if (switchToSteering != previousSteeringState)
+        //{
+        //    Debug.Log("enter");
+        //    //variable to store steeringState
+        //    bool aux = switchToSteering;
+        //    if (delayTime > 0)
+        //    {
+        //        delayTime -= Time.deltaTime;
+        //        switchToSteering = previousSteeringState;
+        //    }
+        //    else
+        //    {
+        //        delayTime = changeDelayTime;
+        //        switchToSteering = aux;
+        //        previousSteeringState = switchToSteering;
+        //    }
+        //}
+        //else
+        //{
+        //    switchToSteering = DetectObstacleRay();
+        //}
 
         //if casting a ray, debug of the rays
         if (castRay)
@@ -88,7 +116,7 @@ public class FireSpirit : BaseSpirit
             rb.isKinematic = true;
         }
         //if the pointed gameobject is one of the following, activate isKinematic so it can go through the colliders
-        else if(fireSpiritHit.collider.gameObject != null && (fireSpiritHit.collider.gameObject.CompareTag("OvenActivator") || fireSpiritHit.collider.gameObject.CompareTag("Torch")))
+        else if (fireSpiritHit.collider.gameObject != null && (fireSpiritHit.collider.gameObject.CompareTag("OvenActivator") || fireSpiritHit.collider.gameObject.CompareTag("Torch")))
         {
             rb.isKinematic = true;
         }
@@ -113,7 +141,6 @@ public class FireSpirit : BaseSpirit
             {
                 if (Physics.Raycast(gameObject.transform.position, new Vector3(player.transform.position.x,player.transform.position.y + 1, player.transform.position.z) - gameObject.transform.position, out hit2))
                 {
-                    //Debug.Log(hit2.collider.gameObject.name);
                     if (hit2.collider.gameObject.name == "FireWindInvokation" || hit2.collider.gameObject.CompareTag("Player"))
                     {
                         return true;
