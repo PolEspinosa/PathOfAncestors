@@ -38,6 +38,7 @@ public class OvenActivator : Activator
     {
         
         fireSpirit.GetComponent<BaseSpirit>().MoveTo(endPos.position);
+        
         StartCoroutine(shutDownOven(2f));
     }
 
@@ -53,12 +54,12 @@ public class OvenActivator : Activator
 
     IEnumerator shutDownOven(float waitTime)
     {
+
+        manager.activatorObject = null;
+        fireSpirit = null;
         yield return new WaitForSeconds(waitTime);
         ovenParticles.SetActive(false);
         _activated = false;
         OnDeactivate();
-        manager.activatorObject = null;
-        fireSpirit = null;
-
     }
 }
