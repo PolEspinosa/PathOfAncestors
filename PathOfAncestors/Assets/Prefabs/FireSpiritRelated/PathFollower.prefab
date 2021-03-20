@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5211388111603602410}
   - component: {fileID: 5211388111603602411}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PathFollower
   m_TagString: PathFollower
   m_Icon: {fileID: 0}

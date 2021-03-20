@@ -14,7 +14,9 @@ public class FireSpirit : BaseSpirit
     private float changeDelayTime = 0.5f;
     private float delayTime; //used as counter
     private bool previousSteeringState;
-    
+    private float changeDelayTime2 = 0.5f;
+    private float delayTime2; //used as counter
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class FireSpirit : BaseSpirit
         rb = gameObject.GetComponent<Rigidbody>();
         previousSteeringState = switchToSteering;
         delayTime = changeDelayTime;
+        delayTime2 = changeDelayTime2;
     }
 
     // Update is called once per frame
@@ -33,7 +36,7 @@ public class FireSpirit : BaseSpirit
     {
         FollowOrder();
         //make the path follower stay at floor y posiiton
-        if(Physics.Raycast(gameObject.transform.position, Vector3.down, out hit))
+        if(Physics.Raycast(gameObject.transform.position, Vector3.down, out hit) && switchToSteering)
         {
             pathFollower.transform.position = new Vector3(pathFollower.transform.position.x, hit.point.y, pathFollower.transform.position.z);
         }
@@ -42,8 +45,6 @@ public class FireSpirit : BaseSpirit
         //if the states have changed, delay the change a bit
         if (switchToSteering != previousSteeringState)
         {
-            //variable to store steeringState
-            //bool aux = switchToSteering;
             if (delayTime > 0)
             {
                 delayTime -= Time.deltaTime;
@@ -95,31 +96,33 @@ public class FireSpirit : BaseSpirit
             //set the pathfollower to position of the spirit but on floor y position
             pathFollower.transform.position = new Vector3(gameObject.transform.position.x, hit.point.y, gameObject.transform.position.z);
         }
-        //when close enough to the told position, diable ray so it uses steering behavior to avoid problems
-        if(Vector3.Distance(gameObject.transform.position,fireSpiritHit.point) < 5 && state != States.FOLLOWING)
+
+        if (state == States.FOLLOWING && Vector3.Distance(gameObject.transform.position,player.transform.position) < 5)
         {
-            if((fireSpiritHit.collider.gameObject.CompareTag("OvenActivator") || fireSpiritHit.collider.gameObject.CompareTag("Torch")))
+            rb.isKinematic = true;
+        }
+        //when close enough to the told position, disable ray so it uses steering behavior to avoid problems
+        else if (Vector3.Distance(gameObject.transform.position, fireSpiritHit.point) < 5 && state != States.FOLLOWING)
+        {
+            //if the pointed gameobject is one of the following, activate isKinematic so it can go through the colliders
+            if ((fireSpiritHit.collider.gameObject.CompareTag("OvenActivator") || fireSpiritHit.collider.gameObject.CompareTag("Torch")))
             {
                 castRay = false;
+                rb.isKinematic = true;
+            }
+            else if (delayTime2 > 0 && rb.isKinematic == true)
+            {
+                delayTime2 -= Time.deltaTime;
+            }
+            else
+            {
+                delayTime2 = changeDelayTime2;
+                rb.isKinematic = false;
             }
         }
         else
         {
             castRay = true;
-        }
-
-        if (state == States.FOLLOWING && Vector3.Distance(gameObject.transform.position,player.transform.position) < 3)
-        {
-            rb.isKinematic = true;
-        }
-        //if the pointed gameobject is one of the following, activate isKinematic so it can go through the colliders
-        else if ((fireSpiritHit.collider.gameObject.CompareTag("OvenActivator") || fireSpiritHit.collider.gameObject.CompareTag("Torch")))
-        {
-            rb.isKinematic = true;
-        }
-        else
-        {
-            rb.isKinematic = false;
         }
     }
 
