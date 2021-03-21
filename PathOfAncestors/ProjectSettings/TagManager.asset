@@ -24,6 +24,7 @@ TagManager:
   - PlatformWaypoint
   - BreakableWall
   - Wall
+  - Stop
   layers:
   - Default
   - TransparentFX
