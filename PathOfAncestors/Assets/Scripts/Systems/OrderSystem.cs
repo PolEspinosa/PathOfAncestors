@@ -161,7 +161,7 @@ public class OrderSystem : MonoBehaviour
         //}
         else if (hit.transform.CompareTag("Burnable"))
         {
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.transform.position);
+            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
         }
     }
 
@@ -173,7 +173,7 @@ public class OrderSystem : MonoBehaviour
             {
                 spiritManager.activatorObject.GetComponent<OvenActivator>().DeactivateOven();
             }
-            if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
+            else  if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
             {
                 spiritManager.activatorObject.GetComponent<EarthPlatformActivator>().DeactivateEarthPlatform();
             }
