@@ -84,6 +84,11 @@ public class SpiritManager : MonoBehaviour
             {
                 activatorObject.GetComponent<PressurePlateActivator>().colliders.Remove(currentSpirit.transform.gameObject);
             }
+           else if (activatorObject.GetComponent<OvenActivator>())
+            {
+                activatorObject.GetComponent<OvenActivator>().DeactivateOven();
+
+            }
             else
             {
                 activatorObject._activated = false;

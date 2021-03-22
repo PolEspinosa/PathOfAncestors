@@ -19,6 +19,10 @@ public class GroupActivator : Activator
         {
             checkActivators();
         }
+        else
+        {
+            checkDeactivators();
+        }
         
     }
 
@@ -38,5 +42,18 @@ public class GroupActivator : Activator
             _activated = true;
             OnActivate();
         }
+    }
+
+    void checkDeactivators()
+    {
+        foreach (Activator activator in activators)
+        {
+            if(!activator._activated)
+            {
+                _activated = false;
+                OnDeactivate();
+            }
+        }
+
     }
 }

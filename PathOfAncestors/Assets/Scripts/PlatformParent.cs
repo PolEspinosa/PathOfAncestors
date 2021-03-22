@@ -8,7 +8,9 @@ public class PlatformParent : MonoBehaviour
     public bool canParent = true;
     public GameObject platform;
     public bool isParent=false;
-    // Start is called before the first frame update
+
+    public GameObject rayStart;
+    RaycastHit hit;
 
     private void Update()
     {
@@ -21,27 +23,43 @@ public class PlatformParent : MonoBehaviour
                 isParent = true;
             }
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.transform.tag=="EarthPlatform")
+        if (Physics.Raycast(rayStart.transform.position, -rayStart.transform.up, out hit, 1))
         {
-            onPlatform = true;
-            platform = other.gameObject.transform.GetChild(1).gameObject ;
-            
-        }
-    }
+            if (hit.transform.tag == "EarthPlatform")
+            {
+                if (hit.transform.name == "EarthPlatform")
+                {
+                    onPlatform = true;
+                    platform = hit.transform.gameObject.transform.GetChild(1).gameObject;
+                }
+                else if (hit.transform.name == "PlatformActivable")
+                {
+                    onPlatform = true;
+                    platform = hit.transform.gameObject;
+                }
+            }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag == "EarthPlatform")
+            else if (hit.transform.tag == "MovingPlatform")
+            {
+                onPlatform = true;
+                platform = hit.transform.gameObject;
+            }
+            else
+            {
+                onPlatform = false;
+                platform = null;
+            }
+
+        }
+        else
         {
             onPlatform = false;
             platform = null;
-
         }
+
     }
-
-
 }
+   
+
+
 

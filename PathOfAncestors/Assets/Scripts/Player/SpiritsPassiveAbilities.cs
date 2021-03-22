@@ -45,7 +45,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //Debug.Log(pushing);
         if (spiritManager.currentSpirit != null)
         {
-            if (spiritManager.currentSpirit.CompareTag("EARTH"))
+            if (spiritManager.currentSpirit.CompareTag("EARTH")|| spiritManager.currentSpirit.CompareTag("FIRE"))
             {
                 earthActive = true;
             }

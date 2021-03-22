@@ -173,7 +173,7 @@ public class OrderSystem : MonoBehaviour
             {
                 spiritManager.activatorObject.GetComponent<OvenActivator>().DeactivateOven();
             }
-            if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
+            else  if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
             {
                 spiritManager.activatorObject.GetComponent<EarthPlatformActivator>().DeactivateEarthPlatform();
             }
