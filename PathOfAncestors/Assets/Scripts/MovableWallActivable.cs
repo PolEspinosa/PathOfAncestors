@@ -113,8 +113,8 @@ public class MovableWallActivable : Activable
         _openTween = transform.DOMove(_endPosition, duration).Pause().SetEase(_openEase).SetAutoKill(false);
         _openTween.OnComplete(() => {
 
-            RenderSettings.ambientLight = new Color(ambienceLightColor.r, ambienceLightColor.g, ambienceLightColor.b, 1);
-            RenderSettings.reflectionIntensity = 1;
+            //RenderSettings.ambientLight = new Color(ambienceLightColor.r, ambienceLightColor.g, ambienceLightColor.b, 1);
+            //RenderSettings.reflectionIntensity = 1;
 
             DoShake();
             if (particles != null)
