@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 0
+  HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: 
-  SourceBankPathUnformatted: FMOD Banks/FmodEvents
+  sourceProjectPath: FMOD_PoA/Path of Ancestors/Path of Ancestors.fspro
+  SourceBankPathUnformatted: FMOD_PoA/Path of Ancestors/Build
   AutomaticEventLoading: 1
   BankLoadType: 0
   AutomaticSampleLoading: 0
