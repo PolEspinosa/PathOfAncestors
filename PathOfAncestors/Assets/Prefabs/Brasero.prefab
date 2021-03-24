@@ -412,6 +412,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: brasero 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d4b951e7bbe9c54aa299d322632d78f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4b951e7bbe9c54aa299d322632d78f, type: 3}
 --- !u!4 &5941906030769700843 stripped
