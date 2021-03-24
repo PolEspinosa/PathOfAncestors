@@ -166,6 +166,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PartDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6019135056409872118, guid: 6cfda03dcd0166e458d6a42eab2c22e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6347297121275940475, guid: 6cfda03dcd0166e458d6a42eab2c22e0,
         type: 3}
       propertyPath: m_Name
@@ -175,6 +180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PartDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347297121275940475, guid: 6cfda03dcd0166e458d6a42eab2c22e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cfda03dcd0166e458d6a42eab2c22e0, type: 3}
@@ -218,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PartDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157414673860368826, guid: a22a35ffcd870754aa08ba2a32862366,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1528239806385378121, guid: a22a35ffcd870754aa08ba2a32862366,
         type: 3}
@@ -279,6 +294,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PartDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 1954291940443363633, guid: a22a35ffcd870754aa08ba2a32862366,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a22a35ffcd870754aa08ba2a32862366, type: 3}
 --- !u!1 &9106337916548075268 stripped
@@ -321,6 +341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PartDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157414673860368826, guid: a22a35ffcd870754aa08ba2a32862366,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1528239806385378121, guid: a22a35ffcd870754aa08ba2a32862366,
         type: 3}
@@ -381,6 +406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PartDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954291940443363633, guid: a22a35ffcd870754aa08ba2a32862366,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a22a35ffcd870754aa08ba2a32862366, type: 3}
