@@ -1,5 +1,123 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9078185393404796553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/outdoors
+  m_EditorClassIdentifier: 
+  Path: snapshot:/outdoors
+  guid: c5d77fb36b31574791f38f0bef04508e
+  Banks:
+  - {fileID: 4029354919971813953}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-8861628499912260583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/playerFootsteps/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &-8840692417716533436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/hitGround/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &-7389113433897260509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/hitGround/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &-7261210494445630587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Usuario/Desktop/FMOD_PoA/Path of Ancestors/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637521879346219585
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 994
+  Exists: 1
+--- !u!114 &-6546069422451831186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/playerFootsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Player/playerFootsteps
+  guid: 2faf30b71e71344180499badc39bbcd4
+  Banks:
+  - {fileID: 4029354919971813953}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8861628499912260583}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 500
 --- !u!114 &-6360191599221093481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,10 +195,27 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -5749120374188141729}
+  - {fileID: -8840692417716533436}
   MinDistance: 0
   MaxDistance: 0
   Length: 1062
+--- !u!114 &-3834716712099735612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/playerFootsteps/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &-993426654753111579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,12 +230,84 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:/PathOfAncestors/PathOfAncestors/FMOD Banks/FmodEvents/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637521155288345315
+  lastModified: 637521867991980277
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 994
   Exists: 1
+--- !u!114 &-632135376893697767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/playerFootsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Player/playerFootsteps
+  guid: 2faf30b71e71344180499badc39bbcd4
+  Banks:
+  - {fileID: 6735286540629072605}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -3834716712099735612}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 500
+--- !u!114 &-479093331448156992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/hitGround
+  m_EditorClassIdentifier: 
+  Path: event:/Player/hitGround
+  guid: 435269a4a036c44dbd2655d90fe0478d
+  Banks:
+  - {fileID: 6735286540629072605}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7389113433897260509}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
+--- !u!114 &-92419864190021161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/hitGround
+  m_EditorClassIdentifier: 
+  Path: event:/Player/hitGround
+  guid: 435269a4a036c44dbd2655d90fe0478d
+  Banks:
+  - {fileID: 4029354919971813953}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4813316841812449037}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,19 +321,116 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -993426654753111579}
-  - {fileID: 9159368075269001892}
+  - {fileID: 693184027944593795}
+  - {fileID: 6735286540629072605}
   EditorEvents:
-  - {fileID: 6527043984326478953}
-  - {fileID: -4733099289068866051}
-  - {fileID: -6360191599221093481}
+  - {fileID: -632135376893697767}
+  - {fileID: -479093331448156992}
+  - {fileID: 4557908319363692104}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 9159368075269001892}
+  - {fileID: 6735286540629072605}
   StringsBanks:
-  - {fileID: -993426654753111579}
-  stringsBankWriteTime: 637521155288345315
+  - {fileID: 693184027944593795}
+  stringsBankWriteTime: 637521880778815864
   cacheVersion: 3
+--- !u!114 &693184027944593795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: D:/PathOfAncestors/PathOfAncestors/FMOD_PoA/Path of Ancestors/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637521880778815864
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 994
+  Exists: 1
+--- !u!114 &1412693505611817338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/playerFootsteps/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &4029354919971813953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Usuario/Desktop/FMOD_PoA/Path of Ancestors/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637521879346128337
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 112000
+  Exists: 1
+--- !u!114 &4557908319363692104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/outdoors
+  m_EditorClassIdentifier: 
+  Path: snapshot:/outdoors
+  guid: c5d77fb36b31574791f38f0bef04508e
+  Banks:
+  - {fileID: 6735286540629072605}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &4813316841812449037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/hitGround/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &6527043984326478953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +451,30 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -6093048350330888308}
+  - {fileID: 1412693505611817338}
   MinDistance: 0
   MaxDistance: 0
   Length: 500
+--- !u!114 &6735286540629072605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: D:/PathOfAncestors/PathOfAncestors/FMOD_PoA/Path of Ancestors/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637521880778706237
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 112000
+  Exists: 1
 --- !u!114 &9159368075269001892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:/PathOfAncestors/PathOfAncestors/FMOD Banks/FmodEvents/Desktop/Master.bank
   SubDir: 
-  lastModified: 637521155288135898
+  lastModified: 637521867994641031
   LoadResult: 0
   FileSizes:
   - Name: Desktop

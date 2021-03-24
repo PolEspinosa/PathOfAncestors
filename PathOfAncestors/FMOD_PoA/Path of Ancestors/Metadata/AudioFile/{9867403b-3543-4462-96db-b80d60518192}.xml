@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{9867403b-3543-4462-96db-b80d60518192}">
+		<property name="assetPath">
+			<value>Ftierra 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.35417233560090705</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{04e8827a-285c-484c-82c2-a0bbe6c2c00f}</destination>
+		</relationship>
+	</object>
+</objects>
