@@ -25,6 +25,9 @@ TagManager:
   - BreakableWall
   - Wall
   - Stop
+  - Metal
+  - Rock
+  - Dirt
   layers:
   - Default
   - TransparentFX

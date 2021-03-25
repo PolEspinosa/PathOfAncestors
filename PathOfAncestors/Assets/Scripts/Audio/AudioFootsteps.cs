@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AudioFootsteps : MonoBehaviour
 {
+    //reference to the movement script
+    [SerializeField]
+    private bool hitGround;
     //number of the surface
     private int iSurface;
     //tag of the surface
@@ -13,13 +16,15 @@ public class AudioFootsteps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sSurface = "Piedra";
+        sSurface = "Rock";
+        hitGround = false;
+        footstepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/playerFootsteps");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(sSurface);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -28,22 +33,33 @@ public class AudioFootsteps : MonoBehaviour
         {
             switch (other.gameObject.tag)
             {
-                case "piedra":
+                case "Rock":
                     iSurface = 0;
                     break;
-                case "metal":
+                case "Metal":
                     iSurface = 1;
                     break;
-                case "tierra":
+                case "EarthPlatform":
                     iSurface = 2;
                     break;
+                default:
+                    iSurface = 0;
+                    break;
             }
+            sSurface = other.gameObject.tag;
+            footstepsInstance.setParameterByName("Surface Type", iSurface);
         }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        
     }
 
     //this function is trigger by the event in the walking animation
     void Footsteps()
     {
         footstepsInstance.start();
+        //Debug.Log("hello");
     }
 }
