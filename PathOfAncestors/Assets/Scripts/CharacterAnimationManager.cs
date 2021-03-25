@@ -40,9 +40,4 @@ public class CharacterAnimationManager : MonoBehaviour
     {
         return (charInput.GetHorizontalMovementInput() != 0 || charInput.GetVerticalMovementInput() != 0);
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other.gameObject.tag);
-    }
 }

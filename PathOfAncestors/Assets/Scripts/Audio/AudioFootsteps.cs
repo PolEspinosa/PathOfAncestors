@@ -6,29 +6,44 @@ public class AudioFootsteps : MonoBehaviour
 {
     //reference to the movement script
     [SerializeField]
+    private CMF.AdvancedWalkerController inputManager;
+    //determines if the player has hit the ground
     private bool hitGround;
     //number of the surface
     private int iSurface;
     //tag of the surface
     private string sSurface;
-    FMOD.Studio.EventInstance footstepsInstance;
+
+    private FMOD.Studio.EventInstance footstepsInstance;
+    private FMOD.Studio.EventInstance groundHitInstance;
 
     // Start is called before the first frame update
     void Start()
     {
         sSurface = "Rock";
-        hitGround = false;
+        hitGround = true;
         footstepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/playerFootsteps");
+        groundHitInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/hitGround");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(sSurface);
+        //when the player is not touching the ground, the player has not hit the ground
+        if (!inputManager.onGround)
+        {
+            hitGround = false;
+        }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
+        //when the player hits the ground, if he had'nt previously hit the ground, hit ground = true
+        if (hitGround != inputManager.onGround)
+        {
+            HitGroundSound();
+        }
+        //change surface sound according to the surface tag
         if (sSurface != other.gameObject.tag)
         {
             switch (other.gameObject.tag)
@@ -42,24 +57,37 @@ public class AudioFootsteps : MonoBehaviour
                 case "EarthPlatform":
                     iSurface = 2;
                     break;
+                case "EarthActivator":
+                    iSurface = 2;
+                    break;
                 default:
                     iSurface = 0;
                     break;
             }
             sSurface = other.gameObject.tag;
             footstepsInstance.setParameterByName("Surface Type", iSurface);
+            groundHitInstance.setParameterByName("Surface Type", iSurface);
         }
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
         
     }
 
-    //this function is trigger by the event in the walking animation
-    void Footsteps()
+    //this function is triggered by the event in the walking animation
+    private void Footsteps()
     {
-        footstepsInstance.start();
-        //Debug.Log("hello");
+        if (inputManager.onGround)
+        {
+            footstepsInstance.start();
+        }
     }
+
+    private void HitGroundSound()
+    {
+        groundHitInstance.start();
+        hitGround = true;
+    }
+
 }
