@@ -43,30 +43,33 @@ public class AudioFootsteps : MonoBehaviour
         {
             HitGroundSound();
         }
-        //change surface sound according to the surface tag
-        if (sSurface != other.gameObject.tag)
+        if (!other.gameObject.CompareTag("ReverbChange"))
         {
-            switch (other.gameObject.tag)
+            //change surface sound according to the surface tag
+            if (sSurface != other.gameObject.tag)
             {
-                case "Rock":
-                    iSurface = 0;
-                    break;
-                case "Metal":
-                    iSurface = 1;
-                    break;
-                case "EarthPlatform":
-                    iSurface = 2;
-                    break;
-                case "EarthActivator":
-                    iSurface = 2;
-                    break;
-                default:
-                    iSurface = 0;
-                    break;
+                switch (other.gameObject.tag)
+                {
+                    case "Rock":
+                        iSurface = 0;
+                        break;
+                    case "Metal":
+                        iSurface = 1;
+                        break;
+                    case "EarthPlatform":
+                        iSurface = 2;
+                        break;
+                    case "EarthActivator":
+                        iSurface = 2;
+                        break;
+                    default:
+                        iSurface = 0;
+                        break;
+                }
+                sSurface = other.gameObject.tag;
+                footstepsInstance.setParameterByName("Surface Type", iSurface);
+                groundHitInstance.setParameterByName("Surface Type", iSurface);
             }
-            sSurface = other.gameObject.tag;
-            footstepsInstance.setParameterByName("Surface Type", iSurface);
-            groundHitInstance.setParameterByName("Surface Type", iSurface);
         }
     }
 

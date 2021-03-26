@@ -28,6 +28,7 @@ TagManager:
   - Metal
   - Rock
   - Dirt
+  - ReverbChange
   layers:
   - Default
   - TransparentFX
