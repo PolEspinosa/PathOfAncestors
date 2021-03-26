@@ -29,8 +29,14 @@ public class AudioFootsteps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //when the player hits the ground, if he had'nt previously hit the ground, hit ground = true
+        if (!hitGround && inputManager.onGround)
+        {
+            //Debug.Log("hey");
+            HitGroundSound();
+        }
         //when the player is not touching the ground, the player has not hit the ground
-        if (!inputManager.onGround)
+        else if (!inputManager.onGround)
         {
             hitGround = false;
         }
@@ -38,11 +44,6 @@ public class AudioFootsteps : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //when the player hits the ground, if he had'nt previously hit the ground, hit ground = true
-        if (hitGround != inputManager.onGround)
-        {
-            HitGroundSound();
-        }
         if (!other.gameObject.CompareTag("ReverbChange"))
         {
             //change surface sound according to the surface tag
@@ -89,6 +90,7 @@ public class AudioFootsteps : MonoBehaviour
 
     private void HitGroundSound()
     {
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player/hitGround");
         groundHitInstance.start();
         hitGround = true;
     }
