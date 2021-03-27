@@ -32,7 +32,6 @@ public class AudioFootsteps : MonoBehaviour
         //when the player hits the ground, if he had'nt previously hit the ground, hit ground = true
         if (!hitGround && inputManager.onGround)
         {
-            //Debug.Log("hey");
             HitGroundSound();
         }
         //when the player is not touching the ground, the player has not hit the ground
@@ -74,11 +73,6 @@ public class AudioFootsteps : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        
-    }
-
     //this function is triggered by the event in the walking animation
     private void Footsteps()
     {
@@ -90,9 +84,7 @@ public class AudioFootsteps : MonoBehaviour
 
     private void HitGroundSound()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/Player/hitGround");
         groundHitInstance.start();
         hitGround = true;
     }
-
 }

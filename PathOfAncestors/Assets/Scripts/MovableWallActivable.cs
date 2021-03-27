@@ -45,9 +45,13 @@ public class MovableWallActivable : Activable
     public bool isStopped = false;
     public Transform stopPos;
 
+    //references to the fmod friction sound instance
+    private FMOD.Studio.EventInstance frictionSoundInstance;
+
     // Start is called before the first frame update
     void Start()
     {
+        //frictionSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
         if(!isDinamic)
         {
             if (_objectToShake == null) _objectToShake = transform;
@@ -127,7 +131,7 @@ public class MovableWallActivable : Activable
             }
         }
 
-        Debug.Log(_openDoorDuration);
+        //Debug.Log(_openDoorDuration);
         
     }
 
@@ -140,9 +144,15 @@ public class MovableWallActivable : Activable
 
     private void UpdateOpenTween(float duration, bool settingUp = false)
     {
+        //play friction sound when going up
+        //frictionSoundInstance.start();
         if (_openTween != null) _openTween.Kill();
         _openTween = transform.DOMove(_endPosition, duration).Pause().SetEase(_openEase).SetAutoKill(false);
         _openTween.OnComplete(() => {
+            //stop friction sound when the door has reached the ceiling
+            //frictionSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            //play sound when the door collides with the ceiling
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Puerta 1/stoneWallHitUp");
             DoShake();
             if (particles != null)
             {
@@ -158,10 +168,16 @@ public class MovableWallActivable : Activable
 
     private void UpdateCloseTween(float duration)
     {
+        //play friction sound when going down
+        //frictionSoundInstance.start();
         if (_closeTween != null) _closeTween.Kill();
         _closeTween = transform.DOMove(_startPosition, duration);
         _closeTween.SetEase(_closeEase);
         _closeTween.OnComplete(() => {
+            //stop friction sound when the door has reached the ground
+            //frictionSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            //play sound when the door hits the ground
+            //FMODUnity.RuntimeManager.PlayOneShot("event/Puerta 1/stoneWallHitDown");
             DoShake();
             if (particles != null)
             {

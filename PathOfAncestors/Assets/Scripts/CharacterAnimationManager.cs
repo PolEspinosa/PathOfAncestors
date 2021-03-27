@@ -9,13 +9,13 @@ public class CharacterAnimationManager : MonoBehaviour
     public GameObject player;
     public Animator playerAnimator;
     private SpiritsPassiveAbilities spiritsPassiveAbilities;
+    private bool canPlayJumpSound; //bool to control whether to play the jump sound or not
     // Start is called before the first frame update
     void Start()
     {
-       
         playerAnimator = player.GetComponentInChildren<Animator>();
         spiritsPassiveAbilities = player.GetComponent<SpiritsPassiveAbilities>();
-       
+        canPlayJumpSound = true;
     }
 
     // Update is called once per frame
@@ -29,6 +29,22 @@ public class CharacterAnimationManager : MonoBehaviour
         playerAnimator.SetBool("isJumping", inputManager.GetJumpState());
         playerAnimator.SetBool("isGrounded", inputManager.GetGroundedState());
         playerAnimator.SetBool("noInput", !DetectMovementInput());
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //if play jump sound is enabled
+            if (canPlayJumpSound)
+            {
+                //play jump sound
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
+                //disable play jump sound so it doesn't play more than once in one jump
+                canPlayJumpSound = false;
+            }
+        }
+        //if the player is grounded, enable play jump sound
+        else if (inputManager.GetGroundedState())
+        {
+            canPlayJumpSound = true;
+        }
     }
 
     void FixedUpdate()
