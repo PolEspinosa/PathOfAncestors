@@ -23,6 +23,8 @@ public abstract class Activator : MonoBehaviour
     protected FMOD.Studio.EventInstance ovenSoundInstance;
     //create the event instance for the torch sound
     protected FMOD.Studio.EventInstance torchSoundInstance;
+    //create the event instance for the pressure plate sound
+    protected FMOD.Studio.EventInstance pressurePlateSoundInstance;
 
     protected virtual void Start()
     {
@@ -31,6 +33,7 @@ public abstract class Activator : MonoBehaviour
 
         //ovenSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateOven");
         //torchSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateFire");
+        //pressurePlateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePressurePlate");
     }
     public virtual void GroupActivated()
     {
