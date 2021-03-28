@@ -20,7 +20,8 @@ public class RotateDoorActivable : Activable
     {
         rightDoor.transform.DORotateQuaternion(Quaternion.Euler(0, 100, 0), 3f);
         leftDoor.transform.DORotateQuaternion(Quaternion.Euler(0, -100,0), 3f);
-        Debug.Log("hey");
+        //play open door sound
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Puerta 2/openBigDoor");
     }
 
     public override void Deactivate()

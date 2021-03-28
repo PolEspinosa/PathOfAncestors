@@ -46,13 +46,17 @@ public class MovableWallActivable : Activable
     public Transform stopPos;
 
     //references to the fmod friction sound instance
-    private FMOD.Studio.EventInstance frictionSoundInstance;
+    private FMOD.Studio.EventInstance doorSoundInstance;
+    private FMOD.Studio.EventInstance platformSoundInstance;
+    private FMOD.Studio.EventInstance dirtColumnSoundInstance;
 
     // Start is called before the first frame update
     void Start()
     {
-        //frictionSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
-        if(!isDinamic)
+        //doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
+        //platformSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePlatform");
+        //dirtColumnSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/createDirtColumn");
+        if (!isDinamic)
         {
             if (_objectToShake == null) _objectToShake = transform;
             _startPosition = transform.position;
@@ -144,15 +148,41 @@ public class MovableWallActivable : Activable
 
     private void UpdateOpenTween(float duration, bool settingUp = false)
     {
-        //play friction sound when going up
-        //frictionSoundInstance.start();
+        //play friction sound when going up depending on gameobject tag
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                //platformSoundInstance.start();
+                break;
+            case "EarthPlatform":
+                //dirtColumnSoundInstance.start();
+                break;
+            case "PartDoor":
+                //doorSoundInstance.start();
+                break;
+        }
+        
         if (_openTween != null) _openTween.Kill();
         _openTween = transform.DOMove(_endPosition, duration).Pause().SetEase(_openEase).SetAutoKill(false);
         _openTween.OnComplete(() => {
-            //stop friction sound when the door has reached the ceiling
-            //frictionSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            //play sound when the door collides with the ceiling
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Puerta 1/stoneWallHitUp");
+            //play sound depending on the gameobject tag
+            switch (gameObject.tag)
+            {
+                case "Metal":
+                    //stop platform sound when the platform has reached the top
+                    //platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "EarthPlatform":
+                    //stop platform sound when the dirt platform is completed
+                    //dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "PartDoor":
+                    //stop friction sound when the door has reached the ceiling
+                    //doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    //play sound when the door collides with the ceiling
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/Puerta 1/stoneWallHitUp");
+                    break;
+            }
             DoShake();
             if (particles != null)
             {
@@ -168,16 +198,41 @@ public class MovableWallActivable : Activable
 
     private void UpdateCloseTween(float duration)
     {
-        //play friction sound when going down
-        //frictionSoundInstance.start();
+        //play friction sound when going down depending on gameobject tag
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                //platformSoundInstance.start();
+                break;
+            case "EarthPlatform":
+                //dirtColumnSoundInstance.start();
+                break;
+            case "PartDoor":
+                //doorSoundInstance.start();
+                break;
+        }
         if (_closeTween != null) _closeTween.Kill();
         _closeTween = transform.DOMove(_startPosition, duration);
         _closeTween.SetEase(_closeEase);
         _closeTween.OnComplete(() => {
-            //stop friction sound when the door has reached the ground
-            //frictionSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            //play sound when the door hits the ground
-            //FMODUnity.RuntimeManager.PlayOneShot("event/Puerta 1/stoneWallHitDown");
+            //play sound depending on the gameobject tag
+            switch (gameObject.tag)
+            {
+                case "Metal":
+                    //stop platform sound when the platform has reached the bottom
+                    //platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "EarthPlatform":
+                    //stop platform sound when the dirt platform is gone
+                    //dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "PartDoor":
+                    //stop friction sound when the door has reached the floor
+                    //doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    //play sound when the door collides with the floor
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/Puerta 1/stoneWallHitDown");
+                    break;
+            }
             DoShake();
             if (particles != null)
             {

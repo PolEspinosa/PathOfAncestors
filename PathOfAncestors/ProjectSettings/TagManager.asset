@@ -29,6 +29,8 @@ TagManager:
   - Rock
   - Dirt
   - ReverbChange
+  - Player2
+  - PartDoor
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,6 @@ public class OvenActivator : Activator
 
     GameObject fireSpirit;
 
-
     private void Update()
     {
         if (!_activated)
@@ -50,16 +49,19 @@ public class OvenActivator : Activator
         OnActivate();
         manager.activatorObject = this;
         //this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = activeMaterial;
+        //start the sound of the oven when activated
+        //ovenSoundInstance.start();
     }
 
     IEnumerator shutDownOven(float waitTime)
     {
-
         manager.activatorObject = null;
         fireSpirit = null;
         yield return new WaitForSeconds(waitTime);
         ovenParticles.SetActive(false);
         _activated = false;
         OnDeactivate();
+        //stop the sound of the oven when deactivated
+        //ovenSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

@@ -13,6 +13,8 @@ public class TorchActivator : Activator
             {
                 _activated = true;
                 OnActivate();
+                //start the fire sound when the torch is activated
+                //torchSoundInstance.start();
             }
 
         }
