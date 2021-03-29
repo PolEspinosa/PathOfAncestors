@@ -48,12 +48,6 @@ public class MovableWallActivable : Activable
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        passive = player.GetComponent<SpiritsPassiveAbilities>();
-        openCompleted = false;
-        closeCompleted = false;
-        ambienceLightColor = RenderSettings.ambientLight;
-
         if(!isDinamic)
         {
             if (_objectToShake == null) _objectToShake = transform;
@@ -149,9 +143,6 @@ public class MovableWallActivable : Activable
         _openTween = transform.DOMove(_endPosition, duration).Pause().SetEase(_openEase).SetAutoKill(false);
         _openTween.OnComplete(() => {
 
-            //RenderSettings.ambientLight = new Color(ambienceLightColor.r, ambienceLightColor.g, ambienceLightColor.b, 1);
-            //RenderSettings.reflectionIntensity = 1;
-
             DoShake();
             if (particles != null)
             {
@@ -171,11 +162,6 @@ public class MovableWallActivable : Activable
         _closeTween = transform.DOMove(_startPosition, duration);
         _closeTween.SetEase(_closeEase);
         _closeTween.OnComplete(() => {
-            if (passive.inDarkArea)
-            {
-                RenderSettings.ambientLight = new Color(0,0,0,1);
-                RenderSettings.reflectionIntensity = 0;
-            }
 
             DoShake();
             if (particles != null)
@@ -203,7 +189,6 @@ public class MovableWallActivable : Activable
 
     public override void Activate()
     {
-        openCompleted = false;
         if(!isDinamic)
         {
             if (particles != null)
@@ -240,7 +225,6 @@ public class MovableWallActivable : Activable
 
     public override void Deactivate()
     {
-        closeCompleted = false;
         if(!isDinamic)
         {
             if (particles != null)
