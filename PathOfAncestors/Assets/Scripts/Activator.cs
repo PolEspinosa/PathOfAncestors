@@ -32,8 +32,11 @@ public abstract class Activator : MonoBehaviour
         order = GameObject.Find("Character").GetComponent<OrderSystem>();
 
         //ovenSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateOven");
+        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(ovenSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
         //torchSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateFire");
+        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(torchSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
         //pressurePlateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePressurePlate");
+        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
     }
     public virtual void GroupActivated()
     {
