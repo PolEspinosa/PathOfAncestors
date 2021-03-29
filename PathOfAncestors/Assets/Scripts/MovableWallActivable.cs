@@ -31,6 +31,7 @@ public class MovableWallActivable : Activable
 
 
     private Vector3 _startPosition = Vector3.zero;
+    private Vector3 _startPositionAux = Vector3.zero;
 
     public GameObject particles;
 
@@ -39,10 +40,10 @@ public class MovableWallActivable : Activable
     public Transform startPos;
     public Transform endPos;
 
-    private GameObject player;
-    private SpiritsPassiveAbilities passive;
-    private bool openCompleted, closeCompleted;
-    private Color ambienceLightColor;
+    //stop
+    public bool hasToStop = false;
+    public bool isStopped = false;
+    public Transform stopPos;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,7 @@ public class MovableWallActivable : Activable
             if (_objectToShake == null) _objectToShake = transform;
             _startPosition = transform.position;
             _endPosition += transform.position;
+            _startPositionAux = _startPosition;
 
             SetupTweens();
             AssociateActions();
@@ -98,6 +100,40 @@ public class MovableWallActivable : Activable
                 }
             }
         }
+
+        if(hasToStop)
+        {
+            _startPosition = stopPos.position;
+            
+        }
+        
+        else
+        {
+            _startPosition = _startPositionAux;
+        }
+
+        if(isStopped)
+        {
+            if(!hasToStop)
+            {
+                _startPosition = _startPositionAux;
+
+                float _timeElapsed = _closeDoorDuration;
+                if (_shakeTween.IsPlaying()) _shakeTween.Pause();
+                if (_openTween.IsPlaying())
+                {
+                    _timeElapsed = _openTween.ElapsedPercentage() * _closeDoorDuration;
+                    _openTween.Pause();
+                }
+
+
+                UpdateCloseTween(_timeElapsed);
+                _closeTween.Restart();
+            }
+        }
+
+        Debug.Log(_openDoorDuration);
+        
     }
 
     private void SetupTweens()
@@ -122,6 +158,11 @@ public class MovableWallActivable : Activable
                 particles.SetActive(false);
             }
         });
+
+        if(isStopped)
+        {
+            isStopped = false;
+        }
     }
 
     private void UpdateCloseTween(float duration)
@@ -144,6 +185,12 @@ public class MovableWallActivable : Activable
         });
         _closeTween.SetAutoKill(false);
         _closeTween.Pause();
+
+        if(hasToStop)
+        {
+            isStopped = true;
+        }
+        
     }
 
     private void UpdateShakeTween()
@@ -243,5 +290,21 @@ public class MovableWallActivable : Activable
         _shakeTween.Restart();
       
         return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="Stop")
+        {
+            hasToStop = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Stop")
+        {
+            hasToStop = false;
+        }
     }
 }

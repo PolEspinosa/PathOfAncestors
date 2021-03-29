@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{10b6becf-4fc8-40b6-b88e-36b6b1ee9c00}">
+		<property name="assetPath">
+			<value>Fpiedra 2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.12501133786848073</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{04e8827a-285c-484c-82c2-a0bbe6c2c00f}</destination>
+		</relationship>
+	</object>
+</objects>

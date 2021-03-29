@@ -24,8 +24,7 @@ TagManager:
   - PlatformWaypoint
   - BreakableWall
   - Wall
-  - DarkArea
-  - PartDoor
+  - Stop
   layers:
   - Default
   - TransparentFX

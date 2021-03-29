@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{57572b31-bb63-41f0-bd22-6a7d83f0de82}">
+		<property name="assetPath">
+			<value>Htierra 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.12498866213151927</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{04e8827a-285c-484c-82c2-a0bbe6c2c00f}</destination>
+		</relationship>
+	</object>
+</objects>
