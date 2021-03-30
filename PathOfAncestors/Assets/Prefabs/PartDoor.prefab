@@ -118,6 +118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puerta2
       objectReference: {fileID: 0}
+    - target: {fileID: 6393257340489567146, guid: 6cfda03dcd0166e458d6a42eab2c22e0,
+        type: 3}
+      propertyPath: _openDoorDuration
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cfda03dcd0166e458d6a42eab2c22e0, type: 3}
 --- !u!4 &2139422511836751570 stripped
@@ -204,6 +209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569221242753789539, guid: a22a35ffcd870754aa08ba2a32862366,
+        type: 3}
+      propertyPath: _openDoorDuration
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a22a35ffcd870754aa08ba2a32862366, type: 3}
