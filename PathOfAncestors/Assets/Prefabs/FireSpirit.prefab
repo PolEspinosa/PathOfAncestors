@@ -33,6 +33,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invoked: 0
   uninvoked: 0
+  destroySpirit: 0
+  speed: 0
 --- !u!1 &7703465193059072629
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,10 +46,10 @@ GameObject:
   - component: {fileID: 5450791714769132510}
   - component: {fileID: 8363627593205219998}
   - component: {fileID: 3292145652747966788}
-  - component: {fileID: 3214830615112715158}
   - component: {fileID: 3547047218962524920}
   - component: {fileID: 6821029558618872649}
   - component: {fileID: 340404035708863246}
+  - component: {fileID: 334709673747864705}
   m_Layer: 0
   m_Name: FireSpirit
   m_TagString: FIRE
@@ -118,19 +120,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3214830615112715158
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703465193059072629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3547047218962524920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +163,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7703465193059072629}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbf4be8f6ea95d0449331d1791a21eb8, type: 3}
   m_Name: 
@@ -183,6 +172,20 @@ MonoBehaviour:
   minIntensity: 3
   maxGlow: 0
   minGlow: 0
+--- !u!136 &334709673747864705
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703465193059072629}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8975544140865204466
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +224,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8975544140865204466}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0

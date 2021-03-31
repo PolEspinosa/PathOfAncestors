@@ -15,6 +15,7 @@ public class FireSpiritAnimatorController : SpiritsAnimatorController
     {
         animator.SetBool("invoked", invoked);
         animator.SetBool("uninvoked", uninvoked);
+        animator.SetFloat("Speed", speed);
     }
 
     private void FireInvoked()

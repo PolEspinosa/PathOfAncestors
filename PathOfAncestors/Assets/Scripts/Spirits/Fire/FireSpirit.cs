@@ -21,6 +21,8 @@ public class FireSpirit : BaseSpirit
     protected override void InitialiseValues()
     {
         target = GameObject.Find("FireWindInvokation");
+        player = GameObject.FindGameObjectWithTag("Player");
+        animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
     }
 
     private void OnCollisionEnter(Collision other)
