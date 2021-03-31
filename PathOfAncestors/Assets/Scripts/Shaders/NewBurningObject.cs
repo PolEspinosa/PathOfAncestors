@@ -8,7 +8,8 @@ public class NewBurningObject : MonoBehaviour
     private Material mat;
     private float burntAmount;
     public bool burning;
-    public VisualEffect fireParticles;
+    public ParticleSystem fireParticles;
+    private ParticleSystem.MainModule particlesMainModule;
     [SerializeField]
     private float burntThreshold;
     [SerializeField]
@@ -21,8 +22,9 @@ public class NewBurningObject : MonoBehaviour
         burntAmount = 0;
         burning = false;
         mat = gameObject.GetComponent<MeshRenderer>().material;
-        fireParticles.enabled = false;
-    }
+        //particlesMainModule = fireParticles.main;
+        fireParticles.Stop();
+}
 
     // Update is called once per frame
     void Update()
@@ -31,8 +33,11 @@ public class NewBurningObject : MonoBehaviour
         mat.SetFloat("Vector1_54467BBE", burntAmount);
         if (burntAmount >= burntThreshold)
         {
-            fireParticles.SetFloat("rate", 0);
             col.enabled = false;
+        }
+        if (burntAmount >= burntThreshold / 1.5f)
+        {
+            fireParticles.Stop();
         }
         if (burntAmount >= 1)
         {
@@ -53,7 +58,7 @@ public class NewBurningObject : MonoBehaviour
         {
             burning = true;
             //other.gameObject.GetComponent<BaseSpirit>().MoveTo(other.gameObject.transform.position);
-            fireParticles.enabled = true;
+            fireParticles.Play();
         }
     }
 }
