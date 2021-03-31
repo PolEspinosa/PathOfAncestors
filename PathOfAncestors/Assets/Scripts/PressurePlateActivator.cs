@@ -41,6 +41,7 @@ public class PressurePlateActivator : Activator
 
        
     }
+
     private void OnTriggerEnter(Collider other)
     {
         colliders.Add(other.transform.gameObject);
@@ -48,8 +49,8 @@ public class PressurePlateActivator : Activator
         {
             if (other.tag=="Player2" || other.tag == "EARTH" || other.tag=="EarthPlatform")
             {
-                //play pressure plate sound
-                //pressurePlateSoundInstance.start();
+                //play pressure plate activate sound
+                //pressurePlateActivateSoundInstance.start();
                 _activated = true;
                 OnActivate();
                 if(other.tag=="EARTH")
@@ -69,14 +70,14 @@ public class PressurePlateActivator : Activator
         {
             _activated = false;
             OnDeactivate();
-            //play pressure plate sound
-            //pressurePlateSoundInstance.start();
+            //play pressure deactivate plate sound
+            //pressurePlateDeactivateSoundInstance.start();
         }
         if (other.tag == "EARTH")
         {
             manager.activatorObject = null;
-            //play pressure plate sound
-            //pressurePlateSoundInstance.start();
+            //play pressure deactivate plate sound
+            //pressurePlateDeactivateSoundInstance.start();
         }
 
     }
