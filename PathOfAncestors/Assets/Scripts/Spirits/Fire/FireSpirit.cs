@@ -27,10 +27,12 @@ public class FireSpirit : BaseSpirit
         target = GameObject.Find("FireWindInvokation");
         player = GameObject.FindGameObjectWithTag("Player");
         animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
+        //face the player when spawning
+        gameObject.transform.rotation = Quaternion.LookRotation(player.transform.position + new Vector3(0, 1.5f, 0) - gameObject.transform.position, Vector3.up);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("col");
+        
     }
 }
