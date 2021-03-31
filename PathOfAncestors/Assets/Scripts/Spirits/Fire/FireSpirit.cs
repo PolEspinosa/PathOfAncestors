@@ -15,7 +15,11 @@ public class FireSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
-        FollowOrder();
+        //when the spirit is doing the invoking or uninvoking animation, don't move
+        if(animController.invoked && !animController.uninvoked)
+        {
+            FollowOrder();
+        }
     }
 
     protected override void InitialiseValues()
