@@ -33,14 +33,14 @@ public abstract class Activator : MonoBehaviour
         manager = GameObject.Find("Character").GetComponent<SpiritManager>();
         order = GameObject.Find("Character").GetComponent<OrderSystem>();
 
-        //ovenSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateOven");
-        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(ovenSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
-        //torchSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateFire");
-        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(torchSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
-        //pressurePlateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePressurePlate");
-        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
-        //pressurePlateDeactivateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/deactivatePressurePlate");
-        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateDeactivateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
+        ovenSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateOven");
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(ovenSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+        torchSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateFire");
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(torchSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+        pressurePlateActivateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePressurePlate");
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateActivateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
+        pressurePlateDeactivateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/deactivatePressurePlate");
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateDeactivateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
     }
     public virtual void GroupActivated()
     {

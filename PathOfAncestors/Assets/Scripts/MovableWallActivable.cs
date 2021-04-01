@@ -64,8 +64,9 @@ public class MovableWallActivable : Activable
                 //FMODUnity.RuntimeManager.AttachInstanceToGameObject(dirtColumnSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
                 break;
             case "PartDoor":
-                //doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
-                //FMODUnity.RuntimeManager.AttachInstanceToGameObject(doorSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
+                //doorSoundInstance.setVolume();
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(doorSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
                 break;
         }
         
@@ -171,7 +172,7 @@ public class MovableWallActivable : Activable
                 //dirtColumnSoundInstance.start();
                 break;
             case "PartDoor":
-                //doorSoundInstance.start();
+                doorSoundInstance.start();
                 break;
         }
         
@@ -191,9 +192,9 @@ public class MovableWallActivable : Activable
                     break;
                 case "PartDoor":
                     //stop friction sound when the door has reached the ceiling
-                    //doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     //play sound when the door collides with the ceiling
-                    //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitUp",gameObject);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitUp",gameObject);
                     break;
             }
             DoShake();
@@ -221,7 +222,7 @@ public class MovableWallActivable : Activable
                 //dirtColumnSoundInstance.start();
                 break;
             case "PartDoor":
-                //doorSoundInstance.start();
+                doorSoundInstance.start();
                 break;
         }
         if (_closeTween != null) _closeTween.Kill();
@@ -241,9 +242,9 @@ public class MovableWallActivable : Activable
                     break;
                 case "PartDoor":
                     //stop friction sound when the door has reached the floor
-                    //doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     //play sound when the door collides with the floor
-                    //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitDown",gameObject);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitDown",gameObject);
                     break;
             }
             DoShake();

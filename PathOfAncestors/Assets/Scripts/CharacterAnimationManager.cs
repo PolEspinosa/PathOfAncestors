@@ -35,7 +35,7 @@ public class CharacterAnimationManager : MonoBehaviour
             if (canPlayJumpSound)
             {
                 //play jump sound
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
                 //disable play jump sound so it doesn't play more than once in one jump
                 canPlayJumpSound = false;
             }

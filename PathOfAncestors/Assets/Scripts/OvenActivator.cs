@@ -50,7 +50,7 @@ public class OvenActivator : Activator
         manager.activatorObject = this;
         //this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = activeMaterial;
         //start the sound of the oven when activated
-        //ovenSoundInstance.start();
+       ovenSoundInstance.start();
     }
 
     IEnumerator shutDownOven(float waitTime)
@@ -62,6 +62,6 @@ public class OvenActivator : Activator
         _activated = false;
         OnDeactivate();
         //stop the sound of the oven when deactivated
-        //ovenSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ovenSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
