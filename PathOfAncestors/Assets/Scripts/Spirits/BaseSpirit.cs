@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -192,7 +192,10 @@ public class BaseSpirit : MonoBehaviour
         velocity *= slowdownFactor;
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
-        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        if(targetDistance.magnitude > 0.1f)
+        {
+            gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        }
 
         //set the speed to the animator variable for the blend tree
         //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
