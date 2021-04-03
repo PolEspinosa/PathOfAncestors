@@ -38,6 +38,7 @@ public class EarthSpirit : BaseSpirit
     protected override void InitialiseValues()
     {
         target = GameObject.Find("EarthInvokation");
+        animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
     }
 
     private void OnTriggerEnter(Collider other)

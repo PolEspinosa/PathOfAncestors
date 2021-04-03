@@ -30,9 +30,4 @@ public class FireSpirit : BaseSpirit
         //face the player when spawning
         gameObject.transform.rotation = Quaternion.LookRotation(player.transform.position + new Vector3(0, 1.5f, 0) - gameObject.transform.position, Vector3.up);
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        
-    }
 }

@@ -69,7 +69,7 @@ public class BaseSpirit : MonoBehaviour
                         }
                         else
                         {
-                            followSpeed = runSpeed;
+                            followSpeed = walkSpeed;
                         }
                         SteeringBehaviorEarth(target.transform.position);
                     }
@@ -78,11 +78,14 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.enabled = true;
                         navAgent.speed = walkSpeed;
                         navAgent.SetDestination(target.transform.position);
+
+                        //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
+                        animController.speed = navAgent.velocity.magnitude / runSpeed;
                     }
                 }
                 else
                 {
-                    //we make it look to the direction of the player thus avoid rotation problems when too close
+                    //we make it look to the direction of the player and thus avoid rotation problems when too close
                     //we add +1.5 because the player has his pivot at the feet
                     SteeringBehavior(target.transform.position, player.transform.position + new Vector3(0, 1.5f, 0) - gameObject.transform.position);
                 }
@@ -109,6 +112,9 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.enabled = true;
                         navAgent.speed = runSpeed;
                         navAgent.SetDestination(goToPosition);
+
+                        //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
+                        animController.speed = navAgent.velocity.magnitude / runSpeed;
                     }
                 }
                 else
@@ -187,5 +193,9 @@ public class BaseSpirit : MonoBehaviour
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
         gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+
+        //set the speed to the animator variable for the blend tree
+        //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
+        animController.speed = velocity.magnitude / runSpeed;
     }
 }
