@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireSpiritAnimatorController : SpiritsAnimatorController
 {
+    [SerializeField]
+    private ParticleSystem fireParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +23,16 @@ public class FireSpiritAnimatorController : SpiritsAnimatorController
     private void FireInvoked()
     {
         invoked = true;
+        //fireParticles.Play();
     }
 
     private void DestroyFire()
     {
         destroySpirit = true;
+    }
+
+    private void StopParticles()
+    {
+        fireParticles.Stop();
     }
 }
