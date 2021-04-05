@@ -56,8 +56,8 @@ public class MovableWallActivable : Activable
         switch (gameObject.tag)
         {
             case "Metal":
-                //platformSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePlatform");
-                //FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                platformSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePlatform");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
                 break;
             case "EarthPlatform":
                 //dirtColumnSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/createDirtColumn");
@@ -166,7 +166,7 @@ public class MovableWallActivable : Activable
         switch (gameObject.tag)
         {
             case "Metal":
-                //platformSoundInstance.start();
+                platformSoundInstance.start();
                 break;
             case "EarthPlatform":
                 //dirtColumnSoundInstance.start();
@@ -184,7 +184,7 @@ public class MovableWallActivable : Activable
             {
                 case "Metal":
                     //stop platform sound when the platform has reached the top
-                    //platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     break;
                 case "EarthPlatform":
                     //stop platform sound when the dirt platform is completed
@@ -216,7 +216,7 @@ public class MovableWallActivable : Activable
         switch (gameObject.tag)
         {
             case "Metal":
-                //platformSoundInstance.start();
+                platformSoundInstance.start();
                 break;
             case "EarthPlatform":
                 //dirtColumnSoundInstance.start();
@@ -234,7 +234,7 @@ public class MovableWallActivable : Activable
             {
                 case "Metal":
                     //stop platform sound when the platform has reached the bottom
-                    //platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     break;
                 case "EarthPlatform":
                     //stop platform sound when the dirt platform is gone

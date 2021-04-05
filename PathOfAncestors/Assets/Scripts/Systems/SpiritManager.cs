@@ -35,14 +35,10 @@ public class SpiritManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
-            //play fire spirit invokation sound
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Invocaciones/invokeFireSpirit");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             InvokeSpirit(earthSpiritRef, earthPosition.transform);
-            //play earth spirit invokation sound
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Invocaciones/invokeEarthSpirit");
         }
         //if (Input.GetKeyDown(KeyCode.Alpha3))
         //{

@@ -361,8 +361,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -2048575072882043971}
-  - {fileID: 264231433756817880}
+  - {fileID: -42048042651604187}
+  - {fileID: 1225992378413338490}
   MinDistance: 0
   MaxDistance: 0
   Length: 132000
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:/PathOfAncestors/PathOfAncestors/FMOD Banks/FmodEvents/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637532455460022507
+  lastModified: 637532471243836347
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -564,7 +564,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -7521040812116527207}
+  - {fileID: 2558724360809851047}
   MinDistance: 0
   MaxDistance: 0
   Length: 500
@@ -588,7 +588,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 5120167260387546192}
+  - {fileID: 5867796694198974084}
   MinDistance: 0
   MaxDistance: 0
   Length: 1062
@@ -685,6 +685,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 940
+--- !u!114 &-42048042651604187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/bgMusic/fireSpiritInvoked
+  m_EditorClassIdentifier: 
+  Name: fireSpiritInvoked
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,7 +745,7 @@ MonoBehaviour:
   - {fileID: 6387553264059935248}
   StringsBanks:
   - {fileID: -1132047169522478571}
-  stringsBankWriteTime: 637532455460022507
+  stringsBankWriteTime: 637532471243836347
   cacheVersion: 3
 --- !u!114 &98080125864759813
 MonoBehaviour:
@@ -824,6 +841,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &1225992378413338490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/bgMusic/earthSpiritInvoked
+  m_EditorClassIdentifier: 
+  Name: earthSpiritInvoked
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &1412693505611817338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +944,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5666
+--- !u!114 &2558724360809851047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/playerFootsteps/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &4029354919971813953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,6 +1141,23 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 1
+--- !u!114 &5867796694198974084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/hitGround/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &6031143391037668718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,7 +1189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:/PathOfAncestors/PathOfAncestors/FMOD Banks/FmodEvents/Desktop/Master.bank
   SubDir: 
-  lastModified: 637532455462844720
+  lastModified: 637532471251929971
   LoadResult: 0
   FileSizes:
   - Name: 

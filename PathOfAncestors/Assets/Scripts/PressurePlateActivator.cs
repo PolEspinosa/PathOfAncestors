@@ -50,7 +50,7 @@ public class PressurePlateActivator : Activator
             if (other.tag=="Player2" || other.tag == "EARTH" || other.tag=="EarthPlatform")
             {
                 //play pressure plate activate sound
-                //pressurePlateActivateSoundInstance.start();
+                pressurePlateActivateSoundInstance.start();
                 _activated = true;
                 OnActivate();
                 if(other.tag=="EARTH")
@@ -71,13 +71,13 @@ public class PressurePlateActivator : Activator
             _activated = false;
             OnDeactivate();
             //play pressure deactivate plate sound
-            //pressurePlateDeactivateSoundInstance.start();
+            pressurePlateDeactivateSoundInstance.start();
         }
         if (other.tag == "EARTH")
         {
             manager.activatorObject = null;
             //play pressure deactivate plate sound
-            //pressurePlateDeactivateSoundInstance.start();
+            pressurePlateDeactivateSoundInstance.start();
         }
 
     }

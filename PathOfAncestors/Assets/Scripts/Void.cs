@@ -17,7 +17,7 @@ public class Void : MonoBehaviour
         {
             manager.moveToCheckpoint();
             //play death sound
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Player/death");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/death");
         }
     }
 }

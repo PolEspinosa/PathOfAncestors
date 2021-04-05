@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 355407043180513197}
   - component: {fileID: 355407043180513196}
   - component: {fileID: 355407043180513199}
-  m_Layer: 0
-  m_Name: OutdoorsReverbTrigger
+  m_Layer: 2
+  m_Name: ClosedIndoorReverbTrigger
   m_TagString: ReverbChange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: Player
-  Event: snapshot:/outdoors
+  Event: snapshot:/indoors
   PlayEvent: 3
   StopEvent: 4
   AllowFadeout: 1
