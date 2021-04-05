@@ -211,6 +211,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6664241544569147356}
     m_Modifications:
+    - target: {fileID: -8748836530891192333, guid: 7302294008a943d4da6594576908904a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da35b8eab2d8dcb469accea76d09de2f, type: 2}
     - target: {fileID: -8679921383154817045, guid: 7302294008a943d4da6594576908904a,
         type: 3}
       propertyPath: m_RootOrder
@@ -266,11 +271,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4689190237606688771, guid: 7302294008a943d4da6594576908904a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da35b8eab2d8dcb469accea76d09de2f, type: 2}
+    - target: {fileID: -1262684454378343113, guid: 7302294008a943d4da6594576908904a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f63201a3ae59f1840839e0307d852f53, type: 2}
+    - target: {fileID: 243577348329069825, guid: 7302294008a943d4da6594576908904a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f63201a3ae59f1840839e0307d852f53, type: 2}
     - target: {fileID: 919132149155446097, guid: 7302294008a943d4da6594576908904a,
         type: 3}
       propertyPath: m_Name
       value: EarthModel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7302294008a943d4da6594576908904a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138133689502937142, guid: 7302294008a943d4da6594576908904a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f63201a3ae59f1840839e0307d852f53, type: 2}
     - target: {fileID: 5866666021909216657, guid: 7302294008a943d4da6594576908904a,
         type: 3}
       propertyPath: m_Controller

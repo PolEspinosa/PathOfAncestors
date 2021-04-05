@@ -18,7 +18,10 @@ public class EarthSpirit : BaseSpirit
     void Update()
     {
         Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up , Color.green);
-        FollowOrder();
+        if (animController.invoked)
+        {
+            FollowOrder();
+        }
         //cast the ray
         if (switchToSteering)
         {

@@ -14,5 +14,11 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     void Update()
     {
         animator.SetFloat("Speed", speed);
+        animator.SetBool("invoked", invoked);
+    }
+
+    private void EarthInvoked()
+    {
+        //invoked = true;
     }
 }
