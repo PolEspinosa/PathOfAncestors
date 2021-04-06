@@ -25,9 +25,9 @@ public class FireSpirit : BaseSpirit
     protected override void InitialiseValues()
     {
         target = GameObject.Find("FireWindInvokation");
-        player = GameObject.FindGameObjectWithTag("Player");
+        lookAtObjectFire = GameObject.FindGameObjectWithTag("FireLookAt");
         animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
-        //face the player when spawning
-        gameObject.transform.rotation = Quaternion.LookRotation(player.transform.position + new Vector3(0, 1.5f, 0) - gameObject.transform.position, Vector3.up);
+        //face the look at object when spawning
+        gameObject.transform.rotation = Quaternion.LookRotation(lookAtObjectFire.transform.position - gameObject.transform.position, Vector3.up);
     }
 }

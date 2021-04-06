@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: d967b865b296ef045803efff732b1f81
+guid: 43bd7ba3a4f6639438b9c8c35d34a9b4
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Invoke
+    second: Take 001
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -21,15 +21,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:LeftUpLeg' has translation animation
-      that will be discarded.\n\t'mixamorig:LeftLeg' has translation animation that
-      will be discarded.\n\t'mixamorig:LeftFoot' has translation animation that will
-      be discarded.\n\t'mixamorig:RightUpLeg' has translation animation that will
-      be discarded.\n\t'mixamorig:RightLeg' has translation animation that will be
-      discarded.\n\t'mixamorig:RightFoot' has translation animation that will be
-      discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -43,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Invoke
+      name: Take 001
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 76
+      lastFrame: 72
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -66,7 +58,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: EarthInvoked
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -112,216 +111,40 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human:
-    - boneName: mixamorig:Hips
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftUpLeg
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightUpLeg
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightLeg
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftFoot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightFoot
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:Spine
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:Spine1
-      humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:Neck
-      humanName: Neck
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:Head
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftShoulder
-      humanName: LeftShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightShoulder
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftArm
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftForeArm
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightForeArm
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftHand
-      humanName: LeftHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightHand
-      humanName: RightHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftToeBase
-      humanName: LeftToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightToeBase
-      humanName: RightToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:Spine2
-      humanName: UpperChest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
+    human: []
     skeleton:
-    - name: Summon2_anim(Clone)
+    - name: InvocarTierra(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: tronco_low
-      parentName: Summon2_anim(Clone)
+      parentName: InvocarTierra(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: dedos_low
-      parentName: Summon2_anim(Clone)
+      parentName: InvocarTierra(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: cuerpo_low
-      parentName: Summon2_anim(Clone)
+      parentName: InvocarTierra(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: cabeza_low
-      parentName: Summon2_anim(Clone)
+      parentName: InvocarTierra(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: hombreras_low
-      parentName: Summon2_anim(Clone)
+      parentName: InvocarTierra(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: mixamorig:Hips
-      parentName: Summon2_anim(Clone)
+      parentName: InvocarTierra(Clone)
       position: {x: 0.0000000055879354, y: 0.7682272, z: -0.008029764}
       rotation: {x: -0.000000059604638, y: 8.524678e-19, z: 1.4302038e-11, w: 1}
       scale: {x: 1, y: 1, z: 0.99999994}
@@ -453,7 +276,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: mixamorig:Hips
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1

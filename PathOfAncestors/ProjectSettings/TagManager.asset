@@ -26,6 +26,7 @@ TagManager:
   - Wall
   - Stop
   - FireLookAt
+  - EarthLookAt
   layers:
   - Default
   - TransparentFX

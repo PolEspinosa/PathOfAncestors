@@ -37,6 +37,10 @@ public class BaseSpirit : MonoBehaviour
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;
+    //object for the fire spirit to look at
+    protected GameObject lookAtObjectFire;
+    //object for the earth spirit to look at
+    protected GameObject lookAtObjectEarth;
 
     //fire animator variables
     protected SpiritsAnimatorController animController;
@@ -85,9 +89,8 @@ public class BaseSpirit : MonoBehaviour
                 }
                 else
                 {
-                    //we make it look to the direction of the player and thus avoid rotation problems when too close
-                    //we add +1.5 because the player has his pivot at the feet
-                    SteeringBehavior(target.transform.position, player.transform.position + new Vector3(0, 1.5f, 0) - gameObject.transform.position);
+                    //we make it look to the direction of the look at object and thus avoid rotation problems when too close
+                    SteeringBehavior(target.transform.position, lookAtObjectFire.transform.position - gameObject.transform.position);
                 }
                 break;
 

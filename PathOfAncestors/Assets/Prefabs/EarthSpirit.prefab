@@ -232,7 +232,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7302294008a943d4da6594576908904a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7302294008a943d4da6594576908904a,
         type: 3}
@@ -335,6 +335,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvokedParticles
       objectReference: {fileID: 0}
+    - target: {fileID: 4746206542073275842, guid: 53c17b41491d07445b8f05daa7dd9f2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4746206542073275845, guid: 53c17b41491d07445b8f05daa7dd9f2a,
         type: 3}
       propertyPath: m_RootOrder
@@ -389,6 +394,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746206542748040577, guid: 53c17b41491d07445b8f05daa7dd9f2a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746206542748040577, guid: 53c17b41491d07445b8f05daa7dd9f2a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746206543357647776, guid: 53c17b41491d07445b8f05daa7dd9f2a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c17b41491d07445b8f05daa7dd9f2a, type: 3}

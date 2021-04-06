@@ -42,9 +42,9 @@ public class EarthSpirit : BaseSpirit
     {
         target = GameObject.Find("EarthInvokation");
         animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        lookAtObjectEarth = GameObject.FindGameObjectWithTag("EarthLookAt");
         //face the player when spawning
-        gameObject.transform.rotation = Quaternion.LookRotation(player.transform.position + new Vector3(0, 1f, 0) - gameObject.transform.position, Vector3.up);
+        gameObject.transform.rotation = Quaternion.LookRotation(lookAtObjectEarth.transform.position - gameObject.transform.position, Vector3.up);
     }
 
     private void OnTriggerEnter(Collider other)
