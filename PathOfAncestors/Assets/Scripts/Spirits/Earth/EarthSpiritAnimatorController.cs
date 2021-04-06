@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EarthSpiritAnimatorController : SpiritsAnimatorController
 {
+    [SerializeField]
+    private ParticleSystem invokedParticles;
+    [SerializeField]
+    private ParticleSystem invokedParticles2;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +24,18 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
 
     private void EarthInvoked()
     {
-        //invoked = true;
+        invoked = true;
+    }
+
+    private void InvokedParticles()
+    {
+        invokedParticles.Play();
+        invokedParticles2.Play();
+    }
+
+    private void StopInvokedParticles()
+    {
+        invokedParticles.Stop();
+        invokedParticles2.Stop();
     }
 }
