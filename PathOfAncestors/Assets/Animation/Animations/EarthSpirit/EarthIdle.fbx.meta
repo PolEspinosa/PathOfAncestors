@@ -106,38 +106,38 @@ ModelImporter:
     serializedVersion: 3
     human: []
     skeleton:
-    - name: Idle_anim(Clone)
+    - name: EarthIdle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: tronco_low
-      parentName: Idle_anim(Clone)
+      parentName: EarthIdle(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: dedos_low
-      parentName: Idle_anim(Clone)
+      parentName: EarthIdle(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: cuerpo_low
-      parentName: Idle_anim(Clone)
+      parentName: EarthIdle(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: cabeza_low
-      parentName: Idle_anim(Clone)
+      parentName: EarthIdle(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: hombreras_low
-      parentName: Idle_anim(Clone)
+      parentName: EarthIdle(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 12.718392, y: 12.718392, z: 12.718392}
     - name: mixamorig:Hips
-      parentName: Idle_anim(Clone)
+      parentName: EarthIdle(Clone)
       position: {x: 0.0000000055879354, y: 0.6249873, z: -0.008029764}
       rotation: {x: -0.000000059604638, y: 8.524678e-19, z: 1.4302038e-11, w: 1}
       scale: {x: 1, y: 1, z: 0.99999994}
