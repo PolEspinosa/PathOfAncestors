@@ -58,14 +58,15 @@ public class MovableWallActivable : Activable
             case "Metal":
                 platformSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePlatform");
                 FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                platformSoundInstance.setVolume(3f);
                 break;
             case "EarthPlatform":
-                //dirtColumnSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/createDirtColumn");
-                //FMODUnity.RuntimeManager.AttachInstanceToGameObject(dirtColumnSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                dirtColumnSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/createDirtColumn");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(dirtColumnSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                dirtColumnSoundInstance.setVolume(3f);
                 break;
             case "PartDoor":
                 doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
-                //doorSoundInstance.setVolume();
                 FMODUnity.RuntimeManager.AttachInstanceToGameObject(doorSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
                 break;
         }
@@ -94,6 +95,12 @@ public class MovableWallActivable : Activable
 
     private void Update()
     {
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                break;
+        }
         if (isDinamic)
         {
             if (_isActivated)
@@ -169,7 +176,7 @@ public class MovableWallActivable : Activable
                 platformSoundInstance.start();
                 break;
             case "EarthPlatform":
-                //dirtColumnSoundInstance.start();
+                dirtColumnSoundInstance.start();
                 break;
             case "PartDoor":
                 doorSoundInstance.start();
@@ -188,7 +195,7 @@ public class MovableWallActivable : Activable
                     break;
                 case "EarthPlatform":
                     //stop platform sound when the dirt platform is completed
-                    //dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     break;
                 case "PartDoor":
                     //stop friction sound when the door has reached the ceiling
@@ -219,7 +226,7 @@ public class MovableWallActivable : Activable
                 platformSoundInstance.start();
                 break;
             case "EarthPlatform":
-                //dirtColumnSoundInstance.start();
+                dirtColumnSoundInstance.start();
                 break;
             case "PartDoor":
                 doorSoundInstance.start();
@@ -238,7 +245,7 @@ public class MovableWallActivable : Activable
                     break;
                 case "EarthPlatform":
                     //stop platform sound when the dirt platform is gone
-                    //dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     break;
                 case "PartDoor":
                     //stop friction sound when the door has reached the floor

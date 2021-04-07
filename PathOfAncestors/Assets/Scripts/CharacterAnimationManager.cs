@@ -10,12 +10,15 @@ public class CharacterAnimationManager : MonoBehaviour
     public Animator playerAnimator;
     private SpiritsPassiveAbilities spiritsPassiveAbilities;
     private bool canPlayJumpSound; //bool to control whether to play the jump sound or not
+    private FMOD.Studio.EventInstance jumpSoundInstance;
     // Start is called before the first frame update
     void Start()
     {
         playerAnimator = player.GetComponentInChildren<Animator>();
         spiritsPassiveAbilities = player.GetComponent<SpiritsPassiveAbilities>();
         canPlayJumpSound = true;
+        jumpSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Voice/jump");
+        jumpSoundInstance.setVolume(0.5f);
     }
 
     // Update is called once per frame
@@ -35,7 +38,8 @@ public class CharacterAnimationManager : MonoBehaviour
             if (canPlayJumpSound)
             {
                 //play jump sound
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
+                jumpSoundInstance.start();
                 //disable play jump sound so it doesn't play more than once in one jump
                 canPlayJumpSound = false;
             }

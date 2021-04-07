@@ -23,7 +23,9 @@ public class AudioFootsteps : MonoBehaviour
         sSurface = "Rock";
         hitGround = true;
         footstepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/playerFootsteps");
+        footstepsInstance.setVolume(0.5f);
         groundHitInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/hitGround");
+        groundHitInstance.setVolume(0.5f);
     }
 
     // Update is called once per frame
