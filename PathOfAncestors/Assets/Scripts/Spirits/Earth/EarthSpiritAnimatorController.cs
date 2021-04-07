@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 public class EarthSpiritAnimatorController : SpiritsAnimatorController
 {
     [SerializeField]
-    private ParticleSystem invokedParticles;
+    private VisualEffect invokedParticles;
     [SerializeField]
     private ParticleSystem invokedParticles2;
     // Start is called before the first frame update
@@ -29,8 +29,8 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
 
     private void InvokedParticles()
     {
-        invokedParticles.Play();
-        invokedParticles2.Play();
+        //invokedParticles.Play();
+        //invokedParticles2.Play();
     }
 
     private void StopInvokedParticles()
