@@ -10,7 +10,7 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         bgMusicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Music/bgMusic");
-        bgMusicInstance.setVolume(0.2f);
+        bgMusicInstance.setVolume(0.25f);
         bgMusicInstance.start();
     }
 
