@@ -228,7 +228,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -757,6 +757,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1146677946}
   boxZOffset: 1
   parentTimeDelay: 0
+  inDarkArea: 0
 --- !u!1 &1043745346680362388
 GameObject:
   m_ObjectHideFlags: 0
