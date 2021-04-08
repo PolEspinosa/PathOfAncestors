@@ -8,21 +8,25 @@ public class NewBurningObject : MonoBehaviour
     private Material mat;
     private float burntAmount;
     public bool burning;
-    public VisualEffect fireParticles;
+    public ParticleSystem fireParticles;
+    private ParticleSystem.MainModule particlesMainModule;
     [SerializeField]
     private float burntThreshold;
     [SerializeField]
     private float burningSpeed;
     [SerializeField]
     private Collider col;
+
+    public List<GameObject> nextBurnableObject;
     // Start is called before the first frame update
     void Start()
     {
         burntAmount = 0;
         burning = false;
         mat = gameObject.GetComponent<MeshRenderer>().material;
-        fireParticles.enabled = false;
-    }
+        //particlesMainModule = fireParticles.main;
+        fireParticles.Stop();
+}
 
     // Update is called once per frame
     void Update()
@@ -31,8 +35,11 @@ public class NewBurningObject : MonoBehaviour
         mat.SetFloat("Vector1_54467BBE", burntAmount);
         if (burntAmount >= burntThreshold)
         {
-            fireParticles.SetFloat("rate", 0);
             col.enabled = false;
+        }
+        if (burntAmount >= burntThreshold / 1.5f)
+        {
+            fireParticles.Stop();
         }
         if (burntAmount >= 1)
         {
@@ -51,9 +58,32 @@ public class NewBurningObject : MonoBehaviour
     {
         if (other.CompareTag("FIRE"))
         {
-            burning = true;
-            //other.gameObject.GetComponent<BaseSpirit>().MoveTo(other.gameObject.transform.position);
-            fireParticles.enabled = true;
+            Burn();
+        }
+    }
+
+    public void Burn()
+    {
+        burning = true;
+        //other.gameObject.GetComponent<BaseSpirit>().MoveTo(other.gameObject.transform.position);
+        fireParticles.Play();
+        if(nextBurnableObject.Count!=0)
+        {
+            StartCoroutine(BurnOtherObjects(.2f));
+        }
+    }
+
+    IEnumerator BurnOtherObjects(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        foreach (GameObject burnableObject in nextBurnableObject)
+        {
+            if(burnableObject!=null)
+            {
+
+                burnableObject.GetComponent<NewBurningObject>().Burn();
+            }
+            
         }
     }
 }

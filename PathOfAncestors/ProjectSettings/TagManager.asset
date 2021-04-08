@@ -25,6 +25,14 @@ TagManager:
   - BreakableWall
   - Wall
   - Stop
+  - Metal
+  - Rock
+  - Dirt
+  - ReverbChange
+  - Player2
+  - PartDoor
+  - FireLookAt
+  - EarthLookAt
   layers:
   - Default
   - TransparentFX
