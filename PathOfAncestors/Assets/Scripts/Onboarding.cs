@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class Onboarding : MonoBehaviour
 {
 
+
+    public bool tutorial=false;
+    public bool interact=false;
+    public bool earth=false;
     //fire
     public bool showFire = true;
     public bool isShowingFire = false;
@@ -15,6 +19,10 @@ public class Onboarding : MonoBehaviour
 
     //order
     public bool isShowingOrder = false;
+
+    //interact
+    public bool isShowingInteract = false;
+
 
 
     //images
@@ -57,12 +65,17 @@ public class Onboarding : MonoBehaviour
             StartCoroutine(CloseControls(.5f));
         }
 
+        if(isShowingInteract && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(CloseInteract(.5f));
+        }
+
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (showFire)
+        if (showFire && tutorial)
         {
             if (other.tag == "Player")
             {
@@ -70,6 +83,25 @@ public class Onboarding : MonoBehaviour
                 fireTut.SetActive(true);
                 isShowingFire = true;
 
+            }
+        }
+
+        if(interact)
+        {
+            if (other.tag == "Player")
+            {
+                interactTut.SetActive(true);
+                isShowingInteract = true;
+            }
+        }
+
+        if(earth)
+        {
+            if (other.tag == "Player")
+            {
+                earthTut.SetActive(true);
+                StartCoroutine(CloseEarthTut(.5f));
+                
             }
         }
     }
@@ -101,5 +133,20 @@ public class Onboarding : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         orderTut.SetActive(false);
         isShowingOrder = false;
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator CloseInteract(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        interactTut.SetActive(false);
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator CloseEarthTut(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        earthTut.SetActive(false);
+        Destroy(this.gameObject);
     }
 }
