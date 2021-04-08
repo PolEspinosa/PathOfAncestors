@@ -23,7 +23,8 @@ public class Onboarding : MonoBehaviour
     //interact
     public bool isShowingInteract = false;
 
-
+    //earth
+    public bool isShowingEarth = false;
 
     //images
     public GameObject fireTut;
@@ -70,6 +71,12 @@ public class Onboarding : MonoBehaviour
             StartCoroutine(CloseInteract(.5f));
         }
 
+        if(isShowingEarth && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+            StartCoroutine(CloseEarthTut(.5f));
+        }
+
 
     }
 
@@ -100,7 +107,7 @@ public class Onboarding : MonoBehaviour
             if (other.tag == "Player")
             {
                 earthTut.SetActive(true);
-                StartCoroutine(CloseEarthTut(.5f));
+                isShowingEarth = true;
                 
             }
         }
