@@ -97,13 +97,13 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("DarkArea"))
-        {
-            inDarkArea = true;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("DarkArea"))
+    //    {
+    //        inDarkArea = true;
+    //    }
+    //}
 
     private void OnTriggerStay(Collider other)
     {
@@ -122,10 +122,10 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         {
             inRange = false;
         }
-        else if (other.CompareTag("DarkArea"))
-        {
-            inDarkArea = false;
-        }
+        //else if (other.CompareTag("DarkArea"))
+        //{
+        //    inDarkArea = false;
+        //}
     }
 
     private void MoveBox()
