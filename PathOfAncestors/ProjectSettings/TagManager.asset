@@ -29,6 +29,7 @@ TagManager:
   - FireLookAt
   - EarthLookAt
   - DataManager
+  - Player2
   layers:
   - Default
   - TransparentFX

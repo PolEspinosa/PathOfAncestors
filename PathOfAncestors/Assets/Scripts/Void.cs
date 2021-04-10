@@ -5,6 +5,8 @@ using UnityEngine;
 public class Void : MonoBehaviour
 {
     CheckpointManager manager;
+
+    public float timesDied;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +15,9 @@ public class Void : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player2")
         {
+            timesDied++;
             manager.moveToCheckpoint();
         }
     }

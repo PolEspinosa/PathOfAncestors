@@ -18,10 +18,10 @@ public class DataManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //puzzle1Steps = puzzle1TimesOrdered + puzzle1TimesInvoked + puzzle1TimesPicked + puzzle1TimesMoved;
-        Debug.Log("Puzzle 1 time: " + puzzle1TimePassed);
-        //
-        //puzzle2Steps = puzzle2TimesOrdered + puzzle2TimesInvoked + puzzle2TimesPicked + puzzle2TimesMoved;
-        Debug.Log("Puzzle 2 time: " + puzzle2TimePassed);
+        puzzle1Steps = puzzle1TimesOrdered + puzzle1TimesInvoked + puzzle1TimesPicked + puzzle1TimesMoved;
+        //Debug.Log("Puzzle 1 deaths: " + puzzle1Deaths);
+        
+        puzzle2Steps = puzzle2TimesOrdered + puzzle2TimesInvoked + puzzle2TimesPicked + puzzle2TimesMoved;
+        //Debug.Log("Puzzle 2 deaths: " + puzzle2Deaths);
     }
 }

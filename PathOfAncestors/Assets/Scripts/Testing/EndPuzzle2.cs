@@ -9,6 +9,8 @@ public class EndPuzzle2 : MonoBehaviour
     private SpiritManager spiritManager;
     private SpiritsPassiveAbilities spiritsPassive;
     private TimeCounter timeCounter;
+    private PickUpObject pickUp;
+    private Void abyss;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,8 @@ public class EndPuzzle2 : MonoBehaviour
         dataManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataManager>();
         spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
         timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
+        pickUp = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PickUpObject>();
+        abyss = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class EndPuzzle2 : MonoBehaviour
             dataManager.puzzle2TimesInvoked = spiritManager.timesInvoked;
             dataManager.puzzle2TimesMoved = spiritsPassive.timesMoved;
             dataManager.puzzle2TimePassed = timeCounter.timePassed;
+            dataManager.puzzle2TimesPicked = pickUp.timesPicked;
+            dataManager.puzzle2Deaths = abyss.timesDied;
         }
     }
 
