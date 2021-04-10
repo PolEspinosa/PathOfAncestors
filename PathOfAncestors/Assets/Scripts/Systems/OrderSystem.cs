@@ -18,8 +18,8 @@ public class OrderSystem : MonoBehaviour
 
     public bool isGoingToEarth = false;
     public GameObject activator;
-   
 
+    public float timesOrdered;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,6 @@ public class OrderSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         if (Input.GetMouseButtonDown(1))
@@ -77,6 +76,7 @@ public class OrderSystem : MonoBehaviour
 
     public void ManageOrders(RaycastHit hit)
     {
+        timesOrdered++;
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;

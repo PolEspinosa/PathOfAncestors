@@ -22,6 +22,7 @@ public class SpiritManager : MonoBehaviour
 
     public OrderSystem order;
 
+    public float timesInvoked;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,8 @@ public class SpiritManager : MonoBehaviour
     {
         if( currentSpirit==null)
         {
-            currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);    
+            timesInvoked++;
+            currentSpirit =Instantiate(_spirit, _position.position, Quaternion.identity);    
         }
 
         else
@@ -64,6 +66,7 @@ public class SpiritManager : MonoBehaviour
 
             if (_spirit.tag != currentSpirit.tag)
             {
+                timesInvoked++;
                 Desinvoke(currentSpirit);
                 currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
             }
