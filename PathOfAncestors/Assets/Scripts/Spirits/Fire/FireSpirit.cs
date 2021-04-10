@@ -15,16 +15,19 @@ public class FireSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
-        FollowOrder();
+        //when the spirit is doing the invoking or uninvoking animation, don't move
+        if(animController.invoked && !animController.uninvoked)
+        {
+            FollowOrder();
+        }
     }
 
     protected override void InitialiseValues()
     {
         target = GameObject.Find("FireWindInvokation");
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("col");
+        lookAtObjectFire = GameObject.FindGameObjectWithTag("FireLookAt");
+        animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
+        //face the look at object when spawning
+        gameObject.transform.rotation = Quaternion.LookRotation(lookAtObjectFire.transform.position - gameObject.transform.position, Vector3.up);
     }
 }

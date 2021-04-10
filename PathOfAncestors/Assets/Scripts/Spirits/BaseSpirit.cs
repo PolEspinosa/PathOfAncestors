@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -37,6 +37,13 @@ public class BaseSpirit : MonoBehaviour
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
     protected bool switchToSteering;
     protected bool edgeOfFloor;
+    //object for the fire spirit to look at
+    protected GameObject lookAtObjectFire;
+    //object for the earth spirit to look at
+    protected GameObject lookAtObjectEarth;
+
+    //fire animator variables
+    protected SpiritsAnimatorController animController;
     
     // Start is called before the first frame update
     void Start()
@@ -66,7 +73,7 @@ public class BaseSpirit : MonoBehaviour
                         }
                         else
                         {
-                            followSpeed = runSpeed;
+                            followSpeed = walkSpeed;
                         }
                         SteeringBehaviorEarth(target.transform.position);
                     }
@@ -75,11 +82,15 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.enabled = true;
                         navAgent.speed = walkSpeed;
                         navAgent.SetDestination(target.transform.position);
+
+                        //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
+                        animController.speed = navAgent.velocity.magnitude / runSpeed;
                     }
                 }
                 else
                 {
-                    SteeringBehavior(target.transform.position);
+                    //we make it look to the direction of the look at object and thus avoid rotation problems when too close
+                    SteeringBehavior(target.transform.position, lookAtObjectFire.transform.position - gameObject.transform.position);
                 }
                 break;
 
@@ -104,11 +115,14 @@ public class BaseSpirit : MonoBehaviour
                         navAgent.enabled = true;
                         navAgent.speed = runSpeed;
                         navAgent.SetDestination(goToPosition);
+
+                        //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
+                        animController.speed = navAgent.velocity.magnitude / runSpeed;
                     }
                 }
                 else
                 {
-                    SteeringBehavior(goToPosition);
+                    SteeringBehavior(goToPosition, targetDistance);
                 }
                 break;
         }
@@ -142,7 +156,8 @@ public class BaseSpirit : MonoBehaviour
     }
 
     //movement for the fire and wind spirit
-    protected void SteeringBehavior(Vector3 _targetPosition)
+    //we add a look at direction to avoid rotation problems when the spirit is too close to the target
+    protected void SteeringBehavior(Vector3 _targetPosition, Vector3 _lookAtDirection) 
     {
         //direction in which the character has to move
         targetDistance = (_targetPosition - gameObject.transform.position);
@@ -157,7 +172,11 @@ public class BaseSpirit : MonoBehaviour
         velocity *= slowdownFactor;
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
-        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        gameObject.transform.rotation = Quaternion.LookRotation(_lookAtDirection, Vector3.up);
+
+
+        //set the speed to the animator variable for the blend tree
+        animController.speed = velocity.magnitude / followSpeed;
     }
 
     //movement for the earth spirit on moving platforms
@@ -176,6 +195,13 @@ public class BaseSpirit : MonoBehaviour
         velocity *= slowdownFactor;
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
-        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        if(targetDistance.magnitude > 0.1f)
+        {
+            gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+        }
+
+        //set the speed to the animator variable for the blend tree
+        //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
+        animController.speed = velocity.magnitude / runSpeed;
     }
 }

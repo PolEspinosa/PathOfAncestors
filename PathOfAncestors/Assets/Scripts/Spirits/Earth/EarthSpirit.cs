@@ -18,7 +18,10 @@ public class EarthSpirit : BaseSpirit
     void Update()
     {
         Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up , Color.green);
-        FollowOrder();
+        if (animController.invoked)
+        {
+            FollowOrder();
+        }
         //cast the ray
         if (switchToSteering)
         {
@@ -38,6 +41,10 @@ public class EarthSpirit : BaseSpirit
     protected override void InitialiseValues()
     {
         target = GameObject.Find("EarthInvokation");
+        animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
+        lookAtObjectEarth = GameObject.FindGameObjectWithTag("EarthLookAt");
+        //face the player when spawning
+        gameObject.transform.rotation = Quaternion.LookRotation(lookAtObjectEarth.transform.position - gameObject.transform.position, Vector3.up);
     }
 
     private void OnTriggerEnter(Collider other)
