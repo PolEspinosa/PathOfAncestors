@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8602879272377106700}
   - component: {fileID: 8602879272377106701}
   - component: {fileID: 8602879272377106696}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ NavMeshObstacle:
   m_Extents: {x: 1.24, y: 0.5, z: 4.07}
   m_MoveThreshold: 0.1
   m_Carve: 1
-  m_CarveOnlyStationary: 1
+  m_CarveOnlyStationary: 0
   m_Center: {x: 1.17, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1001 &6912746989057791320
@@ -195,6 +195,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PuertaPeso
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405111954646772386, guid: 47fc1a09aea2413489537c5eb1690624,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990883630694980179, guid: 47fc1a09aea2413489537c5eb1690624,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47fc1a09aea2413489537c5eb1690624, type: 3}
