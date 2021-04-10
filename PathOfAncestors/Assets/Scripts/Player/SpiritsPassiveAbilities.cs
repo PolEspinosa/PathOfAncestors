@@ -43,20 +43,11 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     void Update()
     {
         //Debug.Log(pushing);
-        if (spiritManager.currentSpirit != null)
-        {
-            if (spiritManager.currentSpirit.CompareTag("EARTH")|| spiritManager.currentSpirit.CompareTag("FIRE"))
-            {
-                earthActive = true;
-            }
-            else
-            {
-                earthActive = false;
-            }
+         
             //the player is close enough to move the box
             if (inRange)
             {
-                if (earthActive && Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     pushing = !pushing;
                 }
@@ -90,7 +81,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                     boxCollider.enabled = false;
                 }
             }
-        }
+        
 
         
     }

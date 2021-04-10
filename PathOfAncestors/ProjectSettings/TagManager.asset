@@ -25,6 +25,7 @@ TagManager:
   - BreakableWall
   - Wall
   - Stop
+  - Unparent
   layers:
   - Default
   - TransparentFX
