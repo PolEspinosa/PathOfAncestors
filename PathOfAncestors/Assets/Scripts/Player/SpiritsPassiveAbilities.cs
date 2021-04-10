@@ -25,6 +25,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
 
     private Rigidbody boxRigidbody;
     public float parentTimeDelay;
+
+    public float timesMoved;
     // Start is called before the first frame update
     void Start()
     {
@@ -110,6 +112,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
+            timesMoved++;
             boxRigidbody = movingObject.GetComponent<Rigidbody>();
             time = 0;
 

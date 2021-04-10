@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 2667638521754284388}
   - component: {fileID: 2458778999562869235}
   - component: {fileID: 803705165331633467}
+  - component: {fileID: 8041047121061346858}
   m_Layer: 0
   m_Name: Character 1
   m_TagString: Player
@@ -681,6 +682,7 @@ MonoBehaviour:
   activatorObject: {fileID: 0}
   currentSpirit: {fileID: 0}
   order: {fileID: 3148489325421888680}
+  timesInvoked: 0
 --- !u!114 &3148489325421888680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,6 +705,7 @@ MonoBehaviour:
   camera: {fileID: 20417040579404330}
   isGoingToEarth: 0
   activator: {fileID: 0}
+  timesOrdered: 0
 --- !u!114 &2667638521754284388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +759,20 @@ MonoBehaviour:
   boxCollider: {fileID: 1146677946}
   boxZOffset: 1
   parentTimeDelay: 0
+  timesMoved: 0
+--- !u!114 &8041047121061346858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798185399542480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4bc8f2874f79c41a3d8b057b251227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePassed: 0
 --- !u!1 &1043745346680362388
 GameObject:
   m_ObjectHideFlags: 0

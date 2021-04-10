@@ -6,11 +6,16 @@ public class StartPuzzle2 : MonoBehaviour
 {
     private OrderSystem orderSystem;
     private SpiritManager spiritManager;
+    private SpiritsPassiveAbilities spiritsPassive;
+    private TimeCounter timeCounter;
+
     // Start is called before the first frame update
     void Start()
     {
         orderSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<OrderSystem>();
         spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
+        spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
+        timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
     }
 
     // Update is called once per frame
@@ -25,6 +30,8 @@ public class StartPuzzle2 : MonoBehaviour
         {
             orderSystem.timesOrdered = 0;
             spiritManager.timesInvoked = 0;
+            spiritsPassive.timesMoved = 0;
+            timeCounter.timePassed = 0;
         }
     }
 
