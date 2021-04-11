@@ -9,7 +9,7 @@ public class ResetGame : MonoBehaviour
     {
         if(other.tag=="Player")
         {
-            SceneManager.LoadScene("EmptyShowcaseScene 1");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
