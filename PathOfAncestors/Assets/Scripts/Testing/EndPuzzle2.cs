@@ -39,6 +39,7 @@ public class EndPuzzle2 : MonoBehaviour
             dataManager.puzzle2TimePassed = timeCounter.timePassed;
             dataManager.puzzle2TimesPicked = pickUp.timesPicked;
             dataManager.puzzle2Deaths = abyss.timesDied;
+            dataManager.SaveData();
         }
     }
 

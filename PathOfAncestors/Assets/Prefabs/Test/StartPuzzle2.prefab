@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2385239118955549914}
   - component: {fileID: 2707646704154769787}
   - component: {fileID: 2611880650960031545}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StartPuzzle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

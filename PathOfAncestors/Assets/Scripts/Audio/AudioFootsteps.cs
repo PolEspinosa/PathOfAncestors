@@ -55,9 +55,9 @@ public class AudioFootsteps : MonoBehaviour
                     case "Rock":
                         iSurface = 0;
                         break;
-                    //case "Metal":
-                    //    iSurface = 1;
-                    //    break;
+                    case "Metal":
+                        iSurface = 1;
+                        break;
                     case "EarthPlatform":
                         iSurface = 2;
                         break;
