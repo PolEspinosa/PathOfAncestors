@@ -43,14 +43,14 @@ public class SpiritManager : MonoBehaviour
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             InvokeSpirit(earthSpiritRef, earthPosition.transform);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            InvokeSpirit(windSpiritRef, fireWindPosition.transform);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    InvokeSpirit(windSpiritRef, fireWindPosition.transform);
+        //}
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Debug.Log(currentSpirit.GetComponent<BaseSpirit>().GetSpiritType());

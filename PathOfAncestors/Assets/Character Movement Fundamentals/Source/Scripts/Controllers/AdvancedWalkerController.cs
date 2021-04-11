@@ -75,6 +75,8 @@ namespace CMF
 		public Transform cameraTransform;
         public SpiritsPassiveAbilities passiveScript;
         public GameObject playerModel;
+        //determines if the player is touching a surface
+        public bool onGround;
 
         //hit for movement when box detects a collision
         private RaycastHit hit;
@@ -460,6 +462,7 @@ namespace CMF
 		//This function is called when the controller has lost ground contact, i.e. is either falling or rising, or generally in the air;
 		void OnGroundContactLost()
 		{
+            onGround = false;
 			//Calculate current velocity;
 			//If velocity would exceed the controller's movement speed, decrease movement velocity appropriately;
 			//This prevents unwanted accumulation of velocity;
@@ -493,6 +496,7 @@ namespace CMF
 		//This function is called when the controller has landed on a surface after being in the air;
 		void OnGroundContactRegained(Vector3 _collisionVelocity)
 		{
+            onGround = true;
 			//Call 'OnLand' event;
 			if(OnLand != null)
 				OnLand(_collisionVelocity);
