@@ -16,8 +16,12 @@ public class MenuManager : MonoBehaviour
     public Sprite exitButtonDeact;
     public Sprite exitButtonAct;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
-   
     public void ActiveStart()
     {
         startButton.GetComponent<Image>().sprite = startButtonAct;
