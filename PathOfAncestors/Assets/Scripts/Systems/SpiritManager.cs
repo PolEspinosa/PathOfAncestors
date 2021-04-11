@@ -58,18 +58,26 @@ public class SpiritManager : MonoBehaviour
         //if has to destroy the spirit
         if (currentSpirit != null && currentSpirit.CompareTag("FIRE"))
         {
+            
+            if (invokeOtherSpirit)
+            {
+                Desinvoke(currentSpirit);
+                currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+                invokeOtherSpirit = false;
+            }
             if (currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().destroySpirit)
             {
-                if (invokeOtherSpirit)
-                {
-                    Desinvoke(currentSpirit);
-                    currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
-                    invokeOtherSpirit = false;
-                }
-                else
-                {
-                    Desinvoke(currentSpirit);
-                }
+                //if (invokeOtherSpirit)
+                //{
+                //    Desinvoke(currentSpirit);
+                //    currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+                //    invokeOtherSpirit = false;
+                //}
+                //else
+                //{
+                //    Desinvoke(currentSpirit);
+                //}
+                Desinvoke(currentSpirit);
             }
         }
     }
