@@ -33,6 +33,9 @@ public class RotateDoorActivable : Activable
         {
             rightDoor.transform.DORotateQuaternion(Quaternion.Euler(0, -180, 0), 3f);
             leftDoor.transform.DORotateQuaternion(Quaternion.Euler(0, 10, 0), 3f);
+            //play open door sound
+            doorSoundInstance.start();
+            StartCoroutine(StopSound());
         }
        
     }

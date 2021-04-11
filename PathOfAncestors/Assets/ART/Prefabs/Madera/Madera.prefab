@@ -26,24 +26,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15, y: 4.000001, z: 0.60000014}
   m_Center: {x: 0, y: 0, z: 0.30000007}
---- !u!114 &4893297033115506188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5457230922692336670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 918a6e678ddce1c488123d4d481f1ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  burning: 0
-  fireParticles: {fileID: 8232788605649455307}
-  burntThreshold: 0.6
-  burningSpeed: 0.5
-  col: {fileID: 6858563375565716351}
-  nextBurnableObject: []
 --- !u!208 &1229666994630480611
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -60,6 +42,24 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0.3}
   m_TimeToStationary: 0.5
+--- !u!114 &4893297033115506188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457230922692336670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918a6e678ddce1c488123d4d481f1ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burning: 0
+  fireParticles: {fileID: 8232788605649455307}
+  burntThreshold: 0.5
+  burningSpeed: 0.5
+  col: {fileID: 8446789094597986911}
+  nextBurnableObject: []
 --- !u!1 &7106694001560930485
 GameObject:
   m_ObjectHideFlags: 0
