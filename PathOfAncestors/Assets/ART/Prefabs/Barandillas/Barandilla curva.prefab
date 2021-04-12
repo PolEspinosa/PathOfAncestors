@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5566217052395997572
 Transform:
@@ -59,7 +59,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8507506571047212171
 Transform:
@@ -102,7 +102,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7865111690641521033
 Transform:
@@ -183,21 +183,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8462709953001013040, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -5795845215311118915, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4519620648689758818, guid: 443fa25a5491c284eaa83056c6a66a42,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 80f7144c76358ff4fa2b568df7e37abb, type: 2}
+    - target: {fileID: -3068240195741245191, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -2815194613554758484, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -2234811440987334085, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 443fa25a5491c284eaa83056c6a66a42,
         type: 3}
       propertyPath: m_Name
       value: Barandilla_curva
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3816654056258493912, guid: 443fa25a5491c284eaa83056c6a66a42,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 80f7144c76358ff4fa2b568df7e37abb, type: 2}
+    - target: {fileID: 5988881256312858879, guid: 443fa25a5491c284eaa83056c6a66a42,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7494326664508013997, guid: 443fa25a5491c284eaa83056c6a66a42,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

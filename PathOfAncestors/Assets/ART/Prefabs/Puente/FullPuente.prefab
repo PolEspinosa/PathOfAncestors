@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8494727955233083657
 Transform:
@@ -48,6 +48,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Puente2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: f8a7d4160f177f44da08392c9f2d8fa8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822153436517432988, guid: f8a7d4160f177f44da08392c9f2d8fa8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: f8a7d4160f177f44da08392c9f2d8fa8,
         type: 3}
@@ -119,10 +129,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8494727955233083657}
     m_Modifications:
+    - target: {fileID: 950097768342453965, guid: 0726bacbdddd50f44826e93cce0072a0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5188681703240318422, guid: 0726bacbdddd50f44826e93cce0072a0,
         type: 3}
       propertyPath: m_Name
       value: Puente1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: 0726bacbdddd50f44826e93cce0072a0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: 0726bacbdddd50f44826e93cce0072a0,
         type: 3}
@@ -199,6 +219,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puente2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: f8a7d4160f177f44da08392c9f2d8fa8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822153436517432988, guid: f8a7d4160f177f44da08392c9f2d8fa8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: f8a7d4160f177f44da08392c9f2d8fa8,
         type: 3}
       propertyPath: m_RootOrder
@@ -274,6 +304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puente3
       objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: e66661688f9cda444aaf84af1271e0d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: e66661688f9cda444aaf84af1271e0d7,
         type: 3}
       propertyPath: m_RootOrder
@@ -329,6 +364,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8907218753262556631, guid: e66661688f9cda444aaf84af1271e0d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66661688f9cda444aaf84af1271e0d7, type: 3}
 --- !u!4 &1587866245443062993 stripped
@@ -348,6 +388,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Puente4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: 84b3be4b7952a9d4d83da24b276c1b30,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113019797188495241, guid: 84b3be4b7952a9d4d83da24b276c1b30,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: 84b3be4b7952a9d4d83da24b276c1b30,
         type: 3}
@@ -419,10 +469,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8494727955233083657}
     m_Modifications:
+    - target: {fileID: 950097768342453965, guid: 0726bacbdddd50f44826e93cce0072a0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5188681703240318422, guid: 0726bacbdddd50f44826e93cce0072a0,
         type: 3}
       propertyPath: m_Name
       value: Puente1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: 0726bacbdddd50f44826e93cce0072a0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: 0726bacbdddd50f44826e93cce0072a0,
         type: 3}
@@ -498,6 +558,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Puente4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188681703240318422, guid: 84b3be4b7952a9d4d83da24b276c1b30,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113019797188495241, guid: 84b3be4b7952a9d4d83da24b276c1b30,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6882470816836627057, guid: 84b3be4b7952a9d4d83da24b276c1b30,
         type: 3}
