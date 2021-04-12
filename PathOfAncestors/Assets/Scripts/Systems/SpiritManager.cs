@@ -29,22 +29,49 @@ public class SpiritManager : MonoBehaviour
     private GameObject currentSpiritAux;
     private Vector3 positionAux;
 
+    //variables to switch the music depending on the invoked spirit
+    public float fireInvoked; //0 == none, 1 == invoked
+    public float earthInvoked; //0 == none, 1 == invoked
+
     // Start is called before the first frame update
     void Start()
     {
         invokeOtherSpirit = false;
+        fireInvoked = earthInvoked = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("fire: " + fireInvoked);
+        Debug.Log("earth: " + earthInvoked);
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
+            //if invoking the fire spirit, stop music from earth spirit and start music from fire spirit
+            if (fireInvoked == 0)
+            {
+                earthInvoked = 0;
+                fireInvoked = 1;
+            }
+            else
+            {
+                fireInvoked = 0;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             InvokeSpirit(earthSpiritRef, earthPosition.transform);
+            //if invoking the earth spirit, stop music from fire spirit and start music from earth spirit
+            if (earthInvoked == 0)
+            {
+                fireInvoked = 0;
+                earthInvoked = 1;
+            }
+            else
+            {
+                earthInvoked = 0;
+            }
         }
         //if (Input.GetKeyDown(KeyCode.Alpha3))
         //{
