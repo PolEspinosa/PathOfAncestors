@@ -16,10 +16,27 @@ public class MenuManager : MonoBehaviour
     public Sprite exitButtonDeact;
     public Sprite exitButtonAct;
 
+    //credits
+    public Button creditsButton;
+    public Sprite creditsAct;
+    public Sprite creditsDeact;
+
+    //back
+    public Button backButton;
+    public Sprite backAct;
+    public Sprite backDeact;
+
+
+
+    public GameObject creditsUI;
+    public GameObject menu;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        creditsUI.SetActive(false);
     }
 
     public void ActiveStart()
@@ -42,4 +59,38 @@ public class MenuManager : MonoBehaviour
         exitButton.GetComponent<Image>().sprite = exitButtonDeact;
     }
 
+    public void ActiveCredits()
+    {
+        creditsButton.GetComponent<Image>().sprite = creditsAct;
+    }
+
+    public void DeactivateCredits()
+    {
+        creditsButton.GetComponent<Image>().sprite = creditsDeact;
+    }
+
+    public void ActiveBack()
+    {
+        backButton.GetComponent<Image>().sprite = backAct;
+    }
+
+    public void DeactiveBack()
+    {
+        backButton.GetComponent<Image>().sprite = backDeact;
+    }
+
+
+
+
+    public void ShowCredits()
+    {
+        creditsUI.SetActive(true);
+        menu.SetActive(false);
+    }
+
+    public void ShowMenu()
+    {
+        creditsUI.SetActive(false);
+        menu.SetActive(true);
+    }
 }
