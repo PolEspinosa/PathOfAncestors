@@ -7,6 +7,7 @@ public class MusicManager : MonoBehaviour
     private FMOD.Studio.EventInstance bgMusicInstance;
     private FMOD.Studio.PLAYBACK_STATE state;
     private bool isPlaying;
+    [SerializeField]
     private SpiritManager spiritManager;
     //we will get from here when the spirit is invoked
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class MusicManager : MonoBehaviour
         bgMusicInstance.setVolume(0.25f);
         bgMusicInstance.start();
         isPlaying = true;
-        spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
+        //spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
     }
 
     // Update is called once per frame
