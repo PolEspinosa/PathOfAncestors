@@ -14,6 +14,7 @@ public abstract class Activable : MonoBehaviour
         if (_activator != null)
         {
             _activator.OnActivate += Activate;
+            _activator.OnActivate += AddStep;
             _activator.OnDeactivate += Deactivate;
         }
         else
@@ -27,6 +28,10 @@ public abstract class Activable : MonoBehaviour
 
     public abstract void Deactivate();
 
+    public virtual void AddStep()
+    {
+        Debug.Log("activated");
+    } 
 
     public void SetActivator(Activator act)
     {
