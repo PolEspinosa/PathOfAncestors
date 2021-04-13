@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class StartPuzzle1 : MonoBehaviour
 {
+    [SerializeField]
     private OrderSystem orderSystem;
+    [SerializeField]
     private SpiritManager spiritManager;
+    [SerializeField]
     private SpiritsPassiveAbilities spiritsPassive;
+    [SerializeField]
     private TimeCounter timeCounter;
+    [SerializeField]
     private PickUpObject pickUp;
+    [SerializeField]
     private Void abyss;
     // Start is called before the first frame update
     void Start()
     {
-        orderSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<OrderSystem>();
-        spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
-        spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
-        timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
-        pickUp = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PickUpObject>();
-        abyss = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
+        //orderSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<OrderSystem>();
+        //spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
+        //spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
+        //timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
+        //pickUp = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PickUpObject>();
+        //abyss = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
     }
 
     // Update is called once per frame
