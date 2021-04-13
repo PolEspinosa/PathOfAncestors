@@ -5,33 +5,33 @@ using UnityEngine;
 public class EndPuzzle2 : MonoBehaviour
 {
     private OrderSystem orderSystem;
-    private DataManager dataManager;
+    public DataManager dataManager;
     private SpiritManager spiritManager;
     private SpiritsPassiveAbilities spiritsPassive;
     private TimeCounter timeCounter;
     private PickUpObject pickUp;
-    private Void abyss;
+    public Void abyss;
     // Start is called before the first frame update
     void Start()
     {
         orderSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<OrderSystem>();
         spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
-        dataManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataManager>();
+        //dataManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataManager>();
         spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
         timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
         pickUp = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PickUpObject>();
-        abyss = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
+        //abyss = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && pickUp.hasObject)
         {
             dataManager.puzzle2TimesOrdered = orderSystem.timesOrdered;
             dataManager.puzzle2TimesInvoked = spiritManager.timesInvoked;
@@ -45,7 +45,7 @@ public class EndPuzzle2 : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && pickUp.hasObject)
         {
             Destroy(gameObject);
         }

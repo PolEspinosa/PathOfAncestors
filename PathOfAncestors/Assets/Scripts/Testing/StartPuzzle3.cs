@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartPuzzle2 : MonoBehaviour
+public class StartPuzzle3 : MonoBehaviour
 {
     private OrderSystem orderSystem;
     private SpiritManager spiritManager;
@@ -10,7 +10,6 @@ public class StartPuzzle2 : MonoBehaviour
     private TimeCounter timeCounter;
     private PickUpObject pickUp;
     public Void abyss;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +24,7 @@ public class StartPuzzle2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)

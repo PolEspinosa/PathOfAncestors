@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartPuzzle2 : MonoBehaviour
+public class EndPuzzle5 : MonoBehaviour
 {
     private OrderSystem orderSystem;
+    private DataManager dataManager;
     private SpiritManager spiritManager;
     private SpiritsPassiveAbilities spiritsPassive;
     private TimeCounter timeCounter;
     private PickUpObject pickUp;
     public Void abyss;
-
     // Start is called before the first frame update
     void Start()
     {
         orderSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<OrderSystem>();
         spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
+        dataManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataManager>();
         spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
         timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
         pickUp = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PickUpObject>();
@@ -32,12 +33,13 @@ public class StartPuzzle2 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            orderSystem.timesOrdered = 0;
-            spiritManager.timesInvoked = 0;
-            spiritsPassive.timesMoved = 0;
-            timeCounter.timePassed = 0;
-            pickUp.timesPicked = 0;
-            abyss.timesDied = 0;
+            dataManager.puzzle5TimesOrdered = orderSystem.timesOrdered;
+            dataManager.puzzle5TimesInvoked = spiritManager.timesInvoked;
+            dataManager.puzzle5TimesMoved = spiritsPassive.timesMoved;
+            dataManager.puzzle5TimePassed = timeCounter.timePassed;
+            dataManager.puzzle5TimesPicked = pickUp.timesPicked;
+            dataManager.puzzle5Deaths = abyss.timesDied;
+            dataManager.SaveData();
         }
     }
 
