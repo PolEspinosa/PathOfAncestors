@@ -8,6 +8,7 @@ public class EarthSpirit : BaseSpirit
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.totalTimesInvokedEarth++;
         InitialiseValues();
         spiritType = Type.EARTH;
         edgeOfFloor = false;

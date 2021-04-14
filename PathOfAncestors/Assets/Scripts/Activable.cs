@@ -30,7 +30,7 @@ public abstract class Activable : MonoBehaviour
 
     public virtual void AddStep()
     {
-        Debug.Log("activated");
+        DataManager.totalTimesActivated++;
     } 
 
     public void SetActivator(Activator act)

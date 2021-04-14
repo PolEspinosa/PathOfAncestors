@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TimeCounter : MonoBehaviour
 {
-    public float timePassed;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +21,7 @@ public class TimeCounter : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            timePassed++;
+            DataManager.totalTimePassed++;
         }
     }
 }

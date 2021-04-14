@@ -112,7 +112,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
-            timesMoved++;
+            DataManager.totalTimesInteracted++;
             boxRigidbody = movingObject.GetComponent<Rigidbody>();
             time = 0;
 

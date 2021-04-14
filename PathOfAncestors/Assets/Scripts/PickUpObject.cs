@@ -24,11 +24,12 @@ public class PickUpObject : MonoBehaviour
 
     private void Update()
     {
+        DataManager.objectPicked = hasObject;
         if(objectToPickUp && !hasObject)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                timesPicked++;
+                DataManager.totalTimesInteracted++;
 
                 objectInPossesion.GetComponent<Rigidbody>().useGravity = false;
                 objectInPossesion.GetComponent<Rigidbody>().isKinematic = true;

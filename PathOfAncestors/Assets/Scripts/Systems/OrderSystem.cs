@@ -76,7 +76,14 @@ public class OrderSystem : MonoBehaviour
 
     public void ManageOrders(RaycastHit hit)
     {
-        timesOrdered++;
+        if (spiritManager.currentSpirit.CompareTag("EARTH"))
+        {
+            DataManager.totalTimesOrderedEarth++;
+        }
+        else if(spiritManager.currentSpirit.CompareTag("FIRE"))
+        {
+            DataManager.totalTimesOrderedFire++;
+        }
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;

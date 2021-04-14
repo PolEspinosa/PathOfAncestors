@@ -4,27 +4,10 @@ using UnityEngine;
 
 public class StartPuzzle1 : MonoBehaviour
 {
-    [SerializeField]
-    private OrderSystem orderSystem;
-    [SerializeField]
-    private SpiritManager spiritManager;
-    [SerializeField]
-    private SpiritsPassiveAbilities spiritsPassive;
-    [SerializeField]
-    private TimeCounter timeCounter;
-    [SerializeField]
-    private PickUpObject pickUp;
-    [SerializeField]
-    private Void abyss;
     // Start is called before the first frame update
     void Start()
     {
-        //orderSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<OrderSystem>();
-        //spiritManager = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritManager>();
-        //spiritsPassive = GameObject.FindGameObjectWithTag("Player").GetComponent<SpiritsPassiveAbilities>();
-        //timeCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeCounter>();
-        //pickUp = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PickUpObject>();
-        //abyss = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
+        
     }
 
     // Update is called once per frame
@@ -37,12 +20,14 @@ public class StartPuzzle1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            orderSystem.timesOrdered = 0;
-            spiritManager.timesInvoked = 0;
-            spiritsPassive.timesMoved = 0;
-            timeCounter.timePassed = 0;
-            pickUp.timesPicked = 0;
-            abyss.timesDied = 0;
+            DataManager.totalDeaths = 0;
+            DataManager.totalTimePassed = 0;
+            DataManager.totalTimesActivated = 0;
+            DataManager.totalTimesInteracted = 0;
+            DataManager.totalTimesOrderedEarth = 0;
+            DataManager.totalTimesOrderedFire = 0;
+            DataManager.totalTimesInvokedEarth = 0;
+            DataManager.totalTimesInvokedFire = 0;
         }
     }
 

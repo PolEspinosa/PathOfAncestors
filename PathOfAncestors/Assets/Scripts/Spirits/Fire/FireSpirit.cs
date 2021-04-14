@@ -8,6 +8,7 @@ public class FireSpirit : BaseSpirit
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.totalTimesInvokedFire++;
         spiritType = Type.FIRE;
         InitialiseValues();
         //play fire spirit invokation sound

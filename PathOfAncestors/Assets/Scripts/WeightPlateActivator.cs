@@ -13,15 +13,18 @@ public class WeightPlateActivator : MonoBehaviour
         if (other.tag == "Player")
         {
             weight += 20;
+            DataManager.totalTimesActivated++;
 
         }
         if (other.tag == "EARTH")
         {
+            DataManager.totalTimesActivated++;
             weight += 10;
 
         }
         if (other.tag == "Box")
         {
+            DataManager.totalTimesActivated++;
             if (weight < 50)
             {
                 weight += 70;

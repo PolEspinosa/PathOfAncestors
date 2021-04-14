@@ -80,7 +80,6 @@ public class SpiritManager : MonoBehaviour
     {
         if( currentSpirit==null)
         {
-            timesInvoked++;
             currentSpirit =Instantiate(_spirit, _position.position, Quaternion.identity);    
         }
 
@@ -88,7 +87,6 @@ public class SpiritManager : MonoBehaviour
         {
             if (_spirit.tag != currentSpirit.tag)
             {
-                timesInvoked++;
                 //place holder until we have earth spirit animations
                 if (currentSpirit.CompareTag("FIRE"))
                 {
