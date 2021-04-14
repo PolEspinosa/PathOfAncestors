@@ -38,6 +38,7 @@ public class DataManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(totalTimesActivated);
         //get the steps of puzzle 1
         puzzle1Steps = puzzle1TimesOrderedFire + puzzle1TimesOredredEarth + puzzle1TimesInvokedFire + puzzle1TimesInvokedEarth
             + puzzle1TimesActivated + puzzle1TimesInteracted;

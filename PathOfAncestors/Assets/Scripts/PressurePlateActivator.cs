@@ -48,6 +48,7 @@ public class PressurePlateActivator : Activator
         {
             if (other.tag=="Player" || other.tag == "EARTH" || other.tag=="EarthPlatform")
             {
+                DataManager.totalTimesActivated++;
                 //play pressure plate activate sound
                 pressurePlateActivateSoundInstance.start();
                 _activated = true;

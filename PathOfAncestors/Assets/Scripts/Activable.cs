@@ -30,7 +30,7 @@ public abstract class Activable : MonoBehaviour
 
     public virtual void AddStep()
     {
-        DataManager.totalTimesActivated++;
+        
     } 
 
     public void SetActivator(Activator act)

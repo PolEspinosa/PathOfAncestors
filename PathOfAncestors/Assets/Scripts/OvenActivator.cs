@@ -24,6 +24,7 @@ public class OvenActivator : Activator
         {
             if (other.tag == "FIRE" && order.activator == this.gameObject)
             {
+                DataManager.totalTimesActivated++;
                fireSpirit = other.gameObject;
                StartCoroutine( activeOven(2f , fireSpirit));
                 
