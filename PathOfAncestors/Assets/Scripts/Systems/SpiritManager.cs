@@ -43,8 +43,6 @@ public class SpiritManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("fire: " + fireInvoked);
-        Debug.Log("earth: " + earthInvoked);
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
