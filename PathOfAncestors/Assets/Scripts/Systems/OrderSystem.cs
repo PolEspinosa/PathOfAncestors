@@ -48,10 +48,8 @@ public class OrderSystem : MonoBehaviour
         //cast the ray
         if (aiming && Input.GetMouseButtonDown(0))
         {
-
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(aimCursor.transform.position);
-
             if (Physics.Raycast(ray, out hit))
             {
                 ManageOrders(hit);
@@ -79,9 +77,18 @@ public class OrderSystem : MonoBehaviour
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;
+        spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetTag = hit.transform.tag;
         if (hit.transform.tag== "Untagged" || hit.transform.CompareTag("MovingPlatform"))
         {
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            //apply y offset to the fire spirit so it doesn't go through the target
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(new Vector3(hit.point.x, hit.point.y + 0.75f, hit.point.z) );
+            }
+            else
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            }
             ManageActivators();
 
         }
@@ -122,7 +129,16 @@ public class OrderSystem : MonoBehaviour
             if (spiritManager.activatorObject==null)
             {
                 Transform pos = hit.transform.GetChild(0).transform;
-                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position); 
+                //spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+                //apply y offset to the fire spirit so it doesn't go through the target
+                if (spiritManager.currentSpirit.CompareTag("FIRE"))
+                {
+                    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(new Vector3(pos.position.x, pos.position.y + 1, pos.position.z));
+                }
+                else
+                {
+                    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+                }
             }
             else 
             {

@@ -35,7 +35,6 @@ public class NewBurningObject : MonoBehaviour
         mat.SetFloat("Vector1_54467BBE", burntAmount);
         if (burntAmount >= burntThreshold)
         {
-            Debug.Log("hey");
             col.enabled = false;
         }
         if (burntAmount >= burntThreshold / 1.5f)
@@ -46,7 +45,6 @@ public class NewBurningObject : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 
     void FixedUpdate()

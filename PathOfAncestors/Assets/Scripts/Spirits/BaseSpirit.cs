@@ -23,7 +23,7 @@ public class BaseSpirit : MonoBehaviour
     public float walkSpeed, runSpeed;
     public float stopDistance = 2f;
     private bool waiting; //bool that will allow the spirit to leave the waiting state
-    Vector3 goToPosition;
+    protected Vector3 goToPosition;
 
     //fire/wind spirit variables
     public float followSpeed;
@@ -41,6 +41,9 @@ public class BaseSpirit : MonoBehaviour
     protected GameObject lookAtObjectFire;
     //object for the earth spirit to look at
     protected GameObject lookAtObjectEarth;
+
+    //used to know the tag of the target and determine whether to stop or not
+    public string targetTag;
 
     //fire animator variables
     protected SpiritsAnimatorController animController;
