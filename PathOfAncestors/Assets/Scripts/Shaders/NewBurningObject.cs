@@ -16,6 +16,8 @@ public class NewBurningObject : MonoBehaviour
     private float burningSpeed;
     [SerializeField]
     private Collider col;
+
+    public List<GameObject> nextBurnableObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class NewBurningObject : MonoBehaviour
         mat.SetFloat("Vector1_54467BBE", burntAmount);
         if (burntAmount >= burntThreshold)
         {
+            Debug.Log("hey");
             col.enabled = false;
         }
         if (burntAmount >= burntThreshold / 1.5f)
@@ -56,9 +59,32 @@ public class NewBurningObject : MonoBehaviour
     {
         if (other.CompareTag("FIRE"))
         {
-            burning = true;
-            //other.gameObject.GetComponent<BaseSpirit>().MoveTo(other.gameObject.transform.position);
-            fireParticles.Play();
+            Burn();
+        }
+    }
+
+    public void Burn()
+    {
+        burning = true;
+        //other.gameObject.GetComponent<BaseSpirit>().MoveTo(other.gameObject.transform.position);
+        fireParticles.Play();
+        if(nextBurnableObject.Count!=0)
+        {
+            StartCoroutine(BurnOtherObjects(.2f));
+        }
+    }
+
+    IEnumerator BurnOtherObjects(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        foreach (GameObject burnableObject in nextBurnableObject)
+        {
+            if(burnableObject!=null)
+            {
+
+                burnableObject.GetComponent<NewBurningObject>().Burn();
+            }
+            
         }
     }
 }

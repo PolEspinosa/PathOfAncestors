@@ -11,7 +11,8 @@ public class EarthSpirit : BaseSpirit
         InitialiseValues();
         spiritType = Type.EARTH;
         edgeOfFloor = false;
-
+        //play earth spirit invokation sound
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeEarthSpirit", gameObject);
     }
 
     // Update is called once per frame

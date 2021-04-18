@@ -45,10 +45,33 @@ public class MovableWallActivable : Activable
     public bool isStopped = false;
     public Transform stopPos;
 
+    //references to the fmod friction sound instance
+    private FMOD.Studio.EventInstance doorSoundInstance;
+    private FMOD.Studio.EventInstance platformSoundInstance;
+    private FMOD.Studio.EventInstance dirtColumnSoundInstance;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(!isDinamic)
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                platformSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePlatform");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                platformSoundInstance.setVolume(3f);
+                break;
+            case "EarthPlatform":
+                dirtColumnSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/createDirtColumn");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(dirtColumnSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                dirtColumnSoundInstance.setVolume(3f);
+                break;
+            case "PartDoor":
+                doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(doorSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                break;
+        }
+        
+        if (!isDinamic)
         {
             if (_objectToShake == null) _objectToShake = transform;
             _startPosition = transform.position;
@@ -72,6 +95,12 @@ public class MovableWallActivable : Activable
 
     private void Update()
     {
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                break;
+        }
         if (isDinamic)
         {
             if (_isActivated)
@@ -92,7 +121,6 @@ public class MovableWallActivable : Activable
                     particles.SetActive(false);
 
                 }
-
             }
         }
 
@@ -127,7 +155,7 @@ public class MovableWallActivable : Activable
             }
         }
 
-        Debug.Log(_openDoorDuration);
+        //Debug.Log(_openDoorDuration);
         
     }
 
@@ -140,9 +168,41 @@ public class MovableWallActivable : Activable
 
     private void UpdateOpenTween(float duration, bool settingUp = false)
     {
+        //play friction sound when going up depending on gameobject tag
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                platformSoundInstance.start();
+                break;
+            case "EarthPlatform":
+                dirtColumnSoundInstance.start();
+                break;
+            case "PartDoor":
+                doorSoundInstance.start();
+                break;
+        }
+        
         if (_openTween != null) _openTween.Kill();
         _openTween = transform.DOMove(_endPosition, duration).Pause().SetEase(_openEase).SetAutoKill(false);
         _openTween.OnComplete(() => {
+            //play sound depending on the gameobject tag
+            switch (gameObject.tag)
+            {
+                case "Metal":
+                    //stop platform sound when the platform has reached the top
+                    platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "EarthPlatform":
+                    //stop platform sound when the dirt platform is completed
+                    dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "PartDoor":
+                    //stop friction sound when the door has reached the ceiling
+                    doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    //play sound when the door collides with the ceiling
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitUp",gameObject);
+                    break;
+            }
             DoShake();
             if (particles != null)
             {
@@ -158,10 +218,41 @@ public class MovableWallActivable : Activable
 
     private void UpdateCloseTween(float duration)
     {
+        //play friction sound when going down depending on gameobject tag
+        switch (gameObject.tag)
+        {
+            case "Metal":
+                platformSoundInstance.start();
+                break;
+            case "EarthPlatform":
+                dirtColumnSoundInstance.start();
+                break;
+            case "PartDoor":
+                doorSoundInstance.start();
+                break;
+        }
         if (_closeTween != null) _closeTween.Kill();
         _closeTween = transform.DOMove(_startPosition, duration);
         _closeTween.SetEase(_closeEase);
         _closeTween.OnComplete(() => {
+            //play sound depending on the gameobject tag
+            switch (gameObject.tag)
+            {
+                case "Metal":
+                    //stop platform sound when the platform has reached the bottom
+                    platformSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "EarthPlatform":
+                    //stop platform sound when the dirt platform is gone
+                    dirtColumnSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    break;
+                case "PartDoor":
+                    //stop friction sound when the door has reached the floor
+                    doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    //play sound when the door collides with the floor
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitDown",gameObject);
+                    break;
+            }
             DoShake();
             if (particles != null)
             {

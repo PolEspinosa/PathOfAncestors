@@ -10,6 +10,8 @@ public class FireSpirit : BaseSpirit
     {
         spiritType = Type.FIRE;
         InitialiseValues();
+        //play fire spirit invokation sound
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeFireSpirit", gameObject);
     }
 
     // Update is called once per frame

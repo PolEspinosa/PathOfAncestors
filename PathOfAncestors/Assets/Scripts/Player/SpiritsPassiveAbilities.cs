@@ -25,6 +25,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
 
     private Rigidbody boxRigidbody;
     public float parentTimeDelay;
+
+    public bool inDarkArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,26 +39,18 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         pushing = false;
         boxColliding = false;
         boxCollider.enabled = false;
+        inDarkArea = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(pushing);
-        if (spiritManager.currentSpirit != null)
-        {
-            if (spiritManager.currentSpirit.CompareTag("EARTH")|| spiritManager.currentSpirit.CompareTag("FIRE"))
-            {
-                earthActive = true;
-            }
-            else
-            {
-                earthActive = false;
-            }
+         
             //the player is close enough to move the box
             if (inRange)
             {
-                if (earthActive && Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     pushing = !pushing;
                 }
@@ -90,10 +84,18 @@ public class SpiritsPassiveAbilities : MonoBehaviour
                     boxCollider.enabled = false;
                 }
             }
-        }
+        
 
         
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("DarkArea"))
+    //    {
+    //        inDarkArea = true;
+    //    }
+    //}
 
     private void OnTriggerStay(Collider other)
     {
@@ -112,6 +114,10 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         {
             inRange = false;
         }
+        //else if (other.CompareTag("DarkArea"))
+        //{
+        //    inDarkArea = false;
+        //}
     }
 
     private void MoveBox()
