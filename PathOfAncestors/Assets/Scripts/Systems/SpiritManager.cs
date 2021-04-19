@@ -22,11 +22,22 @@ public class SpiritManager : MonoBehaviour
 
     public OrderSystem order;
 
+    private FireSpiritAnimatorController fireController;
+
+    //this variable will determine when to spawn the other spirit so it goes according to the animation
+    private bool invokeOtherSpirit;
+    private GameObject currentSpiritAux;
+    private Vector3 positionAux;
+
+    //variables to switch the music depending on the invoked spirit
+    public float fireInvoked; //0 == none, 1 == invoked
+    public float earthInvoked; //0 == none, 1 == invoked
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        invokeOtherSpirit = false;
+        fireInvoked = earthInvoked = 0;
     }
 
     // Update is called once per frame
@@ -35,10 +46,30 @@ public class SpiritManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
+            //if invoking the fire spirit, stop music from earth spirit and start music from fire spirit
+            if (fireInvoked == 0)
+            {
+                earthInvoked = 0;
+                fireInvoked = 1;
+            }
+            else
+            {
+                fireInvoked = 0;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             InvokeSpirit(earthSpiritRef, earthPosition.transform);
+            //if invoking the earth spirit, stop music from fire spirit and start music from earth spirit
+            if (earthInvoked == 0)
+            {
+                fireInvoked = 0;
+                earthInvoked = 1;
+            }
+            else
+            {
+                earthInvoked = 0;
+            }
         }
         //if (Input.GetKeyDown(KeyCode.Alpha3))
         //{
@@ -48,7 +79,32 @@ public class SpiritManager : MonoBehaviour
         {
             Debug.Log(currentSpirit.GetComponent<BaseSpirit>().GetSpiritType());
         }
-       
+
+        //if has to destroy the spirit
+        if (currentSpirit != null && currentSpirit.CompareTag("FIRE"))
+        {
+            
+            if (invokeOtherSpirit)
+            {
+                Desinvoke(currentSpirit);
+                currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+                invokeOtherSpirit = false;
+            }
+            if (currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().destroySpirit)
+            {
+                //if (invokeOtherSpirit)
+                //{
+                //    Desinvoke(currentSpirit);
+                //    currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+                //    invokeOtherSpirit = false;
+                //}
+                //else
+                //{
+                //    Desinvoke(currentSpirit);
+                //}
+                Desinvoke(currentSpirit);
+            }
+        }
     }
 
 
@@ -56,20 +112,38 @@ public class SpiritManager : MonoBehaviour
     {
         if( currentSpirit==null)
         {
-            currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);    
+            currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
         }
 
         else
         {
-
             if (_spirit.tag != currentSpirit.tag)
             {
-                Desinvoke(currentSpirit);
-                currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
+                //place holder until we have earth spirit animations
+                if (currentSpirit.CompareTag("FIRE"))
+                {
+                    currentSpiritAux = _spirit;
+                    positionAux = _position.position;
+                    invokeOtherSpirit = true;
+                    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
+                }
+                else
+                {
+                    Desinvoke(currentSpirit);
+                    currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
+                }
             }
             else
             {
-                Desinvoke(currentSpirit);
+                //place holder until we have earth spirit animations
+                if (currentSpirit.CompareTag("FIRE"))
+                {
+                    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
+                }
+                else
+                {
+                    Desinvoke(currentSpirit);
+                }
             }
         }
     }
@@ -77,8 +151,7 @@ public class SpiritManager : MonoBehaviour
 
     void Desinvoke(GameObject _currentSpirit)
     {
-       
-        if(activatorObject != null)
+        if (activatorObject != null)
         {
            if(activatorObject.GetComponent<PressurePlateActivator>())
             {
@@ -108,6 +181,4 @@ public class SpiritManager : MonoBehaviour
         currentSpirit = null;
         order.isGoingToEarth = false;
     }
-    
-
 }

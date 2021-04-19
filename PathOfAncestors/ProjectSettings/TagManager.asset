@@ -31,6 +31,9 @@ TagManager:
   - ReverbChange
   - Player2
   - PartDoor
+  - FireLookAt
+  - EarthLookAt
+  - Unparent
   layers:
   - Default
   - TransparentFX

@@ -23,6 +23,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-8921542596813534532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: D:/UnityProjects/PathOfAncestors/PathOfAncestors/FMOD_PoA/Path of Ancestors/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637524840306406963
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 994
+  Exists: 1
 --- !u!114 &-8861628499912260583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,7 +1001,28 @@ MonoBehaviour:
   - Name: Desktop
     Value: 112000
   Exists: 1
+<<<<<<< HEAD
+--- !u!114 &-4926443705696742255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/hitGround/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &-4733099289068866051
+=======
 --- !u!114 &4557908319363692104
+>>>>>>> audio
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1053,11 +1094,20 @@ MonoBehaviour:
   Path: snapshot:/indoors
   guid: 46f5912c9b01a24db31fd30245238e61
   Banks:
+<<<<<<< HEAD
+  - {fileID: 1783294636568499446}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 7996147550861571395}
+=======
   - {fileID: 6387553264059935248}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters: []
+>>>>>>> audio
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -1076,6 +1126,18 @@ MonoBehaviour:
   Path: event:/Mecanismos/deactivatePressurePlate
   guid: b940b6729e0a144f90accd104748e983
   Banks:
+<<<<<<< HEAD
+  - {fileID: 1783294636568499446}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4926443705696742255}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
+--- !u!114 &-92419864190021161
+=======
   - {fileID: 6387553264059935248}
   IsStream: 0
   Is3D: 1
@@ -1102,6 +1164,7 @@ MonoBehaviour:
   Default: 0
   Exists: 1
 --- !u!114 &5371514677809026951
+>>>>>>> audio
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1136,12 +1199,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/bgMusic/earthSpiritInvoked
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  EditorBanks:
+  - {fileID: -8921542596813534532}
+  - {fileID: 1783294636568499446}
+  EditorEvents:
+  - {fileID: -632135376893697767}
+  - {fileID: -479093331448156992}
+  - {fileID: 4557908319363692104}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 1783294636568499446}
+  StringsBanks:
+  - {fileID: -8921542596813534532}
+  stringsBankWriteTime: 637524840306406963
+  cacheVersion: 3
+--- !u!114 &693184027944593795
+=======
   Name: earthSpiritInvoked
   Min: 0
   Max: 2
   Default: 0
   Exists: 1
 --- !u!114 &5867796694198974084
+>>>>>>> audio
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1175,7 +1256,31 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+<<<<<<< HEAD
+--- !u!114 &1783294636568499446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: D:/UnityProjects/PathOfAncestors/PathOfAncestors/FMOD_PoA/Path of Ancestors/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637524840306437014
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 112000
+  Exists: 1
+--- !u!114 &4029354919971813953
+=======
 --- !u!114 &6387553264059935248
+>>>>>>> audio
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1210,7 +1315,11 @@ MonoBehaviour:
   Path: event:/Player/playerFootsteps
   guid: 2faf30b71e71344180499badc39bbcd4
   Banks:
+<<<<<<< HEAD
+  - {fileID: 1783294636568499446}
+=======
   - {fileID: 9159368075269001892}
+>>>>>>> audio
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1273,6 +1382,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/hitGround/Surface Type
+  m_EditorClassIdentifier: 
+  Name: Surface Type
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &7996147550861571395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/playerFootsteps/Surface Type
   m_EditorClassIdentifier: 
   Name: Surface Type
   Min: 0

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,13 +41,12 @@ public class PressurePlateActivator : Activator
 
        
     }
-
     private void OnTriggerEnter(Collider other)
     {
         colliders.Add(other.transform.gameObject);
         if (!_activated)
         {
-            if (other.tag=="Player2" || other.tag == "EARTH" || other.tag=="EarthPlatform")
+            if (other.tag=="Player" || other.tag == "EARTH" || other.tag=="EarthPlatform")
             {
                 //play pressure plate activate sound
                 pressurePlateActivateSoundInstance.start();

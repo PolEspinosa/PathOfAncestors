@@ -11,6 +11,8 @@ public class RotateDoorActivable : Activable
 
     private FMOD.Studio.EventInstance doorSoundInstance;
 
+
+    public bool isRect = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,16 @@ public class RotateDoorActivable : Activable
         //play open door sound
         doorSoundInstance.start();
         StartCoroutine(StopSound());
+
+        if (isRect)
+        {
+            rightDoor.transform.DORotateQuaternion(Quaternion.Euler(0, -180, 0), 3f);
+            leftDoor.transform.DORotateQuaternion(Quaternion.Euler(0, 10, 0), 3f);
+            //play open door sound
+            doorSoundInstance.start();
+            StartCoroutine(StopSound());
+        }
+       
     }
 
     public override void Deactivate()

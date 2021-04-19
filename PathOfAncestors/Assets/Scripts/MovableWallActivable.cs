@@ -121,7 +121,6 @@ public class MovableWallActivable : Activable
                     particles.SetActive(false);
 
                 }
-
             }
         }
 

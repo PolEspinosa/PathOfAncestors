@@ -27,12 +27,12 @@ public class PlatformParent : MonoBehaviour
         {
             if (hit.transform.tag == "EarthPlatform")
             {
-                if (hit.transform.name == "EarthPlatform")
+                if (hit.transform.name == "NewEarthPlatform")
                 {
                     onPlatform = true;
                     platform = hit.transform.gameObject.transform.GetChild(1).gameObject;
                 }
-                else if (hit.transform.name == "PlatformActivable")
+                else if (hit.transform.name == "Basalto")
                 {
                     onPlatform = true;
                     platform = hit.transform.gameObject;
