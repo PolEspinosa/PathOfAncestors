@@ -121,7 +121,8 @@ public class BaseSpirit : MonoBehaviour
                         else
                         {
                             SteeringBehaviorEarth(goToPosition);
-                        }                    }
+                        }
+                    }
                     else
                     {
                         navAgent.enabled = true;

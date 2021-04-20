@@ -77,7 +77,10 @@ public class OrderSystem : MonoBehaviour
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;
+        //get target tag
         spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetTag = hit.transform.tag;
+        //get target gameobject
+        spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetObject = hit.collider.gameObject;
         if (hit.transform.tag== "Untagged")
         {
             //apply y offset to the fire spirit so it doesn't go through the target
@@ -102,7 +105,6 @@ public class OrderSystem : MonoBehaviour
             else
             {
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.collider.gameObject.transform.position);
-                spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetObject = hit.collider.gameObject;
             }
             ManageActivators();
         }
