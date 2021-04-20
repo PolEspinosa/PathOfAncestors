@@ -44,6 +44,8 @@ public class BaseSpirit : MonoBehaviour
 
     //used to know the tag of the target and determine whether to stop or not
     public string targetTag;
+    //only for moving platforms for earth spirit
+    public GameObject targetObject;
 
     //fire animator variables
     protected SpiritsAnimatorController animController;
@@ -51,7 +53,7 @@ public class BaseSpirit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        targetObject = null;
     }
 
     // Update is called once per frame
@@ -111,8 +113,15 @@ public class BaseSpirit : MonoBehaviour
                         {
                             followSpeed = runSpeed;
                         }
-                        SteeringBehaviorEarth(goToPosition);
-                    }
+                        //if the target is the platform, update target position so it moves along with the target
+                        if(targetTag == "MovingPlatform")
+                        {
+                            SteeringBehaviorEarth(targetObject.transform.position);
+                        }
+                        else
+                        {
+                            SteeringBehaviorEarth(goToPosition);
+                        }                    }
                     else
                     {
                         navAgent.enabled = true;

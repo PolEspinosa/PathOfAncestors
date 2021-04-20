@@ -34,26 +34,11 @@ public class FireSpirit : BaseSpirit
                 {
                     rb.isKinematic = false;
                 }
-                ////if close enough in the y axis, activate collision with gameobject
-                //else if(Vector3.Distance(new Vector3(gameObject.transform.position.x,gameObject.transform.position.y, gameObject.transform.position.z), new Vector3(gameObject.transform.position.x, goToPosition.y,gameObject.transform.position.z)) < stoppingDistance)
-                //{
-                //    rb.isKinematic = false;
-                //}
                 //if close enough in the z axis, activate collision with gameobject
                 else if (Vector3.Distance(new Vector3(goToPosition.x, gameObject.transform.position.y, goToPosition.z), new Vector3(gameObject.transform.position.x, goToPosition.y, gameObject.transform.position.z)) < stoppingDistance)
                 {
                     rb.isKinematic = false;
                 }
-
-                //if (Vector3.Distance(gameObject.transform.position, goToPosition) < stoppingDistance)
-                //{
-                //    rb.isKinematic = false;
-                //}
-                //else
-                //{
-                //    FollowOrder();
-                //    rb.isKinematic = true;
-                //}
                 FollowOrder();
             }
             //any other target, act normally

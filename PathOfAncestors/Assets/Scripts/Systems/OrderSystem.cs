@@ -78,7 +78,7 @@ public class OrderSystem : MonoBehaviour
         isGoingToEarth = false;
         activator = null;
         spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetTag = hit.transform.tag;
-        if (hit.transform.tag== "Untagged" || hit.transform.CompareTag("MovingPlatform"))
+        if (hit.transform.tag== "Untagged")
         {
             //apply y offset to the fire spirit so it doesn't go through the target
             if (spiritManager.currentSpirit.CompareTag("FIRE"))
@@ -91,6 +91,20 @@ public class OrderSystem : MonoBehaviour
             }
             ManageActivators();
 
+        }
+        else if (hit.transform.CompareTag("MovingPlatform"))
+        {
+            //apply y offset to the fire spirit so it doesn't go through the target
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(new Vector3(hit.point.x, hit.point.y + 0.75f, hit.point.z));
+            }
+            else
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.collider.gameObject.transform.position);
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetObject = hit.collider.gameObject;
+            }
+            ManageActivators();
         }
         else if( hit.transform.tag=="Torch")
         {

@@ -36,6 +36,11 @@ public class EarthSpirit : BaseSpirit
             {
                 edgeOfFloor = true;
             }
+            
+            if(targetTag== "MovingPlatform")
+            {
+
+            }
         }
     }
 
