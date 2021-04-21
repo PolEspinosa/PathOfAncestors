@@ -23,7 +23,7 @@ public class BaseSpirit : MonoBehaviour
     public float walkSpeed, runSpeed;
     public float stopDistance = 2f;
     private bool waiting; //bool that will allow the spirit to leave the waiting state
-    Vector3 goToPosition;
+    protected Vector3 goToPosition;
 
     //fire/wind spirit variables
     public float followSpeed;
@@ -42,19 +42,24 @@ public class BaseSpirit : MonoBehaviour
     //object for the earth spirit to look at
     protected GameObject lookAtObjectEarth;
 
+    //used to know the tag of the target and determine whether to stop or not
+    public string targetTag;
+    //only for moving platforms for earth spirit
+    public GameObject targetObject;
+
     //fire animator variables
     protected SpiritsAnimatorController animController;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        targetObject = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     protected void FollowOrder()
@@ -62,7 +67,7 @@ public class BaseSpirit : MonoBehaviour
         switch (state)
         {
             case States.FOLLOWING:
-                if(spiritType == Type.EARTH)
+                if (spiritType == Type.EARTH)
                 {
                     if (switchToSteering)
                     {
@@ -108,7 +113,15 @@ public class BaseSpirit : MonoBehaviour
                         {
                             followSpeed = runSpeed;
                         }
-                        SteeringBehaviorEarth(goToPosition);
+                        //if the target is the platform, update target position so it moves along with the target
+                        if (targetTag == "MovingPlatform")
+                        {
+                            SteeringBehaviorEarth(targetObject.transform.position);
+                        }
+                        else
+                        {
+                            SteeringBehaviorEarth(goToPosition);
+                        }
                     }
                     else
                     {
@@ -139,7 +152,7 @@ public class BaseSpirit : MonoBehaviour
         state = States.FOLLOWING;
     }
 
-    public void MoveTo( Vector3 targetPos)
+    public void MoveTo(Vector3 targetPos)
     {
         state = States.GOING;
         goToPosition = targetPos;
@@ -157,7 +170,7 @@ public class BaseSpirit : MonoBehaviour
 
     //movement for the fire and wind spirit
     //we add a look at direction to avoid rotation problems when the spirit is too close to the target
-    protected void SteeringBehavior(Vector3 _targetPosition, Vector3 _lookAtDirection) 
+    protected void SteeringBehavior(Vector3 _targetPosition, Vector3 _lookAtDirection)
     {
         //direction in which the character has to move
         targetDistance = (_targetPosition - gameObject.transform.position);
@@ -195,7 +208,7 @@ public class BaseSpirit : MonoBehaviour
         velocity *= slowdownFactor;
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
-        if(targetDistance.magnitude > 0.1f)
+        if (targetDistance.magnitude > 0.1f)
         {
             gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
         }

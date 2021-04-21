@@ -9,7 +9,7 @@ public class OrderSystem : MonoBehaviour
     bool aiming = false;
     public GameObject aimCursor;
     public GameObject cursorReference;
-    
+
     public RaycastHit hit;
     private Ray ray;
     public Vector3 goToPosition;
@@ -18,7 +18,7 @@ public class OrderSystem : MonoBehaviour
 
     public bool isGoingToEarth = false;
     public GameObject activator;
-   
+
 
 
     // Start is called before the first frame update
@@ -31,7 +31,7 @@ public class OrderSystem : MonoBehaviour
     void Update()
     {
 
-        
+
         if (Input.GetMouseButtonDown(1))
         {
             aiming = true;
@@ -48,10 +48,8 @@ public class OrderSystem : MonoBehaviour
         //cast the ray
         if (aiming && Input.GetMouseButtonDown(0))
         {
-
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(aimCursor.transform.position);
-
             if (Physics.Raycast(ray, out hit))
             {
                 ManageOrders(hit);
@@ -64,10 +62,10 @@ public class OrderSystem : MonoBehaviour
             //}
         }
         //if not aiming, make the spirit follow the player again
-        else if(!aiming && Input.GetMouseButtonDown(0))
+        else if (!aiming && Input.GetMouseButtonDown(0))
         {
             spiritManager.currentSpirit.GetComponent<BaseSpirit>().ReturnToPlayer();
-            
+
             isGoingToEarth = false;
             activator = null;
             ManageActivators();
@@ -79,15 +77,40 @@ public class OrderSystem : MonoBehaviour
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;
-        if (hit.transform.tag== "Untagged" || hit.transform.CompareTag("MovingPlatform"))
+        //get target tag
+        spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetTag = hit.transform.tag;
+        //get target gameobject
+        spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetObject = hit.collider.gameObject;
+        if (hit.transform.tag == "Untagged")
         {
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            //apply y offset to the fire spirit so it doesn't go through the target
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(new Vector3(hit.point.x, hit.point.y + 0.75f, hit.point.z));
+            }
+            else
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            }
             ManageActivators();
 
         }
-        else if( hit.transform.tag=="Torch")
+        else if (hit.transform.CompareTag("MovingPlatform"))
         {
-            if(spiritManager.activatorObject == null)
+            //apply y offset to the fire spirit so it doesn't go through the target
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(new Vector3(hit.point.x, hit.point.y + 0.75f, hit.point.z));
+            }
+            else
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.collider.gameObject.transform.position);
+            }
+            ManageActivators();
+        }
+        else if (hit.transform.tag == "Torch")
+        {
+            if (spiritManager.activatorObject == null)
             {
                 Transform pos = hit.transform.GetChild(0).transform;
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
@@ -96,7 +119,7 @@ public class OrderSystem : MonoBehaviour
             {
                 ManageActivators();
             }
-            
+
         }
         else if (hit.transform.tag == "OvenActivator")
         {
@@ -115,23 +138,32 @@ public class OrderSystem : MonoBehaviour
 
 
 
-        else if(hit.transform.tag=="EarthPlatform")
+        else if (hit.transform.tag == "EarthPlatform")
         {
             isGoingToEarth = true;
             activator = hit.transform.gameObject.transform.GetChild(0).gameObject;
-            if (spiritManager.activatorObject==null)
+            if (spiritManager.activatorObject == null)
             {
                 Transform pos = hit.transform.GetChild(0).transform;
-                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position); 
+                //spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+                //apply y offset to the fire spirit so it doesn't go through the target
+                if (spiritManager.currentSpirit.CompareTag("FIRE"))
+                {
+                    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(new Vector3(pos.position.x, pos.position.y + 1, pos.position.z));
+                }
+                else
+                {
+                    spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
+                }
             }
-            else 
+            else
             {
                 ManageActivators();
                 Transform pos = hit.transform.GetChild(0).transform;
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
 
             }
-          
+
 
 
         }
@@ -172,7 +204,7 @@ public class OrderSystem : MonoBehaviour
             {
                 spiritManager.activatorObject.GetComponent<OvenActivator>().DeactivateOven();
             }
-            else  if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
+            else if (spiritManager.activatorObject.gameObject.name == "EarthPlatformActivator")
             {
                 spiritManager.activatorObject.GetComponent<EarthPlatformActivator>().DeactivateEarthPlatform();
             }
