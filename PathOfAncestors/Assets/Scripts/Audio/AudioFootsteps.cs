@@ -57,7 +57,6 @@ public class AudioFootsteps : MonoBehaviour
                         break;
                     case "Metal":
                         iSurface = 1;
-                        Debug.Log("hey2");
                         break;
                     case "EarthPlatform":
                         iSurface = 2;

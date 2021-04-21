@@ -35,6 +35,7 @@ public abstract class Activator : MonoBehaviour
 
         ovenSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateOven");
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(ovenSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+        ovenSoundInstance.setVolume(0.8f);
         torchSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Props/activateFire");
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(torchSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
         pressurePlateActivateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePressurePlate");

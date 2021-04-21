@@ -50,6 +50,10 @@ public class MovableWallActivable : Activable
     private FMOD.Studio.EventInstance platformSoundInstance;
     private FMOD.Studio.EventInstance dirtColumnSoundInstance;
 
+    //just for the earthPlatform
+    [Header("Just for the earth platform")]
+    [SerializeField]
+    private GameObject earthPlatformSoundOrigin;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,12 +66,17 @@ public class MovableWallActivable : Activable
                 break;
             case "EarthPlatform":
                 dirtColumnSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/createDirtColumn");
-                FMODUnity.RuntimeManager.AttachInstanceToGameObject(dirtColumnSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
-                dirtColumnSoundInstance.setVolume(3f);
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(dirtColumnSoundInstance, earthPlatformSoundOrigin.transform, earthPlatformSoundOrigin.GetComponent<Rigidbody>());
+                //dirtColumnSoundInstance.setVolume(3f);
                 break;
             case "PartDoor":
                 doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
                 FMODUnity.RuntimeManager.AttachInstanceToGameObject(doorSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                break;
+            default:
+                doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Puerta 1/openStoneDoor");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(doorSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                doorSoundInstance.setVolume(2f);
                 break;
         }
         
@@ -95,12 +104,6 @@ public class MovableWallActivable : Activable
 
     private void Update()
     {
-        switch (gameObject.tag)
-        {
-            case "Metal":
-                FMODUnity.RuntimeManager.AttachInstanceToGameObject(platformSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
-                break;
-        }
         if (isDinamic)
         {
             if (_isActivated)
@@ -180,6 +183,9 @@ public class MovableWallActivable : Activable
             case "PartDoor":
                 doorSoundInstance.start();
                 break;
+            default:
+                doorSoundInstance.start();
+                break;
         }
         
         if (_openTween != null) _openTween.Kill();
@@ -202,6 +208,13 @@ public class MovableWallActivable : Activable
                     //play sound when the door collides with the ceiling
                     FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitUp",gameObject);
                     break;
+                default:
+                    //stop friction sound when the door has reached the ceiling
+                    doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    //play sound when the door collides with the ceiling
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitUp", gameObject);
+                    break;
+
             }
             DoShake();
             if (particles != null)
@@ -230,6 +243,9 @@ public class MovableWallActivable : Activable
             case "PartDoor":
                 doorSoundInstance.start();
                 break;
+            default:
+                doorSoundInstance.start();
+                break;
         }
         if (_closeTween != null) _closeTween.Kill();
         _closeTween = transform.DOMove(_startPosition, duration);
@@ -251,6 +267,12 @@ public class MovableWallActivable : Activable
                     doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     //play sound when the door collides with the floor
                     FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitDown",gameObject);
+                    break;
+                default:
+                    //stop friction sound when the door has reached the floor
+                    doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    //play sound when the door collides with the floor
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Puerta 1/stoneWallHitDown", gameObject);
                     break;
             }
             DoShake();
