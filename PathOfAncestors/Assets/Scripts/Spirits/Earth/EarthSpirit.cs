@@ -5,6 +5,14 @@ using UnityEngine;
 public class EarthSpirit : BaseSpirit
 {
     public GameObject rayStart;
+    private float angle, rotationTime;
+    public float rotationSpeed;
+    private Quaternion targetRotation;
+    private bool hasToRotate;
+    private float tmpSpeed;
+    [SerializeField]
+    private AnimationCurve rotationCurve;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +21,15 @@ public class EarthSpirit : BaseSpirit
         edgeOfFloor = false;
         //play earth spirit invokation sound
         FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeEarthSpirit", gameObject);
+        hasToRotate = false;
+        tmpSpeed = runSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up , Color.green);
+        //ApplyNewRotation();
+        Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up, Color.green);
         if (animController.invoked)
         {
             FollowOrder();
@@ -77,6 +88,33 @@ public class EarthSpirit : BaseSpirit
             case "MovingPlatform":
                 gameObject.transform.parent = null;
                 break;
+        }
+    }
+
+    private void ApplyNewRotation()
+    {
+        if (state == States.GOING)
+        {
+            Vector3 directionForward = new Vector3(goToPosition.x - gameObject.transform.position.x, 0, goToPosition.z - gameObject.transform.position.z);
+            angle = Vector3.Angle(gameObject.transform.forward.normalized, directionForward.normalized);
+            angle = Mathf.Abs(angle);
+            runSpeed = rotationCurve.Evaluate(angle / 180f) * tmpSpeed;
+            //if (angle > 40f && !hasToRotate)
+            //{
+            //    hasToRotate = true;
+            //}
+            //if (hasToRotate)
+            //{
+            //    if (angle >= 20)
+            //    {
+            //        runSpeed = rotationCurve.Evaluate(angle / 180f) * tmpSpeed;
+            //    }
+            //    else
+            //    {
+            //        runSpeed = tmpSpeed;
+            //        hasToRotate = false;
+            //    }
+            //}
         }
     }
 }

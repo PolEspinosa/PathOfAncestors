@@ -27,28 +27,28 @@ public class CharacterAnimationManager : MonoBehaviour
         playerAnimator.SetFloat("Speed", Mathf.Clamp01(inputManager.savedVelocity.magnitude));
         if (!spiritsPassiveAbilities.pushing)
         {
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //if play jump sound is enabled
+                if (canPlayJumpSound)
+                {
+                    //play jump sound
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
+                    jumpSoundInstance.start();
+                    //disable play jump sound so it doesn't play more than once in one jump
+                    canPlayJumpSound = false;
+                }
+            }
+            //if the player is grounded, enable play jump sound
+            else if (inputManager.GetGroundedState())
+            {
+                canPlayJumpSound = true;
+            }
         }
         playerAnimator.SetBool("isJumping", inputManager.GetJumpState());
         playerAnimator.SetBool("isGrounded", inputManager.GetGroundedState());
         playerAnimator.SetBool("noInput", !DetectMovementInput());
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //if play jump sound is enabled
-            if (canPlayJumpSound)
-            {
-                //play jump sound
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/jump");
-                jumpSoundInstance.start();
-                //disable play jump sound so it doesn't play more than once in one jump
-                canPlayJumpSound = false;
-            }
-        }
-        //if the player is grounded, enable play jump sound
-        else if (inputManager.GetGroundedState())
-        {
-            canPlayJumpSound = true;
-        }
+        
     }
 
     void FixedUpdate()

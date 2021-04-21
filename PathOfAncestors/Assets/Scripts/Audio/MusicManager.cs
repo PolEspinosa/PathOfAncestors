@@ -9,6 +9,7 @@ public class MusicManager : MonoBehaviour
     private bool isPlaying;
     [SerializeField]
     private SpiritManager spiritManager;
+    public float puzzleCompleted; //0 --> no sound / 1 --> play sound
     //we will get from here when the spirit is invoked
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,6 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bgMusicInstance.getPlaybackState(out state);
         if (Input.GetKeyDown(KeyCode.M))
         {
             isPlaying = !isPlaying;
@@ -39,6 +39,7 @@ public class MusicManager : MonoBehaviour
         //change the music depending on the invoked spirit
         bgMusicInstance.setParameterByName("fireSpiritInvoked", spiritManager.fireInvoked);
         bgMusicInstance.setParameterByName("earthSpiritInvoked", spiritManager.earthInvoked);
+        bgMusicInstance.setParameterByName("puzzleCompleted", puzzleCompleted);
     }
 
     private void OnDestroy()

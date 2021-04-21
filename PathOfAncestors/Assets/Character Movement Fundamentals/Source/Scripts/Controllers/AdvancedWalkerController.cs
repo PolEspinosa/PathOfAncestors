@@ -198,11 +198,11 @@ namespace CMF
                     else
                     {
                         //move depending on the orientation of the player
-                        _velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
-                        _velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
+                        //_velocity += playerModel.transform.forward.normalized * characterInput.GetVerticalMovementInput();
+                        //_velocity += playerModel.transform.right.normalized * characterInput.GetHorizontalMovementInput();
                         //move depending on the camera direction
-                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
-                        //_velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
+                        _velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
+                        _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
                     }
                 }
                 else

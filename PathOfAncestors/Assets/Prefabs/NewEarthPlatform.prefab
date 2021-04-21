@@ -346,6 +346,7 @@ MonoBehaviour:
   hasToStop: 0
   isStopped: 0
   stopPos: {fileID: 0}
+  earthPlatformSoundOrigin: {fileID: 3851182518478445927}
 --- !u!1 &3851182518063416236
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +775,7 @@ MonoBehaviour:
   hasToStop: 0
   isStopped: 0
   stopPos: {fileID: 0}
+  earthPlatformSoundOrigin: {fileID: 0}
 --- !u!54 &8914260853674722243
 Rigidbody:
   m_ObjectHideFlags: 0
