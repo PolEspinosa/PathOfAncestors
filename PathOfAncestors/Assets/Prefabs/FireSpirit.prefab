@@ -144,7 +144,7 @@ MonoBehaviour:
   slowdownDistance: 7
   targetTag: 
   targetObject: {fileID: 0}
-  stoppingDistance: 1
+  stoppingDistance: 0.5
 --- !u!54 &6821029558618872649
 Rigidbody:
   m_ObjectHideFlags: 0

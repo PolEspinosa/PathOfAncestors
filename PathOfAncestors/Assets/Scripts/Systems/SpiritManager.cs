@@ -108,7 +108,7 @@ public class SpiritManager : MonoBehaviour
     }
 
 
-    void InvokeSpirit(GameObject _spirit, Transform _position)
+    public void InvokeSpirit(GameObject _spirit, Transform _position)
     {
         if( currentSpirit==null)
         {
@@ -149,7 +149,7 @@ public class SpiritManager : MonoBehaviour
     }
 
 
-    void Desinvoke(GameObject _currentSpirit)
+    public void Desinvoke(GameObject _currentSpirit)
     {
         if (activatorObject != null)
         {

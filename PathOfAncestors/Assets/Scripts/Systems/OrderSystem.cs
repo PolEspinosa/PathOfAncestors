@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class OrderSystem : MonoBehaviour
 {
@@ -18,20 +19,24 @@ public class OrderSystem : MonoBehaviour
 
     public bool isGoingToEarth = false;
     public GameObject activator;
-
-
+    //used to calculate if player has path to target
+    private NavMeshPath playerPath;
+    [SerializeField]
+    private GameObject pathCalculator;
+    private NavMeshAgent playerAgent;
 
     // Start is called before the first frame update
     void Start()
     {
         aimCursor.SetActive(false);
+        playerPath = new NavMeshPath();
+        playerAgent = pathCalculator.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        pathCalculator.transform.position = gameObject.transform.position;
         if (Input.GetMouseButtonDown(1))
         {
             aiming = true;
@@ -52,7 +57,27 @@ public class OrderSystem : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(aimCursor.transform.position);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreMask))
             {
-                ManageOrders(hit);
+                //deactivate and activate in order to update path calculator position
+                pathCalculator.SetActive(false);
+                pathCalculator.SetActive(true);
+                //if there is no path, desinvoke earth spirit and invoke next to player
+                if (spiritManager.currentSpirit.CompareTag("EARTH"))
+                {
+                    if (!spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit) && PlayerHasPath(hit))
+                    {
+                        spiritManager.Desinvoke(spiritManager.currentSpirit);
+                        //invoke spirit and manage orders all at once
+                        StartCoroutine(InvokeSpiritAgain(hit));
+                    }
+                    else
+                    {
+                        ManageOrders(hit);
+                    }
+                }
+                else
+                {
+                    ManageOrders(hit);
+                }
             }
             //ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -210,5 +235,23 @@ public class OrderSystem : MonoBehaviour
             }
 
         }
+    }
+
+    //this function will calculate if the player has a path to the target
+    private bool PlayerHasPath(RaycastHit hit)
+    {
+        playerAgent.CalculatePath(hit.point, playerPath);
+        if (playerPath.status != NavMeshPathStatus.PathComplete)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private IEnumerator InvokeSpiritAgain(RaycastHit hit)
+    {
+        yield return new WaitForSeconds(0.1f);
+        spiritManager.InvokeSpirit(spiritManager.earthSpiritRef, spiritManager.earthPosition.transform);
+        ManageOrders(hit);
     }
 }
