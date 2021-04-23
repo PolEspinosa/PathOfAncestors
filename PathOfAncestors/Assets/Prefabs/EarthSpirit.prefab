@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 4714893789418931503}
   - component: {fileID: 842660838196405411}
   - component: {fileID: -8661762901848272158}
+  - component: {fileID: 5717662184401560828}
   m_Layer: 10
   m_Name: EarthSpirit
   m_TagString: EARTH
@@ -168,7 +169,16 @@ MonoBehaviour:
   stopDistance: 2
   followSpeed: 0
   slowdownDistance: 1.25
+  targetTag: 
+  targetObject: {fileID: 0}
   rayStart: {fileID: 3836467054094217417}
+  rotationSpeed: 0
+  rotationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!195 &842660838196405411
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -207,6 +217,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &5717662184401560828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271552183273091417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0.15841556, g: 1, b: 0, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 0
+  indicator: {fileID: 0}
 --- !u!1001 &5441088767667806242
 PrefabInstance:
   m_ObjectHideFlags: 0
