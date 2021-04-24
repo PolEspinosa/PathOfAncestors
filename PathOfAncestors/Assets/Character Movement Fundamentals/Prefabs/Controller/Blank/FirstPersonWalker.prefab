@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4404779544561742}
   - component: {fileID: 1838716465027848510}
-  m_Layer: 0
+  - component: {fileID: 2966954846445499316}
+  m_Layer: 14
   m_Name: Model
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -48,6 +49,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 114812654782354504}
+--- !u!136 &2966954846445499316
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107213591856028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1170578282839750
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,9 +75,9 @@ GameObject:
   - component: {fileID: 20298731967192810}
   - component: {fileID: 81548007281384750}
   - component: {fileID: 4652276287296223464}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,7 +189,7 @@ GameObject:
   - component: {fileID: 4491973105662240}
   - component: {fileID: 114075406310325772}
   - component: {fileID: 114697214702710754}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CameraRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +256,7 @@ GameObject:
   - component: {fileID: 4380173960156682}
   - component: {fileID: 114812654782354504}
   - component: {fileID: 114171209587689312}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CameraControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,8 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9be22bce34010f43b12190b15d84b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperVerticalLimit: 60
-  lowerVerticalLimit: 60
+  upperVerticalLimit: 90
+  lowerVerticalLimit: 90
   cameraSpeed: 100
   useMouseInput: 1
   smoothCameraRotation: 0
@@ -314,7 +329,7 @@ GameObject:
   - component: {fileID: 4549931159976293813}
   - component: {fileID: 6318772896406036548}
   - component: {fileID: 7564607797633685210}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FirstPersonWalker
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -348,7 +363,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3
+  m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!114 &114296478082093108
@@ -492,7 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5303293330548180936}
   - component: {fileID: 4373161101216724027}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FireWindInvokation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 25281038078052644}
   - component: {fileID: 8171554083694388332}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EarthInvokation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
