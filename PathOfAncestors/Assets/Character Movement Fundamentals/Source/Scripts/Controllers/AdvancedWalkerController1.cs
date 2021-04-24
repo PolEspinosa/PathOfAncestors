@@ -75,6 +75,15 @@ namespace CMF
         [Tooltip("Optional camera transform used for calculating movement direction. If assigned, character movement will take camera view into account.")]
         public Transform cameraTransform;
 
+        //event instance for the jump sound
+        private FMOD.Studio.EventInstance jumpEventInstance;
+        private FMOD.Studio.EventInstance groundHitEventInstance;
+        //event instance for the footsteps
+        private FMOD.Studio.EventInstance footstepsEventInstance;
+        //sound related variables
+        private int iSurface;
+        private string sSurface;
+
         //Get references to all necessary components;
         void Awake()
         {
@@ -82,6 +91,11 @@ namespace CMF
             tr = transform;
             characterInput = GetComponent<CharacterInput>();
             ceilingDetector = GetComponent<CeilingDetector>();
+
+            //initialize sound related variables
+            footstepsEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/playerFootsteps");
+            footstepsEventInstance.setVolume(0.5f);
+            sSurface = "Rock";
 
             if (characterInput == null)
                 Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
@@ -436,6 +450,7 @@ namespace CMF
         //This function is called when the player has initiated a jump;
         void OnJumpStart()
         {
+            PlayJumpSound();
             //If local momentum is used, transform momentum into world coordinates first;
             if (useLocalMomentum)
                 momentum = tr.localToWorldMatrix * momentum;
@@ -493,6 +508,7 @@ namespace CMF
         //This function is called when the controller has landed on a surface after being in the air;
         void OnGroundContactRegained(Vector3 _collisionVelocity)
         {
+            PlayGroundHitSound();
             //Call 'OnLand' event;
             if (OnLand != null)
                 OnLand(_collisionVelocity);
@@ -593,5 +609,58 @@ namespace CMF
             else
                 momentum = _newMomentum;
         }
+
+        private void PlayJumpSound()
+        {
+            jumpEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Voice/jump");
+            jumpEventInstance.setVolume(0.5f);
+            jumpEventInstance.start();
+            jumpEventInstance.release();
+        }
+
+        private void PlayGroundHitSound()
+        {
+            groundHitEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/hitGround");
+            groundHitEventInstance.setVolume(0.5f);
+            groundHitEventInstance.start();
+            groundHitEventInstance.release();
+        }
+
+        private void PlayFootstepsSound()
+        {
+            footstepsEventInstance.start();
+        }
+
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (!other.gameObject.CompareTag("ReverbChange"))
+        //    {
+        //        //change surface sound according to the surface tag
+        //        if (sSurface != other.gameObject.tag)
+        //        {
+        //            switch (other.gameObject.tag)
+        //            {
+        //                case "Rock":
+        //                    iSurface = 0;
+        //                    break;
+        //                case "Metal":
+        //                    iSurface = 1;
+        //                    break;
+        //                case "EarthPlatform":
+        //                    iSurface = 2;
+        //                    break;
+        //                case "EarthActivator":
+        //                    iSurface = 2;
+        //                    break;
+        //                default:
+        //                    iSurface = 0;
+        //                    break;
+        //            }
+        //            sSurface = other.gameObject.tag;
+        //            footstepsEventInstance.setParameterByName("Surface Type", iSurface);
+        //            groundHitEventInstance.setParameterByName("Surface Type", iSurface);
+        //        }
+        //    }
+        //}
     }
 }
