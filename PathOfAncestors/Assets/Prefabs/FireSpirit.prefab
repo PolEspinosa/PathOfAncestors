@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 6821029558618872649}
   - component: {fileID: 340404035708863246}
   - component: {fileID: 334709673747864705}
+  - component: {fileID: 8473787281671232270}
   m_Layer: 13
   m_Name: FireSpirit
   m_TagString: FIRE
@@ -144,7 +145,7 @@ MonoBehaviour:
   slowdownDistance: 7
   targetTag: 
   targetObject: {fileID: 0}
-  stoppingDistance: 1
+  stoppingDistance: 0.5
 --- !u!54 &6821029558618872649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -191,6 +192,23 @@ CapsuleCollider:
   m_Height: 1.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8473787281671232270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703465193059072629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 1, g: 0.32236877, b: 0, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 0
+  indicator: {fileID: 0}
 --- !u!1 &8975544140865204466
 GameObject:
   m_ObjectHideFlags: 0

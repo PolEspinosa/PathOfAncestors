@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EarthSpirit : BaseSpirit
 {
@@ -23,13 +24,13 @@ public class EarthSpirit : BaseSpirit
         FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeEarthSpirit", gameObject);
         hasToRotate = false;
         tmpSpeed = runSpeed;
+        navMeshPath = new NavMeshPath();
     }
 
     // Update is called once per frame
     void Update()
     {
         //ApplyNewRotation();
-        Debug.DrawRay(rayStart.transform.position, -rayStart.transform.up, Color.green);
         if (animController.invoked)
         {
             FollowOrder();
@@ -117,4 +118,14 @@ public class EarthSpirit : BaseSpirit
             //}
         }
     }
+
+    //public bool HasPath()
+    //{
+    //    navAgent.CalculatePath(goToPosition, navMeshPath);
+    //    if (navMeshPath.status != NavMeshPathStatus.PathComplete)
+    //    {
+    //        return false;
+    //    }
+    //    return true;
+    //}
 }

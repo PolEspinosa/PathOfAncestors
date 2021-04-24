@@ -18,6 +18,7 @@ public class BaseSpirit : MonoBehaviour
     public States state;
 
     public NavMeshAgent navAgent;
+    public NavMeshPath navMeshPath;
     protected GameObject player;
     public GameObject target;
     public float walkSpeed, runSpeed;
@@ -216,5 +217,16 @@ public class BaseSpirit : MonoBehaviour
         //set the speed to the animator variable for the blend tree
         //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
         animController.speed = velocity.magnitude / runSpeed;
+    }
+
+    //calculate if spirit has path to the target
+    public bool HasPath(RaycastHit hit)
+    {
+        navAgent.CalculatePath(hit.point, navMeshPath);
+        if (navMeshPath.status != NavMeshPathStatus.PathComplete)
+        {
+            return false;
+        }
+        return true;
     }
 }
