@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1978440172872832371}
   m_Layer: 0
   m_Name: BolaAltar (1)
-  m_TagString: PickableObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 5915662796942390463}
   m_Layer: 0
   m_Name: bola
-  m_TagString: PickableObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
