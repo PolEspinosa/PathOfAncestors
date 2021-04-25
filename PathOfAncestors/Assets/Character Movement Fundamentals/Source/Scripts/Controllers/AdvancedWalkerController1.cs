@@ -83,6 +83,9 @@ namespace CMF
         //sound related variables
         private int iSurface;
         private string sSurface;
+        [SerializeField]
+        private float stepsDelay;
+        private float previousDelay;
 
         //Get references to all necessary components;
         void Awake()
@@ -96,6 +99,7 @@ namespace CMF
             footstepsEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/playerFootsteps");
             footstepsEventInstance.setVolume(0.5f);
             sSurface = "Rock";
+            previousDelay = stepsDelay;
 
             if (characterInput == null)
                 Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
@@ -134,6 +138,7 @@ namespace CMF
         void FixedUpdate()
         {
             ControllerUpdate();
+            PlayFootstepsSound();
         }
 
         //Update controller;
@@ -229,6 +234,7 @@ namespace CMF
             //If controller is not grounded, multiply movement velocity with 'airControl';
             if (!(currentControllerState == ControllerState.Grounded))
                 _velocity = _velocityDirection * movementSpeed * airControl;
+            
 
             return _velocity;
         }
@@ -628,7 +634,18 @@ namespace CMF
 
         private void PlayFootstepsSound()
         {
-            footstepsEventInstance.start();
+            if(CalculateMovementVelocity().magnitude != 0 && currentControllerState == ControllerState.Grounded)
+            {
+                if(previousDelay > 0)
+                {
+                    previousDelay -= Time.deltaTime;
+                }
+                else
+                {
+                    footstepsEventInstance.start();
+                    previousDelay = stepsDelay;
+                }
+            }
         }
 
         //private void OnTriggerEnter(Collider other)
