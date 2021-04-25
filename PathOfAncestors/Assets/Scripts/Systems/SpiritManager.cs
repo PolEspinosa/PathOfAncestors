@@ -27,6 +27,7 @@ public class SpiritManager : MonoBehaviour
     //this variable will determine when to spawn the other spirit so it goes according to the animation
     private bool invokeOtherSpirit;
     private GameObject currentSpiritAux;
+    private GameObject aux; //get the spirit new invoked spirit
     private Vector3 positionAux;
 
     //variables to switch the music depending on the invoked spirit
@@ -81,13 +82,36 @@ public class SpiritManager : MonoBehaviour
         }
 
         //if has to destroy the spirit
-        if (currentSpirit != null && currentSpirit.CompareTag("FIRE"))
+        //if (currentSpirit != null && currentSpirit.CompareTag("FIRE"))
+        //{
+        //    
+        //    if (invokeOtherSpirit)
+        //    {
+        //        Desinvoke(currentSpirit);
+        //        currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+        //        invokeOtherSpirit = false;
+        //    }
+        //    if (currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().destroySpirit)
+        //    {
+        //        //if (invokeOtherSpirit)
+        //        //{
+        //        //    Desinvoke(currentSpirit);
+        //        //    currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+        //        //    invokeOtherSpirit = false;
+        //        //}
+        //        //else
+        //        //{
+        //        //    Desinvoke(currentSpirit);
+        //        //}
+        //        Desinvoke(currentSpirit);
+        //    }
+        //}
+        if (currentSpirit != null)
         {
-            
             if (invokeOtherSpirit)
             {
-                Desinvoke(currentSpirit);
-                currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
+                //Desinvoke(currentSpirit);
+                aux = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
                 invokeOtherSpirit = false;
             }
             if (currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().destroySpirit)
@@ -103,6 +127,11 @@ public class SpiritManager : MonoBehaviour
                 //    Desinvoke(currentSpirit);
                 //}
                 Desinvoke(currentSpirit);
+                if (aux != null)
+                {
+                    currentSpirit = aux;
+                    aux = null;
+                }
             }
         }
     }
@@ -120,30 +149,35 @@ public class SpiritManager : MonoBehaviour
             if (_spirit.tag != currentSpirit.tag)
             {
                 //place holder until we have earth spirit animations
-                if (currentSpirit.CompareTag("FIRE"))
-                {
-                    currentSpiritAux = _spirit;
-                    positionAux = _position.position;
-                    invokeOtherSpirit = true;
-                    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
-                }
-                else
-                {
-                    Desinvoke(currentSpirit);
-                    currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
-                }
+                //if (currentSpirit.CompareTag("FIRE"))
+                //{
+                //    currentSpiritAux = _spirit;
+                //    positionAux = _position.position;
+                //    invokeOtherSpirit = true;
+                //    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
+                //}
+                //else
+                //{
+                //    Desinvoke(currentSpirit);
+                //    currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
+                //}
+                currentSpiritAux = _spirit;
+                positionAux = _position.position;
+                invokeOtherSpirit = true;
+                currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
             }
             else
             {
                 //place holder until we have earth spirit animations
-                if (currentSpirit.CompareTag("FIRE"))
-                {
-                    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
-                }
-                else
-                {
-                    Desinvoke(currentSpirit);
-                }
+                //if (currentSpirit.CompareTag("FIRE"))
+                //{
+                //    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
+                //}
+                //else
+                //{
+                //    Desinvoke(currentSpirit);
+                //}
+                currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
             }
         }
     }

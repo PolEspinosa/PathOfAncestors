@@ -13,6 +13,8 @@ public class EarthSpirit : BaseSpirit
     private float tmpSpeed;
     [SerializeField]
     private AnimationCurve rotationCurve;
+    [SerializeField]
+    private float interactionDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +32,19 @@ public class EarthSpirit : BaseSpirit
     // Update is called once per frame
     void Update()
     {
+        if (targetObject != null)
+        {
+            if (targetObject.CompareTag("BreakableWall") && Vector3.Distance(gameObject.transform.position, targetObject.transform.position) < interactionDistance)
+            {
+                animController.hasToBreak = true;
+            }
+        }
+        else
+        {
+            animController.hasToBreak = false;
+        }
         //ApplyNewRotation();
-        if (animController.invoked)
+        if (animController.invoked && !animController.uninvoked)
         {
             FollowOrder();
         }
@@ -72,6 +85,9 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "MovingPlatform":
                 gameObject.transform.parent = other.gameObject.transform;
+                break;
+            case "BreakWallTrigger":
+                targetObject = null;
                 break;
         }
     }

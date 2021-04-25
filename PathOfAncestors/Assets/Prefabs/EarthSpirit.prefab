@@ -46,6 +46,7 @@ MonoBehaviour:
   uninvoked: 0
   destroySpirit: 0
   speed: 0
+  hasToBreak: 0
   invokedParticles: {fileID: 4404793908529947948}
   invokedParticles2: {fileID: 2868471807958692717}
 --- !u!1 &5271552183273091417
@@ -179,6 +180,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  interactionDistance: 10
 --- !u!195 &842660838196405411
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -421,6 +423,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642122124796359696, guid: 53c17b41491d07445b8f05daa7dd9f2a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642122124796359696, guid: 53c17b41491d07445b8f05daa7dd9f2a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8133613921337680465, guid: 53c17b41491d07445b8f05daa7dd9f2a,
         type: 3}

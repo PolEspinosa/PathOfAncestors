@@ -20,6 +20,8 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     {
         animator.SetFloat("Speed", speed);
         animator.SetBool("invoked", invoked);
+        animator.SetBool("breakWall", hasToBreak);
+        animator.SetBool("uninvoked", uninvoked);
     }
 
     private void EarthInvoked()
@@ -37,5 +39,29 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     {
         invokedParticles.Stop();
         invokedParticles2.Stop();
+    }
+
+    private void UninvokedParticles()
+    {
+        invokedParticles.Play();
+        invokedParticles2.Play();
+    }
+
+    private void StopUninvokedParticles()
+    {
+        invokedParticles.Stop();
+        invokedParticles2.Stop();
+    }
+
+    private void DestroyEarth()
+    {
+        StartCoroutine(particlesDelay());
+        //destroySpirit = true;
+    }
+
+    private IEnumerator particlesDelay()
+    {
+        yield return new WaitForSeconds(0.6f);
+        destroySpirit = true;
     }
 }

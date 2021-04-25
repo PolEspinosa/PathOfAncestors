@@ -7,10 +7,12 @@ public class SpiritsAnimatorController : MonoBehaviour
     public bool invoked, uninvoked, destroySpirit;
     protected Animator animator;
     public float speed;
+    public bool hasToBreak;
     // Start is called before the first frame update
     void Start()
     {
         invoked = uninvoked = destroySpirit = false;
+        hasToBreak = false;
     }
 
     // Update is called once per frame
