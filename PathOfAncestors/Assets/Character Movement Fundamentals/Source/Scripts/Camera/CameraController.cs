@@ -47,6 +47,9 @@ namespace CMF
 		protected Camera cam;
 		protected CameraInput cameraInput;
 
+        [SerializeField]
+        private SpiritsPassiveAbilities1 passiveScript;
+
 		//Setup references.
 		void Awake () {
 			tr = transform;
@@ -78,8 +81,12 @@ namespace CMF
 
 		void Update()
 		{
-			HandleCameraRotation();
-		}
+            //if (!passiveScript.pushing)
+            //{
+            //    
+            //}
+            HandleCameraRotation();
+        }
 
 		//Get user input and handle camera rotation;
 		//This method can be overridden in classes derived from this base class to modify camera behaviour;

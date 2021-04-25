@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4404779544561742}
   - component: {fileID: 1838716465027848510}
   - component: {fileID: 2966954846445499316}
+  - component: {fileID: 451863367}
   m_Layer: 14
   m_Name: Model
   m_TagString: Player
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 114812654782354504}
+  passiveScript: {fileID: 1695543095}
 --- !u!136 &2966954846445499316
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -64,6 +66,19 @@ CapsuleCollider:
   m_Height: 3.1
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!65 &451863367
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107213591856028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1.33, z: 0}
 --- !u!1 &1170578282839750
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +318,7 @@ MonoBehaviour:
   useMouseInput: 1
   smoothCameraRotation: 0
   cameraSmoothingFactor: 45.5
+  passiveScript: {fileID: 1695543095}
 --- !u!114 &114171209587689312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +353,7 @@ GameObject:
   - component: {fileID: 6318772896406036548}
   - component: {fileID: 7564607797633685210}
   - component: {fileID: 6440987484339149424}
+  - component: {fileID: 1695543095}
   m_Layer: 14
   m_Name: FirstPersonWalker
   m_TagString: Player
@@ -459,6 +476,8 @@ MonoBehaviour:
   useLocalMomentum: 1
   cameraTransform: {fileID: 4380173960156682}
   stepsDelay: 0.35
+  passiveScript: {fileID: 1695543095}
+  playerModel: {fileID: 1107213591856028}
 --- !u!114 &6318772896406036548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +538,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1695543095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965413160415254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8dec31fff8d6e34fae6dd77a44aed96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushing: 0
+  movingObject: {fileID: 0}
+  spiritManager: {fileID: 0}
+  facedDirection: {x: 0, y: 0, z: 0}
+  time: 0
+  boxColliding: 0
+  boxCollider: {fileID: 451863367}
+  boxZOffset: 1
+  boxYOffset: 1
+  parentTimeDelay: 0
+  inDarkArea: 0
 --- !u!1 &1379475598504727013
 GameObject:
   m_ObjectHideFlags: 0
