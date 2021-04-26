@@ -10,7 +10,7 @@ public class EarthSpirit : BaseSpirit
     public float rotationSpeed;
     private Quaternion targetRotation;
     private bool hasToRotate;
-    private float tmpSpeed;
+    private float runTmpSpeed, walkTmpSpeed;
     [SerializeField]
     private AnimationCurve rotationCurve;
     [SerializeField]
@@ -25,7 +25,8 @@ public class EarthSpirit : BaseSpirit
         //play earth spirit invokation sound
         FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeEarthSpirit", gameObject);
         hasToRotate = false;
-        tmpSpeed = runSpeed;
+        runTmpSpeed = runSpeed;
+        walkTmpSpeed = walkSpeed;
         navMeshPath = new NavMeshPath();
     }
 
@@ -115,23 +116,46 @@ public class EarthSpirit : BaseSpirit
             Vector3 directionForward = new Vector3(goToPosition.x - gameObject.transform.position.x, 0, goToPosition.z - gameObject.transform.position.z);
             angle = Vector3.Angle(gameObject.transform.forward.normalized, directionForward.normalized);
             angle = Mathf.Abs(angle);
-            runSpeed = rotationCurve.Evaluate(angle / 180f) * tmpSpeed;
-            //if (angle > 40f && !hasToRotate)
-            //{
-            //    hasToRotate = true;
-            //}
-            //if (hasToRotate)
-            //{
-            //    if (angle >= 20)
-            //    {
-            //        runSpeed = rotationCurve.Evaluate(angle / 180f) * tmpSpeed;
-            //    }
-            //    else
-            //    {
-            //        runSpeed = tmpSpeed;
-            //        hasToRotate = false;
-            //    }
-            //}
+            runSpeed = rotationCurve.Evaluate(angle / 180f) * runTmpSpeed;
+            if (angle > 40f && !hasToRotate)
+            {
+                hasToRotate = true;
+            }
+            if (hasToRotate)
+            {
+                if (angle >= 20)
+                {
+                    runSpeed = rotationCurve.Evaluate(angle / 180f) * runTmpSpeed;
+                }
+                else
+                {
+                    runSpeed = runTmpSpeed;
+                    hasToRotate = false;
+                }
+            }
+        }
+        else if(state == States.FOLLOWING)
+        {
+            Vector3 directionForward = new Vector3(target.transform.position.x - gameObject.transform.position.x, 0, target.transform.position.z - gameObject.transform.position.z);
+            angle = Vector3.Angle(gameObject.transform.forward.normalized, directionForward.normalized);
+            angle = Mathf.Abs(angle);
+            walkSpeed = rotationCurve.Evaluate(angle / 180f) * runTmpSpeed;
+            if (angle > 40f && !hasToRotate)
+            {
+                hasToRotate = true;
+            }
+            if (hasToRotate)
+            {
+                if (angle >= 20)
+                {
+                   walkSpeed = rotationCurve.Evaluate(angle / 180f) * runTmpSpeed;
+                }
+                else
+                {
+                    walkSpeed = walkTmpSpeed;
+                    hasToRotate = false;
+                }
+            }
         }
     }
 
