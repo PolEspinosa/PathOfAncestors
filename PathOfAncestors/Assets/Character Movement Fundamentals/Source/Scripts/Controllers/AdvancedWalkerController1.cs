@@ -165,6 +165,8 @@ namespace CMF
             //Check if the player has initiated a jump;
             HandleJumping();
 
+            HandleSprint();
+
             //Calculate movement velocity;
             Vector3 _velocity = CalculateMovementVelocity();
 
@@ -412,6 +414,21 @@ namespace CMF
                     OnJumpStart();
 
                     currentControllerState = ControllerState.Jumping;
+                }
+            }
+        }
+
+        void HandleSprint()
+        {
+            if (currentControllerState == ControllerState.Grounded)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    movementSpeed = 10;
+                }
+                else
+                {
+                    movementSpeed = 7;
                 }
             }
         }
