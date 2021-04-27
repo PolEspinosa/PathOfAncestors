@@ -158,7 +158,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             {
                 if (!b.isTrigger)
                 {
-                    boxCollider.size = new Vector3(b.size.x * b.gameObject.transform.localScale.x, b.size.y * b.gameObject.transform.localScale.y, b.size.z * b.gameObject.transform.localScale.z);
+                    //boxCollider.size = new Vector3(b.size.x * b.gameObject.transform.localScale.x, b.size.y * b.gameObject.transform.localScale.y, b.size.z * b.gameObject.transform.localScale.z);
                     boxCollider.center = new Vector3(0, Mathf.Abs(1 - boxCollider.size.y / 2f + boxYOffset), boxCollider.size.z / 2f + boxZOffset);
                     boxCollider.enabled = true;
                     b.enabled = false;  
