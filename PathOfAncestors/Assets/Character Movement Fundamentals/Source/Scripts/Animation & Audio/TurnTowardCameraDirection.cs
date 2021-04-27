@@ -10,6 +10,9 @@ namespace CMF
 		public CameraController cameraController;
 		Transform tr;
 
+        [SerializeField]
+        private SpiritsPassiveAbilities1 passiveScript;
+
 		//Setup;
 		void Start () {
 			tr = transform;
@@ -28,8 +31,15 @@ namespace CMF
 			Vector3 _forwardDirection = cameraController.GetFacingDirection();
 			Vector3 _upDirection = cameraController.GetUpDirection();
 
-			//Set rotation;
-			tr.rotation = Quaternion.LookRotation(_forwardDirection, _upDirection);
+            //Set rotation;
+            if (!passiveScript.pushing)
+            {
+                tr.rotation = Quaternion.LookRotation(_forwardDirection, _upDirection);
+            }
+            else
+            {
+                gameObject.transform.LookAt(new Vector3(passiveScript.movingObject.transform.position.x, gameObject.transform.position.y, passiveScript.movingObject.transform.position.z));
+            }
 		}
 	}
 }
