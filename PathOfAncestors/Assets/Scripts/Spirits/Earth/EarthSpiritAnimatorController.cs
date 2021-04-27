@@ -9,6 +9,12 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     private VisualEffect invokedParticles;
     [SerializeField]
     private ParticleSystem invokedParticles2;
+    [SerializeField]
+    private GameObject uninvokedParticlesObject;
+    [SerializeField]
+    private VisualEffect uninvokedParticles;
+    [SerializeField]
+    private ParticleSystem uninvokedParticles2;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,14 +49,16 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
 
     private void UninvokedParticles()
     {
-        invokedParticles.Play();
-        invokedParticles2.Play();
+        //uninvokedParticles.Play();
+        //uninvokedParticles2.Play();
+        uninvokedParticlesObject.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeEarthSpirit", gameObject);
     }
 
     private void StopUninvokedParticles()
     {
-        invokedParticles.Stop();
-        invokedParticles2.Stop();
+        uninvokedParticles.Stop();
+        uninvokedParticles2.Stop();
     }
 
     private void DestroyEarth()
