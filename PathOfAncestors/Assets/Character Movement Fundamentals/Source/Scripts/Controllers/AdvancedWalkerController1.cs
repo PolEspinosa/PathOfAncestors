@@ -77,15 +77,16 @@ namespace CMF
 
         //event instance for the jump sound
         private FMOD.Studio.EventInstance jumpEventInstance;
-        private FMOD.Studio.EventInstance groundHitEventInstance;
+        public FMOD.Studio.EventInstance groundHitEventInstance;
         //event instance for the footsteps
-        private FMOD.Studio.EventInstance footstepsEventInstance;
+        public FMOD.Studio.EventInstance footstepsEventInstance;
         //sound related variables
         private int iSurface;
         private string sSurface;
+        //used to delay the steps sound so it makes the effect that the character is walking
         [SerializeField]
-        private float stepsDelay;
-        private float previousDelay;
+        private float stepsWalkDelay, stepsRunDelay;
+        private float previousWalkDelay, previousRunDelay;
 
         [SerializeField]
         public SpiritsPassiveAbilities1 passiveScript;
@@ -103,8 +104,11 @@ namespace CMF
             //initialize sound related variables
             footstepsEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/playerFootsteps");
             footstepsEventInstance.setVolume(0.5f);
-            sSurface = "Rock";
-            previousDelay = stepsDelay;
+            groundHitEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/hitGround");
+            groundHitEventInstance.setVolume(0.5f);
+            //sSurface = "Rock";
+            previousWalkDelay = stepsWalkDelay;
+            previousRunDelay = stepsRunDelay;
 
             if (characterInput == null)
                 Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
@@ -667,58 +671,47 @@ namespace CMF
 
         private void PlayGroundHitSound()
         {
-            groundHitEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/hitGround");
-            groundHitEventInstance.setVolume(0.5f);
+            //groundHitEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Player/hitGround");
+            //groundHitEventInstance.setVolume(0.5f);
             groundHitEventInstance.start();
-            groundHitEventInstance.release();
+            //groundHitEventInstance.release();
         }
 
         private void PlayFootstepsSound()
         {
+            //if the player is moving and on the ground, play steps sounds
             if(CalculateMovementVelocity().magnitude != 0 && currentControllerState == ControllerState.Grounded)
             {
-                if(previousDelay > 0)
+                //control the delay of the step sounds depending on the velocity of the player
+                if (movementSpeed == 7)
                 {
-                    previousDelay -= Time.deltaTime;
+                    //reset run timer when running so it doesn't overlap when changing back
+                    //previousRunDelay = stepsRunDelay;
+                    if (previousWalkDelay > 0)
+                    {
+                        previousWalkDelay -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        footstepsEventInstance.start();
+                        previousWalkDelay = stepsWalkDelay;
+                    }
                 }
-                else
+                else if (movementSpeed == 10)
                 {
-                    footstepsEventInstance.start();
-                    previousDelay = stepsDelay;
+                    //reset walk timer when running so it doesn't overlap when changing back
+                    //previousWalkDelay = stepsWalkDelay;
+                    if (previousRunDelay > 0)
+                    {
+                        previousRunDelay -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        footstepsEventInstance.start();
+                        previousRunDelay = stepsRunDelay;
+                    }
                 }
             }
         }
-
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (!other.gameObject.CompareTag("ReverbChange"))
-        //    {
-        //        //change surface sound according to the surface tag
-        //        if (sSurface != other.gameObject.tag)
-        //        {
-        //            switch (other.gameObject.tag)
-        //            {
-        //                case "Rock":
-        //                    iSurface = 0;
-        //                    break;
-        //                case "Metal":
-        //                    iSurface = 1;
-        //                    break;
-        //                case "EarthPlatform":
-        //                    iSurface = 2;
-        //                    break;
-        //                case "EarthActivator":
-        //                    iSurface = 2;
-        //                    break;
-        //                default:
-        //                    iSurface = 0;
-        //                    break;
-        //            }
-        //            sSurface = other.gameObject.tag;
-        //            footstepsEventInstance.setParameterByName("Surface Type", iSurface);
-        //            groundHitEventInstance.setParameterByName("Surface Type", iSurface);
-        //        }
-        //    }
-        //}
     }
 }
