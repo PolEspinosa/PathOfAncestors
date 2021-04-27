@@ -35,6 +35,7 @@ TagManager:
   - EarthLookAt
   - Unparent
   - MusicManager
+  - BreakWallTrigger
   layers:
   - Default
   - TransparentFX

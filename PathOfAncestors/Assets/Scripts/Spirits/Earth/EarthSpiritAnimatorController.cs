@@ -9,6 +9,12 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     private VisualEffect invokedParticles;
     [SerializeField]
     private ParticleSystem invokedParticles2;
+    [SerializeField]
+    private GameObject uninvokedParticlesObject;
+    [SerializeField]
+    private VisualEffect uninvokedParticles;
+    [SerializeField]
+    private ParticleSystem uninvokedParticles2;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +26,8 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     {
         animator.SetFloat("Speed", speed);
         animator.SetBool("invoked", invoked);
+        animator.SetBool("breakWall", hasToBreak);
+        animator.SetBool("uninvoked", uninvoked);
     }
 
     private void EarthInvoked()
@@ -37,5 +45,31 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     {
         invokedParticles.Stop();
         invokedParticles2.Stop();
+    }
+
+    private void UninvokedParticles()
+    {
+        //uninvokedParticles.Play();
+        //uninvokedParticles2.Play();
+        uninvokedParticlesObject.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeEarthSpirit", gameObject);
+    }
+
+    private void StopUninvokedParticles()
+    {
+        uninvokedParticles.Stop();
+        uninvokedParticles2.Stop();
+    }
+
+    private void DestroyEarth()
+    {
+        StartCoroutine(particlesDelay());
+        //destroySpirit = true;
+    }
+
+    private IEnumerator particlesDelay()
+    {
+        yield return new WaitForSeconds(0.6f);
+        destroySpirit = true;
     }
 }
