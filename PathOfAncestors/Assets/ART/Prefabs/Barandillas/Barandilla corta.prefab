@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5368580864064545261
 Transform:
@@ -58,7 +58,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7384414330741605710
 Transform:
@@ -83,6 +83,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7384414330741605710}
     m_Modifications:
+    - target: {fileID: -8764077512085610462, guid: a10cbcb985049c1489795ab7a7555d0b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a10cbcb985049c1489795ab7a7555d0b,
         type: 3}
       propertyPath: m_RootOrder
@@ -143,11 +148,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bbe043eb6136df14eb9652fcfafc5616, type: 2}
+    - target: {fileID: -7324904602054250430, guid: a10cbcb985049c1489795ab7a7555d0b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -7202464317774104332, guid: a10cbcb985049c1489795ab7a7555d0b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bbe043eb6136df14eb9652fcfafc5616, type: 2}
+    - target: {fileID: -5921505478000457673, guid: a10cbcb985049c1489795ab7a7555d0b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -1644006083177895602, guid: a10cbcb985049c1489795ab7a7555d0b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -158,10 +173,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bbe043eb6136df14eb9652fcfafc5616, type: 2}
+    - target: {fileID: -174176745975339065, guid: a10cbcb985049c1489795ab7a7555d0b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a10cbcb985049c1489795ab7a7555d0b,
         type: 3}
       propertyPath: m_Name
       value: Barandilla_corta
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a10cbcb985049c1489795ab7a7555d0b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10cbcb985049c1489795ab7a7555d0b, type: 3}

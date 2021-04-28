@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1679810701531947109
 Transform:
@@ -98,10 +98,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ef0f6af7976b1cb4bb5dcfb5d5f8586a, type: 2}
+    - target: {fileID: -5781131563527177695, guid: fe69b9ccb177643438eb180be9bf1f10,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fe69b9ccb177643438eb180be9bf1f10,
         type: 3}
       propertyPath: m_Name
       value: roca1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe69b9ccb177643438eb180be9bf1f10,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025166853020952063, guid: fe69b9ccb177643438eb180be9bf1f10,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe69b9ccb177643438eb180be9bf1f10, type: 3}
