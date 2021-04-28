@@ -18,8 +18,20 @@ namespace CMF
 		[Range(0f, 90f)]
 		public float lowerVerticalLimit = 60f;
 
-		//Variables to store old rotation values for interpolation purposes;
-		float oldHorizontalInput = 0f;
+        //Upper and lower limits when pushing a rock
+        [Range(0f, 90f)]
+        public float lowerPushingVerticalLimit = 60f;
+        [Range(0f, 90f)]
+        public float upperPushingVerticalLimit = 60f;
+
+        //Right and left limits when pushing a rock
+        [Range(0f, 90f)]
+        public float leftPushingVerticalLimit = 60f;
+        [Range(0f, 90f)]
+        public float rightPushingVerticalLimit = 60f;
+
+        //Variables to store old rotation values for interpolation purposes;
+        float oldHorizontalInput = 0f;
 		float oldVerticalInput = 0f;
 
 		//Camera turning speed; 
@@ -46,6 +58,9 @@ namespace CMF
 		protected Transform tr;
 		protected Camera cam;
 		protected CameraInput cameraInput;
+
+        [SerializeField]
+        private SpiritsPassiveAbilities1 passiveScript;
 
 		//Setup references.
 		void Awake () {
@@ -78,8 +93,12 @@ namespace CMF
 
 		void Update()
 		{
-			HandleCameraRotation();
-		}
+            //if (!passiveScript.pushing)
+            //{
+            //    
+            //}
+            HandleCameraRotation();
+        }
 
 		//Get user input and handle camera rotation;
 		//This method can be overridden in classes derived from this base class to modify camera behaviour;
@@ -122,8 +141,16 @@ namespace CMF
 			currentXAngle += oldVerticalInput;
 			currentYAngle += oldHorizontalInput;
 
-			//Clamp vertical rotation;
-			currentXAngle = Mathf.Clamp(currentXAngle, -upperVerticalLimit, lowerVerticalLimit);
+            //Clamp vertical rotation;
+            if (!passiveScript.pushing)
+            {
+                currentXAngle = Mathf.Clamp(currentXAngle, -upperVerticalLimit, lowerVerticalLimit);
+            }
+            else
+            {
+                currentXAngle = Mathf.Clamp(currentXAngle, -upperPushingVerticalLimit, lowerPushingVerticalLimit);
+                currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
+            }
 
 			UpdateRotation();
 		}
