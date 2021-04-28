@@ -345,6 +345,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7797900089399061454}
     m_Modifications:
+    - target: {fileID: 1680589768382161754, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.6792453
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680589768382161754, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6792453
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680589768382161754, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.6792453
+      objectReference: {fileID: 0}
     - target: {fileID: 1812581628063247060, guid: 37e4893c9f517c545bd2e817daf43781,
         type: 3}
       propertyPath: m_RootOrder
@@ -398,6 +413,11 @@ PrefabInstance:
     - target: {fileID: 1812581628063247060, guid: 37e4893c9f517c545bd2e817daf43781,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021591311936734009, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
+      propertyPath: m_RenderAlignment
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
