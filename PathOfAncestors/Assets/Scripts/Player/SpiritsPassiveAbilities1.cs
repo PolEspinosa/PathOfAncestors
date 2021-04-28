@@ -28,6 +28,13 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     private Rigidbody boxRigidbody;
     public float parentTimeDelay;
 
+    //indicate the direction the plyer picked the box from
+    public enum PickingSide
+    {
+        LEFT,RIGHT,FRONT,BACK,NONE
+    };
+    public PickingSide side;
+
     public bool inDarkArea;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +49,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         boxColliding = false;
         boxCollider.enabled = false;
         inDarkArea = false;
+        side = PickingSide.NONE;
     }
 
     // Update is called once per frame
@@ -75,18 +83,16 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
                     {
                         b.enabled = true;
                     }
-
+                    boxRigidbody.isKinematic = false;
                     movingObject.GetComponent<PlatformParent>().canParent = true;
                     boxRigidbody = null;
                     movingObject = null;
                     gameObject.transform.LookAt(null);
                     facedBox = false;
                     boxCollider.enabled = false;
+                    side = PickingSide.NONE;
                 }
             }
-        
-
-        
     }
 
     //private void OnTriggerEnter(Collider other)
@@ -134,21 +140,25 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             //the player faces the front face of the box
             if (facedDirection.z < -0.9)
             {
+                side = PickingSide.FRONT;
                 gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, 1);
             }
             //the player faces the back face of the box
             else if (facedDirection.z > 0.9)
             {
+                side = PickingSide.BACK;
                 gameObject.transform.localPosition = new Vector3(0, gameObject.transform.localPosition.y, - 1);
             }
             //the player faces the right face of the box
             else if (facedDirection.x < -0.9)
             {
+                side = PickingSide.RIGHT;
                 gameObject.transform.localPosition = new Vector3(1, gameObject.transform.localPosition.y, 0);
             }
             //the player faces the left face of the box
             else if (facedDirection.x > 0.9)
             {
+                side = PickingSide.LEFT;
                 gameObject.transform.localPosition = new Vector3( - 1, gameObject.transform.localPosition.y, 0);
             }
             gameObject.transform.parent = null;
@@ -165,6 +175,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
                 }
             }
             boxRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            boxRigidbody.isKinematic = true;
         }
         //delay to change parenting between moving object and player to avoid position problems
         if (time < parentTimeDelay)

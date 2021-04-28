@@ -148,8 +148,24 @@ namespace CMF
             }
             else
             {
+                //apply offset depending of the diraction the player has picked the box so the camera limits remain constant
+                switch (passiveScript.side)
+                {
+                    case SpiritsPassiveAbilities1.PickingSide.BACK:
+                        currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
+                        break;
+                    case SpiritsPassiveAbilities1.PickingSide.FRONT:
+                        currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit + 180, rightPushingVerticalLimit + 180);
+                        break;
+                    case SpiritsPassiveAbilities1.PickingSide.LEFT:
+                        currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit + 90, rightPushingVerticalLimit + 90);
+                        break;
+                    case SpiritsPassiveAbilities1.PickingSide.RIGHT:
+                        currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit + 270, rightPushingVerticalLimit + 270);
+                        break;
+                }
                 currentXAngle = Mathf.Clamp(currentXAngle, -upperPushingVerticalLimit, lowerPushingVerticalLimit);
-                currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
+                
             }
 
 			UpdateRotation();
