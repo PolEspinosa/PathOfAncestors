@@ -165,6 +165,14 @@ public class OrderSystem : MonoBehaviour
 
         else if (hit.transform.tag == "EarthPlatform")
         {
+            float playerDistance = Vector3.Distance(this.transform.position, hit.transform.position);
+            float earthDistance = Vector3.Distance(spiritManager.currentSpirit.gameObject.transform.position, hit.transform.position);
+
+            if (playerDistance < earthDistance && !spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit))
+            {
+                spiritManager.Desinvoke(spiritManager.currentSpirit);
+                StartCoroutine(InvokeSpiritAgain(hit));
+            }
             isGoingToEarth = true;
             activator = hit.transform.gameObject.transform.GetChild(0).gameObject;
             if (spiritManager.activatorObject == null)
@@ -196,6 +204,14 @@ public class OrderSystem : MonoBehaviour
 
         else if (hit.transform.tag == "BreakableWall")
         {
+            float playerDistance = Vector3.Distance(this.transform.position, hit.transform.position);
+            float earthDistance = Vector3.Distance(spiritManager.currentSpirit.gameObject.transform.position, hit.transform.position);
+
+            if (playerDistance < earthDistance && !spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit))
+            {
+                spiritManager.Desinvoke(spiritManager.currentSpirit);
+                StartCoroutine(InvokeSpiritAgain(hit));
+            }
             isGoingToEarth = true;
             if (spiritManager.activatorObject == null)
             {
