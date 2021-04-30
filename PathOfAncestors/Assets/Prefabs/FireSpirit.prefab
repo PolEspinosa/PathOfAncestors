@@ -35,7 +35,10 @@ MonoBehaviour:
   uninvoked: 0
   destroySpirit: 0
   speed: 0
+  hasToBreak: 0
   fireParticles: {fileID: 3562572147162489530}
+  minIdleChangeTime: 5
+  maxIdleChangeTime: 10
 --- !u!1 &7703465193059072629
 GameObject:
   m_ObjectHideFlags: 0
