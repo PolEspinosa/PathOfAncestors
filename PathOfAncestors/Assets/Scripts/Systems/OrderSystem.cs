@@ -24,6 +24,7 @@ public class OrderSystem : MonoBehaviour
     [SerializeField]
     private GameObject pathCalculator;
     private NavMeshAgent playerAgent;
+    private NavMeshHit meshHit;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class OrderSystem : MonoBehaviour
                 //if there is no path, desinvoke earth spirit and invoke next to player
                 if (spiritManager.currentSpirit.CompareTag("EARTH"))
                 {
-                    if (!spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit) && PlayerHasPath(hit))
+                    if (!spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit) && PlayerHasPath(hit) && !spiritManager.currentSpirit.GetComponent<EarthSpirit>().switchToSteering)
                     {
                         spiritManager.Desinvoke(spiritManager.currentSpirit);
                         //invoke spirit and manage orders all at once
@@ -196,9 +197,6 @@ public class OrderSystem : MonoBehaviour
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
 
             }
-
-
-
         }
 
 
@@ -207,11 +205,11 @@ public class OrderSystem : MonoBehaviour
             float playerDistance = Vector3.Distance(this.transform.position, hit.transform.position);
             float earthDistance = Vector3.Distance(spiritManager.currentSpirit.gameObject.transform.position, hit.transform.position);
 
-            if (playerDistance < earthDistance && !spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit))
-            {
-                spiritManager.Desinvoke(spiritManager.currentSpirit);
-                StartCoroutine(InvokeSpiritAgain(hit));
-            }
+            //if (playerDistance < earthDistance && !spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit))
+            //{
+            //    spiritManager.Desinvoke(spiritManager.currentSpirit);
+            //    StartCoroutine(InvokeSpiritAgain(hit));
+            //}
             isGoingToEarth = true;
             if (spiritManager.activatorObject == null)
             {
@@ -268,7 +266,10 @@ public class OrderSystem : MonoBehaviour
     //this function will calculate if the player has a path to the target
     private bool PlayerHasPath(RaycastHit hit)
     {
-        playerAgent.CalculatePath(hit.point, playerPath);
+        if (NavMesh.SamplePosition(hit.point, out meshHit, 3.0f, NavMesh.AllAreas))
+        {
+            playerAgent.CalculatePath(meshHit.position, playerPath);
+        }
         if (playerPath.status != NavMeshPathStatus.PathComplete)
         {
             return false;
