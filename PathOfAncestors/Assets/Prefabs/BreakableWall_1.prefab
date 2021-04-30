@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 6992024707170173072}
   - component: {fileID: 4115972143086620351}
   - component: {fileID: 8283042006906076831}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: BreakWallTrigger
   m_Icon: {fileID: 0}
