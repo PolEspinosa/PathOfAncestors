@@ -7,7 +7,7 @@ public class EarthSpirit : BaseSpirit
 {
     public GameObject rayStart;
     private float angle, rotationTime;
-    public float rotationSpeed;
+    public float extraRotationSpeed;
     private Quaternion targetRotation;
     private bool hasToRotate;
     private float runTmpSpeed, walkTmpSpeed;
@@ -62,6 +62,10 @@ public class EarthSpirit : BaseSpirit
             {
                 edgeOfFloor = true;
             }
+        }
+        else
+        {
+            ExtraRotation();
         }
     }
 
@@ -159,13 +163,12 @@ public class EarthSpirit : BaseSpirit
         }
     }
 
-    //public bool HasPath()
-    //{
-    //    navAgent.CalculatePath(goToPosition, navMeshPath);
-    //    if (navMeshPath.status != NavMeshPathStatus.PathComplete)
-    //    {
-    //        return false;
-    //    }
-    //    return true;
-    //}
+    private void ExtraRotation()
+    {
+        if(navAgent.remainingDistance > 1)
+        {
+            Vector3 lookRotation = navAgent.steeringTarget - gameObject.transform.position;
+            gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), extraRotationSpeed * Time.deltaTime);
+        }
+    }
 }

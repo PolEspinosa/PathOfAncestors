@@ -177,7 +177,7 @@ MonoBehaviour:
   targetTag: 
   targetObject: {fileID: 0}
   rayStart: {fileID: 3836467054094217417}
-  rotationSpeed: 0
+  extraRotationSpeed: 2
   rotationCurve:
     serializedVersion: 2
     m_Curve:
