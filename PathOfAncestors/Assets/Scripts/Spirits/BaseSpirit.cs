@@ -19,6 +19,7 @@ public class BaseSpirit : MonoBehaviour
 
     public NavMeshAgent navAgent;
     public NavMeshPath navMeshPath;
+    private NavMeshHit meshHit;
     protected GameObject player;
     public GameObject target;
     public float walkSpeed, runSpeed;
@@ -229,7 +230,11 @@ public class BaseSpirit : MonoBehaviour
     //calculate if spirit has path to the target
     public bool HasPath(RaycastHit hit)
     {
-        navAgent.CalculatePath(hit.point, navMeshPath);
+        if(NavMesh.SamplePosition(hit.point, out meshHit, 3.0f, NavMesh.AllAreas))
+        {
+            navAgent.CalculatePath(meshHit.position, navMeshPath);
+        }
+        
         if (navMeshPath.status != NavMeshPathStatus.PathComplete)
         {
             return false;
