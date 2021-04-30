@@ -64,7 +64,7 @@ public class OrderSystem : MonoBehaviour
                 //if there is no path, desinvoke earth spirit and invoke next to player
                 if (spiritManager.currentSpirit.CompareTag("EARTH"))
                 {
-                    if (!spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit) && PlayerHasPath(hit))
+                    if (!spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit) && PlayerHasPath(hit) && !spiritManager.currentSpirit.GetComponent<EarthSpirit>().switchToSteering)
                     {
                         spiritManager.Desinvoke(spiritManager.currentSpirit);
                         //invoke spirit and manage orders all at once

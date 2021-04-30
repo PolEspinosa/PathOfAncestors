@@ -37,7 +37,7 @@ public class BaseSpirit : MonoBehaviour
     protected Vector3 steering;
     protected float slowdownFactor;
     //bool to determine when to change from nav mesh agent to steering behavior and viceversa
-    protected bool switchToSteering;
+    public bool switchToSteering;
     protected bool edgeOfFloor;
     //object for the fire spirit to look at
     protected GameObject lookAtObjectFire;
