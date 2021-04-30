@@ -51,6 +51,8 @@ public class BaseSpirit : MonoBehaviour
     //fire animator variables
     protected SpiritsAnimatorController animController;
 
+    public OrderSystem order;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,8 @@ public class BaseSpirit : MonoBehaviour
             case States.FOLLOWING:
                 if (spiritType == Type.EARTH)
                 {
+                    targetObject = null;
+                    targetTag = null;
                     if (switchToSteering)
                     {
                         navAgent.enabled = false;
@@ -126,9 +130,18 @@ public class BaseSpirit : MonoBehaviour
                     }
                     else
                     {
-                        navAgent.enabled = true;
-                        navAgent.speed = runSpeed;
-                        navAgent.SetDestination(goToPosition);
+                        if (order.isGoingToEarth && targetTag == "BreakableWall")
+                        {
+                            navAgent.enabled = true;
+                            navAgent.speed = runSpeed + 5;
+                            navAgent.SetDestination(goToPosition);
+                        }
+                        else
+                        {
+                            navAgent.enabled = true;
+                            navAgent.speed = runSpeed;
+                            navAgent.SetDestination(goToPosition);
+                        }
 
                         //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
                         animController.speed = navAgent.velocity.magnitude / runSpeed;

@@ -67,6 +67,7 @@ public class EarthSpirit : BaseSpirit
 
     protected override void InitialiseValues()
     {
+        order = GameObject.Find("Character").GetComponent<OrderSystem>();
         target = GameObject.Find("EarthInvokation");
         animController = gameObject.GetComponentInChildren<SpiritsAnimatorController>();
         lookAtObjectEarth = GameObject.FindGameObjectWithTag("EarthLookAt");
