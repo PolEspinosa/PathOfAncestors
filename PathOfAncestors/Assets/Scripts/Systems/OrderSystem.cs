@@ -220,6 +220,8 @@ public class OrderSystem : MonoBehaviour
             }
             else
             {
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
                 ManageActivators();
             }
 
@@ -233,7 +235,17 @@ public class OrderSystem : MonoBehaviour
         //}
         else if (hit.transform.CompareTag("Burnable"))
         {
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+
+            if (spiritManager.activatorObject == null)
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            }
+            else
+            {
+                ManageActivators();
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
+            }
+            
         }
     }
 
