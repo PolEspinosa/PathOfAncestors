@@ -196,9 +196,6 @@ public class OrderSystem : MonoBehaviour
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
 
             }
-
-
-
         }
 
 

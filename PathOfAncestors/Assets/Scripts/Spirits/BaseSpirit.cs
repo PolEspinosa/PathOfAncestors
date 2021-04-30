@@ -128,8 +128,15 @@ public class BaseSpirit : MonoBehaviour
                     {
                         navAgent.enabled = true;
                         navAgent.speed = runSpeed;
-                        navAgent.SetDestination(goToPosition);
-
+                        //if the target is the breakable wall, make the spirit go further so it gois through the wall
+                        if(targetTag== "BreakableWall")
+                        {
+                            navAgent.SetDestination(goToPosition + new Vector3(3, 0, 0));
+                        }
+                        else
+                        {
+                            navAgent.SetDestination(goToPosition);
+                        }
                         //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
                         animController.speed = navAgent.velocity.magnitude / runSpeed;
                     }

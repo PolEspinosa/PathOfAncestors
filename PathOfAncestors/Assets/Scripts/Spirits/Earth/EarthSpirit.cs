@@ -15,6 +15,7 @@ public class EarthSpirit : BaseSpirit
     private AnimationCurve rotationCurve;
     [SerializeField]
     private float interactionDistance;
+    private CapsuleCollider col;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class EarthSpirit : BaseSpirit
         runTmpSpeed = runSpeed;
         walkTmpSpeed = walkSpeed;
         navMeshPath = new NavMeshPath();
+        col = gameObject.GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -42,7 +44,7 @@ public class EarthSpirit : BaseSpirit
         }
         else
         {
-            animController.hasToBreak = false;
+            //animController.hasToBreak = false;
         }
         //ApplyNewRotation();
         if (animController.invoked && !animController.uninvoked)
@@ -92,7 +94,7 @@ public class EarthSpirit : BaseSpirit
                 gameObject.transform.parent = other.gameObject.transform;
                 break;
             case "BreakWallTrigger":
-                targetObject = null;
+                col.isTrigger = true;
                 break;
         }
     }
@@ -109,6 +111,11 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "MovingPlatform":
                 gameObject.transform.parent = null;
+                break;
+            case "BreakWallTrigger":
+                col.isTrigger = false;
+                animController.hasToBreak = false;
+                targetObject = null;
                 break;
         }
     }
