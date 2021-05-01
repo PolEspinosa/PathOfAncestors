@@ -98,7 +98,7 @@ public class PickUp : MonoBehaviour
             player.GetComponent<CMF.AdvancedWalkerController1>().jumpSpeed = normalJump;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "PickableObject" && !hasObject)
         {

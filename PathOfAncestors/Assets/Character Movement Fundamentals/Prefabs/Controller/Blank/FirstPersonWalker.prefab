@@ -560,6 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushing: 0
   movingObject: {fileID: 0}
+  inRange: 0
   spiritManager: {fileID: 0}
   facedDirection: {x: 0, y: 0, z: 0}
   time: 0
@@ -568,6 +569,7 @@ MonoBehaviour:
   boxZOffset: 1
   boxYOffset: 1
   parentTimeDelay: 0
+  side: 0
   inDarkArea: 0
 --- !u!1 &1379475598504727013
 GameObject:
@@ -626,7 +628,7 @@ GameObject:
   - component: {fileID: 7542499425088704551}
   m_Layer: 14
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: PickUpTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

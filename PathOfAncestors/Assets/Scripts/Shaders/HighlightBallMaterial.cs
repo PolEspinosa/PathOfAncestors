@@ -12,6 +12,7 @@ public class HighlightBallMaterial : MonoBehaviour
     [SerializeField]
     private GameObject popUp;
     private PickUp pickUp;
+    private bool inRange;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class HighlightBallMaterial : MonoBehaviour
         defaultMat = myRenderer.material;
         player = GameObject.FindGameObjectWithTag("Player");
         pickUp = player.GetComponentInChildren<PickUp>();
+        inRange = false;
     }
 
     // Update is called once per frame
@@ -38,11 +40,27 @@ public class HighlightBallMaterial : MonoBehaviour
 
     private bool CanInteract()
     {
-        return pickUp.objectToPickUp && !pickUp.hasObject; 
+        return pickUp.objectToPickUp && !pickUp.hasObject && inRange; 
     }
 
     private void OnDestroy()
     {
         Destroy(defaultMat);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PickUpTrigger"))
+        {
+            inRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("PickUpTrigger"))
+        {
+            inRange = false;
+        }
     }
 }
