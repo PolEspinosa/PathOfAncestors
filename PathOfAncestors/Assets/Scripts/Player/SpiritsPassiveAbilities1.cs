@@ -7,7 +7,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     public bool pushing;
     public GameObject movingObject; //object the player is currently moving
     private bool facedBox; //set the rotation of the player to always face the box if he is pushing it
-    private bool inRange; //determines whether the player is in range
+    public bool inRange; //determines whether the player is in range
     private bool earthActive; //earth spirit invoked
     private float pushSpeed;
     public SpiritManager spiritManager;
