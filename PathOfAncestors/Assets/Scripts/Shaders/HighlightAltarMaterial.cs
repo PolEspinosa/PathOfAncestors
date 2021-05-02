@@ -14,6 +14,8 @@ public class HighlightAltarMaterial : MonoBehaviour
     [SerializeField]
     private GameObject popUp;
     private bool inRange;
+    [SerializeField]
+    private float interactDistance;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,27 +43,11 @@ public class HighlightAltarMaterial : MonoBehaviour
 
     private bool CanInteract()
     {
-        return pickUp.hasObject && pickUp.inActivator && inRange;
+        return pickUp.hasObject && pickUp.inActivator && Vector3.Distance(gameObject.transform.position,player.transform.position) < interactDistance;
     }
 
     private void OnDestroy()
     {
         Destroy(defaultMat);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("PickUpTrigger"))
-        {
-            inRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("PickUpTrigger"))
-        {
-            inRange = false;
-        }
     }
 }
