@@ -27,7 +27,6 @@ public class FireSpiritAnimatorController : SpiritsAnimatorController
         animator.SetBool("uninvoked", uninvoked);
         animator.SetFloat("Speed", speed);
         animator.SetBool("changeIdle", changeIdle);
-        Debug.Log(currentTime);
     }
 
     private void FixedUpdate()

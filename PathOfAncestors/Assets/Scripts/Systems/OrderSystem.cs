@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class OrderSystem : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class OrderSystem : MonoBehaviour
     bool aiming = false;
     public GameObject aimCursor;
     public GameObject cursorReference;
-
+    private Image cursorImage;
+    [SerializeField]
+    private Sprite defaultCursor, fireCursor, earthCursor;
     public RaycastHit hit;
     private Ray ray;
     public Vector3 goToPosition;
@@ -32,12 +35,17 @@ public class OrderSystem : MonoBehaviour
         aimCursor.SetActive(false);
         playerPath = new NavMeshPath();
         playerAgent = pathCalculator.GetComponent<NavMeshAgent>();
+        cursorImage = aimCursor.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         pathCalculator.transform.position = gameObject.transform.position;
+        if (Input.GetMouseButton(1))
+        {
+            StartCoroutine(ManageCursorDelay());
+        }
         if (Input.GetMouseButtonDown(1))
         {
             aiming = true;
@@ -50,6 +58,7 @@ public class OrderSystem : MonoBehaviour
             aiming = false;
             //Cursor.visible = false;
             aimCursor.SetActive(false);
+            StopCoroutine(ManageCursorDelay());
         }
         //cast the ray
         if (aiming && Input.GetMouseButtonDown(0))
@@ -282,5 +291,34 @@ public class OrderSystem : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         spiritManager.InvokeSpirit(spiritManager.earthSpiritRef, spiritManager.earthPosition.transform);
         ManageOrders(hit);
+    }
+
+    private void ManageCursors()
+    {
+        RaycastHit hit;
+        Ray ray = camera.ScreenPointToRay(aimCursor.transform.position);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreMask))
+        {
+            if(hit.transform.CompareTag("Torch") || hit.transform.CompareTag("OvenActivator") || hit.transform.CompareTag("Burnable"))
+            {
+                cursorImage.sprite = fireCursor;
+            }
+            else if (hit.transform.CompareTag("EarthPlatform") || hit.transform.CompareTag("BreakableWall"))
+            {
+                cursorImage.sprite = earthCursor;
+            }
+            else
+            {
+                cursorImage.sprite = defaultCursor;
+            }
+        }
+    }
+    private IEnumerator ManageCursorDelay()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            ManageCursors();
+        }
     }
 }
