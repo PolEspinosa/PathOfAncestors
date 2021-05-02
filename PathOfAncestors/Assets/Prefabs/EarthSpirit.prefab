@@ -52,6 +52,24 @@ MonoBehaviour:
   uninvokedParticlesObject: {fileID: 6889064557606919705}
   uninvokedParticles: {fileID: 8379355670699216843}
   uninvokedParticles2: {fileID: 7973430483286251914}
+--- !u!114 &3870960159366625995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135168684414213491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 0.43739247, g: 1, b: 0, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5271552183273091417
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +129,7 @@ MeshRenderer:
   m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -174,6 +192,7 @@ MonoBehaviour:
   stopDistance: 2
   followSpeed: 0
   slowdownDistance: 1.25
+  switchToSteering: 0
   targetTag: 
   targetObject: {fileID: 0}
   rayStart: {fileID: 3836467054094217417}
