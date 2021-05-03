@@ -58,20 +58,7 @@ public class FireSpiritAnimatorController : SpiritsAnimatorController
 
     private void ChangeIdle()
     {
-        //if the speed is less than 0.1f means it is in idle state
-        //if it doesn't have to change idle state yet, decrease counter, else change state
-        //if (!changeIdle)
-        //{
-        //    if (currentTime > 0)
-        //    {
-        //        currentTime -= Time.fixedDeltaTime;
-        //    }
-        //    else
-        //    {
-        //        changeIdle = true;
-        //    }
-        //}
-        if (speed <= 0.3f)
+        if (speed <= 0.2f)
         {
             doOnce = true;
             //if it doesn't have to change idle state yet, decrease counter, else change state
