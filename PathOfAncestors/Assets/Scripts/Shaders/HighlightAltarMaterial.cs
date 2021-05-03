@@ -19,9 +19,9 @@ public class HighlightAltarMaterial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Character");
         myRenderer = gameObject.GetComponent<Renderer>();
         defaultMat = myRenderer.material;
-        player = GameObject.Find("Character");
         pickUp = player.GetComponentInChildren<PickUp>();
         inRange = false;
     }

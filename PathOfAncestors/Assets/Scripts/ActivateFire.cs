@@ -26,7 +26,7 @@ public class ActivateFire : MonoBehaviour
         else
         {
             fire.SetActive(false);
-            fire.SetActive(false);
+            fireLight.SetActive(false);
         }
     }
 }
