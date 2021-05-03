@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public bool gamePaused = false;
     public GameObject pauseUI, optionsUI;
     public CheckpointManager manager;
     public GameObject player;
     [SerializeField]
-    private GameObject continueButton, restartButton, optionsButton, backToMenuButton, exitButton;
+    private GameObject continueButton, restartButton, optionsButton, backToMenuButton, exitButton, optionsBackButton;
     [SerializeField]
-    private Sprite continueAct, continueDeact, restartAct, restartDeact, optionsAct, optionsDeact, backToMenuAct, backToMenuDeact, exitAct, exitDeact;
+    private Sprite continueAct, continueDeact, restartAct, restartDeact, optionsAct, optionsDeact, backToMenuAct, backToMenuDeact, exitAct, exitDeact, optionsBackAct, optionsBackDeact;
 
     // Start is called before the first frame update
     void Start()
@@ -52,13 +52,22 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-
-
     public void Continue()
     {
         Time.timeScale = 1;
         pauseUI.SetActive(false);
+        optionsUI.SetActive(false);
         gamePaused = false;
+    }
+
+    public void ContinueAct()
+    {
+        continueButton.GetComponent<Image>().sprite = continueAct;
+    }
+
+    public void ContinueDeact()
+    {
+        continueButton.GetComponent<Image>().sprite = continueDeact;
     }
 
     public void Pause()
@@ -76,10 +85,30 @@ public class PauseMenu : MonoBehaviour
         gamePaused = false;
     }
 
+    public void RestartAct()
+    {
+        restartButton.GetComponent<Image>().sprite = restartAct;
+    }
+
+    public void RestartDeact()
+    {
+        restartButton.GetComponent<Image>().sprite = restartDeact;
+    }
+
     public void GoToOptions()
     {
         pauseUI.SetActive(false);
         optionsUI.SetActive(true);
+    }
+
+    public void GoToOptionsAct()
+    {
+        optionsButton.GetComponent<Image>().sprite = optionsAct;
+    }
+
+    public void GoToOptionsDeact()
+    {
+        optionsButton.GetComponent<Image>().sprite = optionsDeact;
     }
 
     public void OptionsBack()
@@ -88,14 +117,44 @@ public class PauseMenu : MonoBehaviour
         optionsUI.SetActive(false);
     }
 
+    public void OptionsBackAct()
+    {
+        optionsBackButton.GetComponent<Image>().sprite = optionsBackAct;
+    }
+
+    public void OptionsBackDeact()
+    {
+        optionsBackButton.GetComponent<Image>().sprite = optionsBackDeact;
+    }
+
     public void BackToMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void BackToMenuAct()
+    {
+        backToMenuButton.GetComponent<Image>().sprite = backToMenuAct;
+    }
+
+    public void BackToMenuDeact()
+    {
+        backToMenuButton.GetComponent<Image>().sprite = backToMenuDeact;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void QuitGameAct()
+    {
+        exitButton.GetComponent<Image>().sprite = exitAct;
+    }
+
+    public void QuitGameDeact()
+    {
+        exitButton.GetComponent<Image>().sprite = exitDeact;
     }
 }
