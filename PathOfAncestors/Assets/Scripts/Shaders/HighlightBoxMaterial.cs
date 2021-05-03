@@ -12,12 +12,16 @@ public class HighlightBoxMaterial : MonoBehaviour
     [SerializeField]
     private GameObject popUp;
     private SpiritsPassiveAbilities1 passiveScript;
+
+    private void Awake()
+    {
+        player = GameObject.Find("Character");
+    }
     // Start is called before the first frame update
     void Start()
     {
         myRenderer = gameObject.GetComponent<Renderer>();
         defaultMat = myRenderer.material;
-        player = GameObject.FindGameObjectWithTag("Player");
         passiveScript = player.GetComponent<SpiritsPassiveAbilities1>();
     }
 

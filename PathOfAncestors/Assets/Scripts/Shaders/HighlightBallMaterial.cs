@@ -16,9 +16,9 @@ public class HighlightBallMaterial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Character");
         myRenderer = gameObject.GetComponent<Renderer>();
         defaultMat = myRenderer.material;
-        player = GameObject.FindGameObjectWithTag("Player");
         pickUp = player.GetComponentInChildren<PickUp>();
         inRange = false;
     }

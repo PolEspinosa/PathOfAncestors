@@ -177,7 +177,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -502,9 +502,9 @@ MonoBehaviour:
     m_Bits: 16388
   aimCursor: {fileID: 0}
   cursorReference: {fileID: 0}
-  defaultCursor: {fileID: 21300000, guid: f0b234e33a0e32a489e3cc7478fb88bc, type: 3}
-  fireCursor: {fileID: 21300000, guid: 8367fcfca0de69c42952dd23b0da1171, type: 3}
-  earthCursor: {fileID: 21300000, guid: a945decece8d07f4bb98979c95802251, type: 3}
+  defaultCursor: {fileID: 21300000, guid: 312f22bd51d7c2645bff3d1e36676ad4, type: 3}
+  fireCursor: {fileID: 21300000, guid: 57229fff5ac422a4aa25444677adfafc, type: 3}
+  earthCursor: {fileID: 21300000, guid: ceb19a7cdf298ee4597abe8f417e024a, type: 3}
   goToPosition: {x: 0, y: 0, z: 0}
   spiritManager: {fileID: 7564607797633685210}
   camera: {fileID: 20298731967192810}
