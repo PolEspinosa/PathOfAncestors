@@ -22,21 +22,29 @@ public class MenuManager : MonoBehaviour
     public Sprite creditsDeact;
 
     //back
-    public Button backButton;
+    public Button backButton, backOptionsButton;
     public Sprite backAct;
     public Sprite backDeact;
 
+    //options
+    public Button optionsButton;
+    public Sprite optionsAct;
+    public Sprite optionsDeact;
 
 
     public GameObject creditsUI;
     public GameObject menu;
+    [SerializeField]
+    private GameObject optionsPanel;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        menu.SetActive(true);
         creditsUI.SetActive(false);
+        optionsPanel.SetActive(false);
     }
 
     public void ActiveStart()
@@ -79,18 +87,44 @@ public class MenuManager : MonoBehaviour
         backButton.GetComponent<Image>().sprite = backDeact;
     }
 
+    public void ActiveOptionsBack()
+    {
+        backOptionsButton.GetComponent<Image>().sprite = backAct;
+    }
 
+    public void DeactiveOptionsBack()
+    {
+        backOptionsButton.GetComponent<Image>().sprite = backDeact;
+    }
 
+    public void ActiveOptions()
+    {
+        optionsButton.GetComponent<Image>().sprite = optionsAct;
+    }
+
+    public void DeactivateOptions()
+    {
+        optionsButton.GetComponent<Image>().sprite = optionsDeact;
+    }
 
     public void ShowCredits()
     {
         creditsUI.SetActive(true);
         menu.SetActive(false);
+        optionsPanel.SetActive(false);
     }
 
     public void ShowMenu()
     {
         creditsUI.SetActive(false);
         menu.SetActive(true);
+        optionsPanel.SetActive(false);
+    }
+
+    public void ShowOptions()
+    {
+        optionsPanel.SetActive(true);
+        menu.SetActive(false);
+        creditsUI.SetActive(false);
     }
 }

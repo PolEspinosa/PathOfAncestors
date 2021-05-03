@@ -7,14 +7,19 @@ public class PauseMenu : MonoBehaviour
 {
 
     public bool gamePaused = false;
-    public GameObject pauseUI;
+    public GameObject pauseUI, optionsUI;
     public CheckpointManager manager;
     public GameObject player;
+    [SerializeField]
+    private GameObject continueButton, restartButton, optionsButton, backToMenuButton, exitButton;
+    [SerializeField]
+    private Sprite continueAct, continueDeact, restartAct, restartDeact, optionsAct, optionsDeact, backToMenuAct, backToMenuDeact, exitAct, exitDeact;
 
     // Start is called before the first frame update
     void Start()
     {
         pauseUI.SetActive(false);
+        optionsUI.SetActive(false);
         manager = GameObject.Find("CheckpointManager").GetComponent<CheckpointManager>();
         player = GameObject.Find("Character");
     }
@@ -51,25 +56,46 @@ public class PauseMenu : MonoBehaviour
 
     public void Continue()
     {
+        Time.timeScale = 1;
         pauseUI.SetActive(false);
         gamePaused = false;
     }
 
     public void Pause()
     {
+        Time.timeScale = 0;
         pauseUI.SetActive(true);
         gamePaused = true;
     }
 
     public void Restart()
     {
+        Time.timeScale = 1;
         player.transform.position = manager.actualCheckpoint.transform.position;
         pauseUI.SetActive(false);
         gamePaused = false;
     }
 
-    public void Exit()
+    public void GoToOptions()
     {
+        pauseUI.SetActive(false);
+        optionsUI.SetActive(true);
+    }
+
+    public void OptionsBack()
+    {
+        pauseUI.SetActive(true);
+        optionsUI.SetActive(false);
+    }
+
+    public void BackToMenu()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
