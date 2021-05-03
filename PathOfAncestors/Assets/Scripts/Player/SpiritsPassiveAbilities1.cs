@@ -56,7 +56,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     void Update()
     {
             //the player is close enough to move the box
-            if (inRange)
+            if (inRange && CanInteract())
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -185,6 +185,19 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         else
         {
             movingObject.transform.parent = gameObject.transform;
+        }
+    }
+
+    private bool CanInteract()
+    {
+        if (movingObject != null)
+        {
+            Vector3 distance = movingObject.transform.position - gameObject.transform.position;
+            return distance.y > 0 && distance.y <= 1.1f;
+        }
+        else
+        {
+            return false;
         }
     }
 }
