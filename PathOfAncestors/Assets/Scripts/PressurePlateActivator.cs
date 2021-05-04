@@ -43,7 +43,11 @@ public class PressurePlateActivator : Activator
     }
     private void OnTriggerEnter(Collider other)
     {
-        colliders.Add(other.transform.gameObject);
+        if (other.transform.gameObject.name != "Trigger" && other.transform.gameObject.name != "EarthInvokation")
+        {
+            colliders.Add(other.transform.gameObject);
+        }
+            
         if (!_activated)
         {
             if (other.tag=="Player" || other.tag == "EARTH" || other.tag=="EarthPlatform")

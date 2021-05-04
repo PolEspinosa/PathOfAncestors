@@ -6,13 +6,16 @@ public class WeightPlateActivator : MonoBehaviour
 {
 
     public int weight = 0;
+    bool addPlayer = true;
+    bool addBox= true;
     private void OnTriggerEnter(Collider other)
     {
 
 
-        if (other.tag == "Player")
+        if (other.tag == "Player" && addPlayer)
         {
             weight += 20;
+            addPlayer = false;
 
         }
         if (other.tag == "EARTH")
@@ -20,11 +23,12 @@ public class WeightPlateActivator : MonoBehaviour
             weight += 10;
 
         }
-        if (other.tag == "Box")
+        if (other.tag == "Box" && addBox)
         {
             if (weight < 50)
             {
                 weight += 70;
+                addBox = false;
             }
 
         }
@@ -33,19 +37,20 @@ public class WeightPlateActivator : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !addPlayer)
         {
             weight -= 20;
-
+            addPlayer = true;
         }
         if (other.tag == "EARTH")
         {
             weight -= 10;
 
         }
-        if (other.tag == "Box")
+        if (other.tag == "Box" && !addBox)
         {
             weight -= 70;
+            addBox = true;
         }
 
     }
