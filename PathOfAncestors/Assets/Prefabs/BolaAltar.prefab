@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0e668db1769355b4983a4963dc2cc6cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -119,18 +119,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &7325458528106100230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017783011660010444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca886519ad7ffef4a87b3cf20a780571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &527988421826536144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +132,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 8fb81c52cb97c764f987f1a33d54d2ed, type: 2}
-  interactDistance: 0
   popUp: {fileID: 636180797439248137}
+--- !u!114 &7325458528106100230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017783011660010444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca886519ad7ffef4a87b3cf20a780571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5827519383756367971
 GameObject:
   m_ObjectHideFlags: 0

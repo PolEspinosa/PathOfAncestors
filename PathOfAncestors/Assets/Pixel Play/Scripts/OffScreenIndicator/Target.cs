@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Attach this script to all the target game objects in the scene.
@@ -8,6 +9,8 @@ public class Target : MonoBehaviour
 {
     [Tooltip("Change this color to change the indicators color for this target")]
     [SerializeField] private Color targetColor = Color.red;
+
+    [SerializeField] private Sprite targetImage;
 
     [Tooltip("Select if box indicator is required for this target")]
     [SerializeField] private bool needBoxIndicator = true;
@@ -33,6 +36,14 @@ public class Target : MonoBehaviour
         get
         {
             return targetColor;
+        }
+    }
+
+    public Sprite TargetImage
+    {
+        get
+        {
+            return targetImage;
         }
     }
 
