@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &6633374658617736484
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861091803818762193}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 554126529233418161, guid: 2c61349f404996c4698f12a4c966c10c, type: 3}
 --- !u!1 &2626443568326545489
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,16 +112,32 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e394de7c9ca9f6a44966202ce76e1321, type: 2}
+    - target: {fileID: -5932096721503115017, guid: 2c61349f404996c4698f12a4c966c10c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2c61349f404996c4698f12a4c966c10c,
         type: 3}
       propertyPath: m_Name
       value: roca2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 2c61349f404996c4698f12a4c966c10c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c61349f404996c4698f12a4c966c10c, type: 3}
 --- !u!4 &2042030913196569429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c61349f404996c4698f12a4c966c10c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2007612809416791230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1861091803818762193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 148500126528031599, guid: 2c61349f404996c4698f12a4c966c10c,
     type: 3}
   m_PrefabInstance: {fileID: 2007612809416791230}
   m_PrefabAsset: {fileID: 0}
