@@ -15,6 +15,9 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     private VisualEffect uninvokedParticles;
     [SerializeField]
     private ParticleSystem uninvokedParticles2;
+
+    [SerializeField]
+    private Outline outlineScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +46,14 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
 
     private void StopInvokedParticles()
     {
+        outlineScript.enabled = true;
         invokedParticles.Stop();
         invokedParticles2.Stop();
     }
 
     private void UninvokedParticles()
     {
+        outlineScript.enabled = false;
         //uninvokedParticles.Play();
         //uninvokedParticles2.Play();
         uninvokedParticlesObject.SetActive(true);

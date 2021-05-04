@@ -17,6 +17,11 @@ public class EarthSpirit : BaseSpirit
     private float interactionDistance;
     private CapsuleCollider col;
 
+    [SerializeField]
+    private Outline outlineScript;
+    [SerializeField]
+    private LayerMask ignoreMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +35,7 @@ public class EarthSpirit : BaseSpirit
         walkTmpSpeed = walkSpeed;
         navMeshPath = new NavMeshPath();
         col = gameObject.GetComponent<CapsuleCollider>();
+        player = GameObject.Find("Character");
     }
 
     // Update is called once per frame
@@ -50,6 +56,7 @@ public class EarthSpirit : BaseSpirit
         if (animController.invoked && !animController.uninvoked)
         {
             FollowOrder();
+            //outlineScript.enabled = true;
         }
         //cast the ray
         if (switchToSteering)
@@ -69,6 +76,15 @@ public class EarthSpirit : BaseSpirit
         {
             ExtraRotation();
         }
+        //if the spirit is being seen, disable the outline
+        //if (IsSeen())
+        //{
+        //    outlineScript.enabled = false;
+        //}
+        //else
+        //{
+        //    outlineScript.enabled = true;
+        //}
     }
 
     protected override void InitialiseValues()
@@ -177,5 +193,25 @@ public class EarthSpirit : BaseSpirit
             Vector3 lookRotation = navAgent.steeringTarget - gameObject.transform.position;
             gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), extraRotationSpeed * Time.deltaTime);
         }
+    }
+
+    private bool IsSeen()
+    {
+        Debug.DrawRay(gameObject.transform.position, player.transform.position - (new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f, gameObject.transform.position.z)), Color.red);
+        RaycastHit hit;
+        if(Physics.Raycast(gameObject.transform.position, player.transform.position - gameObject.transform.position, out hit, Mathf.Infinity, ~ignoreMask))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                Debug.Log("hey");
+                return true;
+            }
+            else
+            {
+                Debug.Log("hey2");
+                return false;
+            }
+        }
+        return true;
     }
 }

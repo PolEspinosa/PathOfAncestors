@@ -37,7 +37,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5135168684414213491}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -70,6 +70,7 @@ MonoBehaviour:
   uninvokedParticlesObject: {fileID: 6889064557606919705}
   uninvokedParticles: {fileID: 8379355670699216843}
   uninvokedParticles2: {fileID: 7973430483286251914}
+  outlineScript: {fileID: 3870960159366625995}
 --- !u!1 &5271552183273091417
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +232,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   interactionDistance: 15
+  outlineScript: {fileID: 3870960159366625995}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 4
 --- !u!195 &842660838196405411
 NavMeshAgent:
   m_ObjectHideFlags: 0
