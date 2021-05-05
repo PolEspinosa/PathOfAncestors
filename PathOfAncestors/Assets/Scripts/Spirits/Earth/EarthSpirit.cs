@@ -38,7 +38,7 @@ public class EarthSpirit : BaseSpirit
         runTmpSpeed = runSpeed;
         walkTmpSpeed = walkSpeed;
         navMeshPath = new NavMeshPath();
-        col = gameObject.GetComponent<CapsuleCollider>();
+        //col = gameObject.GetComponent<CapsuleCollider>();
         player = GameObject.Find("Character");
         //delay for the earth spirit step sounds
         currentWalkStepDelayTime = walkStepDelay;
@@ -223,12 +223,10 @@ public class EarthSpirit : BaseSpirit
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                Debug.Log("hey");
                 return true;
             }
             else
             {
-                Debug.Log("hey2");
                 return false;
             }
         }
