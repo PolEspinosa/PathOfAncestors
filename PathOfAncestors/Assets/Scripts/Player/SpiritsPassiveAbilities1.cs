@@ -36,6 +36,12 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     public PickingSide side;
 
     public bool inDarkArea;
+
+    //pushing box sound
+    private FMOD.Studio.EventInstance pushBoxInstance;
+    private FMOD.Studio.PLAYBACK_STATE state;
+    private Rigidbody playerRigidbody;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +56,9 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         boxCollider.enabled = false;
         inDarkArea = false;
         side = PickingSide.NONE;
+        pushBoxInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/moveRock");
+        pushBoxInstance.setVolume(0.8f);
+        playerRigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -69,12 +78,26 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
                 movingObject.GetComponent<PlatformParent>().isParent = false;
                 movingObject.GetComponent<PlatformParent>().canParent = false;
                 MoveBox();
+                if(playerRigidbody.velocity.magnitude > 0.1f)
+                {
+                    pushBoxInstance.getPlaybackState(out state);
+                    if(state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        FMODUnity.RuntimeManager.AttachInstanceToGameObject(pushBoxInstance, movingObject.transform, boxRigidbody);
+                        pushBoxInstance.start();
+                    }
+                }
+                else
+                {
+                    pushBoxInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                }
             }
             //if not pushing, erase all realtion between box and character
             else
             {
                 if (movingObject != null && !movingObject.GetComponent<PlatformParent>().isParent)
                 {
+                    pushBoxInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     boxRigidbody = movingObject.GetComponent<Rigidbody>();
                     boxRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
                     movingObject.transform.parent = null;

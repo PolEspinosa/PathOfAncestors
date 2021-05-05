@@ -18,10 +18,14 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
 
     [SerializeField]
     private Outline outlineScript;
+
+    private FMOD.Studio.EventInstance stepsInstance;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+      
     }
 
     // Update is called once per frame
@@ -76,5 +80,19 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     {
         yield return new WaitForSeconds(0.6f);
         destroySpirit = true;
+    }
+
+    private void EarthStep()
+    {
+        stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+        stepsInstance.setVolume(0.5f);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponentInParent<Rigidbody>());
+        stepsInstance.start();
+        stepsInstance.release();
+    }
+
+    private void OnDestroy()
+    {
+        stepsInstance.release();
     }
 }

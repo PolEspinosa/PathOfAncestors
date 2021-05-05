@@ -25,8 +25,6 @@ public abstract class Activator : MonoBehaviour
     protected FMOD.Studio.EventInstance torchSoundInstance;
     //create the event instance for the pressure plate activate sound
     protected FMOD.Studio.EventInstance pressurePlateActivateSoundInstance;
-    //create the event instance for the pressure plate deactivate sound
-    protected FMOD.Studio.EventInstance pressurePlateDeactivateSoundInstance;
 
     protected virtual void Start()
     {
@@ -40,8 +38,6 @@ public abstract class Activator : MonoBehaviour
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(torchSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
         pressurePlateActivateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/activatePressurePlate");
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateActivateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
-        pressurePlateDeactivateSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/deactivatePressurePlate");
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(pressurePlateDeactivateSoundInstance, gameObject.transform, gameObject.GetComponentInChildren<Rigidbody>());
     }
     public virtual void GroupActivated()
     {

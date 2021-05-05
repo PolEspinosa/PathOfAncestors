@@ -18,6 +18,8 @@ public class NewBurningObject : MonoBehaviour
     private Collider col;
 
     public List<GameObject> nextBurnableObject;
+
+    private bool playOnce;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class NewBurningObject : MonoBehaviour
         mat = gameObject.GetComponent<MeshRenderer>().material;
         //particlesMainModule = fireParticles.main;
         fireParticles.Stop();
+        playOnce = true;
 }
 
     // Update is called once per frame
@@ -52,6 +55,12 @@ public class NewBurningObject : MonoBehaviour
     {
         if (mat.GetFloat("Vector1_54467BBE") < 1 && burning)
             burntAmount += burningSpeed * Time.fixedDeltaTime;
+        if(burning && playOnce)
+        {
+            playOnce = false;
+            //play burning sound
+            FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Mecanismos/burnWood", gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,7 +92,6 @@ public class NewBurningObject : MonoBehaviour
 
                 burnableObject.GetComponent<NewBurningObject>().Burn();
             }
-            
         }
     }
 }

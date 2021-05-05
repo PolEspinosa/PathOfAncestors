@@ -22,6 +22,8 @@ public class EarthSpirit : BaseSpirit
     [SerializeField]
     private LayerMask ignoreMask;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {

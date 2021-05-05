@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    private FMOD.Studio.Bus musicMixer, ambienceMixer, sfxMixer;
+    private FMOD.Studio.Bus masterMixer, musicMixer, ambienceMixer, sfxMixer;
 
     //volume variables
     private float masterVolume, musicVolume, ambienceVolume, SFXVolume;
@@ -13,9 +13,10 @@ public class OptionsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicMixer = FMODUnity.RuntimeManager.GetBus("bus:/music");
-        ambienceMixer = FMODUnity.RuntimeManager.GetBus("bus:/ambient");
-        sfxMixer = FMODUnity.RuntimeManager.GetBus("bus:/SFX");
+        masterMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+        musicMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/music");
+        ambienceMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/ambient");
+        sfxMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
     }
 
     // Update is called once per frame
@@ -26,9 +27,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetMasterVolume(float _volume)
     {
-        musicMixer.setVolume(_volume);
-        ambienceMixer.setVolume(_volume);
-        sfxMixer.setVolume(_volume);
+        masterMixer.setVolume(_volume);
     }
 
     public void SetMusicVolume(float _volume)

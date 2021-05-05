@@ -29,6 +29,9 @@ public class OrderSystem : MonoBehaviour
     private NavMeshAgent playerAgent;
     private NavMeshHit meshHit;
 
+    //spirits sound instances
+    private FMOD.Studio.EventInstance fireVoiceInstance, earthVoiceInstance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,8 @@ public class OrderSystem : MonoBehaviour
         playerPath = new NavMeshPath();
         playerAgent = pathCalculator.GetComponent<NavMeshAgent>();
         cursorImage = aimCursor.GetComponent<Image>();
+        fireVoiceInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Voice/fireVoice");
+        earthVoiceInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Voice/voz tierra");
     }
 
     // Update is called once per frame
@@ -104,6 +109,28 @@ public class OrderSystem : MonoBehaviour
             isGoingToEarth = false;
             activator = null;
             ManageActivators();
+            //play fire spirit sound if its not already playing
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                FMOD.Studio.PLAYBACK_STATE state;
+                fireVoiceInstance.getPlaybackState(out state);
+                if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    FMODUnity.RuntimeManager.AttachInstanceToGameObject(fireVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
+                    fireVoiceInstance.start();
+                }
+            }
+            //play earth spirit sound if its not already playing
+            else if (spiritManager.currentSpirit.CompareTag("EARTH"))
+            {
+                FMOD.Studio.PLAYBACK_STATE state;
+                earthVoiceInstance.getPlaybackState(out state);
+                if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    FMODUnity.RuntimeManager.AttachInstanceToGameObject(earthVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
+                    earthVoiceInstance.start();
+                }
+            }
         }
     }
 
@@ -116,6 +143,29 @@ public class OrderSystem : MonoBehaviour
         spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetTag = hit.transform.tag;
         //get target gameobject
         spiritManager.currentSpirit.GetComponent<BaseSpirit>().targetObject = hit.collider.gameObject;
+        //play fire spirit sound if its not already playing
+        if (spiritManager.currentSpirit.CompareTag("FIRE"))
+        {
+            FMOD.Studio.PLAYBACK_STATE state;
+            fireVoiceInstance.getPlaybackState(out state);
+            if(state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(fireVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
+                fireVoiceInstance.start();
+            }
+        }
+        //play earth spirit sound if its not already playing
+        else if (spiritManager.currentSpirit.CompareTag("EARTH"))
+        {
+            FMOD.Studio.PLAYBACK_STATE state;
+            earthVoiceInstance.getPlaybackState(out state);
+            if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(earthVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
+                earthVoiceInstance.start();
+            }
+        }
+
         if (hit.transform.tag == "Untagged")
         {
             //apply y offset to the fire spirit so it doesn't go through the target
@@ -308,5 +358,11 @@ public class OrderSystem : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             ManageCursors();
         }
+    }
+
+    private void OnDestroy()
+    {
+        fireVoiceInstance.release();
+        earthVoiceInstance.release();
     }
 }
