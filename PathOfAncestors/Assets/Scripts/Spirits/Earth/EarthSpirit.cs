@@ -22,7 +22,10 @@ public class EarthSpirit : BaseSpirit
     [SerializeField]
     private LayerMask ignoreMask;
 
-    
+    private FMOD.Studio.EventInstance stepsInstance;
+    [SerializeField]
+    private float walkStepDelay, runStepDelay;
+    private float currentWalkStepDelayTime, currentRunStepDelayTime;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +41,22 @@ public class EarthSpirit : BaseSpirit
         navMeshPath = new NavMeshPath();
         col = gameObject.GetComponent<CapsuleCollider>();
         player = GameObject.Find("Character");
+        //delay for the earth spirit step sounds
+        currentWalkStepDelayTime = walkStepDelay;
+        currentRunStepDelayTime = runStepDelay;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(state == States.FOLLOWING)
+        {
+            animController.stateString = "FOLLOWING";
+        }
+        else if(state == States.GOING)
+        {
+            animController.stateString = "GOING";
+        }
         if (targetObject != null)
         {
             if (targetObject.CompareTag("BreakableWall") && Vector3.Distance(gameObject.transform.position, targetObject.transform.position) < interactionDistance)
@@ -87,6 +101,15 @@ public class EarthSpirit : BaseSpirit
         //{
         //    outlineScript.enabled = true;
         //}
+        if (navAgent.velocity.magnitude > 0.1f)
+        {
+            //PlayStepSound();
+        }
+        else
+        {
+            currentWalkStepDelayTime = walkStepDelay;
+            currentRunStepDelayTime = runStepDelay;
+        }
     }
 
     protected override void InitialiseValues()
@@ -215,5 +238,41 @@ public class EarthSpirit : BaseSpirit
             }
         }
         return true;
+    }
+
+    private void PlayStepSound()
+    {
+        if (state == States.FOLLOWING)
+        {
+            if (currentWalkStepDelayTime > 0)
+            {
+                currentWalkStepDelayTime -= Time.deltaTime;
+            }
+            else
+            {
+                stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+                stepsInstance.setVolume(0.5f);
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                stepsInstance.start();
+                stepsInstance.release();
+                currentWalkStepDelayTime = walkStepDelay;
+            }
+        }
+        else if(state == States.GOING)
+        {
+            if (currentRunStepDelayTime > 0)
+            {
+                currentRunStepDelayTime -= Time.deltaTime;
+            }
+            else
+            {
+                stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+                stepsInstance.setVolume(0.5f);
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+                stepsInstance.start();
+                stepsInstance.release();
+                currentRunStepDelayTime = runStepDelay;
+            }
+        }
     }
 }

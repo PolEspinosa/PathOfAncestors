@@ -82,13 +82,28 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
         destroySpirit = true;
     }
 
-    private void EarthStep()
+    private void WalkStep()
     {
-        stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
-        stepsInstance.setVolume(0.5f);
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponentInParent<Rigidbody>());
-        stepsInstance.start();
-        stepsInstance.release();
+        if (stateString == "FOLLOWING")
+        {
+            stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+            stepsInstance.setVolume(0.5f);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponentInParent<Rigidbody>());
+            stepsInstance.start();
+            stepsInstance.release();
+        }
+    }
+
+    private void RunStep()
+    {
+        if (stateString == "GOING")
+        {
+            stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+            stepsInstance.setVolume(0.5f);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponentInParent<Rigidbody>());
+            stepsInstance.start();
+            stepsInstance.release();
+        }
     }
 
     private void OnDestroy()

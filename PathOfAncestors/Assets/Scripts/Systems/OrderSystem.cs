@@ -104,31 +104,34 @@ public class OrderSystem : MonoBehaviour
         //if not aiming, make the spirit follow the player again
         else if (!aiming && Input.GetMouseButtonDown(0))
         {
-            spiritManager.currentSpirit.GetComponent<BaseSpirit>().ReturnToPlayer();
+            if (!PauseMenu.gamePaused)
+            {
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().ReturnToPlayer();
 
-            isGoingToEarth = false;
-            activator = null;
-            ManageActivators();
-            //play fire spirit sound if its not already playing
-            if (spiritManager.currentSpirit.CompareTag("FIRE"))
-            {
-                FMOD.Studio.PLAYBACK_STATE state;
-                fireVoiceInstance.getPlaybackState(out state);
-                if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                isGoingToEarth = false;
+                activator = null;
+                ManageActivators();
+                //play fire spirit sound if its not already playing
+                if (spiritManager.currentSpirit.CompareTag("FIRE"))
                 {
-                    FMODUnity.RuntimeManager.AttachInstanceToGameObject(fireVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
-                    fireVoiceInstance.start();
+                    FMOD.Studio.PLAYBACK_STATE state;
+                    fireVoiceInstance.getPlaybackState(out state);
+                    if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        FMODUnity.RuntimeManager.AttachInstanceToGameObject(fireVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
+                        fireVoiceInstance.start();
+                    }
                 }
-            }
-            //play earth spirit sound if its not already playing
-            else if (spiritManager.currentSpirit.CompareTag("EARTH"))
-            {
-                FMOD.Studio.PLAYBACK_STATE state;
-                earthVoiceInstance.getPlaybackState(out state);
-                if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                //play earth spirit sound if its not already playing
+                else if (spiritManager.currentSpirit.CompareTag("EARTH"))
                 {
-                    FMODUnity.RuntimeManager.AttachInstanceToGameObject(earthVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
-                    earthVoiceInstance.start();
+                    FMOD.Studio.PLAYBACK_STATE state;
+                    earthVoiceInstance.getPlaybackState(out state);
+                    if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        FMODUnity.RuntimeManager.AttachInstanceToGameObject(earthVoiceInstance, spiritManager.currentSpirit.transform, spiritManager.currentSpirit.GetComponent<Rigidbody>());
+                        earthVoiceInstance.start();
+                    }
                 }
             }
         }

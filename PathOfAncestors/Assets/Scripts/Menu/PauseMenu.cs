@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public bool gamePaused = false;
+    public static bool gamePaused = false;
     public GameObject pauseUI, optionsUI;
     public CheckpointManager manager;
     public GameObject player;
@@ -22,6 +22,12 @@ public class PauseMenu : MonoBehaviour
         optionsUI.SetActive(false);
         manager = GameObject.Find("CheckpointManager").GetComponent<CheckpointManager>();
         player = GameObject.Find("Character");
+        continueButton.GetComponent<Image>().sprite = continueDeact;
+        restartButton.GetComponent<Image>().sprite = restartDeact;
+        //optionsButton.GetComponent<Image>().sprite = oprionsDeact;
+        //backToMenuButton.GetComponent<Image>().sprite = backToMenuDeact;
+        exitButton.GetComponent<Image>().sprite = exitDeact;
+
     }
 
     // Update is called once per frame
@@ -58,6 +64,13 @@ public class PauseMenu : MonoBehaviour
         pauseUI.SetActive(false);
         optionsUI.SetActive(false);
         gamePaused = false;
+        continueButton.GetComponent<Image>().sprite = continueDeact;
+        restartButton.GetComponent<Image>().sprite = restartDeact;
+        //optionsButton.GetComponent<Image>().sprite = optionsDeact;
+        optionsBackButton.GetComponent<Image>().sprite = optionsBackDeact;
+        //backToMenuButton.GetComponent<Image>().sprite = backToMenuDeact;
+        exitButton.GetComponent<Image>().sprite = exitDeact;
+
     }
 
     public void ContinueAct()
@@ -83,6 +96,7 @@ public class PauseMenu : MonoBehaviour
         player.transform.position = manager.actualCheckpoint.transform.position;
         pauseUI.SetActive(false);
         gamePaused = false;
+        restartButton.GetComponent<Image>().sprite = restartDeact;
     }
 
     public void RestartAct()
@@ -99,6 +113,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseUI.SetActive(false);
         optionsUI.SetActive(true);
+        //optionsButton.GetComponent<Image>().sprite = optionsDeact;
     }
 
     public void GoToOptionsAct()
@@ -115,6 +130,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseUI.SetActive(true);
         optionsUI.SetActive(false);
+        optionsBackButton.GetComponent<Image>().sprite = optionsBackDeact;
     }
 
     public void OptionsBackAct()
