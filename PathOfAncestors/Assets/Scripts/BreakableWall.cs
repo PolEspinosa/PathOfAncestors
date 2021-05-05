@@ -32,6 +32,7 @@ public class BreakableWall : MonoBehaviour
             {
                 if (order.isGoingToEarth)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Mecanismos/breakWall", gameObject);
                     for (int i = 0; i < _parts.Count; i++)
                     {
                         _parts[i].SetActive(true);

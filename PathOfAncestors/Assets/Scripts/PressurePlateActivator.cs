@@ -74,13 +74,13 @@ public class PressurePlateActivator : Activator
             _activated = false;
             OnDeactivate();
             //play pressure deactivate plate sound
-            pressurePlateDeactivateSoundInstance.start();
+            pressurePlateActivateSoundInstance.start();
         }
         if (other.tag == "EARTH")
         {
             manager.activatorObject = null;
             //play pressure deactivate plate sound
-            pressurePlateDeactivateSoundInstance.start();
+            pressurePlateActivateSoundInstance.start();
         }
 
     }

@@ -114,7 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccd00388c84b114fb50416b1b6e263f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePaused: 0
   pauseUI: {fileID: 907815034815176524}
   optionsUI: {fileID: 8472569725504815877}
   manager: {fileID: 0}
@@ -135,8 +134,8 @@ MonoBehaviour:
   backToMenuDeact: {fileID: 0}
   exitAct: {fileID: 21300000, guid: 8b94119b4c98081428c632cbc17e103f, type: 3}
   exitDeact: {fileID: 21300000, guid: de5ad633a55b87c4b837f04d6268776c, type: 3}
-  optionsBackAct: {fileID: 0}
-  optionsBackDeact: {fileID: 0}
+  optionsBackAct: {fileID: 21300000, guid: 47c194d2eef0498489b2dc6384de9a30, type: 3}
+  optionsBackDeact: {fileID: 21300000, guid: d8a9c5f99ba621a418000f642016d19b, type: 3}
 --- !u!114 &1703756379264562461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,11 +1498,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 907815033511258387}
+      objectReference: {fileID: 1703756379264562461}
     - target: {fileID: 4997446271439794741, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: SetMasterVolume
       objectReference: {fileID: 0}
     - target: {fileID: 4997446271483431984, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
@@ -1514,6 +1513,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997446271502197913, guid: 5845f981317387e478ce83e5300df98d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 86.733734
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997446271502197913, guid: 5845f981317387e478ce83e5300df98d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 293.2
       objectReference: {fileID: 0}
     - target: {fileID: 4997446271545728844, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
@@ -1613,12 +1622,12 @@ PrefabInstance:
     - target: {fileID: 4997446272340734615, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -999.9208
+      value: -991.5198
       objectReference: {fileID: 0}
     - target: {fileID: 4997446272340734615, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 156.5
+      value: 152.3
       objectReference: {fileID: 0}
     - target: {fileID: 4997446272410615372, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
@@ -1629,6 +1638,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997446272630985954, guid: 5845f981317387e478ce83e5300df98d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 97.45857
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997446272630985954, guid: 5845f981317387e478ce83e5300df98d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -117.2
       objectReference: {fileID: 0}
     - target: {fileID: 4997446272641341084, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}
@@ -1659,6 +1678,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OptionsBackDeact
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997446272682100247, guid: 5845f981317387e478ce83e5300df98d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 91.19093
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997446272682100247, guid: 5845f981317387e478ce83e5300df98d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20.9
       objectReference: {fileID: 0}
     - target: {fileID: 4997446273047457341, guid: 5845f981317387e478ce83e5300df98d,
         type: 3}

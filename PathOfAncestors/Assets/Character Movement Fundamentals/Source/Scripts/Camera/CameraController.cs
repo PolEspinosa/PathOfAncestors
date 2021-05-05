@@ -97,7 +97,10 @@ namespace CMF
             //{
             //    
             //}
-            HandleCameraRotation();
+            if (!PauseMenu.gamePaused)
+            {
+                HandleCameraRotation();
+            }
         }
 
 		//Get user input and handle camera rotation;

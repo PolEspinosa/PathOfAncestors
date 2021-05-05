@@ -8,6 +8,16 @@ public class SpiritsAnimatorController : MonoBehaviour
     protected Animator animator;
     public float speed;
     public bool hasToBreak;
+
+    protected enum State
+    {
+        FOLLOWING, GOING
+    }
+
+    protected State earthSpiritState;
+
+    public string stateString;
+
     // Start is called before the first frame update
     void Start()
     {

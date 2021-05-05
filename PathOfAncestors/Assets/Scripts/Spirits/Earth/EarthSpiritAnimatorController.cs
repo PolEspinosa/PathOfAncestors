@@ -15,10 +15,17 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     private VisualEffect uninvokedParticles;
     [SerializeField]
     private ParticleSystem uninvokedParticles2;
+
+    [SerializeField]
+    private Outline outlineScript;
+
+    private FMOD.Studio.EventInstance stepsInstance;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+      
     }
 
     // Update is called once per frame
@@ -43,12 +50,14 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
 
     private void StopInvokedParticles()
     {
+        outlineScript.enabled = true;
         invokedParticles.Stop();
         invokedParticles2.Stop();
     }
 
     private void UninvokedParticles()
     {
+        outlineScript.enabled = false;
         //uninvokedParticles.Play();
         //uninvokedParticles2.Play();
         uninvokedParticlesObject.SetActive(true);
@@ -71,5 +80,34 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     {
         yield return new WaitForSeconds(0.6f);
         destroySpirit = true;
+    }
+
+    private void WalkStep()
+    {
+        if (stateString == "FOLLOWING")
+        {
+            stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+            stepsInstance.setVolume(0.5f);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponentInParent<Rigidbody>());
+            stepsInstance.start();
+            stepsInstance.release();
+        }
+    }
+
+    private void RunStep()
+    {
+        if (stateString == "GOING")
+        {
+            stepsInstance = FMODUnity.RuntimeManager.CreateInstance("event:/EarthSteps/earthSpiritSteps");
+            stepsInstance.setVolume(0.5f);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(stepsInstance, gameObject.transform, gameObject.GetComponentInParent<Rigidbody>());
+            stepsInstance.start();
+            stepsInstance.release();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        stepsInstance.release();
     }
 }
