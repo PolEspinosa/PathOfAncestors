@@ -132,10 +132,13 @@ public class EarthSpirit : BaseSpirit
                 switchToSteering = true;
                 break;
             case "MovingPlatform":
-                gameObject.transform.parent = other.gameObject.transform;
+                //gameObject.transform.parent = other.gameObject.transform;
                 break;
             case "BreakWallTrigger":
                 targetObject = null;
+                break;
+            case "EarthActivator":
+                outlineScript.enabled = false;
                 break;
         }
     }
@@ -152,6 +155,9 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "MovingPlatform":
                 gameObject.transform.parent = null;
+                break;
+            case "EarthActivator":
+                outlineScript.enabled = true;
                 break;
         }
     }
