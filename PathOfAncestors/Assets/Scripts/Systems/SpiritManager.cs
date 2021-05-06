@@ -73,40 +73,12 @@ public class SpiritManager : MonoBehaviour
                 earthInvoked = 0;
             }
         }
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    InvokeSpirit(windSpiritRef, fireWindPosition.transform);
-        //}
+
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Debug.Log(currentSpirit.GetComponent<BaseSpirit>().GetSpiritType());
         }
 
-        //if has to destroy the spirit
-        //if (currentSpirit != null && currentSpirit.CompareTag("FIRE"))
-        //{
-        //    
-        //    if (invokeOtherSpirit)
-        //    {
-        //        Desinvoke(currentSpirit);
-        //        currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
-        //        invokeOtherSpirit = false;
-        //    }
-        //    if (currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().destroySpirit)
-        //    {
-        //        //if (invokeOtherSpirit)
-        //        //{
-        //        //    Desinvoke(currentSpirit);
-        //        //    currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
-        //        //    invokeOtherSpirit = false;
-        //        //}
-        //        //else
-        //        //{
-        //        //    Desinvoke(currentSpirit);
-        //        //}
-        //        Desinvoke(currentSpirit);
-        //    }
-        //}
         if (currentSpirit != null)
         {
             if (invokeOtherSpirit && canInvoke)
@@ -118,16 +90,6 @@ public class SpiritManager : MonoBehaviour
             }
             if (currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().destroySpirit)
             {
-                //if (invokeOtherSpirit)
-                //{
-                //    Desinvoke(currentSpirit);
-                //    currentSpirit = Instantiate(currentSpiritAux, positionAux, Quaternion.identity);
-                //    invokeOtherSpirit = false;
-                //}
-                //else
-                //{
-                //    Desinvoke(currentSpirit);
-                //}
                 Desinvoke(currentSpirit);
                 if (aux != null)
                 {
@@ -150,19 +112,6 @@ public class SpiritManager : MonoBehaviour
         {
             if (_spirit.tag != currentSpirit.tag && canInvoke)
             {
-                //place holder until we have earth spirit animations
-                //if (currentSpirit.CompareTag("FIRE"))
-                //{
-                //    currentSpiritAux = _spirit;
-                //    positionAux = _position.position;
-                //    invokeOtherSpirit = true;
-                //    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
-                //}
-                //else
-                //{
-                //    Desinvoke(currentSpirit);
-                //    currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
-                //}
                 currentSpiritAux = _spirit;
                 positionAux = _position.position;
                 invokeOtherSpirit = true;
@@ -170,15 +119,6 @@ public class SpiritManager : MonoBehaviour
             }
             else
             {
-                //place holder until we have earth spirit animations
-                //if (currentSpirit.CompareTag("FIRE"))
-                //{
-                //    currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
-                //}
-                //else
-                //{
-                //    Desinvoke(currentSpirit);
-                //}
                 currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
             }
         }
