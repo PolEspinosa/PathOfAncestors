@@ -352,13 +352,30 @@ public class OrderSystem : MonoBehaviour
         Ray ray = camera.ScreenPointToRay(aimCursor.transform.position);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreMask))
         {
-            if(hit.transform.CompareTag("Torch") || hit.transform.CompareTag("OvenActivator") || hit.transform.CompareTag("Burnable"))
+            if (spiritManager.currentSpirit != null)
             {
-                cursorImage.sprite = fireCursor;
-            }
-            else if (hit.transform.CompareTag("EarthPlatform") || hit.transform.CompareTag("BreakableWall"))
-            {
-                cursorImage.sprite = earthCursor;
+                if (spiritManager.currentSpirit.CompareTag("FIRE"))
+                {
+                    if (hit.transform.CompareTag("Torch") || hit.transform.CompareTag("OvenActivator") || hit.transform.CompareTag("Burnable"))
+                    {
+                        cursorImage.sprite = fireCursor;
+                    }
+                    else
+                    {
+                        cursorImage.sprite = defaultCursor;
+                    }
+                }
+                else if (spiritManager.currentSpirit.CompareTag("EARTH"))
+                {
+                    if (hit.transform.CompareTag("EarthPlatform") || hit.transform.CompareTag("BreakableWall"))
+                    {
+                        cursorImage.sprite = earthCursor;
+                    }
+                    else
+                    {
+                        cursorImage.sprite = defaultCursor;
+                    }
+                }
             }
             else
             {
