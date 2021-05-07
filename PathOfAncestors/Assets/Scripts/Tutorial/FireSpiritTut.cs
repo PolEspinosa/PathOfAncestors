@@ -9,13 +9,14 @@ public class FireSpiritTut : MonoBehaviour
 
     private Vector3 targetDistance, desiredVelocity, velocity, steering;
     [SerializeField]
-    private float movingSpeed, slowdownDistance;
+    private float movingSpeed, slowdownDistance, fleeDistance;
     [SerializeField]
     private SpiritsAnimatorController animController;
     private float slowdownFactor;
-    private bool move;
+    private bool move, updateIndex, canUpdateIndex;
     private int waypointIndex;
     private GameObject player;
+    private GameObject lookAt;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class FireSpiritTut : MonoBehaviour
         move = false;
         waypointIndex = 0;
         player = GameObject.Find("Character");
+        updateIndex = false;
+        lookAt = GameObject.FindGameObjectWithTag("FireLookAt");
+        canUpdateIndex = true;
     }
 
     // Update is called once per frame
@@ -35,8 +39,10 @@ public class FireSpiritTut : MonoBehaviour
         }
         else
         {
-            CurrentLookAt(player.transform.position + new Vector3(0, 1f, 0));
+            CurrentLookAt(lookAt.transform);
         }
+        UpdateWaypointsIndex();
+        UpdateMove();
     }
 
     private void MoveTo(Vector3 _targetPosition, Vector3 _lookAt)
@@ -55,14 +61,45 @@ public class FireSpiritTut : MonoBehaviour
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
 
-        CurrentLookAt(_lookAt);
+        gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
 
         //set the speed to the animator variable for the blend tree
         animController.speed = velocity.magnitude / movingSpeed;
     }
 
-    private void CurrentLookAt(Vector3 _lookAt)
+    private void CurrentLookAt(Transform _lookAt)
     {
-        gameObject.transform.rotation = Quaternion.LookRotation(_lookAt, Vector3.up);
+        transform.LookAt(_lookAt, Vector3.up);
+    }
+
+    private void UpdateMove()
+    {
+        if (Vector3.Distance(gameObject.transform.position, lookAt.transform.position) < fleeDistance)
+        {
+            if (waypointIndex < waypoints.Count - 1)
+            {
+                move = true;
+                updateIndex = true;
+            }
+        }
+        else if (targetDistance.magnitude < 0.1f)
+        {
+            move = false;
+            canUpdateIndex = true;
+        }
+        
+    }
+
+    private void UpdateWaypointsIndex()
+    {
+        if (updateIndex && canUpdateIndex)
+        {
+            if (waypointIndex < waypoints.Count - 1)
+            {
+                waypointIndex++;
+                updateIndex = false;
+                canUpdateIndex = false;
+            }
+        }
     }
 }
