@@ -328,7 +328,7 @@ public class OrderSystem : MonoBehaviour
     //this function will calculate if the player has a path to the target
     private bool PlayerHasPath(RaycastHit hit)
     {
-        if (NavMesh.SamplePosition(hit.point, out meshHit, 3.0f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(hit.point, out meshHit, 5f, NavMesh.AllAreas))
         {
             playerAgent.CalculatePath(meshHit.position, playerPath);
         }
