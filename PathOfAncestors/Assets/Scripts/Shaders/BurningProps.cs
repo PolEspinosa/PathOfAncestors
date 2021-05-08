@@ -68,13 +68,14 @@ public class BurningProps : MonoBehaviour
     {
         if (other.CompareTag("FIRE"))
         {
-            this.GetComponent<MeshRenderer>().material = matInstance;
+            
             Burn();
         }
     }
 
     public void Burn()
     {
+        this.GetComponent<MeshRenderer>().material = matInstance;
         burning = true;
         //other.gameObject.GetComponent<BaseSpirit>().MoveTo(other.gameObject.transform.position);
         fireParticles.Play();
@@ -91,8 +92,15 @@ public class BurningProps : MonoBehaviour
         {
             if (burnableObject != null)
             {
+                if (burnableObject.GetComponent<NewBurningObject>())
+                {
+                    burnableObject.GetComponent<NewBurningObject>().Burn();
+                }
+                else if (burnableObject.GetComponent<BurningProps>())
+                {
+                    burnableObject.GetComponent<BurningProps>().Burn();
+                }
 
-                burnableObject.GetComponent<NewBurningObject>().Burn();
             }
         }
     }

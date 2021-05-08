@@ -89,8 +89,15 @@ public class NewBurningObject : MonoBehaviour
         {
             if(burnableObject!=null)
             {
-
-                burnableObject.GetComponent<NewBurningObject>().Burn();
+                if(burnableObject.GetComponent<NewBurningObject>())
+                {
+                    burnableObject.GetComponent<NewBurningObject>().Burn();
+                }
+                else if (burnableObject.GetComponent<BurningProps>())
+                {
+                    burnableObject.GetComponent<BurningProps>().Burn();
+                }
+                
             }
         }
     }
