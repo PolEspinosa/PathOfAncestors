@@ -1,24 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3870960159366625995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5135168684414213491}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 2
-  outlineColor: {r: 0.43739247, g: 1, b: 0, a: 1}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &6500516863671439490
+--- !u!114 &7232255576442141480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5135168684414213491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42ad84ff3a2967428ba2db4bfcf704f, type: 3}
+  m_Script: {fileID: 11500000, guid: 234287b5e4ed74948b64ad0005f1206b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   invoked: 0
@@ -41,7 +23,6 @@ MonoBehaviour:
   uninvokedParticlesObject: {fileID: 6889064557606919705}
   uninvokedParticles: {fileID: 8379355670699216843}
   uninvokedParticles2: {fileID: 7973430483286251914}
-  outlineScript: {fileID: 3870960159366625995}
 --- !u!1 &5271552183273091417
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,8 +37,9 @@ GameObject:
   - component: {fileID: 6026997708658887558}
   - component: {fileID: 842660838196405411}
   - component: {fileID: -8661762901848272158}
+  - component: {fileID: 438940093773349721}
   m_Layer: 10
-  m_Name: EarthSpiritTut
+  m_Name: EarthSpiritTutStay
   m_TagString: EARTH
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,6 +161,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &438940093773349721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271552183273091417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95e09cf7d239fe46a4eb01873e16393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraRotationSpeed: 2
+  lookAtDistance: 10
+  animController: {fileID: 7232255576442141480}
 --- !u!1001 &2181771931065088987
 PrefabInstance:
   m_ObjectHideFlags: 0
