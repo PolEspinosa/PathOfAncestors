@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   movingSpeed: 10
-  slowdownDistance: 7
+  slowdownDistance: 2
   fleeDistance: 10
   animController: {fileID: 7054688965574756668}
 --- !u!1 &8975544140865204466
