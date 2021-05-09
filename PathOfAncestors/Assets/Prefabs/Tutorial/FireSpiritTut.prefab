@@ -19,24 +19,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1131967736575129740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832249201410408343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 2
-  outlineColor: {r: 1, g: 0.10058836, b: 0, a: 1}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &7054688965574756668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,13 +51,12 @@ GameObject:
   - component: {fileID: 5450791714769132510}
   - component: {fileID: 8363627593205219998}
   - component: {fileID: 3292145652747966788}
-  - component: {fileID: 3547047218962524920}
   - component: {fileID: 6821029558618872649}
   - component: {fileID: 340404035708863246}
   - component: {fileID: 334709673747864705}
-  - component: {fileID: 8473787281671232270}
+  - component: {fileID: 523758614232237607}
   m_Layer: 13
-  m_Name: FireSpirit
+  m_Name: FireSpiritTut
   m_TagString: FIRE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,31 +126,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3547047218962524920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703465193059072629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb3afcf41810c5488adc75f526107de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  navAgent: {fileID: 0}
-  target: {fileID: 0}
-  walkSpeed: 0
-  runSpeed: 0
-  stopDistance: 2
-  followSpeed: 40
-  slowdownDistance: 40
-  switchToSteering: 0
-  targetTag: 
-  targetObject: {fileID: 0}
-  order: {fileID: 0}
-  stoppingDistance: 0.5
 --- !u!54 &6821029558618872649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,7 +172,7 @@ CapsuleCollider:
   m_Height: 1.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8473787281671232270
+--- !u!114 &523758614232237607
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,15 +181,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7703465193059072629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a1d8adffea42df46bcc7602d527c031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetColor: {r: 1, g: 1, b: 1, a: 1}
-  targetImage: {fileID: 21300000, guid: 9eb9c54209d035240ad6e3c87536772c, type: 3}
-  needBoxIndicator: 1
-  needArrowIndicator: 1
-  needDistanceText: 0
-  indicator: {fileID: 0}
+  waypoints: []
+  movingSpeed: 10
+  slowdownDistance: 7
+  fleeDistance: 10
+  animController: {fileID: 7054688965574756668}
 --- !u!1 &8975544140865204466
 GameObject:
   m_ObjectHideFlags: 0

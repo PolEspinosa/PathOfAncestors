@@ -236,7 +236,7 @@ public class BaseSpirit : MonoBehaviour
     //calculate if spirit has path to the target
     public bool HasPath(RaycastHit hit)
     {
-        if(NavMesh.SamplePosition(hit.point, out meshHit, 3.0f, NavMesh.AllAreas))
+        if(NavMesh.SamplePosition(hit.point, out meshHit, 5f, NavMesh.AllAreas))
         {
             navAgent.CalculatePath(meshHit.position, navMeshPath);
         }

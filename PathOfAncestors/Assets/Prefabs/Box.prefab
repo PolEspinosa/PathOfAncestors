@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 101568116098545464}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1196048778299063591}
   - component: {fileID: 2923710427038216725}
   - component: {fileID: 5492053630842690057}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 3673155351669844624}
   - component: {fileID: 5850682642710955725}
   - component: {fileID: 8865404141013029955}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 4180491258004103462}
   - component: {fileID: 597378617522324135}
   - component: {fileID: 7489332090174628331}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Box
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -539,6 +539,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxRockParticles 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6772833520730204011, guid: 2a7de2e9a2a445f4e9945b7f4f384038,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7de2e9a2a445f4e9945b7f4f384038, type: 3}
 --- !u!1 &6686514522544731717 stripped
@@ -674,6 +679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BoxRockParticles 1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772833520730204011, guid: 2a7de2e9a2a445f4e9945b7f4f384038,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7de2e9a2a445f4e9945b7f4f384038, type: 3}
@@ -818,6 +828,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
         type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -951,6 +966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxRockParticles 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6772833520730204011, guid: 2a7de2e9a2a445f4e9945b7f4f384038,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7de2e9a2a445f4e9945b7f4f384038, type: 3}
 --- !u!4 &993709740506257900 stripped
@@ -1051,6 +1071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: cubo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d94e653d94ed3fd43a362dcd297dc447,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d94e653d94ed3fd43a362dcd297dc447, type: 3}
@@ -1192,6 +1217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BoxDustParticles (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
         type: 3}
@@ -1341,6 +1371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
         type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626263205777432916, guid: 37e4893c9f517c545bd2e817daf43781,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1473,6 +1508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BoxRockParticles 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772833520730204011, guid: 2a7de2e9a2a445f4e9945b7f4f384038,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7de2e9a2a445f4e9945b7f4f384038, type: 3}

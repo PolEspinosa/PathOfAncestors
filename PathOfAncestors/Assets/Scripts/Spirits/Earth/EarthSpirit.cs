@@ -62,6 +62,10 @@ public class EarthSpirit : BaseSpirit
             {
                 animController.hasToBreak = true;
             }
+            else
+            {
+                animController.hasToBreak = false;
+            }
         }
         else
         {
