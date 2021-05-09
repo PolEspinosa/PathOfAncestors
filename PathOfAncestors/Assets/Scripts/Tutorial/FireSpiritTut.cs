@@ -26,12 +26,19 @@ public class FireSpiritTut : MonoBehaviour
         player = GameObject.Find("Character");
         updateIndex = false;
         lookAt = GameObject.FindGameObjectWithTag("FireLookAt");
-        canUpdateIndex = true;
+        canUpdateIndex = false;
+        targetDistance = waypoints[waypointIndex].transform.position - gameObject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("update: " + updateIndex);
+        //Debug.Log("can update: " + canUpdateIndex);
+        //Debug.Log("index: " + waypointIndex);
+        
+        UpdateMove();
+        UpdateWaypointsIndex();
         //if the spirit has to move, move to next waypoint
         if (move)
         {
@@ -41,8 +48,7 @@ public class FireSpiritTut : MonoBehaviour
         {
             CurrentLookAt(lookAt.transform);
         }
-        UpdateWaypointsIndex();
-        UpdateMove();
+        
     }
 
     private void MoveTo(Vector3 _targetPosition, Vector3 _lookAt)
@@ -76,13 +82,13 @@ public class FireSpiritTut : MonoBehaviour
     {
         if (Vector3.Distance(gameObject.transform.position, lookAt.transform.position) < fleeDistance)
         {
-            if (waypointIndex < waypoints.Count - 1)
+            if (waypointIndex < waypoints.Count)
             {
                 move = true;
                 updateIndex = true;
             }
         }
-        else if (targetDistance.magnitude < 0.1f)
+        if (Vector3.Distance(waypoints[waypointIndex].transform.position, gameObject.transform.position) < 0.1f)
         {
             move = false;
             canUpdateIndex = true;
