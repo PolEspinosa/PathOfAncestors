@@ -163,8 +163,8 @@ MonoBehaviour:
   walkSpeed: 0
   runSpeed: 0
   stopDistance: 2
-  followSpeed: 40
-  slowdownDistance: 40
+  followSpeed: 10
+  slowdownDistance: 7
   switchToSteering: 0
   targetTag: 
   targetObject: {fileID: 0}

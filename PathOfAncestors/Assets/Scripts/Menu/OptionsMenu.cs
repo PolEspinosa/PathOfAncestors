@@ -20,20 +20,20 @@ public class OptionsMenu : MonoBehaviour
         ambienceMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/ambient");
         sfxMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
 
-        masterVolume = GameManager.masterVolume;
-        musicVolume = GameManager.musicVolume;
-        ambienceVolume = GameManager.ambienceVolume;
-        SFXVolume = GameManager.sfxVolume;
-
-        masterSlider.value = masterVolume;
-        musicSlider.value = musicVolume;
-        ambienceSlider.value = ambienceVolume;
-        sfxSlider.value = SFXVolume;
-
-        masterMixer.setVolume(masterVolume);
-        musicMixer.setVolume(musicVolume);
-        ambienceMixer.setVolume(ambienceVolume);
-        sfxMixer.setVolume(SFXVolume);
+        //masterVolume = GameManager.masterVolume;
+        //musicVolume = GameManager.musicVolume;
+        //ambienceVolume = GameManager.ambienceVolume;
+        //SFXVolume = GameManager.sfxVolume;
+        //
+        //masterSlider.value = masterVolume;
+        //musicSlider.value = musicVolume;
+        //ambienceSlider.value = ambienceVolume;
+        //sfxSlider.value = SFXVolume;
+        //
+        //masterMixer.setVolume(masterVolume);
+        //musicMixer.setVolume(musicVolume);
+        //ambienceMixer.setVolume(ambienceVolume);
+        //sfxMixer.setVolume(SFXVolume);
     }
 
     // Update is called once per frame
