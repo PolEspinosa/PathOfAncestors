@@ -25,6 +25,7 @@ public class EarthSpirit : BaseSpirit
     [SerializeField]
     private float walkStepDelay, runStepDelay;
     private float currentWalkStepDelayTime, currentRunStepDelayTime;
+    private GameObject parentObject;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,10 @@ public class EarthSpirit : BaseSpirit
         if (animController.invoked && !animController.uninvoked)
         {
             FollowOrder();
+            if (parentObject != null)
+            {
+                gameObject.transform.parent=parentObject.transform;
+            }
             //outlineScript.enabled = true;
         }
         //cast the ray
@@ -90,6 +95,7 @@ public class EarthSpirit : BaseSpirit
             {
                 edgeOfFloor = true;
             }
+            //ExtraRotationSteering();
         }
         else
         {
@@ -136,6 +142,7 @@ public class EarthSpirit : BaseSpirit
                 switchToSteering = true;
                 break;
             case "MovingPlatform":
+                parentObject = other.gameObject;
                 //gameObject.transform.parent = other.gameObject.transform;
                 break;
             case "BreakWallTrigger":
@@ -159,6 +166,7 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "MovingPlatform":
                 gameObject.transform.parent = null;
+                parentObject = null;
                 break;
             case "EarthActivator":
                 outlineScript.enabled = true;
@@ -218,9 +226,18 @@ public class EarthSpirit : BaseSpirit
 
     private void ExtraRotation()
     {
-        if(navAgent.remainingDistance > 1)
+        if (navAgent.remainingDistance > 1)
         {
             Vector3 lookRotation = navAgent.steeringTarget - gameObject.transform.position;
+            gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), extraRotationSpeed * Time.deltaTime);
+        }
+    }
+
+    private void ExtraRotationSteering()
+    {
+        if (targetDistance.magnitude > 0.1f)
+        {
+            Vector3 lookRotation = targetDistance - gameObject.transform.position;
             gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), extraRotationSpeed * Time.deltaTime);
         }
     }
