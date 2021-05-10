@@ -15,8 +15,9 @@ public class FireSpiritTut : MonoBehaviour
     private float slowdownFactor;
     private bool move, updateIndex, canUpdateIndex;
     private int waypointIndex;
-    private GameObject player;
+    private GameObject player, target;
     private GameObject lookAt;
+    private float currentTime;
 
     // Start is called before the first frame update
     void Start()
@@ -28,27 +29,38 @@ public class FireSpiritTut : MonoBehaviour
         lookAt = GameObject.FindGameObjectWithTag("FireLookAt");
         canUpdateIndex = false;
         targetDistance = waypoints[waypointIndex].transform.position - gameObject.transform.position;
+        target = GameObject.Find("PickUp");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("update: " + updateIndex);
-        //Debug.Log("can update: " + canUpdateIndex);
-        //Debug.Log("index: " + waypointIndex);
-        
         UpdateMove();
         UpdateWaypointsIndex();
         //if the spirit has to move, move to next waypoint
-        if (move)
+        if (move && !NoInputFire.noInput)
         {
             MoveTo(waypoints[waypointIndex].transform.position, targetDistance);
         }
         else
         {
-            CurrentLookAt(lookAt.transform);
+            CurrentLookAt(target.transform);
         }
-        
+        Uninvoke();
+        DestroySpirit();
+        if (NoInputFire.noInput)
+        {
+            if(currentTime < 2f)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                MoveTo(player.transform.position + new Vector3(0, 3f, 0), targetDistance);
+                slowdownDistance = 7f;
+                movingSpeed = 5;
+            }
+        }
     }
 
     private void MoveTo(Vector3 _targetPosition, Vector3 _lookAt)
@@ -80,7 +92,7 @@ public class FireSpiritTut : MonoBehaviour
 
     private void UpdateMove()
     {
-        if (Vector3.Distance(gameObject.transform.position, lookAt.transform.position) < fleeDistance)
+        if (Vector3.Distance(gameObject.transform.position, target.transform.position) < fleeDistance)
         {
             if (waypointIndex < waypoints.Count)
             {
@@ -106,6 +118,23 @@ public class FireSpiritTut : MonoBehaviour
                 updateIndex = false;
                 canUpdateIndex = false;
             }
+        }
+    }
+
+    private void Uninvoke()
+    {
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position + new Vector3(0, 3f, 0)) < 1.5f && NoInputFire.noInput)
+        {
+            animController.uninvoked = true;
+            movingSpeed = 0;
+        }
+    }
+
+    private void DestroySpirit()
+    {
+        if (animController.destroySpirit)
+        {
+            Destroy(gameObject);
         }
     }
 }

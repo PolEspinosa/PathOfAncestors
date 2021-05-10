@@ -19,7 +19,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7054688965574756668
+--- !u!114 &8228399708733204947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,7 +28,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1832249201410408343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d32dfbac5e8764d8e2c53574067608, type: 3}
+  m_Script: {fileID: 11500000, guid: 9732a3c9802af6e48a6b415104221a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   invoked: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   movingSpeed: 10
   slowdownDistance: 2
   fleeDistance: 10
-  animController: {fileID: 7054688965574756668}
+  animController: {fileID: 8228399708733204947}
 --- !u!1 &8975544140865204466
 GameObject:
   m_ObjectHideFlags: 0

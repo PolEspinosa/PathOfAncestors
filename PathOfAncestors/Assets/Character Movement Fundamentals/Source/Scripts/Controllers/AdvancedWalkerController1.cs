@@ -124,7 +124,7 @@ namespace CMF
 
         void Update()
         {
-            if (!passiveScript.pushing)
+            if (!passiveScript.pushing && (!NoInputEarth.noInput || !NoInputFire.noInput))
             {
                 HandleJumpKeyInput();
             }
@@ -220,7 +220,11 @@ namespace CMF
             }
             else
             {
-                if (passiveScript.pushing) //if the player is pushing a box
+                if (NoInputEarth.noInput || NoInputFire.noInput)
+                {
+                    _velocity = Vector3.zero;
+                }
+                else if (passiveScript.pushing) //if the player is pushing a box
                 {
                     if(passiveScript.time < passiveScript.parentTimeDelay)
                     {
