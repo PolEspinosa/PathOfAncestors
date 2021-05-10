@@ -35,6 +35,7 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
         animator.SetBool("invoked", invoked);
         animator.SetBool("breakWall", hasToBreak);
         animator.SetBool("uninvoked", uninvoked);
+        animator.SetBool("going", going);
     }
 
     private void EarthInvoked()

@@ -26,6 +26,7 @@ public class EarthSpirit : BaseSpirit
     private float walkStepDelay, runStepDelay;
     private float currentWalkStepDelayTime, currentRunStepDelayTime;
     private GameObject parentObject;
+    private float delay;
 
     // Start is called before the first frame update
     void Start()
@@ -52,10 +53,28 @@ public class EarthSpirit : BaseSpirit
         if(state == States.FOLLOWING)
         {
             animController.stateString = "FOLLOWING";
+            animController.going = false;
+            delay = 0;
         }
         else if(state == States.GOING)
         {
+            if (delay < 0.1f)
+            {
+                delay += Time.deltaTime;
+            }
+            else
+            {
+                if (navAgent.remainingDistance < 1f)
+                {
+                    animController.going = true;
+                }
+                else
+                {
+                    animController.going = false;
+                }
+            }
             animController.stateString = "GOING";
+            
         }
         if (targetObject != null)
         {

@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 24580
+    m_Bits: 25604
   aimCursor: {fileID: 0}
   cursorReference: {fileID: 0}
   defaultCursor: {fileID: 21300000, guid: 9e917b48812c7da40b34843f7570d358, type: 3}
