@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7232255576442141480
+--- !u!114 &5832402606708372961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5135168684414213491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234287b5e4ed74948b64ad0005f1206b, type: 3}
+  m_Script: {fileID: 11500000, guid: c07025fe8c1453242b6b62d39254571f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   invoked: 0
@@ -175,7 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraRotationSpeed: 2
   lookAtDistance: 10
-  animController: {fileID: 7232255576442141480}
+  moveSpeed: 5
+  animController: {fileID: 5832402606708372961}
 --- !u!1001 &2181771931065088987
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,7 +31,10 @@ public class EarthSpiritTutFlee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateState();
+        if (navAgent.isActiveAndEnabled)
+        {
+            UpdateState();
+        }
         Uninvoke();
         DestroySpirit();
     }
