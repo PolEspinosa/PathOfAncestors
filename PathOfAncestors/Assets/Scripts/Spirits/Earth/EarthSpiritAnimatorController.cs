@@ -25,7 +25,7 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-      
+        moveAfterGetUp = true;
     }
 
     // Update is called once per frame
@@ -110,5 +110,15 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     private void OnDestroy()
     {
         stepsInstance.release();
+    }
+
+    public void StandDown()
+    {
+        moveAfterGetUp = false;
+    }
+
+    public void StandUp()
+    {
+        moveAfterGetUp = true;
     }
 }

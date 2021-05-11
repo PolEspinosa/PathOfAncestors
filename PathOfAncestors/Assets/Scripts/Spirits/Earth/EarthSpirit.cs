@@ -27,6 +27,8 @@ public class EarthSpirit : BaseSpirit
     private float currentWalkStepDelayTime, currentRunStepDelayTime;
     private GameObject parentObject;
     private float delay;
+    public bool onPressurePlate, onPlatform;
+    private float sitToIdleDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -45,39 +47,22 @@ public class EarthSpirit : BaseSpirit
         //delay for the earth spirit step sounds
         currentWalkStepDelayTime = walkStepDelay;
         currentRunStepDelayTime = runStepDelay;
+        onPressurePlate = false;
+        onPlatform = false;
+        sitToIdleDelay = 0.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(state == States.FOLLOWING)
-        {
-            animController.stateString = "FOLLOWING";
-            animController.going = false;
-            delay = 0;
-        }
-        else if(state == States.GOING)
-        {
-            if (delay < 0.1f)
-            {
-                delay += Time.deltaTime;
-            }
-            else
-            {
-                if (navAgent.remainingDistance < 1f)
-                {
-                    animController.going = true;
-                }
-                else
-                {
-                    animController.going = false;
-                }
-            }
-            animController.stateString = "GOING";
-            
-        }
+        ControlSitAnimation();
         if (targetObject != null)
         {
+            if (!targetObject.CompareTag("MovingPlatform"))
+            {
+                onPlatform = false;
+            }
+            else if(!targetObject.CompareTag("PressurePlateActivator"))
             if (targetObject.CompareTag("BreakableWall") && Vector3.Distance(gameObject.transform.position, targetObject.transform.position) < interactionDistance)
             {
                 animController.hasToBreak = true;
@@ -118,7 +103,10 @@ public class EarthSpirit : BaseSpirit
         }
         else
         {
-            ExtraRotation();
+            if (animController.moveAfterGetUp)
+            {
+                ExtraRotation();
+            }
         }
         //if the spirit is being seen, disable the outline
         //if (IsSeen())
@@ -129,15 +117,16 @@ public class EarthSpirit : BaseSpirit
         //{
         //    outlineScript.enabled = true;
         //}
-        if (navAgent.velocity.magnitude > 0.1f)
-        {
-            //PlayStepSound();
-        }
-        else
-        {
-            currentWalkStepDelayTime = walkStepDelay;
-            currentRunStepDelayTime = runStepDelay;
-        }
+        //if (navAgent.velocity.magnitude > 0.1f)
+        //{
+        //    //PlayStepSound();
+        //}
+        //else
+        //{
+        //    currentWalkStepDelayTime = walkStepDelay;
+        //    currentRunStepDelayTime = runStepDelay;
+        //}
+        //ControlGetUpDelay();
     }
 
     protected override void InitialiseValues()
@@ -162,6 +151,7 @@ public class EarthSpirit : BaseSpirit
                 break;
             case "MovingPlatform":
                 parentObject = other.gameObject;
+                onPlatform = true;
                 //gameObject.transform.parent = other.gameObject.transform;
                 break;
             case "BreakWallTrigger":
@@ -186,6 +176,7 @@ public class EarthSpirit : BaseSpirit
             case "MovingPlatform":
                 gameObject.transform.parent = null;
                 parentObject = null;
+                onPlatform = false;
                 break;
             case "EarthActivator":
                 outlineScript.enabled = true;
@@ -314,4 +305,65 @@ public class EarthSpirit : BaseSpirit
             }
         }
     }
+
+    private void ControlSitAnimation()
+    {
+        if (state == States.FOLLOWING)
+        {
+            animController.stateString = "FOLLOWING";
+            animController.going = false;
+            delay = 0;
+        }
+        else if (state == States.GOING)
+        {
+            if (delay < 0.1f)
+            {
+                delay += Time.deltaTime;
+            }
+            else
+            {
+                if (!switchToSteering)
+                {
+                    if (navAgent.remainingDistance < 1f || onPressurePlate)
+                    {
+                        animController.going = true;
+                    }
+                    else
+                    {
+                        animController.going = false;
+                    }
+                }
+                else
+                {
+                    if (Vector3.Distance(goToPosition, gameObject.transform.position) < 1f || onPlatform)
+                    {
+                        animController.going = true;
+                    }
+                    else
+                    {
+                        animController.going = false;
+                    }
+                }
+            }
+            animController.stateString = "GOING";
+
+        }
+    }
+
+    private void ControlGetUpDelay()
+    {
+        if (!animController.going)
+        {
+            if (sitToIdleDelay < 0.2f)
+            {
+                sitToIdleDelay += Time.deltaTime;
+            }
+        }
+        else
+        {
+            sitToIdleDelay = 0;
+        }
+    }
+
+    
 }

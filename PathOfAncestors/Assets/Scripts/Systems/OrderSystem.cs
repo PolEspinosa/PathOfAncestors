@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class OrderSystem : MonoBehaviour
 {
-
     public LayerMask ignoreMask;
     bool aiming = false;
     public GameObject aimCursor;
