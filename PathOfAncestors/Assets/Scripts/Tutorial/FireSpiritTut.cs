@@ -18,10 +18,12 @@ public class FireSpiritTut : MonoBehaviour
     private GameObject player, target;
     private GameObject lookAt;
     private float currentTime;
+    bool canMove = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(StartMove(1.5f));
         move = false;
         waypointIndex = 0;
         player = GameObject.Find("Character");
@@ -38,7 +40,7 @@ public class FireSpiritTut : MonoBehaviour
         UpdateMove();
         UpdateWaypointsIndex();
         //if the spirit has to move, move to next waypoint
-        if (move && !NoInputFire.noInput)
+        if (canMove && move && !NoInputFire.noInput)
         {
             MoveTo(waypoints[waypointIndex].transform.position, targetDistance);
         }
@@ -136,5 +138,11 @@ public class FireSpiritTut : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator  StartMove(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        canMove = true;
     }
 }
