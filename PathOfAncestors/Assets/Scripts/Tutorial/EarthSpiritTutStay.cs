@@ -13,6 +13,8 @@ public class EarthSpiritTutStay : MonoBehaviour
     private NavMeshAgent navAgent;
     private GameObject target;
     private float currentTime;
+
+    public GameObject onboarding;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +75,7 @@ public class EarthSpiritTutStay : MonoBehaviour
     {
         if (animController.destroySpirit)
         {
+            onboarding.GetComponent<Onboarding>().ActiveEartTut();
             Destroy(gameObject);
         }
     }

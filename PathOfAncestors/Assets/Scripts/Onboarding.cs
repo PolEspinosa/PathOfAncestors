@@ -28,6 +28,7 @@ public class Onboarding : MonoBehaviour
 
     //images
     public GameObject fireTrust;
+    public GameObject earthTrust;
     public GameObject fireTut;
     public GameObject aimTut;
     public GameObject orderTut;
@@ -39,6 +40,7 @@ public class Onboarding : MonoBehaviour
     void Start()
     {
         fireTrust.SetActive(false);
+        earthTrust.SetActive(false);
         fireTut.SetActive(false);
         aimTut.SetActive(false);
         orderTut.SetActive(false);
@@ -95,21 +97,21 @@ public class Onboarding : MonoBehaviour
             }
         }
 
-        if(earth)
-        {
-            if (other.tag == "Player")
-            {
-                earthTut.SetActive(true);
-                isShowingEarth = true;
-                
-            }
-        }
+       
     }
     public void ActiveFireTut()
     {
         fireTrust.SetActive(true);
         StartCoroutine(StartFireTut(2f));
     }
+
+    public void ActiveEartTut()
+    {
+        earthTrust.SetActive(true);
+        StartCoroutine(StartEarthTut(2f));
+
+    }
+
 
 
     IEnumerator StartFireTut(float waitTime)
@@ -119,6 +121,15 @@ public class Onboarding : MonoBehaviour
         fireTut.SetActive(true);
         isShowingFire = true;
     }
+
+    IEnumerator StartEarthTut(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        earthTrust.SetActive(false);
+        earthTut.SetActive(true);
+        isShowingEarth = true;
+    }
+
     IEnumerator CloseFireTut(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
