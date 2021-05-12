@@ -62,7 +62,15 @@ public class EarthSpirit : BaseSpirit
             {
                 onPlatform = false;
             }
+            else if(targetObject.CompareTag("MovingPlatform") && targetObject != parentObject)
+            {
+                onPlatform = false;
+            }
             if (!targetObject.CompareTag("PressurePlateActivator"))
+            {
+                onPressurePlate = false;
+            }
+            else if (targetObject.CompareTag("PressurePlateActivator") && navAgent.remainingDistance > 1f)
             {
                 onPressurePlate = false;
             }
