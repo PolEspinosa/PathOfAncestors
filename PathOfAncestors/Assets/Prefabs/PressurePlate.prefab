@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4944561935038612080}
   m_Layer: 0
   m_Name: PressurePlate
-  m_TagString: Untagged
+  m_TagString: PressurePlateActivator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   pressedPos: -0.7
   startPos: {x: 0, y: 0, z: 0}
   pressPlateChild: {fileID: 5275923746553639630}
+  colliders: []
 --- !u!1 &7618978859573068390
 GameObject:
   m_ObjectHideFlags: 0

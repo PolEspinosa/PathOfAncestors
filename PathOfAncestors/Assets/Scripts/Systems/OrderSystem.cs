@@ -168,7 +168,7 @@ public class OrderSystem : MonoBehaviour
             }
         }
 
-        if (hit.transform.tag == "Untagged")
+        if (hit.transform.tag == "Untagged" || hit.transform.CompareTag("PressurePlateActivator"))
         {
             //apply y offset to the fire spirit so it doesn't go through the target
             if (spiritManager.currentSpirit.CompareTag("FIRE"))

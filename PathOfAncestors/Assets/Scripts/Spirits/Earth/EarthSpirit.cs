@@ -62,7 +62,10 @@ public class EarthSpirit : BaseSpirit
             {
                 onPlatform = false;
             }
-            else if(!targetObject.CompareTag("PressurePlateActivator"))
+            if (!targetObject.CompareTag("PressurePlateActivator"))
+            {
+                onPressurePlate = false;
+            }
             if (targetObject.CompareTag("BreakableWall") && Vector3.Distance(gameObject.transform.position, targetObject.transform.position) < interactionDistance)
             {
                 animController.hasToBreak = true;
