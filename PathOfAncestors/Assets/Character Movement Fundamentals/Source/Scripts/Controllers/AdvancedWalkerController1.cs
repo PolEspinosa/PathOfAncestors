@@ -151,6 +151,10 @@ namespace CMF
         {
             ControllerUpdate();
             PlayFootstepsSound();
+            if (currentControllerState == ControllerState.Falling)
+            {
+                passiveScript.pushing = false;
+            }
         }
 
         //Update controller;

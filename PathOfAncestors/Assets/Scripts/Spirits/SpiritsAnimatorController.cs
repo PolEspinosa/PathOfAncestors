@@ -8,6 +8,8 @@ public class SpiritsAnimatorController : MonoBehaviour
     protected Animator animator;
     public float speed;
     public bool hasToBreak;
+    public bool going;
+    public bool moveAfterGetUp;
 
     protected enum State
     {

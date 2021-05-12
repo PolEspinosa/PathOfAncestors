@@ -59,6 +59,7 @@ public class PressurePlateActivator : Activator
                 if(other.tag=="EARTH")
                 {
                     manager.activatorObject = this;
+                    other.gameObject.GetComponent<EarthSpirit>().onPressurePlate = true;
                 }
                 
             }
@@ -81,6 +82,7 @@ public class PressurePlateActivator : Activator
             manager.activatorObject = null;
             //play pressure deactivate plate sound
             pressurePlateActivateSoundInstance.start();
+            other.gameObject.GetComponent<EarthSpirit>().onPressurePlate = false;
         }
 
     }

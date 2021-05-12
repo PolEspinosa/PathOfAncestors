@@ -37,6 +37,7 @@ TagManager:
   - MusicManager
   - BreakWallTrigger
   - PickUpTrigger
+  - PressurePlateActivator
   layers:
   - Default
   - TransparentFX

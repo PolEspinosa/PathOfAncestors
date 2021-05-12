@@ -90,8 +90,16 @@ public class BaseSpirit : MonoBehaviour
                     }
                     else
                     {
+                        
                         navAgent.enabled = true;
-                        navAgent.speed = walkSpeed;
+                        if (animController.moveAfterGetUp)
+                        {
+                            navAgent.speed = walkSpeed;
+                        }
+                        else
+                        {
+                            navAgent.speed = 0;
+                        }
                         navAgent.SetDestination(target.transform.position);
 
                         //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
@@ -140,7 +148,14 @@ public class BaseSpirit : MonoBehaviour
                         else
                         {
                             navAgent.enabled = true;
-                            navAgent.speed = runSpeed;
+                            if (animController.moveAfterGetUp)
+                            {
+                                navAgent.speed = runSpeed;
+                            }
+                            else
+                            {
+                                navAgent.speed = 0;
+                            }
                             navAgent.SetDestination(goToPosition);
                         }
 
@@ -222,12 +237,14 @@ public class BaseSpirit : MonoBehaviour
         slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
         velocity *= slowdownFactor;
         //update current position
-        gameObject.transform.position += velocity * Time.deltaTime;
-        if (targetDistance.magnitude > 0.1f)
+        if (animController.moveAfterGetUp)
         {
-            gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+            gameObject.transform.position += velocity * Time.deltaTime;
+            if (targetDistance.magnitude > 0.1f)
+            {
+                gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
+            }
         }
-
         //set the speed to the animator variable for the blend tree
         //we divide by the run speed so we can blend better the animations due to the velocity scaling factor (0-0.7-1)
         animController.speed = velocity.magnitude / runSpeed;
@@ -236,14 +253,17 @@ public class BaseSpirit : MonoBehaviour
     //calculate if spirit has path to the target
     public bool HasPath(RaycastHit hit)
     {
-        if(NavMesh.SamplePosition(hit.point, out meshHit, 5f, NavMesh.AllAreas))
+        if (!switchToSteering)
         {
-            navAgent.CalculatePath(meshHit.position, navMeshPath);
-        }
-        
-        if (navMeshPath.status != NavMeshPathStatus.PathComplete)
-        {
-            return false;
+            if (NavMesh.SamplePosition(hit.point, out meshHit, 5f, NavMesh.AllAreas))
+            {
+                navAgent.CalculatePath(meshHit.position, navMeshPath);
+            }
+
+            if (navMeshPath.status != NavMeshPathStatus.PathComplete)
+            {
+                return false;
+            }
         }
         return true;
     }

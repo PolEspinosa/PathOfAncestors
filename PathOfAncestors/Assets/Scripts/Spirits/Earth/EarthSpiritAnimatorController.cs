@@ -25,7 +25,7 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-      
+        moveAfterGetUp = true;
     }
 
     // Update is called once per frame
@@ -35,6 +35,7 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
         animator.SetBool("invoked", invoked);
         animator.SetBool("breakWall", hasToBreak);
         animator.SetBool("uninvoked", uninvoked);
+        animator.SetBool("going", going);
     }
 
     private void EarthInvoked()
@@ -109,5 +110,15 @@ public class EarthSpiritAnimatorController : SpiritsAnimatorController
     private void OnDestroy()
     {
         stepsInstance.release();
+    }
+
+    public void StandDown()
+    {
+        moveAfterGetUp = false;
+    }
+
+    public void StandUp()
+    {
+        moveAfterGetUp = true;
     }
 }
