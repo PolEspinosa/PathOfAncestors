@@ -27,6 +27,7 @@ public class Onboarding : MonoBehaviour
     public bool isShowingEarth = false;
 
     //images
+    public GameObject fireTrust;
     public GameObject fireTut;
     public GameObject aimTut;
     public GameObject orderTut;
@@ -37,6 +38,7 @@ public class Onboarding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fireTrust.SetActive(false);
         fireTut.SetActive(false);
         aimTut.SetActive(false);
         orderTut.SetActive(false);
@@ -82,16 +84,7 @@ public class Onboarding : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (showFire && tutorial)
-        {
-            if (other.tag == "Player")
-            {
-                showFire = false;
-                fireTut.SetActive(true);
-                isShowingFire = true;
-
-            }
-        }
+        
 
         if(interact)
         {
@@ -112,7 +105,20 @@ public class Onboarding : MonoBehaviour
             }
         }
     }
+    public void ActiveFireTut()
+    {
+        fireTrust.SetActive(true);
+        StartCoroutine(StartFireTut(2f));
+    }
 
+
+    IEnumerator StartFireTut(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        fireTrust.SetActive(false);
+        fireTut.SetActive(true);
+        isShowingFire = true;
+    }
     IEnumerator CloseFireTut(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);

@@ -19,7 +19,7 @@ public class FireSpiritTut : MonoBehaviour
     private GameObject lookAt;
     private float currentTime;
     bool canMove = false;
-
+    public GameObject onboarding;
     // Start is called before the first frame update
     void Start()
     {
@@ -136,6 +136,7 @@ public class FireSpiritTut : MonoBehaviour
     {
         if (animController.destroySpirit)
         {
+            onboarding.GetComponent<Onboarding>().ActiveFireTut();
             Destroy(gameObject);
         }
     }
