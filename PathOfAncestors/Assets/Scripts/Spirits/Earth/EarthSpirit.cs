@@ -70,10 +70,11 @@ public class EarthSpirit : BaseSpirit
             {
                 onPressurePlate = false;
             }
-            else if (targetObject.CompareTag("PressurePlateActivator") && navAgent.remainingDistance > 1f)
-            {
-                onPressurePlate = false;
-            }
+            //else if (targetObject.CompareTag("PressurePlateActivator") && navAgent.remainingDistance > 1f)
+            //{
+            //    onPressurePlate = false;
+            //    Debug.Log("hey3");
+            //}
             if (targetObject.CompareTag("BreakableWall") && Vector3.Distance(gameObject.transform.position, targetObject.transform.position) < interactionDistance)
             {
                 animController.hasToBreak = true;
@@ -335,13 +336,16 @@ public class EarthSpirit : BaseSpirit
             {
                 if (!switchToSteering)
                 {
-                    if (navAgent.remainingDistance < 1f || onPressurePlate)
+                    if (navAgent.isActiveAndEnabled)
                     {
-                        animController.going = true;
-                    }
-                    else
-                    {
-                        animController.going = false;
+                        if (navAgent.remainingDistance < 1f || onPressurePlate)
+                        {
+                            animController.going = true;
+                        }
+                        else
+                        {
+                            animController.going = false;
+                        }
                     }
                 }
                 else
