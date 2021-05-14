@@ -22,7 +22,7 @@ public class CheckpointManager : MonoBehaviour
     public void AddCheckpoint(Checkpoint checkpoint)
     {
         actualCheckpoint=checkpoint;
-        SaveSystem.SavePlayerData(checkpoint);
+        //SaveSystem.SavePlayerData(checkpoint);
     }
 
     public void moveToCheckpoint()
