@@ -45,7 +45,7 @@ public abstract class Activator : MonoBehaviour
     }
     protected virtual void Activate()
     {
-
+        
     }
 
   

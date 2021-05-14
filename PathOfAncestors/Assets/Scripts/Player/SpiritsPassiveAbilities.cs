@@ -27,6 +27,8 @@ public class SpiritsPassiveAbilities : MonoBehaviour
     public float parentTimeDelay;
 
     public bool inDarkArea;
+
+    public float timesMoved;
     // Start is called before the first frame update
     void Start()
     {
@@ -125,6 +127,7 @@ public class SpiritsPassiveAbilities : MonoBehaviour
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
+            DataManager.totalTimesInteracted++;
             boxRigidbody = movingObject.GetComponent<Rigidbody>();
             time = 0;
 

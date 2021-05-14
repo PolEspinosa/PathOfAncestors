@@ -13,6 +13,8 @@ public class PickUpObject : MonoBehaviour
     float normalJump;
     float slowJump = 3;
 
+    public float timesPicked;
+
     private void Start()
     {
         normalJump = player.GetComponent<CMF.AdvancedWalkerController>().jumpSpeed;
@@ -22,11 +24,13 @@ public class PickUpObject : MonoBehaviour
 
     private void Update()
     {
+        DataManager.objectPicked = hasObject;
         if(objectToPickUp && !hasObject)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-              
+                DataManager.totalTimesInteracted++;
+
                 objectInPossesion.GetComponent<Rigidbody>().useGravity = false;
                 objectInPossesion.GetComponent<Rigidbody>().isKinematic = true;
                 objectInPossesion.GetComponent<Rigidbody>().detectCollisions = false;
@@ -35,7 +39,6 @@ public class PickUpObject : MonoBehaviour
                 objectToPickUp = false;
                 hasObject = true;
                 
-
             }
         }
 

@@ -30,6 +30,7 @@ public class OrderSystem : MonoBehaviour
 
     //spirits sound instances
     private FMOD.Studio.EventInstance fireVoiceInstance, earthVoiceInstance;
+    public float timesOrdered;
 
     // Start is called before the first frame update
     void Start()
@@ -138,6 +139,14 @@ public class OrderSystem : MonoBehaviour
 
     public void ManageOrders(RaycastHit hit)
     {
+        if (spiritManager.currentSpirit.CompareTag("EARTH"))
+        {
+            DataManager.totalTimesOrderedEarth++;
+        }
+        else if(spiritManager.currentSpirit.CompareTag("FIRE"))
+        {
+            DataManager.totalTimesOrderedFire++;
+        }
         Debug.Log(hit.transform.tag);
         isGoingToEarth = false;
         activator = null;

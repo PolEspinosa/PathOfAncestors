@@ -19,6 +19,7 @@ public class EarthPlatformActivator : Activator
             {
                 if(order.isGoingToEarth && order.activator==this.gameObject)
                 {
+                    DataManager.totalTimesActivated++;
                     earthSpirit = other.gameObject;
                     earthSpirit.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     _activated = true;

@@ -11,6 +11,7 @@ public class TorchActivator : Activator
         {
             if (other.tag == "FIRE" )
             {
+                DataManager.totalTimesActivated++;
                 _activated = true;
                 OnActivate();
                 //start the fire sound when the torch is activated

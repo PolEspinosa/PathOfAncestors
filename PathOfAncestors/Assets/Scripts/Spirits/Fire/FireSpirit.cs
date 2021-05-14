@@ -12,6 +12,7 @@ public class FireSpirit : BaseSpirit
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.totalTimesInvokedFire++;
         rb = gameObject.GetComponent<Rigidbody>();
         spiritType = Type.FIRE;
         InitialiseValues();

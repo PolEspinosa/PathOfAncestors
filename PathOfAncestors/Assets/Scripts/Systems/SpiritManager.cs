@@ -23,6 +23,7 @@ public class SpiritManager : MonoBehaviour
     public OrderSystem order;
 
     private FireSpiritAnimatorController fireController;
+    public float timesInvoked;
 
     //this variable will determine when to spawn the other spirit so it goes according to the animation
     private bool invokeOtherSpirit, canInvoke;
@@ -105,7 +106,7 @@ public class SpiritManager : MonoBehaviour
     {
         if( currentSpirit==null)
         {
-            currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
+            currentSpirit =Instantiate(_spirit, _position.position, Quaternion.identity);    
         }
 
         else

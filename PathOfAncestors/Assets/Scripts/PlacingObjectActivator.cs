@@ -13,6 +13,7 @@ public class PlacingObjectActivator : Activator
     {
         if(!_activated)
         {
+            DataManager.totalTimesActivated++;
             orb.SetActive(true);
             StartCoroutine(Active(2));
         }

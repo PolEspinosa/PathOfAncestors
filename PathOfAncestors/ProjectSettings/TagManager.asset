@@ -31,6 +31,7 @@ TagManager:
   - ReverbChange
   - Player2
   - PartDoor
+  - Unparent
   - FireLookAt
   - EarthLookAt
   - Unparent
@@ -38,6 +39,8 @@ TagManager:
   - BreakWallTrigger
   - PickUpTrigger
   - PressurePlateActivator
+  - DataManager
+  - Player2
   layers:
   - Default
   - TransparentFX
