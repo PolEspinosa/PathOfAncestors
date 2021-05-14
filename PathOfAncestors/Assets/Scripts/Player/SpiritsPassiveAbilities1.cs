@@ -66,7 +66,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             Vector3 position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
             gameObject.transform.position = position;
         }
-
+        StartCoroutine(TimeCounter());
     }
 
     // Update is called once per frame
@@ -167,6 +167,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
+            DataManager.totalTimesInteracted++;
             boxRigidbody = movingObject.GetComponent<Rigidbody>();
             time = 0;
 
@@ -234,6 +235,15 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private IEnumerator TimeCounter()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            DataManager.totalTimePassed++;
         }
     }
 }

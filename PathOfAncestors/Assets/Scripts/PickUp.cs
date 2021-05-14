@@ -23,6 +23,7 @@ public class PickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DataManager.objectPicked = hasObject;
         if (objectToPickUp && !hasObject)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -36,7 +37,7 @@ public class PickUp : MonoBehaviour
                 parent.GetComponent<BoxCollider>().isTrigger = false;
                 objectToPickUp = false;
                 hasObject = true;
-
+                DataManager.totalTimesInteracted++;
 
             }
         }

@@ -186,6 +186,10 @@ public class OrderSystem : MonoBehaviour
             }
             else
             {
+                if (hit.transform.CompareTag("PressurePlateActivator"))
+                {
+                    DataManager.totalTimesCorrectOrderedEarth++;
+                }
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);
             }
             ManageActivators();
@@ -200,12 +204,17 @@ public class OrderSystem : MonoBehaviour
             }
             else
             {
+                DataManager.totalTimesCorrectOrderedEarth++;
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.collider.gameObject.transform.position);
             }
             ManageActivators();
         }
         else if (hit.transform.tag == "Torch")
         {
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                DataManager.totalTimesCorrectOrderedFire++;
+            }
             if (spiritManager.activatorObject == null)
             {
                 Transform pos = hit.transform.GetChild(0).transform;
@@ -219,6 +228,10 @@ public class OrderSystem : MonoBehaviour
         }
         else if (hit.transform.tag == "OvenActivator")
         {
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                DataManager.totalTimesCorrectOrderedFire++;
+            }
             activator = hit.transform.gameObject.transform.GetChild(0).gameObject;
             if (spiritManager.activatorObject == null)
             {
@@ -257,6 +270,7 @@ public class OrderSystem : MonoBehaviour
                 }
                 else
                 {
+                    DataManager.totalTimesCorrectOrderedEarth++;
                     spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
                 }
             }
@@ -272,6 +286,10 @@ public class OrderSystem : MonoBehaviour
 
         else if (hit.transform.tag == "BreakableWall")
         {
+            if (spiritManager.currentSpirit.CompareTag("EARTH"))
+            {
+                DataManager.totalTimesCorrectOrderedEarth++;
+            }
             float playerDistance = Vector3.Distance(this.transform.position, hit.transform.position);
             float earthDistance = Vector3.Distance(spiritManager.currentSpirit.gameObject.transform.position, hit.transform.position);
 
@@ -303,7 +321,10 @@ public class OrderSystem : MonoBehaviour
         //}
         else if (hit.transform.CompareTag("Burnable"))
         {
-
+            if (spiritManager.currentSpirit.CompareTag("FIRE"))
+            {
+                DataManager.totalTimesCorrectOrderedFire++;
+            }
             if (spiritManager.activatorObject == null)
             {
                 spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(hit.point);

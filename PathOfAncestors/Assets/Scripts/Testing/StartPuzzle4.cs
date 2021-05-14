@@ -28,6 +28,10 @@ public class StartPuzzle4 : MonoBehaviour
             DataManager.totalTimesOrderedFire = 0;
             DataManager.totalTimesInvokedEarth = 0;
             DataManager.totalTimesInvokedFire = 0;
+            DataManager.totalTimesCorrectOrderedEarth = 0;
+            DataManager.totalTimesCorrectOrderedFire = 0;
+            DataManager.totalTimesNOTCorrectOrderedEarth = 0;
+            DataManager.totalTimesNOTCorrectOrderedFire = 0;
         }
     }
 

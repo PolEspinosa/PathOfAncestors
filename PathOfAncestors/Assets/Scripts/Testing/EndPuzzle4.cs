@@ -27,6 +27,8 @@ public class EndPuzzle4 : MonoBehaviour
             DataManager.puzzle4TimesInteracted = DataManager.totalTimesInteracted;
             DataManager.puzzle4TimesOredredEarth = DataManager.totalTimesOrderedEarth;
             DataManager.puzzle4TimesOrderedFire = DataManager.totalTimesOrderedFire;
+            DataManager.puzzle4TimesCorrectOrderedEarth = DataManager.totalTimesCorrectOrderedEarth;
+            DataManager.puzzle4TimesCorrectOrderedFire = DataManager.totalTimesCorrectOrderedFire;
             DataManager.puzzle4TimesInvokedEarth = DataManager.totalTimesInvokedEarth;
             DataManager.puzzle4TimesInvokedFire = DataManager.totalTimesInvokedFire;
         }

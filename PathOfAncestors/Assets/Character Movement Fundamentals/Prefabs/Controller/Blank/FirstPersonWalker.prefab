@@ -511,6 +511,7 @@ MonoBehaviour:
   isGoingToEarth: 0
   activator: {fileID: 0}
   pathCalculator: {fileID: 7629444015303899233}
+  timesOrdered: 0
 --- !u!114 &7564607797633685210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +535,7 @@ MonoBehaviour:
   activatorObject: {fileID: 0}
   currentSpirit: {fileID: 0}
   order: {fileID: 6318772896406036548}
+  timesInvoked: 0
   fireInvoked: 0
   earthInvoked: 0
 --- !u!65 &6440987484339149424
@@ -880,7 +882,7 @@ GameObject:
   - component: {fileID: 6502111947257812770}
   m_Layer: 14
   m_Name: SurfaceDetector
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

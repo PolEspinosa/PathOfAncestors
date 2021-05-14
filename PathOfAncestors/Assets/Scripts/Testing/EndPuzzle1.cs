@@ -22,11 +22,13 @@ public class EndPuzzle1 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DataManager.puzzle1Deaths = DataManager.totalDeaths;
-            DataManager.puzzle1TimePassed =  DataManager.totalTimePassed;
+            DataManager.puzzle1TimePassed = DataManager.totalTimePassed;
             DataManager.puzzle1TimesActivated = DataManager.totalTimesActivated;
             DataManager.puzzle1TimesInteracted = DataManager.totalTimesInteracted;
             DataManager.puzzle1TimesOredredEarth = DataManager.totalTimesOrderedEarth;
             DataManager.puzzle1TimesOrderedFire = DataManager.totalTimesOrderedFire;
+            DataManager.puzzle1TimesCorrectOrderedEarth = DataManager.totalTimesCorrectOrderedEarth;
+            DataManager.puzzle1TimesCorrectOrderedFire = DataManager.totalTimesCorrectOrderedFire;
             DataManager.puzzle1TimesInvokedEarth = DataManager.totalTimesInvokedEarth;
             DataManager.puzzle1TimesInvokedFire = DataManager.totalTimesInvokedFire;
         }
