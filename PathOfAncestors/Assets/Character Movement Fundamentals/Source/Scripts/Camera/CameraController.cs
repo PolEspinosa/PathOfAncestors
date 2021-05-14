@@ -150,15 +150,6 @@ namespace CMF
             if (!passiveScript.pushing)
             {
                 currentXAngle = Mathf.Clamp(currentXAngle, -upperVerticalLimit, lowerVerticalLimit);
-
-                if (NoInputFire.noInput)
-                {
-                    currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
-                }
-                else if (NoInputEarth.noInput)
-                {
-                    currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
-                }
             }
             else
             {
