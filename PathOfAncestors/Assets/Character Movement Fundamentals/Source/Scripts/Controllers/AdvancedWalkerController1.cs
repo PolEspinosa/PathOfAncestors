@@ -124,7 +124,7 @@ namespace CMF
 
         void Update()
         {
-            if (!passiveScript.pushing && (!NoInputEarth.noInput || !NoInputFire.noInput))
+            if (!passiveScript.pushing && (!NoInputEarth.noInput && !NoInputFire.noInput))
             {
                 HandleJumpKeyInput();
             }

@@ -59,11 +59,24 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         pushBoxInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/moveRock");
         pushBoxInstance.setVolume(0.8f);
         playerRigidbody = gameObject.GetComponent<Rigidbody>();
+
+        PlayerData data = SaveSystem.LoadPlayerData();
+        if (data != null)
+        {
+            Vector3 position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
+            gameObject.transform.position = position;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //just for testing purposes
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SaveSystem.DeleteAllData();
+        }
             //the player is close enough to move the box
             if (inRange && CanInteract())
             {

@@ -9,7 +9,7 @@ public class FireSpiritTut : MonoBehaviour
 
     private Vector3 targetDistance, desiredVelocity, velocity, steering;
     [SerializeField]
-    private float movingSpeed, slowdownDistance, fleeDistance;
+    private float movingSpeed, slowdownDistance, fleeDistance, currentSpeed;
     [SerializeField]
     private SpiritsAnimatorController animController;
     private float slowdownFactor;
@@ -32,6 +32,12 @@ public class FireSpiritTut : MonoBehaviour
         canUpdateIndex = false;
         targetDistance = waypoints[waypointIndex].transform.position - gameObject.transform.position;
         target = GameObject.Find("PickUp");
+        //play fire spirit invokation sound
+        FMOD.Studio.EventInstance fireSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Invocaciones/invokeFireSpirit");
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(fireSoundInstance, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+        fireSoundInstance.setVolume(4f);
+        fireSoundInstance.start();
+        currentSpeed = movingSpeed;
     }
 
     // Update is called once per frame
@@ -43,6 +49,7 @@ public class FireSpiritTut : MonoBehaviour
         if (canMove && move && !NoInputFire.noInput)
         {
             MoveTo(waypoints[waypointIndex].transform.position, targetDistance);
+            currentSpeed = movingSpeed + (10f / (Vector3.Distance(gameObject.transform.position, target.transform.position)));
         }
         else
         {
@@ -60,7 +67,7 @@ public class FireSpiritTut : MonoBehaviour
             {
                 MoveTo(player.transform.position + new Vector3(0, 3f, 0), targetDistance);
                 slowdownDistance = 7f;
-                movingSpeed = 5;
+                currentSpeed = 5;
             }
         }
     }
@@ -70,7 +77,7 @@ public class FireSpiritTut : MonoBehaviour
         //direction in which the character has to move
         targetDistance = (_targetPosition - gameObject.transform.position);
         //the desired velocity the character needs in order to go to he target
-        desiredVelocity = targetDistance.normalized * movingSpeed;
+        desiredVelocity = targetDistance.normalized * currentSpeed;
         //the force needed in order to move to the target
         steering = desiredVelocity - velocity;
         //update current velocity
@@ -84,7 +91,7 @@ public class FireSpiritTut : MonoBehaviour
         gameObject.transform.rotation = Quaternion.LookRotation(targetDistance, Vector3.up);
 
         //set the speed to the animator variable for the blend tree
-        animController.speed = velocity.magnitude / movingSpeed;
+        animController.speed = velocity.magnitude / currentSpeed;
     }
 
     private void CurrentLookAt(Transform _lookAt)
@@ -128,7 +135,7 @@ public class FireSpiritTut : MonoBehaviour
         if (Vector3.Distance(gameObject.transform.position, player.transform.position + new Vector3(0, 3f, 0)) < 1.5f && NoInputFire.noInput)
         {
             animController.uninvoked = true;
-            movingSpeed = 0;
+            currentSpeed = 0;
         }
     }
 
