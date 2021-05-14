@@ -62,6 +62,8 @@ namespace CMF
         [SerializeField]
         private SpiritsPassiveAbilities1 passiveScript;
 
+        private GameObject fireSpiritTut, earthSpiritTut;
+
 		//Setup references.
 		void Awake () {
 			tr = transform;
@@ -148,6 +150,15 @@ namespace CMF
             if (!passiveScript.pushing)
             {
                 currentXAngle = Mathf.Clamp(currentXAngle, -upperVerticalLimit, lowerVerticalLimit);
+
+                if (NoInputFire.noInput)
+                {
+                    currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
+                }
+                else if (NoInputEarth.noInput)
+                {
+                    currentYAngle = Mathf.Clamp(currentYAngle, -leftPushingVerticalLimit, rightPushingVerticalLimit);
+                }
             }
             else
             {
@@ -168,9 +179,7 @@ namespace CMF
                         break;
                 }
                 currentXAngle = Mathf.Clamp(currentXAngle, -upperPushingVerticalLimit, lowerPushingVerticalLimit);
-                
             }
-
 			UpdateRotation();
 		}
 
