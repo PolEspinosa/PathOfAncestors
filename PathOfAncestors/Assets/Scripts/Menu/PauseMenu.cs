@@ -93,6 +93,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
+        //SceneManager.LoadScene("Loading");
         player.transform.position = manager.actualCheckpoint.transform.position;
         pauseUI.SetActive(false);
         gamePaused = false;
