@@ -205,6 +205,8 @@ public class OrderSystem : MonoBehaviour
             else
             {
                 ManageActivators();
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
             }
 
         }
@@ -219,6 +221,8 @@ public class OrderSystem : MonoBehaviour
             else
             {
                 ManageActivators();
+                Transform pos = hit.transform.GetChild(0).transform;
+                spiritManager.currentSpirit.GetComponent<BaseSpirit>().MoveTo(pos.position);
             }
 
         }
