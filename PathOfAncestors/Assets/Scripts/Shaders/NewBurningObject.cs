@@ -46,7 +46,7 @@ public class NewBurningObject : MonoBehaviour
         }
         if (burntAmount >= 1)
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
         
     }
