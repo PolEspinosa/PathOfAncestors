@@ -72,7 +72,6 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CanInteract());
         //just for testing purposes
         if (Input.GetKeyDown(KeyCode.B))
         {

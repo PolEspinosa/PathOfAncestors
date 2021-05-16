@@ -85,10 +85,7 @@ public class OrderSystem : MonoBehaviour
                     }
                     else
                     {
-                        if (spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit))
-                        {
-                            ManageOrders(hit);
-                        }
+                        ManageOrders(hit);
                     }
                 }
                 else
