@@ -24,8 +24,9 @@ public class OvenActivator : Activator
         {
             if (other.tag == "FIRE" && order.activator == this.gameObject)
             {
-               fireSpirit = other.gameObject;
-               StartCoroutine( activeOven(2f , fireSpirit));
+                manager.activatorObject = this;
+                fireSpirit = other.gameObject;
+                StartCoroutine( activeOven(2f , fireSpirit));
                 
             }
 
@@ -36,7 +37,7 @@ public class OvenActivator : Activator
     public void DeactivateOven()
     {
         
-        fireSpirit.GetComponent<BaseSpirit>().MoveTo(endPos.position);
+        //fireSpirit.GetComponent<BaseSpirit>().MoveTo(endPos.position);
         
         StartCoroutine(shutDownOven(2f));
     }
@@ -47,7 +48,7 @@ public class OvenActivator : Activator
         ovenParticles.SetActive(true);
         _activated = true;
         OnActivate();
-        manager.activatorObject = this;
+       
         //this.gameObject.transform.parent.GetComponent<MeshRenderer>().material = activeMaterial;
         //start the sound of the oven when activated
        ovenSoundInstance.start();

@@ -7,10 +7,12 @@ public class CheckpointManager : MonoBehaviour
 
     public Checkpoint actualCheckpoint;
     public GameObject player;
+    private GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Character");
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class CheckpointManager : MonoBehaviour
     public void AddCheckpoint(Checkpoint checkpoint)
     {
         actualCheckpoint=checkpoint;
-        //SaveSystem.SavePlayerData(checkpoint);
+        SaveSystem.SavePlayerData(checkpoint, gameManager.GetComponent<GameManager>());
     }
 
     public void moveToCheckpoint()

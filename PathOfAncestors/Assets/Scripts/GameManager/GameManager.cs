@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public static float masterVolume, musicVolume, ambienceVolume, sfxVolume;
+    public GameObject[] decorations;
     private void Awake()
     {
         if (Instance == null)
@@ -22,20 +23,35 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerData data = SaveSystem.LoadPlayerData();
+        if (data != null)
+        {
+            for(int i = 0; i < data.decorationBools.Length; i++)
+            {
+                if (data.decorationBools[i])
+                {
+                    decorations[i].SetActive(true);
+                }
+                else
+                {
+                    decorations[i].SetActive(false);
+                }
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            PlayerPrefs.DeleteAll();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SaveData();
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    PlayerPrefs.DeleteAll();
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    SaveData();
+        //}
+
     }
 
     public void SaveData()
