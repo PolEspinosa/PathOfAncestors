@@ -20,6 +20,7 @@ public class FireSpiritTut : MonoBehaviour
     private float currentTime;
     bool canMove = false;
     public GameObject onboarding;
+    private bool canPlaySound;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,7 @@ public class FireSpiritTut : MonoBehaviour
         fireSoundInstance.setVolume(4f);
         fireSoundInstance.start();
         currentSpeed = movingSpeed;
+        canPlaySound = true;
     }
 
     // Update is called once per frame
@@ -105,6 +107,11 @@ public class FireSpiritTut : MonoBehaviour
         {
             if (waypointIndex < waypoints.Count)
             {
+                if (canPlaySound)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Voice/fireVoice", gameObject);
+                    canPlaySound = false;
+                }
                 move = true;
                 updateIndex = true;
             }
@@ -126,6 +133,7 @@ public class FireSpiritTut : MonoBehaviour
                 waypointIndex++;
                 updateIndex = false;
                 canUpdateIndex = false;
+                canPlaySound = true;
             }
         }
     }
