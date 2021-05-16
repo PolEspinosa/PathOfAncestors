@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerData
 {
     public float[] playerPosition;
-    public GameObject[] decoration;
+    //public GameObject[] decoration;
     public bool[] decorationBools;
 
 
@@ -18,12 +18,12 @@ public class PlayerData
         playerPosition[1] = checkpoint.transform.position.y;
         playerPosition[2] = checkpoint.transform.position.z;
 
-        decoration = new GameObject[gameManager.decorations.Length];
-        decoration = gameManager.decorations;
-        decorationBools = new bool[decoration.Length];
-        for(int i = 0; i < decoration.Length; i++)
+        //decoration = new GameObject[gameManager.decorations.Length];
+        //decoration = gameManager.decorations;
+        decorationBools = new bool[gameManager.decorations.Length];
+        for(int i = 0; i < gameManager.decorations.Length; i++)
         {
-            if (decoration[i].activeInHierarchy)
+            if (gameManager.decorations[i].activeInHierarchy)
             {
                 decorationBools[i] = true;
             }
