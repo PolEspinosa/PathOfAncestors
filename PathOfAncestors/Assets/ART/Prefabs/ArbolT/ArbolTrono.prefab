@@ -182,6 +182,19 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1322649891623354231
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806743342768160776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03, y: 0.03, z: 0.09982016}
+  m_Center: {x: 0.00021196716, y: -0.0003327337, z: 0.0010358284}
 --- !u!64 &8224051317519129125
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -191,7 +204,7 @@ MeshCollider:
   m_GameObject: {fileID: 5806743342768160776}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -214,7 +227,7 @@ MonoBehaviour:
   burntThreshold: 0.5
   burningSpeed: 0.5
   nextBurnableObject: []
---- !u!65 &1322649891623354231
+--- !u!65 &4873526977874449178
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
