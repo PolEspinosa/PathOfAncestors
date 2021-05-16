@@ -85,12 +85,24 @@ public class OrderSystem : MonoBehaviour
                     }
                     else
                     {
-                        ManageOrders(hit);
+                        if (spiritManager.currentSpirit.GetComponent<EarthSpirit>().HasPath(hit))
+                        {
+                            ManageOrders(hit);
+                        }
                     }
                 }
                 else
                 {
-                    ManageOrders(hit);
+                    if (spiritManager.currentSpirit.GetComponent<FireSpirit>().IsFarFromTarget(hit.point))
+                    {
+                        spiritManager.Desinvoke(spiritManager.currentSpirit);
+                        //invoke spirit and manage orders all at once
+                        StartCoroutine(InvokeFireSpiritAgain(hit));
+                    }
+                    else
+                    {
+                        ManageOrders(hit);
+                    }
                 }
             }
             //ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -346,6 +358,13 @@ public class OrderSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         spiritManager.InvokeSpirit(spiritManager.earthSpiritRef, spiritManager.earthPosition.transform);
+        ManageOrders(hit);
+    }
+
+    private IEnumerator InvokeFireSpiritAgain(RaycastHit hit)
+    {
+        yield return new WaitForSeconds(0.1f);
+        spiritManager.InvokeSpirit(spiritManager.fireSpiritRef, spiritManager.fireWindPosition.transform);
         ManageOrders(hit);
     }
 
