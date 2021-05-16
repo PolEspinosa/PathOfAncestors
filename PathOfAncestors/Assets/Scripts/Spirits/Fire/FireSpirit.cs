@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class FireSpirit : BaseSpirit
 {
+    [SerializeField]
+    private float farDistance;
     [Header("Only when not interacting")]
     //float to determine the distance to stop when not going to interact
     [SerializeField]
     private float stoppingDistance;
     private Rigidbody rb;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -72,5 +75,10 @@ public class FireSpirit : BaseSpirit
             }
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public bool IsFarFromTarget(Vector3 _targetPosition)
+    {
+        return Vector3.Distance(gameObject.transform.position, _targetPosition) > farDistance;
     }
 }

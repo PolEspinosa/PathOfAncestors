@@ -54,6 +54,8 @@ MonoBehaviour:
   destroySpirit: 0
   speed: 0
   hasToBreak: 0
+  going: 0
+  moveAfterGetUp: 0
   stateString: 
   fireParticles: {fileID: 3562572147162489530}
   minIdleChangeTime: 5
@@ -169,6 +171,7 @@ MonoBehaviour:
   targetTag: 
   targetObject: {fileID: 0}
   order: {fileID: 0}
+  farDistance: 100
   stoppingDistance: 0.5
 --- !u!54 &6821029558618872649
 Rigidbody:

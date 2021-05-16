@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 9187099827141850995}
   - component: {fileID: 1854495941627795655}
   - component: {fileID: 3362937205768167060}
+  - component: {fileID: 368015143601968677}
   m_Layer: 0
   m_Name: FirePositon
   m_TagString: Untagged
@@ -249,6 +250,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &368015143601968677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198743492050691024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469697a90131f5249ae0ff9238a15ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activator: {fileID: 9187099827141850995}
 --- !u!1 &6330517579822147196
 GameObject:
   m_ObjectHideFlags: 0

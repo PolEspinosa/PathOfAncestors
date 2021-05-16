@@ -229,7 +229,9 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         if (movingObject != null)
         {
             Vector3 distance = movingObject.transform.position - gameObject.transform.position;
-            return distance.y > 0 && distance.y <= 1.1f;
+            Debug.Log(distance.y);
+            return movingObject.GetComponent<Rigidbody>().velocity.y <= 0.1f && movingObject.GetComponent<Rigidbody>().velocity.y >= -0.1f;
+            //return distance.y >= -0.5f && distance.y <= 1.2f;
         }
         else
         {
