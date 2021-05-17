@@ -90,7 +90,7 @@ public class OrderSystem : MonoBehaviour
                 }
                 else
                 {
-                    if (spiritManager.currentSpirit.GetComponent<FireSpirit>().IsFarFromTarget(hit.point))
+                    if (spiritManager.currentSpirit.GetComponent<FireSpirit>().IsFarFromTarget(hit.point) && !spiritManager.currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked && spiritManager.currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().invoked)
                     {
                         spiritManager.Desinvoke(spiritManager.currentSpirit);
                         //invoke spirit and manage orders all at once

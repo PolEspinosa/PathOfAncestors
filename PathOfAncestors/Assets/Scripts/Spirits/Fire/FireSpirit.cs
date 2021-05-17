@@ -21,6 +21,7 @@ public class FireSpirit : BaseSpirit
         //play fire spirit invokation sound
         FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Invocaciones/invokeFireSpirit", gameObject);
         StartCoroutine(CheckChangeOfState());
+        player = GameObject.Find("Character");
     }
 
     // Update is called once per frame
@@ -79,6 +80,6 @@ public class FireSpirit : BaseSpirit
 
     public bool IsFarFromTarget(Vector3 _targetPosition)
     {
-        return Vector3.Distance(gameObject.transform.position, _targetPosition) > farDistance;
+        return Vector3.Distance(gameObject.transform.position, _targetPosition) > farDistance && Vector3.Distance(player.transform.position, _targetPosition) < (Vector3.Distance(gameObject.transform.position, _targetPosition)) * 0.9;
     }
 }
