@@ -22,6 +22,9 @@ public class SpiritManager : MonoBehaviour
 
     public OrderSystem order;
 
+    public bool hasFire = false;
+    public bool hasEarth = false;
+
     private FireSpiritAnimatorController fireController;
 
     //this variable will determine when to spawn the other spirit so it goes according to the animation
@@ -45,7 +48,7 @@ public class SpiritManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && hasFire)
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
             //if invoking the fire spirit, stop music from earth spirit and start music from fire spirit
@@ -59,7 +62,7 @@ public class SpiritManager : MonoBehaviour
                 fireInvoked = 0;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && hasEarth)
         {
             InvokeSpirit(earthSpiritRef, earthPosition.transform);
             //if invoking the earth spirit, stop music from fire spirit and start music from earth spirit

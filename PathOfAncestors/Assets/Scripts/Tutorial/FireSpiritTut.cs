@@ -21,6 +21,8 @@ public class FireSpiritTut : MonoBehaviour
     bool canMove = false;
     public GameObject onboarding;
     private bool canPlaySound;
+
+    SpiritManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class FireSpiritTut : MonoBehaviour
         move = false;
         waypointIndex = 0;
         player = GameObject.Find("Character");
+        manager = player.GetComponent<SpiritManager>();
         updateIndex = false;
         lookAt = GameObject.FindGameObjectWithTag("FireLookAt");
         canUpdateIndex = false;
@@ -151,6 +154,7 @@ public class FireSpiritTut : MonoBehaviour
     {
         if (animController.destroySpirit)
         {
+            manager.hasFire = true;
             onboarding.GetComponent<Onboarding>().ActiveFireTut();
             Destroy(gameObject);
         }

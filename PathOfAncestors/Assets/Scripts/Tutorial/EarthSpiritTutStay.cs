@@ -13,12 +13,14 @@ public class EarthSpiritTutStay : MonoBehaviour
     private NavMeshAgent navAgent;
     private GameObject target;
     private float currentTime;
+    SpiritManager manager;
 
     public GameObject onboarding;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Character");
+        manager = player.GetComponent<SpiritManager>();
         navAgent = gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.Find("EarthInvokation");
         navAgent.speed = moveSpeed;
@@ -75,6 +77,7 @@ public class EarthSpiritTutStay : MonoBehaviour
     {
         if (animController.destroySpirit)
         {
+            manager.hasEarth = true;
             onboarding.GetComponent<Onboarding>().ActiveEartTut();
             Destroy(gameObject);
         }
