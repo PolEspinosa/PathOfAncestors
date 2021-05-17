@@ -17,7 +17,7 @@ public class MenuLoading : MonoBehaviour
     IEnumerator LoadAsyncOperation()
     {
         yield return new WaitForSeconds(2f);
-        AsyncOperation gameLevel = SceneManager.LoadSceneAsync("Level 1");
+        AsyncOperation gameLevel = SceneManager.LoadSceneAsync("LevelFinal");
 
         while (gameLevel.progress < 1)
         {
