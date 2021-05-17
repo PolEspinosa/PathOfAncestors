@@ -386,7 +386,7 @@ public class OrderSystem : MonoBehaviour
                 }
                 else if (spiritManager.currentSpirit.CompareTag("EARTH"))
                 {
-                    if (hit.transform.CompareTag("EarthPlatform") || hit.transform.CompareTag("BreakableWall"))
+                    if (hit.transform.CompareTag("EarthPlatform") || hit.transform.CompareTag("BreakableWall") || hit.transform.CompareTag("PressurePlateActivator"))
                     {
                         cursorImage.sprite = earthCursor;
                     }

@@ -78,7 +78,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             SaveSystem.DeleteAllData();
         }
             //the player is close enough to move the box
-            if (inRange && CanInteract())
+            if (inRange)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
