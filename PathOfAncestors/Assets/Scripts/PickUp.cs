@@ -14,10 +14,16 @@ public class PickUp : MonoBehaviour
     float normalJump;
     float slowJump = 3;
 
+    public GameObject cursor;
+    Vector3 pos;
+    Vector3 posUp;
+
     // Start is called before the first frame update
     void Start()
     {
         normalJump = player.GetComponent<CMF.AdvancedWalkerController1>().jumpSpeed;
+        pos = cursor.transform.position;
+        posUp = new Vector3(cursor.transform.position.x, cursor.transform.position.y+100, cursor.transform.position.z);
     }
 
     // Update is called once per frame
@@ -92,10 +98,12 @@ public class PickUp : MonoBehaviour
         if (hasObject)
         {
             player.GetComponent<CMF.AdvancedWalkerController1>().jumpSpeed = slowJump;
+            cursor.transform.position = posUp;
         }
         else
         {
             player.GetComponent<CMF.AdvancedWalkerController1>().jumpSpeed = normalJump;
+            cursor.transform.position = pos;
         }
     }
     private void OnTriggerStay(Collider other)
