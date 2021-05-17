@@ -12,7 +12,7 @@ public class PickUp : MonoBehaviour
     public GameObject player;
     public GameObject parent;
     float normalJump;
-    float slowJump = 3;
+    float slowJump = 1;
 
     public GameObject cursor;
     Vector3 pos;
