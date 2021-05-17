@@ -32,6 +32,7 @@ public class Onboarding : MonoBehaviour
     public GameObject fireTut;
     public GameObject aimTut;
     public GameObject orderTut;
+    public GameObject followTut;
     public GameObject earthTut;
     public GameObject interactTut;
 
@@ -44,6 +45,7 @@ public class Onboarding : MonoBehaviour
         fireTut.SetActive(false);
         aimTut.SetActive(false);
         orderTut.SetActive(false);
+        followTut.SetActive(false);
         earthTut.SetActive(false);
         interactTut.SetActive(false);
 
@@ -157,6 +159,15 @@ public class Onboarding : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         orderTut.SetActive(false);
         isShowingOrder = false;
+        StartCoroutine(ShowFollow(4f));
+    }
+
+    IEnumerator ShowFollow(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        followTut.SetActive(true);
+        yield return new WaitForSeconds(waitTime);
+        followTut.SetActive(false);
         Destroy(this.gameObject);
     }
 
