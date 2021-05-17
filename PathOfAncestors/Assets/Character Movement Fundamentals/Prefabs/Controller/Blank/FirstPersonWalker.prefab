@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 25604
+    m_Bits: 156676
   aimCursor: {fileID: 0}
   cursorReference: {fileID: 0}
   defaultCursor: {fileID: 21300000, guid: 9e917b48812c7da40b34843f7570d358, type: 3}
@@ -534,6 +534,8 @@ MonoBehaviour:
   activatorObject: {fileID: 0}
   currentSpirit: {fileID: 0}
   order: {fileID: 6318772896406036548}
+  hasFire: 0
+  hasEarth: 0
   fireInvoked: 0
   earthInvoked: 0
 --- !u!65 &6440987484339149424
@@ -682,6 +684,7 @@ MonoBehaviour:
   activator: {fileID: 0}
   player: {fileID: 1965413160415254}
   parent: {fileID: 7118985429297317911}
+  cursor: {fileID: 0}
 --- !u!1 &4211623280473771891
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7154081229137114874}
   - component: {fileID: 7694686192176421740}
-  m_Layer: 14
+  m_Layer: 17
   m_Name: PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

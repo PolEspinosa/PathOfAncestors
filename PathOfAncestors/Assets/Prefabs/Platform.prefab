@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5793681433417673385}
   - component: {fileID: 6369203177664086969}
   - component: {fileID: 647176625783364573}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Platform
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -79,6 +79,7 @@ MonoBehaviour:
   hasToStop: 0
   isStopped: 0
   stopPos: {fileID: 0}
+  earthPlatformSoundOrigin: {fileID: 0}
 --- !u!54 &6369203177664086969
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -182,6 +183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 676f092b8be4ec74686ba6981d630e03,
         type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 676f092b8be4ec74686ba6981d630e03,
+        type: 3}
       propertyPath: m_TagString
       value: Metal
       objectReference: {fileID: 0}
@@ -264,6 +270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: plataforma
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3bdf8b3135439714881abc4a93a1cbd6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3bdf8b3135439714881abc4a93a1cbd6,
         type: 3}
