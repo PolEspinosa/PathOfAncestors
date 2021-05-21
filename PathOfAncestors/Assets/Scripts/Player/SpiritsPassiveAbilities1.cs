@@ -41,6 +41,8 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     private FMOD.Studio.EventInstance pushBoxInstance;
     private FMOD.Studio.PLAYBACK_STATE state;
     private Rigidbody playerRigidbody;
+    [SerializeField]
+    private InteractionDetection interaction;
     
     // Start is called before the first frame update
     void Start()
@@ -57,7 +59,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         inDarkArea = false;
         side = PickingSide.NONE;
         pushBoxInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Mecanismos/moveRock");
-        pushBoxInstance.setVolume(0.8f);
+        pushBoxInstance.setVolume(0.5f);
         playerRigidbody = gameObject.GetComponent<Rigidbody>();
 
         PlayerData data = SaveSystem.LoadPlayerData();
@@ -78,7 +80,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             SaveSystem.DeleteAllData();
         }
             //the player is close enough to move the box
-            if (inRange)
+            if (interaction.GetIsInRange())
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -88,15 +90,15 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             //if pushing, do MoveBox function
             if (pushing)
             {
-                movingObject.GetComponent<PlatformParent>().isParent = false;
-                movingObject.GetComponent<PlatformParent>().canParent = false;
+                interaction.GetMovingObject().GetComponent<PlatformParent>().isParent = false;
+                interaction.GetMovingObject().GetComponent<PlatformParent>().canParent = false;
                 MoveBox();
                 if(playerRigidbody.velocity.magnitude > 0.1f)
                 {
                     pushBoxInstance.getPlaybackState(out state);
                     if(state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                     {
-                        FMODUnity.RuntimeManager.AttachInstanceToGameObject(pushBoxInstance, movingObject.transform, boxRigidbody);
+                        FMODUnity.RuntimeManager.AttachInstanceToGameObject(pushBoxInstance, interaction.GetMovingObject().transform, boxRigidbody);
                         pushBoxInstance.start();
                     }
                 }
@@ -108,21 +110,22 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             //if not pushing, erase all realtion between box and character
             else
             {
-                if (movingObject != null && !movingObject.GetComponent<PlatformParent>().isParent)
+                if (interaction.GetMovingObject() != null && !interaction.GetMovingObject().GetComponent<PlatformParent>().isParent)
                 {
                     pushBoxInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    boxRigidbody = movingObject.GetComponent<Rigidbody>();
+                    boxRigidbody = interaction.GetMovingObject().GetComponent<Rigidbody>();
                     boxRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-                    movingObject.transform.parent = null;
-                    BoxCollider[] auxBox = movingObject.GetComponents<BoxCollider>();
+                    interaction.GetMovingObject().transform.parent = null;
+                    BoxCollider[] auxBox = interaction.GetMovingObject().GetComponents<BoxCollider>();
                     foreach (BoxCollider b in auxBox)
                     {
                         b.enabled = true;
                     }
                     boxRigidbody.isKinematic = false;
-                    movingObject.GetComponent<PlatformParent>().canParent = true;
+                    interaction.GetMovingObject().GetComponent<PlatformParent>().canParent = true;
                     boxRigidbody = null;
                     movingObject = null;
+                    interaction.movingObject = null;
                     gameObject.transform.LookAt(null);
                     facedBox = false;
                     boxCollider.enabled = false;
@@ -139,40 +142,19 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerStay(Collider other)
-    {
-        //if in range of a box
-        if (other.CompareTag("Box"))
-        {
-            inRange = true;
-            movingObject = other.gameObject;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //if the player has leaved the box
-        if (other.CompareTag("Box"))
-        {
-            inRange = false;
-        }
-        //else if (other.CompareTag("DarkArea"))
-        //{
-        //    inDarkArea = false;
-        //}
-    }
+   
 
     private void MoveBox()
     {
         //if the player wasn't facing the cube, rotate the player so it is facing the cube
         if (!facedBox)
         {
-            boxRigidbody = movingObject.GetComponent<Rigidbody>();
+            boxRigidbody = interaction.GetMovingObject().GetComponent<Rigidbody>();
             time = 0;
 
             facedBox = true;
-            facedDirection = movingObject.transform.position - gameObject.transform.position;
-            gameObject.transform.parent = movingObject.transform;
+            facedDirection = interaction.GetMovingObject().transform.position - gameObject.transform.position;
+            gameObject.transform.parent = interaction.GetMovingObject().transform;
             //the player faces the front face of the box
             if (facedDirection.z < -0.9)
             {
@@ -199,7 +181,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
             }
             gameObject.transform.parent = null;
             //get the colliders of the moving object
-            BoxCollider []auxBox = movingObject.GetComponents<BoxCollider>();
+            BoxCollider []auxBox = interaction.GetMovingObject().GetComponents<BoxCollider>();
             foreach(BoxCollider b in auxBox)
             {
                 if (!b.isTrigger)
@@ -220,7 +202,7 @@ public class SpiritsPassiveAbilities1 : MonoBehaviour
         }
         else
         {
-            movingObject.transform.parent = gameObject.transform;
+            interaction.GetMovingObject().transform.parent = gameObject.transform;
         }
     }
 

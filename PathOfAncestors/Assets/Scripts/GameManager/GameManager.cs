@@ -18,26 +18,27 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        LoadData();
+        //LoadData();
+        masterVolume = musicVolume = ambienceVolume = sfxVolume = 1f;
     }
     // Start is called before the first frame update
     void Start()
     {
-        PlayerData data = SaveSystem.LoadPlayerData();
-        if (data != null)
-        {
-            for(int i = 0; i < data.decorationBools.Length; i++)
-            {
-                if (data.decorationBools[i])
-                {
-                    decorations[i].SetActive(true);
-                }
-                else
-                {
-                    decorations[i].SetActive(false);
-                }
-            }
-        }
+        //PlayerData data = SaveSystem.LoadPlayerData();
+        //if (data != null)
+        //{
+        //    for(int i = 0; i < data.decorationBools.Length; i++)
+        //    {
+        //        if (data.decorationBools[i])
+        //        {
+        //            decorations[i].SetActive(true);
+        //        }
+        //        else
+        //        {
+        //            decorations[i].SetActive(false);
+        //        }
+        //    }
+        //}
     }
 
     // Update is called once per frame

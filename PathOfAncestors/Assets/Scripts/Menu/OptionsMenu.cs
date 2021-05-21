@@ -11,10 +11,12 @@ public class OptionsMenu : MonoBehaviour
     private float masterVolume, musicVolume, ambienceVolume, SFXVolume;
     [SerializeField]
     private Slider masterSlider, musicSlider, ambienceSlider, sfxSlider;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         masterMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master");
         musicMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/music");
         ambienceMixer = FMODUnity.RuntimeManager.GetBus("bus:/Master/ambient");
@@ -34,6 +36,13 @@ public class OptionsMenu : MonoBehaviour
         //musicMixer.setVolume(musicVolume);
         //ambienceMixer.setVolume(ambienceVolume);
         //sfxMixer.setVolume(SFXVolume);
+        if (gameManager != null)
+        {
+            masterSlider.value = GameManager.masterVolume;
+            musicSlider.value = GameManager.musicVolume;
+            ambienceSlider.value = GameManager.ambienceVolume;
+            sfxSlider.value = GameManager.sfxVolume;
+        }
     }
 
     // Update is called once per frame
