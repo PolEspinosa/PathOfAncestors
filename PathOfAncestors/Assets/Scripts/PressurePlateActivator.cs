@@ -9,6 +9,7 @@ public class PressurePlateActivator : Activator
     public Vector3 startPos;
     public GameObject pressPlateChild;
     public List<GameObject> colliders;
+    private GameObject earthSpirit;
 
     protected override void Start()
     {
@@ -24,7 +25,7 @@ public class PressurePlateActivator : Activator
             if (pressPlateChild.transform.localPosition.y > pressedPos)
                 pressPlateChild.transform.localPosition -= Vector3.up * 0.01f;
             else if (transform.localPosition.y < pressedPos)
-                pressPlateChild.transform.localPosition = Vector3.up * pressedPos;
+                pressPlateChild.transform.localPosition = Vector3.up * pressedPos; 
         }
         else if (!_activated)
         {
@@ -38,12 +39,11 @@ public class PressurePlateActivator : Activator
             _activated = false;
             OnDeactivate();
         }
-
-       
+        
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.gameObject.name != "Trigger" && other.transform.gameObject.name != "EarthInvokation")
+        if (other.transform.gameObject.name != "Trigger" && other.transform.gameObject.name != "EarthInvokation" && other.transform.gameObject.name != "SurfaceDetector" || other.gameObject.CompareTag("EARTH"))
         {
             colliders.Add(other.transform.gameObject);
         }
