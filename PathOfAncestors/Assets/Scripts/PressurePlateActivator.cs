@@ -39,6 +39,18 @@ public class PressurePlateActivator : Activator
             OnDeactivate();
         }
 
+        if(_activated)
+        {
+            for (int i = 0; i < colliders.Count; i++)
+            {
+                if (colliders[i] == null)
+                {
+                    colliders.RemoveAt(i);
+                }
+            }
+        }
+    
+
        
     }
     private void OnTriggerEnter(Collider other)
