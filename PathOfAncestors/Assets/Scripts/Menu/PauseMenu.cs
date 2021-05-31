@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour
         //optionsButton.GetComponent<Image>().sprite = oprionsDeact;
         //backToMenuButton.GetComponent<Image>().sprite = backToMenuDeact;
         exitButton.GetComponent<Image>().sprite = exitDeact;
-
+        gamePaused = false;
     }
 
     // Update is called once per frame
@@ -146,7 +146,7 @@ public class PauseMenu : MonoBehaviour
 
     public void BackToMenu()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 

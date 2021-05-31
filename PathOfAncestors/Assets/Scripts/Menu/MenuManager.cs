@@ -45,6 +45,7 @@ public class MenuManager : MonoBehaviour
         menu.SetActive(true);
         creditsUI.SetActive(false);
         optionsPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void ActiveStart()

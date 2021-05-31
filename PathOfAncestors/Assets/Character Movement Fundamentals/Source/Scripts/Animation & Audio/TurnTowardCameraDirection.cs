@@ -12,6 +12,8 @@ namespace CMF
 
         [SerializeField]
         private SpiritsPassiveAbilities1 passiveScript;
+        [SerializeField]
+        private InteractionDetection interaction;
 
 		//Setup;
 		void Start () {
@@ -38,7 +40,7 @@ namespace CMF
             }
             else
             {
-                gameObject.transform.LookAt(new Vector3(passiveScript.movingObject.transform.position.x, gameObject.transform.position.y, passiveScript.movingObject.transform.position.z));
+                gameObject.transform.LookAt(new Vector3(interaction.GetMovingObject().transform.position.x, gameObject.transform.position.y, interaction.GetMovingObject().transform.position.z));
             }
 		}
 	}

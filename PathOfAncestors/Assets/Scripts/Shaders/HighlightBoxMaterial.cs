@@ -11,6 +11,7 @@ public class HighlightBoxMaterial : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private GameObject popUp;
+    private InteractionDetection interactionScript;
     private SpiritsPassiveAbilities1 passiveScript;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class HighlightBoxMaterial : MonoBehaviour
     {
         myRenderer = gameObject.GetComponent<Renderer>();
         defaultMat = myRenderer.material;
+        interactionScript = player.GetComponentInChildren<InteractionDetection>();
         passiveScript = player.GetComponent<SpiritsPassiveAbilities1>();
     }
 
@@ -42,7 +44,7 @@ public class HighlightBoxMaterial : MonoBehaviour
 
     private bool CanInteract()
     {
-        return !passiveScript.pushing && passiveScript.inRange;
+        return !passiveScript.pushing && interactionScript.GetIsInRange();
     }
 
     private void OnDestroy()
