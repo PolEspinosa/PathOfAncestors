@@ -212,7 +212,7 @@ public class BaseSpirit : MonoBehaviour
         velocity += steering;
         //Calculate slowdown factor
         slowdownFactor = Mathf.Clamp01(targetDistance.magnitude / slowdownDistance);
-        velocity *= slowdownFactor;
+        velocity *= slowdownFactor + Mathf.Clamp(targetDistance.magnitude / 50, 0, 2); //make the fire spirit go faster when further from the target
         //update current position
         gameObject.transform.position += velocity * Time.deltaTime;
         gameObject.transform.rotation = Quaternion.LookRotation(_lookAtDirection, Vector3.up);
