@@ -354,14 +354,14 @@ public class OrderSystem : MonoBehaviour
     private IEnumerator InvokeSpiritAgain(RaycastHit hit)
     {
         yield return new WaitForSeconds(0.1f);
-        spiritManager.InvokeSpirit(spiritManager.earthSpiritRef, spiritManager.earthPosition.transform);
+        spiritManager.InvokeSpirit(spiritManager.earthSpiritRef, spiritManager.earthPosition.transform.position);
         ManageOrders(hit);
     }
 
     private IEnumerator InvokeFireSpiritAgain(RaycastHit hit)
     {
         yield return new WaitForSeconds(0.1f);
-        spiritManager.InvokeSpirit(spiritManager.fireSpiritRef, spiritManager.fireWindPosition.transform);
+        spiritManager.InvokeSpirit(spiritManager.fireSpiritRef, spiritManager.fireWindPosition.transform.position);
         ManageOrders(hit);
     }
 
