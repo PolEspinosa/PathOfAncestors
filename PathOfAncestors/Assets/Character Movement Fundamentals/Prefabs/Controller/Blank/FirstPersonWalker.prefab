@@ -540,6 +540,9 @@ MonoBehaviour:
   hasEarth: 0
   fireInvoked: 0
   earthInvoked: 0
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 156708
 --- !u!65 &6440987484339149424
 BoxCollider:
   m_ObjectHideFlags: 0

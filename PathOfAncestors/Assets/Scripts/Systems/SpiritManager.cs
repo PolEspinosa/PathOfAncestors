@@ -37,20 +37,26 @@ public class SpiritManager : MonoBehaviour
     public float fireInvoked; //0 == none, 1 == invoked
     public float earthInvoked; //0 == none, 1 == invoked
 
+    [SerializeField]
+    private LayerMask ignoreMask;
+
+    private GameObject mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         invokeOtherSpirit = false;
         fireInvoked = earthInvoked = 0;
         canInvoke = true;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && hasFire)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            InvokeSpirit(fireSpiritRef, fireWindPosition.transform);
+            InvokeSpirit(fireSpiritRef, fireWindPosition.transform.position);
             //if invoking the fire spirit, stop music from earth spirit and start music from fire spirit
             if (fireInvoked == 0)
             {
@@ -62,9 +68,17 @@ public class SpiritManager : MonoBehaviour
                 fireInvoked = 0;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && hasEarth)
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            InvokeSpirit(earthSpiritRef, earthPosition.transform);
+            RaycastHit hit;
+            if(Physics.Raycast(mainCamera.transform.position, earthPosition.transform.position-mainCamera.transform.position,out hit, (earthPosition.transform.position - mainCamera.transform.position).magnitude, ~ignoreMask))
+            {
+                InvokeSpirit(earthSpiritRef, hit.point);
+            }
+            else
+            {
+                InvokeSpirit(earthSpiritRef, earthPosition.transform.position);
+            }
             //if invoking the earth spirit, stop music from fire spirit and start music from earth spirit
             if (earthInvoked == 0)
             {
@@ -104,11 +118,11 @@ public class SpiritManager : MonoBehaviour
     }
 
 
-    public void InvokeSpirit(GameObject _spirit, Transform _position)
+    public void InvokeSpirit(GameObject _spirit, Vector3 _position)
     {
         if( currentSpirit==null)
         {
-            currentSpirit=Instantiate(_spirit, _position.position, Quaternion.identity);
+            currentSpirit=Instantiate(_spirit, _position, Quaternion.identity);
         }
 
         else
@@ -116,7 +130,7 @@ public class SpiritManager : MonoBehaviour
             if (_spirit.tag != currentSpirit.tag && canInvoke)
             {
                 currentSpiritAux = _spirit;
-                positionAux = _position.position;
+                positionAux = _position;
                 invokeOtherSpirit = true;
                 currentSpirit.GetComponentInChildren<SpiritsAnimatorController>().uninvoked = true;
             }
