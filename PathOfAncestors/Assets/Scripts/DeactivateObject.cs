@@ -13,7 +13,7 @@ public class DeactivateObject : MonoBehaviour
         {
             foreach (GameObject obj in objects)
             {
-                obj.SetActive(false);
+                Destroy(obj);
             }
         }
     }
