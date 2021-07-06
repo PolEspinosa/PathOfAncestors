@@ -34,10 +34,12 @@ public class WeightDoorActivable : MonoBehaviour
                 speed = activator.GetComponent<WeightPlateActivator>().weight/10;
                 targetPos = new Vector3(endPos.x, (endPosAux.y * activator.GetComponent<WeightPlateActivator>().weight/100)+startPos.y, endPos.z);
             }
-            else if (activator.GetComponent<WeightPlateActivator>().weight <= 0)
+            else if (activator.GetComponent<WeightPlateActivator>().weight <= 0 && targetPos!=startPos)
             {
                 targetPos = startPos;
+                speed = 15;
             }
+
 
         }
         
