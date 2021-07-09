@@ -54,7 +54,7 @@ public class SpiritManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && hasFire)
         {
             InvokeSpirit(fireSpiritRef, fireWindPosition.transform.position);
             //if invoking the fire spirit, stop music from earth spirit and start music from fire spirit
@@ -68,7 +68,7 @@ public class SpiritManager : MonoBehaviour
                 fireInvoked = 0;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && hasEarth)
         {
             RaycastHit hit;
             if(Physics.Raycast(mainCamera.transform.position, earthPosition.transform.position-mainCamera.transform.position,out hit, (earthPosition.transform.position - mainCamera.transform.position).magnitude, ~ignoreMask))
