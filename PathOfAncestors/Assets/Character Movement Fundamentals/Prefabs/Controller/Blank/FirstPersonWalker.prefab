@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 7564607797633685210}
   - component: {fileID: 6440987484339149424}
   - component: {fileID: 1695543095}
+  - component: {fileID: 1085719595534301761}
   m_Layer: 14
   m_Name: FirstPersonWalker
   m_TagString: Player
@@ -582,6 +583,18 @@ MonoBehaviour:
   side: 0
   inDarkArea: 0
   interaction: {fileID: 4800691299904956874}
+--- !u!114 &1085719595534301761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965413160415254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cc4b749ea5b2b4d8bd7f1b784f1dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1379475598504727013
 GameObject:
   m_ObjectHideFlags: 0
